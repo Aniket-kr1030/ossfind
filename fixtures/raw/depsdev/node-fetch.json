@@ -1,0 +1,1064 @@
+{
+  "packageKey": {
+    "system": "NPM",
+    "name": "node-fetch"
+  },
+  "versions": [
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "0.1.0"
+      },
+      "publishedAt": "2015-01-27T13:17:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.0.0"
+      },
+      "publishedAt": "2015-01-27T17:38:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.0.1"
+      },
+      "publishedAt": "2015-01-27T18:07:00Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.0.2"
+      },
+      "publishedAt": "2015-01-28T05:05:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.0.3"
+      },
+      "publishedAt": "2015-01-28T15:43:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.0.4"
+      },
+      "publishedAt": "2015-02-06T11:21:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.0.5"
+      },
+      "publishedAt": "2015-03-19T17:02:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.0.6"
+      },
+      "publishedAt": "2015-03-24T04:31:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.1.0"
+      },
+      "publishedAt": "2015-04-17T05:33:19Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.1.1"
+      },
+      "publishedAt": "2015-04-22T15:36:35Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.1.2"
+      },
+      "publishedAt": "2015-04-29T04:18:18Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.2.0"
+      },
+      "publishedAt": "2015-05-03T10:07:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.2.1"
+      },
+      "publishedAt": "2015-05-04T04:08:19Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.3.0"
+      },
+      "publishedAt": "2015-06-04T04:43:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.3.1"
+      },
+      "publishedAt": "2015-07-11T11:45:04Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.3.2"
+      },
+      "publishedAt": "2015-07-22T07:53:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.3.3"
+      },
+      "publishedAt": "2015-09-28T15:15:17Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.4.0"
+      },
+      "publishedAt": "2016-03-19T11:02:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.4.1"
+      },
+      "publishedAt": "2016-03-23T07:33:18Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.5.0"
+      },
+      "publishedAt": "2016-04-05T19:05:25Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.5.1"
+      },
+      "publishedAt": "2016-04-12T18:58:56Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.5.2"
+      },
+      "publishedAt": "2016-05-06T12:13:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.5.3"
+      },
+      "publishedAt": "2016-05-25T18:54:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.6.0"
+      },
+      "publishedAt": "2016-08-03T10:10:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.6.1"
+      },
+      "publishedAt": "2016-09-11T15:38:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.6.2"
+      },
+      "publishedAt": "2016-09-24T09:53:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.6.3"
+      },
+      "publishedAt": "2016-09-26T06:20:12Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.7.0"
+      },
+      "publishedAt": "2017-05-23T08:24:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.7.1"
+      },
+      "publishedAt": "2017-06-03T12:44:58Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.7.2"
+      },
+      "publishedAt": "2017-08-08T11:23:01Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "1.7.3"
+      },
+      "publishedAt": "2017-09-08T06:28:18Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.0.0"
+      },
+      "publishedAt": "2018-02-03T20:34:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.0.0-alpha.1"
+      },
+      "publishedAt": "2017-01-15T05:37:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.0.0-alpha.3"
+      },
+      "publishedAt": "2017-01-29T18:36:09Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.0.0-alpha.4"
+      },
+      "publishedAt": "2017-05-15T12:16:58Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.0.0-alpha.5"
+      },
+      "publishedAt": "2017-06-03T13:05:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.0.0-alpha.6"
+      },
+      "publishedAt": "2017-07-21T18:04:31Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "it accidentally includes an older copy of node-fetch v2, do not use"
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.0.0-alpha.7"
+      },
+      "publishedAt": "2017-07-25T04:11:01Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.0.0-alpha.8"
+      },
+      "publishedAt": "2017-07-26T17:11:52Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.0.0-alpha.9"
+      },
+      "publishedAt": "2017-09-24T05:47:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.1.0"
+      },
+      "publishedAt": "2018-03-05T04:41:12Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.1.1"
+      },
+      "publishedAt": "2018-03-05T04:44:09Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.1.2"
+      },
+      "publishedAt": "2018-03-25T20:55:00Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.2.0"
+      },
+      "publishedAt": "2018-07-22T21:32:05Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.2.1"
+      },
+      "publishedAt": "2018-11-05T09:44:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.3.0"
+      },
+      "publishedAt": "2018-11-13T06:41:56Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.4.0"
+      },
+      "publishedAt": "2019-04-26T17:24:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.4.1"
+      },
+      "publishedAt": "2019-04-27T07:07:42Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.5.0"
+      },
+      "publishedAt": "2019-05-01T05:08:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.0"
+      },
+      "publishedAt": "2019-05-16T06:39:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.1"
+      },
+      "publishedAt": "2020-09-05T13:00:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.10"
+      },
+      "publishedAt": "2023-05-08T16:20:45Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.11"
+      },
+      "publishedAt": "2023-05-09T11:06:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.12"
+      },
+      "publishedAt": "2023-06-29T19:16:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.13"
+      },
+      "publishedAt": "2023-08-18T20:24:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.2"
+      },
+      "publishedAt": "2021-09-06T13:05:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.3"
+      },
+      "publishedAt": "2021-09-20T21:52:54Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "v2.6.3 cause bug where query params where not included"
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.4"
+      },
+      "publishedAt": "2021-09-21T12:38:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.5"
+      },
+      "publishedAt": "2021-09-22T12:53:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.6"
+      },
+      "publishedAt": "2021-10-31T15:49:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.7"
+      },
+      "publishedAt": "2022-01-16T12:18:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.8"
+      },
+      "publishedAt": "2023-01-13T01:04:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.6.9"
+      },
+      "publishedAt": "2023-01-30T22:00:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "2.7.0"
+      },
+      "publishedAt": "2023-08-23T17:18:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.0.0"
+      },
+      "publishedAt": "2021-08-31T16:22:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.0.0-beta.1"
+      },
+      "publishedAt": "2020-03-13T15:13:38Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "this package is deprecated, it was published in the wrong release channel, 2.x is still the stable release"
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.0.0-beta.10"
+      },
+      "publishedAt": "2021-07-19T08:41:01Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.0.0-beta.2"
+      },
+      "publishedAt": "2020-03-13T19:01:52Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "this package is deprecated, it was published in the wrong release channel, 2.x is still the stable release"
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.0.0-beta.3"
+      },
+      "publishedAt": "2020-03-13T19:10:06Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "this package is deprecated, it was published in the wrong release channel, 2.x is still the stable release"
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.0.0-beta.4"
+      },
+      "publishedAt": "2020-03-14T05:58:10Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "This version includes a serious issue with url params, please upgrade to at least 3.0.0-beta.5"
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.0.0-beta.5"
+      },
+      "publishedAt": "2020-04-22T09:42:44Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "This version has a bigger size, includes many bugs and broken TypeScript definition. Please update to the next beta version. Changelog: https://git.io/JfV1D"
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.0.0-beta.6"
+      },
+      "publishedAt": "2020-05-25T15:21:06Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "This version includes a broken  function export & declaration. Please use a next beta version."
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.0.0-beta.6-exportfix"
+      },
+      "publishedAt": "2020-05-25T17:30:35Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "This release contains some TypeScript definition issues and we therefore recommend to update to the next version. Changelog: https://git.io/JfV1D"
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.0.0-beta.7"
+      },
+      "publishedAt": "2020-06-11T09:31:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.0.0-beta.8"
+      },
+      "publishedAt": "2020-08-10T08:37:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.0.0-beta.9"
+      },
+      "publishedAt": "2020-09-05T12:52:27Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.1.0"
+      },
+      "publishedAt": "2021-11-08T18:16:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.1.1"
+      },
+      "publishedAt": "2022-01-16T12:28:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.2.0"
+      },
+      "publishedAt": "2022-01-20T20:43:19Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.2.1"
+      },
+      "publishedAt": "2022-03-01T09:54:58Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.2.10"
+      },
+      "publishedAt": "2022-07-31T08:02:25Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.2.2"
+      },
+      "publishedAt": "2022-03-07T10:57:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.2.3"
+      },
+      "publishedAt": "2022-03-11T21:49:52Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.2.4"
+      },
+      "publishedAt": "2022-04-28T09:34:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.2.5"
+      },
+      "publishedAt": "2022-06-01T19:44:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.2.6"
+      },
+      "publishedAt": "2022-06-09T10:55:35Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.2.7"
+      },
+      "publishedAt": "2022-07-11T22:46:01Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.2.8"
+      },
+      "publishedAt": "2022-07-12T16:32:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.2.9"
+      },
+      "publishedAt": "2022-07-18T15:21:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.3.0"
+      },
+      "publishedAt": "2022-11-10T21:47:30Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.3.1"
+      },
+      "publishedAt": "2023-03-11T10:47:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "3.3.2"
+      },
+      "publishedAt": "2023-07-25T11:50:17Z",
+      "isDefault": true,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "4.0.0-beta.1"
+      },
+      "publishedAt": "2022-01-27T00:27:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "4.0.0-beta.2"
+      },
+      "publishedAt": "2022-01-27T22:40:18Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "4.0.0-beta.3"
+      },
+      "publishedAt": "2022-01-27T22:42:58Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "node-fetch",
+        "version": "4.0.0-beta.4"
+      },
+      "publishedAt": "2022-01-27T22:45:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    }
+  ]
+}

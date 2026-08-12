@@ -1,0 +1,419 @@
+{
+  "projectKey": {
+    "id": "github.com/facebook/react"
+  },
+  "openIssuesCount": 1253,
+  "starsCount": 247138,
+  "forksCount": 51203,
+  "license": "MIT",
+  "description": "The library for web and native user interfaces.",
+  "homepage": "https://react.dev",
+  "scorecard": {
+    "date": "2026-08-03T00:00:00Z",
+    "repository": {
+      "name": "github.com/facebook/react",
+      "commit": "7dfc7ccd12d0294debc69b9b9b4e9dd1fd42e08a"
+    },
+    "scorecard": {
+      "version": "v5.5.1-0.20260715062425-64febf8c5229",
+      "commit": "64febf8c5229a2a65d09c6b543677b28a51abb09"
+    },
+    "checks": [
+      {
+        "name": "Maintained",
+        "documentation": {
+          "shortDescription": "Determines if the project is \"actively maintained\".",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#maintained"
+        },
+        "score": 10,
+        "reason": "30 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 10",
+        "details": []
+      },
+      {
+        "name": "Security-Policy",
+        "documentation": {
+          "shortDescription": "Determines if the project has published a security policy.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#security-policy"
+        },
+        "score": 10,
+        "reason": "security policy file detected",
+        "details": [
+          "Info: security policy file detected: SECURITY.md:1",
+          "Info: Found linked content: SECURITY.md:1",
+          "Info: Found disclosure, vulnerability, and/or timelines in security policy: SECURITY.md:1",
+          "Info: Found text in security policy: SECURITY.md:1"
+        ]
+      },
+      {
+        "name": "Code-Review",
+        "documentation": {
+          "shortDescription": "Determines if the project requires human code review before pull requests (aka merge requests) are merged.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#code-review"
+        },
+        "score": 10,
+        "reason": "all changesets reviewed",
+        "details": []
+      },
+      {
+        "name": "Dangerous-Workflow",
+        "documentation": {
+          "shortDescription": "Determines if the project's GitHub Action workflows avoid dangerous patterns.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#dangerous-workflow"
+        },
+        "score": 10,
+        "reason": "no dangerous workflow patterns detected",
+        "details": []
+      },
+      {
+        "name": "Packaging",
+        "documentation": {
+          "shortDescription": "Determines if the project is published as a package that others can easily download, install, easily update, and uninstall.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#packaging"
+        },
+        "score": -1,
+        "reason": "packaging workflow not detected",
+        "details": [
+          "Warn: no GitHub/GitLab publishing workflow detected."
+        ]
+      },
+      {
+        "name": "CII-Best-Practices",
+        "documentation": {
+          "shortDescription": "Determines if the project has an OpenSSF (formerly CII) Best Practices Badge.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#cii-best-practices"
+        },
+        "score": 2,
+        "reason": "badge detected: InProgress",
+        "details": []
+      },
+      {
+        "name": "Token-Permissions",
+        "documentation": {
+          "shortDescription": "Determines if the project's workflows follow the principle of least privilege.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#token-permissions"
+        },
+        "score": 10,
+        "reason": "GitHub workflow tokens follow principle of least privilege",
+        "details": [
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/compiler_discord_notify.yml:31",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/devtools_discord_notify.yml:31",
+          "Info: jobLevel 'actions' permission set to 'read': .github/workflows/devtools_regression_tests.yml:25",
+          "Info: jobLevel 'actions' permission set to 'read': .github/workflows/runtime_build_and_test.yml:880",
+          "Info: jobLevel 'actions' permission set to 'read': .github/workflows/runtime_commit_artifacts.yml:37",
+          "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/runtime_commit_artifacts.yml:215",
+          "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/runtime_commit_artifacts.yml:304",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/runtime_discord_notify.yml:33",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/runtime_release_from_ci.yml:118",
+          "Info: jobLevel 'actions' permission set to 'read': .github/workflows/runtime_release_from_ci.yml:121",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/shared_check_maintainer.yml:25",
+          "Warn: jobLevel 'actions' permission set to 'write': .github/workflows/shared_cleanup_merged_branch_caches.yml:22",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/shared_cleanup_merged_branch_caches.yml:23",
+          "Warn: jobLevel 'actions' permission set to 'write': .github/workflows/shared_cleanup_stale_branch_caches.yml:18",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/shared_cleanup_stale_branch_caches.yml:19",
+          "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/shared_close_direct_sync_branch_prs.yml:21",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/shared_label_core_team_prs.yml:32",
+          "Info: found token with 'none' permissions: .github/workflows/compiler_discord_notify.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/compiler_playground.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/compiler_prereleases.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/compiler_prereleases_manual.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/compiler_prereleases_nightly.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/compiler_rust.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/compiler_typescript.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/devtools_discord_notify.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/devtools_regression_tests.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/runtime_build_and_test.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/runtime_commit_artifacts.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/runtime_discord_notify.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/runtime_eslint_plugin_e2e.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/runtime_fuzz_tests.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/runtime_release_from_ci.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/shared_check_maintainer.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/shared_cleanup_merged_branch_caches.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/shared_cleanup_stale_branch_caches.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/shared_close_direct_sync_branch_prs.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/shared_label_core_team_prs.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/shared_lint.yml:1"
+        ]
+      },
+      {
+        "name": "License",
+        "documentation": {
+          "shortDescription": "Determines if the project has defined a license.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#license"
+        },
+        "score": 10,
+        "reason": "license file detected",
+        "details": [
+          "Info: project has a license file: LICENSE:0",
+          "Info: FSF or OSI recognized license: MIT License: LICENSE:0"
+        ]
+      },
+      {
+        "name": "Signed-Releases",
+        "documentation": {
+          "shortDescription": "Determines if the project cryptographically signs release artifacts.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#signed-releases"
+        },
+        "score": -1,
+        "reason": "no releases found",
+        "details": []
+      },
+      {
+        "name": "Branch-Protection",
+        "documentation": {
+          "shortDescription": "Determines if the default and release branches are protected with GitHub's branch protection settings.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#branch-protection"
+        },
+        "score": 5,
+        "reason": "branch protection is not maximal on development and all release branches",
+        "details": [
+          "Info: 'allow deletion' disabled on branch 'main'",
+          "Info: 'force pushes' disabled on branch 'main'",
+          "Info: 'branch protection settings apply to administrators' is required to merge on branch 'main'",
+          "Warn: 'stale review dismissal' is disabled on branch 'main'",
+          "Warn: required approving review count is 1 on branch 'main'",
+          "Warn: codeowners review is not required on branch 'main'",
+          "Warn: 'last push approval' is disabled on branch 'main'",
+          "Warn: no status checks found to merge onto branch 'main'",
+          "Info: PRs are required in order to make changes on branch 'main'"
+        ]
+      },
+      {
+        "name": "Binary-Artifacts",
+        "documentation": {
+          "shortDescription": "Determines if the project has generated executable (binary) artifacts in the source repository.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#binary-artifacts"
+        },
+        "score": 9,
+        "reason": "binaries present in source code",
+        "details": [
+          "Warn: binary detected: compiler/apps/playground/public/graphvizlib.wasm:1"
+        ]
+      },
+      {
+        "name": "Pinned-Dependencies",
+        "documentation": {
+          "shortDescription": "Determines if the project has declared and pinned the dependencies of its build process.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#pinned-dependencies"
+        },
+        "score": 0,
+        "reason": "dependency not pinned by hash detected -- score normalized to 0",
+        "details": [
+          "Info: Possibly incomplete results: error parsing shell code: invalid parameter name: .github/workflows/compiler_prereleases.yml:61",
+          "Info: Possibly incomplete results: error parsing shell code: invalid parameter name: .github/workflows/compiler_prereleases.yml:66",
+          "Info: Possibly incomplete results: error parsing shell code: invalid parameter name: .github/workflows/runtime_commit_artifacts.yml:290",
+          "Info: Possibly incomplete results: error parsing shell code: invalid parameter name: .github/workflows/runtime_commit_artifacts.yml:464",
+          "Info: Possibly incomplete results: error parsing shell code: invalid parameter name: .github/workflows/runtime_release_from_ci.yml:155",
+          "Info: Possibly incomplete results: error parsing shell code: invalid parameter name: .github/workflows/runtime_release_from_ci.yml:165",
+          "Info: Possibly incomplete results: error parsing shell code: invalid parameter name: .github/workflows/runtime_release_from_ci.yml:182",
+          "Info: Possibly incomplete results: error parsing shell code: invalid parameter name: .github/workflows/runtime_release_from_ci.yml:194",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/compiler_discord_notify.yml:28: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_discord_notify.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_playground.yml:31: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_playground.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_playground.yml:32: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_playground.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_playground.yml:36: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_playground.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_playground.yml:52: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_playground.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_playground.yml:63: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_playground.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_prereleases.yml:46: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_prereleases.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_prereleases.yml:47: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_prereleases.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_prereleases.yml:51: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_prereleases.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/compiler_prereleases_manual.yml:32: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_prereleases_manual.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/compiler_prereleases_nightly.yml:16: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_prereleases_nightly.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_rust.yml:30: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_rust.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/compiler_rust.yml:33: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_rust.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_rust.yml:36: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_rust.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_rust.yml:46: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_rust.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_rust.yml:53: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_rust.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_typescript.yml:33: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_typescript.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_typescript.yml:42: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_typescript.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_typescript.yml:43: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_typescript.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_typescript.yml:49: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_typescript.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_typescript.yml:64: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_typescript.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_typescript.yml:65: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_typescript.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_typescript.yml:69: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_typescript.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_typescript.yml:88: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_typescript.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_typescript.yml:89: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_typescript.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/compiler_typescript.yml:93: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/compiler_typescript.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/devtools_discord_notify.yml:28: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_discord_notify.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:27: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:28: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:32: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:51: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:62: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:63: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:67: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:78: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:88: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:95: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:101: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:122: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:123: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:127: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:136: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:156: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:157: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:161: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:170: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:178: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/devtools_regression_tests.yml:193: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/devtools_regression_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:576: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:579: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:583: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:594: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:615: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:618: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:625: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:642: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:651: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:665: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:671: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:687: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:690: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:694: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:706: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:718: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:724: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:735: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:37: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:43: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:50: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:88: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:91: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:161: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:164: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:168: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:215: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:218: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:222: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:781: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:784: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:788: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:800: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:806: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:815: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:133: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:136: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:140: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:244: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:245: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:249: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:408: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:411: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:415: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:427: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:747: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:750: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:754: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:768: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:62: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:65: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:70: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:107: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:110: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:114: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:446: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:449: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:453: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:465: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:483: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:490: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:507: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:510: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:514: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:526: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:543: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:546: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:550: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:562: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:826: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:829: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:833: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:845: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:851: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:867: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:883: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:886: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:890: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:921: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:935: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:277: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:280: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:283: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:288: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:311: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:363: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:366: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:370: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_build_and_test.yml:384: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_build_and_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:39: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:41: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:59: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:79: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:92: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:102: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:109: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:198: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:203: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:217: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:222: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:308: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:313: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_commit_artifacts.yml:363: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_commit_artifacts.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/runtime_discord_notify.yml:30: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_discord_notify.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_eslint_plugin_e2e.yml:34: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_eslint_plugin_e2e.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_eslint_plugin_e2e.yml:37: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_eslint_plugin_e2e.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_eslint_plugin_e2e.yml:41: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_eslint_plugin_e2e.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_fuzz_tests.yml:20: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_fuzz_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_fuzz_tests.yml:21: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_fuzz_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_release_from_ci.yml:129: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_release_from_ci.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_release_from_ci.yml:132: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_release_from_ci.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/runtime_release_from_ci.yml:141: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/runtime_release_from_ci.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_check_maintainer.yml:31: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_check_maintainer.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_close_direct_sync_branch_prs.yml:24: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_close_direct_sync_branch_prs.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/shared_label_core_team_prs.yml:29: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_label_core_team_prs.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_label_core_team_prs.yml:47: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_label_core_team_prs.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_lint.yml:45: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_lint.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_lint.yml:46: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_lint.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_lint.yml:50: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_lint.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_lint.yml:66: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_lint.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_lint.yml:67: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_lint.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_lint.yml:71: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_lint.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_lint.yml:87: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_lint.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_lint.yml:88: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_lint.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_lint.yml:92: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_lint.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_lint.yml:24: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_lint.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_lint.yml:25: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_lint.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_lint.yml:29: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_lint.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/shared_stale.yml:21: update your workflow using https://app.stepsecurity.io/secureworkflow/react/react/shared_stale.yml/main?enable=pin",
+          "Info:   0 out of 170 GitHub-owned GitHubAction dependencies pinned",
+          "Info:   5 out of  12 third-party GitHubAction dependencies pinned"
+        ]
+      },
+      {
+        "name": "Fuzzing",
+        "documentation": {
+          "shortDescription": "Determines if the project uses fuzzing.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#fuzzing"
+        },
+        "score": 0,
+        "reason": "project is not fuzzed",
+        "details": [
+          "Warn: no fuzzer integrations found"
+        ]
+      },
+      {
+        "name": "SAST",
+        "documentation": {
+          "shortDescription": "Determines if the project uses static code analysis.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#sast"
+        },
+        "score": 0,
+        "reason": "SAST tool is not run on all commits -- score normalized to 0",
+        "details": [
+          "Warn: 0 commits out of 30 are checked with a SAST tool"
+        ]
+      }
+    ],
+    "overallScore": 7,
+    "metadata": []
+  }
+}

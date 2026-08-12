@@ -1,0 +1,844 @@
+{
+  "packageKey": {
+    "system": "NPM",
+    "name": "moment"
+  },
+  "versions": [
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.0.0"
+      },
+      "publishedAt": "2011-12-06T18:33:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.0.1"
+      },
+      "publishedAt": "2011-12-06T18:33:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.1.0"
+      },
+      "publishedAt": "2011-10-27T23:21:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.1.1"
+      },
+      "publishedAt": "2011-11-11T19:16:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.2.0"
+      },
+      "publishedAt": "2011-12-06T18:33:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.3.0"
+      },
+      "publishedAt": "2012-01-05T17:51:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.4.0"
+      },
+      "publishedAt": "2012-02-03T19:16:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.5.0"
+      },
+      "publishedAt": "2012-03-19T19:44:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.5.1"
+      },
+      "publishedAt": "2012-04-06T02:08:35Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.6.0"
+      },
+      "publishedAt": "2012-04-26T16:50:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.6.1"
+      },
+      "publishedAt": "2012-04-26T22:30:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.6.2"
+      },
+      "publishedAt": "2012-05-04T17:20:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.7.0"
+      },
+      "publishedAt": "2012-07-25T19:10:17Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.7.1"
+      },
+      "publishedAt": "2012-10-01T17:33:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "1.7.2"
+      },
+      "publishedAt": "2012-10-02T17:17:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.0.0"
+      },
+      "publishedAt": "2013-02-08T19:13:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.1.0"
+      },
+      "publishedAt": "2013-07-07T20:33:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.10.2"
+      },
+      "publishedAt": "2015-04-09T06:39:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.10.3"
+      },
+      "publishedAt": "2015-05-13T07:54:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.10.5"
+      },
+      "publishedAt": "2015-07-26T09:33:20Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "Construction from iso format is broken, fix in 2.10.6"
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.10.6"
+      },
+      "publishedAt": "2015-07-28T04:45:30Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.11.0"
+      },
+      "publishedAt": "2016-01-02T23:38:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.11.1"
+      },
+      "publishedAt": "2016-01-09T13:17:52Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.11.2"
+      },
+      "publishedAt": "2016-02-03T22:47:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.12.0"
+      },
+      "publishedAt": "2016-03-07T09:23:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.13.0"
+      },
+      "publishedAt": "2016-04-18T07:41:30Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.14.0"
+      },
+      "publishedAt": "2016-07-04T05:11:00Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.14.1"
+      },
+      "publishedAt": "2016-07-04T06:44:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.15.0"
+      },
+      "publishedAt": "2016-09-12T09:27:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.15.1"
+      },
+      "publishedAt": "2016-09-21T03:39:35Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.15.2"
+      },
+      "publishedAt": "2016-10-24T06:49:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.16.0"
+      },
+      "publishedAt": "2016-11-10T06:54:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.17.0"
+      },
+      "publishedAt": "2016-11-22T13:48:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.17.1"
+      },
+      "publishedAt": "2016-12-04T05:48:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.18.0"
+      },
+      "publishedAt": "2017-03-18T21:14:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.18.1"
+      },
+      "publishedAt": "2017-03-21T22:58:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.19.0"
+      },
+      "publishedAt": "2017-10-10T09:40:27Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "Webpack/react-app-scripts crash"
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.19.1"
+      },
+      "publishedAt": "2017-10-11T21:02:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.19.2"
+      },
+      "publishedAt": "2017-11-11T20:34:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.19.3"
+      },
+      "publishedAt": "2017-11-29T16:28:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.19.4"
+      },
+      "publishedAt": "2017-12-11T01:11:36Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.2.1"
+      },
+      "publishedAt": "2013-09-12T08:39:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.20.0"
+      },
+      "publishedAt": "2017-12-17T01:15:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.20.1"
+      },
+      "publishedAt": "2017-12-19T04:44:18Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.21.0"
+      },
+      "publishedAt": "2018-03-02T20:41:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.22.0"
+      },
+      "publishedAt": "2018-03-30T22:06:01Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.22.1"
+      },
+      "publishedAt": "2018-04-15T06:06:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.22.2"
+      },
+      "publishedAt": "2018-06-01T06:58:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.23.0"
+      },
+      "publishedAt": "2018-12-13T06:49:17Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.24.0"
+      },
+      "publishedAt": "2019-01-21T21:10:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.25.0"
+      },
+      "publishedAt": "2020-05-01T01:27:04Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.25.1"
+      },
+      "publishedAt": "2020-05-01T18:51:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.25.2"
+      },
+      "publishedAt": "2020-05-04T12:29:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.25.3"
+      },
+      "publishedAt": "2020-05-04T15:13:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.26.0"
+      },
+      "publishedAt": "2020-05-20T06:46:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.27.0"
+      },
+      "publishedAt": "2020-06-18T22:00:56Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.28.0"
+      },
+      "publishedAt": "2020-09-13T11:27:15Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.29.0"
+      },
+      "publishedAt": "2020-09-22T08:31:04Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.29.1"
+      },
+      "publishedAt": "2020-10-06T11:21:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.29.2"
+      },
+      "publishedAt": "2022-04-03T13:18:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.29.3"
+      },
+      "publishedAt": "2022-04-17T18:27:04Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.29.4"
+      },
+      "publishedAt": "2022-07-06T16:01:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.3.0"
+      },
+      "publishedAt": "2013-10-07T08:30:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.3.1"
+      },
+      "publishedAt": "2013-10-09T02:38:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.30.0"
+      },
+      "publishedAt": "2023-12-26T19:36:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.30.1"
+      },
+      "publishedAt": "2023-12-27T10:38:43Z",
+      "isDefault": true,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.4.0"
+      },
+      "publishedAt": "2013-10-27T02:26:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.5.0"
+      },
+      "publishedAt": "2013-12-23T21:09:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.5.1"
+      },
+      "publishedAt": "2014-01-22T09:28:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.6.0"
+      },
+      "publishedAt": "2014-04-12T16:39:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.7.0"
+      },
+      "publishedAt": "2014-06-12T07:05:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.8.1"
+      },
+      "publishedAt": "2014-08-01T17:21:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.8.2"
+      },
+      "publishedAt": "2014-08-22T13:55:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.8.3"
+      },
+      "publishedAt": "2014-09-05T08:06:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.8.4"
+      },
+      "publishedAt": "2014-11-19T04:47:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "NPM",
+        "name": "moment",
+        "version": "2.9.0"
+      },
+      "publishedAt": "2015-01-08T15:01:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    }
+  ]
+}

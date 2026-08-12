@@ -1,0 +1,216 @@
+{
+  "projectKey": {
+    "id": "github.com/vitejs/vite"
+  },
+  "openIssuesCount": 770,
+  "starsCount": 82299,
+  "forksCount": 8623,
+  "license": "MIT",
+  "description": "Next generation frontend tooling. It's fast!",
+  "homepage": "http://vite.dev",
+  "scorecard": {
+    "date": "2026-08-03T00:00:00Z",
+    "repository": {
+      "name": "github.com/vitejs/vite",
+      "commit": "ef02435114c57d0422028f0e6987f3df8db72969"
+    },
+    "scorecard": {
+      "version": "v5.5.1-0.20260805012949-2418d6d95e92",
+      "commit": "2418d6d95e928102e1f3f8d6e7b92f4f3c78631f"
+    },
+    "checks": [
+      {
+        "name": "Maintained",
+        "documentation": {
+          "shortDescription": "Determines if the project is \"actively maintained\".",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#maintained"
+        },
+        "score": 10,
+        "reason": "30 commit(s) and 20 issue activity found in the last 90 days -- score normalized to 10",
+        "details": []
+      },
+      {
+        "name": "Security-Policy",
+        "documentation": {
+          "shortDescription": "Determines if the project has published a security policy.",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#security-policy"
+        },
+        "score": 10,
+        "reason": "security policy file detected",
+        "details": [
+          "Info: security policy file detected: .github/SECURITY.md:1",
+          "Info: Found linked content: .github/SECURITY.md:1",
+          "Info: Found disclosure, vulnerability, and/or timelines in security policy: .github/SECURITY.md:1",
+          "Info: Found text in security policy: .github/SECURITY.md:1"
+        ]
+      },
+      {
+        "name": "Packaging",
+        "documentation": {
+          "shortDescription": "Determines if the project is published as a package that others can easily download, install, easily update, and uninstall.",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#packaging"
+        },
+        "score": -1,
+        "reason": "packaging workflow not detected",
+        "details": [
+          "Warn: no GitHub/GitLab publishing workflow detected."
+        ]
+      },
+      {
+        "name": "Code-Review",
+        "documentation": {
+          "shortDescription": "Determines if the project requires human code review before pull requests (aka merge requests) are merged.",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#code-review"
+        },
+        "score": 6,
+        "reason": "Found 17/26 approved changesets -- score normalized to 6",
+        "details": []
+      },
+      {
+        "name": "Dangerous-Workflow",
+        "documentation": {
+          "shortDescription": "Determines if the project's GitHub Action workflows avoid dangerous patterns.",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#dangerous-workflow"
+        },
+        "score": 10,
+        "reason": "no dangerous workflow patterns detected",
+        "details": []
+      },
+      {
+        "name": "CII-Best-Practices",
+        "documentation": {
+          "shortDescription": "Determines if the project has an OpenSSF (formerly CII) Best Practices Badge.",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#cii-best-practices"
+        },
+        "score": 0,
+        "reason": "no effort to earn an OpenSSF best practices badge detected",
+        "details": []
+      },
+      {
+        "name": "Token-Permissions",
+        "documentation": {
+          "shortDescription": "Determines if the project's workflows follow the principle of least privilege.",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#token-permissions"
+        },
+        "score": 6,
+        "reason": "detected GitHub workflow tokens with excessive permissions",
+        "details": [
+          "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/copilot-setup-steps.yml:14",
+          "Info: jobLevel 'actions' permission set to 'read': .github/workflows/ecosystem-ci-trigger.yml:14",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/issue-close-require.yml:12",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/issue-labeled.yml:12",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/publish.yml:16",
+          "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/release-tag.yml:17",
+          "Info: jobLevel 'pull-requests' permission set to 'read': .github/workflows/semantic-pull-request.yml:21",
+          "Info: found token with 'none' permissions: .github/workflows/ci.yml:1",
+          "Warn: no topLevel permission defined: .github/workflows/copilot-setup-steps.yml:1",
+          "Warn: no topLevel permission defined: .github/workflows/ecosystem-ci-trigger.yml:1",
+          "Warn: no topLevel permission defined: .github/workflows/issue-close-require.yml:1",
+          "Warn: no topLevel permission defined: .github/workflows/issue-labeled.yml:1",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/lock-closed-issues.yml:8",
+          "Warn: no topLevel permission defined: .github/workflows/publish.yml:1",
+          "Warn: no topLevel permission defined: .github/workflows/release-tag.yml:1",
+          "Warn: no topLevel permission defined: .github/workflows/semantic-pull-request.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/semgrep.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/zizmor.yml:1"
+        ]
+      },
+      {
+        "name": "License",
+        "documentation": {
+          "shortDescription": "Determines if the project has defined a license.",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#license"
+        },
+        "score": 10,
+        "reason": "license file detected",
+        "details": [
+          "Info: project has a license file: LICENSE:0",
+          "Info: FSF or OSI recognized license: MIT License: LICENSE:0"
+        ]
+      },
+      {
+        "name": "Binary-Artifacts",
+        "documentation": {
+          "shortDescription": "Determines if the project has generated executable (binary) artifacts in the source repository.",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#binary-artifacts"
+        },
+        "score": 1,
+        "reason": "binaries present in source code",
+        "details": [
+          "Warn: binary detected: playground/ssr-wasm/src/heavy.wasm:1",
+          "Warn: binary detected: playground/ssr-wasm/src/light.wasm:1",
+          "Warn: binary detected: playground/wasm/add.wasm:1",
+          "Warn: binary detected: playground/wasm/global-consumer.wasm:1",
+          "Warn: binary detected: playground/wasm/global.wasm:1",
+          "Warn: binary detected: playground/wasm/heavy.wasm:1",
+          "Warn: binary detected: playground/wasm/light-with-imports.wasm:1",
+          "Warn: binary detected: playground/wasm/light.wasm:1",
+          "Warn: binary detected: playground/wasm/string-constants.wasm:1"
+        ]
+      },
+      {
+        "name": "Pinned-Dependencies",
+        "documentation": {
+          "shortDescription": "Determines if the project has declared and pinned the dependencies of its build process.",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#pinned-dependencies"
+        },
+        "score": 8,
+        "reason": "dependency not pinned by hash detected -- score normalized to 8",
+        "details": [
+          "Warn: downloadThenRun not pinned by hash: .github/workflows/ci.yml:205",
+          "Warn: npmCommand not pinned by hash: .github/workflows/publish.yml:46",
+          "Info:  28 out of  28 GitHub-owned GitHubAction dependencies pinned",
+          "Info:   9 out of   9 third-party GitHubAction dependencies pinned",
+          "Info:   0 out of   1 downloadThenRun dependencies pinned",
+          "Info:   0 out of   1 npmCommand dependencies pinned"
+        ]
+      },
+      {
+        "name": "Branch-Protection",
+        "documentation": {
+          "shortDescription": "Determines if the default and release branches are protected with GitHub's branch protection settings.",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#branch-protection"
+        },
+        "score": -1,
+        "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+        "details": []
+      },
+      {
+        "name": "Signed-Releases",
+        "documentation": {
+          "shortDescription": "Determines if the project cryptographically signs release artifacts.",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#signed-releases"
+        },
+        "score": -1,
+        "reason": "no releases found",
+        "details": []
+      },
+      {
+        "name": "Fuzzing",
+        "documentation": {
+          "shortDescription": "Determines if the project uses fuzzing.",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#fuzzing"
+        },
+        "score": 0,
+        "reason": "project is not fuzzed",
+        "details": [
+          "Warn: no fuzzer integrations found"
+        ]
+      },
+      {
+        "name": "SAST",
+        "documentation": {
+          "shortDescription": "Determines if the project uses static code analysis.",
+          "url": "https://github.com/ossf/scorecard/blob/2418d6d95e928102e1f3f8d6e7b92f4f3c78631f/docs/checks.md#sast"
+        },
+        "score": 10,
+        "reason": "SAST tool is run on all commits",
+        "details": [
+          "Info: all commits (28) are checked with a SAST tool"
+        ]
+      }
+    ],
+    "overallScore": 6.7,
+    "metadata": []
+  }
+}
