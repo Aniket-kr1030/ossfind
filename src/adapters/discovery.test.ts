@@ -1,26 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { ComponentCandidateSchema } from "../contracts/index.js";
-import { loadSearch } from "../fixtures/loader.js";
 import type { HttpClient } from "../http/client.js";
+import { createFixtureHttpClient } from "../http/fixture-client.js";
 import { HttpDiscoverer } from "./discovery.js";
-
-function querySlug(url: string): string {
-  const text = new URL(url).searchParams.get("text") ?? "";
-  return text.trim().toLowerCase().replace(/\s+/g, "-");
-}
-
-const fixtureHttp: HttpClient = async (url) => {
-  const slug = querySlug(url);
-  if (!["http-client", "date-formatting", "schema-validation"].includes(slug)) {
-    return { ok: false, status: 404, json: async () => ({}) };
-  }
-
-  return { ok: true, status: 200, json: async () => loadSearch(slug) };
-};
 
 describe("HttpDiscoverer", () => {
   it("maps frozen npm search results into schema-valid candidates", async () => {
-    const candidates = await new HttpDiscoverer(fixtureHttp).discover("http client");
+    const candidates = await new HttpDiscoverer(createFixtureHttpClient()).discover("http client");
 
     expect(candidates.length).toBeGreaterThanOrEqual(10);
     expect(candidates.some((candidate) => candidate.id === "npm:axios")).toBe(true);
