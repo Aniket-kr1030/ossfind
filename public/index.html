@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ossfind — Component Search</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>ossfind</h1>
+      <p class="subtitle">Discover, score, and rank open-source components</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <form id="search-form" class="search-form">
+      <div class="form-group search-input-group">
+        <label for="search-input" class="sr-only">Search query</label>
+        <input 
+          type="search" 
+          id="search-input" 
+          name="q" 
+          placeholder="e.g., http client, parser, logger" 
+          required 
+          autocomplete="off"
+        >
+      </div>
+
+      <div class="form-group license-group">
+        <label for="license-select">Project License</label>
+        <select id="license-select" name="projectLicense">
+          <option value="">(None / Default)</option>
+          <option value="MIT">MIT</option>
+          <option value="Apache-2.0">Apache-2.0</option>
+          <option value="GPL-3.0">GPL-3.0</option>
+        </select>
+      </div>
+
+      <button type="submit" class="btn-primary">Search</button>
+    </form>
+
+    <div id="status-container" class="status-container" aria-live="polite">
+      <!-- Status messages (loading, empty, errors) will be rendered here -->
+    </div>
+
+    <section id="results-section" aria-label="Search Results">
+      <div id="results-list" class="results-list">
+        <!-- Result cards will be rendered here -->
+      </div>
+    </section>
+  </main>
+</body>
+</html>

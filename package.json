@@ -10,12 +10,15 @@
     "build": "tsc -p .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
-    "mcp": "tsx src/mcp/server.ts"
+    "mcp": "tsx src/mcp/server.ts",
+    "web": "npm run build && node dist/web/server.js",
+    "web:dev": "tsx watch src/web/server.ts"
   },
   "bin": {
     "ossfind-mcp": "dist/mcp/server.js"
   },
   "devDependencies": {
+    "@types/node": "^26.2.0",
     "tsx": "^4.20.0",
     "typescript": "^5.9.0",
     "vitest": "^3.2.0",
