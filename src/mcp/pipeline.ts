@@ -1,6 +1,6 @@
 import { HttpDiscoverer } from "../adapters/discovery.js";
 import { HttpEnricher } from "../adapters/enrichment.js";
-import { LexicalFitScorer } from "../fit/lexical.js";
+import { TfidfFitScorer } from "../fit/tfidf.js";
 import { withCache } from "../http/cache.js";
 import { defaultHttpClient, type HttpClient } from "../http/client.js";
 import { createFixtureHttpClient } from "../http/fixture-client.js";
@@ -40,7 +40,7 @@ export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDepen
   return {
     discoverer: new HttpDiscoverer(http),
     enricher: new HttpEnricher(http),
-    fitScorer: new LexicalFitScorer(),
+    fitScorer: new TfidfFitScorer(),
     ranker: new WeightedRanker({ projectLicense: options.projectLicense }),
   };
 }
