@@ -1,8 +1,9 @@
 import { HttpDiscoverer } from "../adapters/discovery.js";
 import { HttpEnricher } from "../adapters/enrichment.js";
 import { LexicalFitScorer } from "../fit/lexical.js";
+import { withCache } from "../http/cache.js";
+import { defaultHttpClient, type HttpClient } from "../http/client.js";
 import { createFixtureHttpClient } from "../http/fixture-client.js";
-import type { HttpClient } from "../http/client.js";
 import type { PipelineDependencies } from "../pipeline/interfaces.js";
 import { WeightedRanker } from "../ranking/rank.js";
 
@@ -20,11 +21,21 @@ function fixtureModeRequested(): boolean {
   return environment?.OSSFIND_FIXTURES === "1";
 }
 
+function cacheDisabled(): boolean {
+  const environment = (globalThis as unknown as {
+    process?: { env?: Record<string, string | undefined> };
+  }).process?.env;
+  return environment?.OSSFIND_NO_CACHE === "1";
+}
+
 /** Construct the production pipeline, optionally replacing its HTTP boundary with fixtures. */
 export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDependencies {
-  const http: HttpClient | undefined = options.fixtures || fixtureModeRequested()
+  const fixtures = options.fixtures || fixtureModeRequested();
+  const http: HttpClient = fixtures
     ? createFixtureHttpClient()
-    : undefined;
+    : cacheDisabled()
+      ? defaultHttpClient
+      : withCache(defaultHttpClient);
 
   return {
     discoverer: new HttpDiscoverer(http),

@@ -30,6 +30,18 @@ OSSFIND_FIXTURES=1 npm run mcp    # stdio MCP server exposing `search_components
 
 Drop `OSSFIND_FIXTURES=1` to hit live suppliers (npm registry, ecosyste.ms, deps.dev, OSV).
 
+## Live mode & caching
+
+Live mode stores successful supplier responses on disk to reduce repeat requests and avoid supplier
+rate limits. Fixture mode remains local and does not use this cache.
+
+- `OSSFIND_CACHE_DIR` — cache directory (default `.cache/http/`).
+- `OSSFIND_CACHE_TTL` — cache lifetime in seconds (default `3600`).
+- `OSSFIND_CONCURRENCY` — maximum concurrent upstream enrichment requests (default `4`).
+- `OSSFIND_NO_CACHE=1` — disable the live-response cache.
+
+Supplier APIs are free but rate-limited; review each supplier's terms before commercial use.
+
 ## How it works
 
 `discover → enrich → fit → rank`, wired in `src/pipeline/orchestrator.ts`:
@@ -77,6 +89,4 @@ each proven to **reject a known-bad input** (not just accept a good one):
 - Fit is lexical; the interface is ready for embeddings.
 - Fixtures cover ~15 packages; non-fixtured packages show `unknown`/estimated data in offline mode
   and enrich fully in live mode.
-- Supplier APIs are free but rate-limited — a caching layer exists; production needs a persistent
-  cache + a review of each supplier's terms before commercial use.
 - License output is **guidance, not legal advice.**

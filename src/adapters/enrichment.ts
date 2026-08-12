@@ -5,6 +5,7 @@ import {
 } from "../contracts/index.js";
 import type { Enricher } from "../pipeline/interfaces.js";
 import { defaultHttpClient, type HttpClient } from "../http/client.js";
+import { createLimiter, type Limiter } from "../http/limit.js";
 import { getBaseScore } from "cvss";
 import * as semver from "semver";
 
@@ -27,6 +28,14 @@ function numberAt(record: JsonRecord | undefined, key: string): number | undefin
 type FetchResult =
   | { status: "ok"; data: unknown }
   | { status: "failed"; httpStatus?: number };
+
+function concurrencyFromEnvironment(): number {
+  const raw = (globalThis as unknown as {
+    process?: { env?: Record<string, string | undefined> };
+  }).process?.env?.OSSFIND_CONCURRENCY;
+  const parsed = raw === undefined ? 4 : Number(raw);
+  return Number.isInteger(parsed) && parsed > 0 ? parsed : 4;
+}
 
 async function fetchJson(http: HttpClient, url: string, init?: RequestInit): Promise<FetchResult> {
   try {
@@ -266,7 +275,10 @@ function scorecardFrom(scorecard: unknown): EnrichmentBundle["scorecard"] {
 
 /** Real API implementation with source-by-source graceful degradation. */
 export class HttpEnricher implements Enricher {
-  constructor(private readonly http: HttpClient = defaultHttpClient) {}
+  constructor(
+    private readonly http: HttpClient = defaultHttpClient,
+    private readonly limiter: Limiter = createLimiter(concurrencyFromEnvironment()),
+  ) {}
 
   async enrich(candidate: ComponentCandidate): Promise<EnrichmentBundle> {
     const pkg = packageName(candidate);
@@ -275,7 +287,7 @@ export class HttpEnricher implements Enricher {
     const depsUrl = `https://api.deps.dev/v3/systems/npm/packages/${encodedPackage}`;
     const osvUrl = "https://api.osv.dev/v1/query";
 
-    const ecosystemsResult = await fetchJson(this.http, ecosystemsUrl);
+    const ecosystemsResult = await this.limiter.run(() => fetchJson(this.http, ecosystemsUrl));
     const ecosystems = ecosystemsResult.status === "ok" ? ecosystemsResult.data : undefined;
     const ecosystemRecord = isRecord(ecosystems) ? ecosystems : undefined;
     const repositoryUrl = candidate.repoUrl ?? stringAt(ecosystemRecord, "repository_url");
@@ -283,14 +295,14 @@ export class HttpEnricher implements Enricher {
     const [depsDevResult, osvResult, scorecardResult] = await Promise.all([
       // The current bundle schema has no field for default version/deprecation,
       // but this request keeps the adapter ready for those contract additions.
-      fetchJson(this.http, depsUrl),
-      fetchJson(this.http, osvUrl, {
+      this.limiter.run(() => fetchJson(this.http, depsUrl)),
+      this.limiter.run(() => fetchJson(this.http, osvUrl, {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ package: { ecosystem: "npm", name: pkg } }),
-      }),
+      })),
       scorecardUrl
-        ? fetchJson(this.http, scorecardUrl)
+        ? this.limiter.run(() => fetchJson(this.http, scorecardUrl))
         : Promise.resolve<FetchResult>({ status: "ok", data: undefined }),
     ]);
     const depsDev = depsDevResult.status === "ok" ? depsDevResult.data : undefined;
