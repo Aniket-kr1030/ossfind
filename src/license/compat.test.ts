@@ -37,4 +37,24 @@ describe("License Compatibility Matrix", () => {
       expect(result.notes.toLowerCase()).toContain("guidance");
     });
   }
+
+  it.each([
+    "GPL-3.0",
+    "gpl-3.0",
+    "GPL-3.0-only",
+    "GPL-3.0-or-later",
+    "GPL-3.0+",
+    "(GPL-3.0)",
+    "GPL-3.0 OR MIT",
+    "AGPL-3.0",
+    "AGPL-3.0-or-later",
+  ])("recognizes strong-copyleft SPDX expression %s", (comp) => {
+    expect(checkLicense("MIT", comp).compatible).toBe("no");
+    expect(checkLicense("Apache-2.0", comp).compatible).toBe("no");
+  });
+
+  it.each(["LGPL-3.0-or-later", "lgpl-2.1+", "MIT AND LGPL-3.0-only"])(
+    "recognizes weak-copyleft SPDX expression %s",
+    (comp) => expect(checkLicense("MIT", comp).compatible).toBe("conditional"),
+  );
 });

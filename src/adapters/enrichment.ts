@@ -24,12 +24,17 @@ function numberAt(record: JsonRecord | undefined, key: string): number | undefin
   return typeof value === "number" && Number.isFinite(value) ? value : undefined;
 }
 
-async function fetchJson(http: HttpClient, url: string, init?: RequestInit): Promise<unknown> {
+type FetchResult =
+  | { status: "ok"; data: unknown }
+  | { status: "failed"; httpStatus?: number };
+
+async function fetchJson(http: HttpClient, url: string, init?: RequestInit): Promise<FetchResult> {
   try {
     const response = await http(url, init);
-    return response.ok ? await response.json() : undefined;
+    if (!response.ok) return { status: "failed", httpStatus: response.status };
+    return { status: "ok", data: await response.json() };
   } catch {
-    return undefined;
+    return { status: "failed" };
   }
 }
 
@@ -70,96 +75,102 @@ function defaultVersionFromDepsDev(depsDev: unknown): string | undefined {
   return undefined;
 }
 
+function parseVersion(version: string): string | undefined {
+  return semver.valid(version.trim()) ?? undefined;
+}
+
+/**
+ * OSV version relevance must be conservative. `semver.valid` keeps prerelease
+ * identifiers; `coerce` would incorrectly turn 1.0.0-beta.1 into 1.0.0.
+ */
 function isAffected(latestVersion: string, affected: JsonRecord): boolean {
-  const coercedLatest = semver.coerce(latestVersion);
-  if (!coercedLatest) return false;
-  const latestSemver = coercedLatest.version;
+  const latest = parseVersion(latestVersion);
+  if (!latest) return true;
+  let hasVersionSemantics = false;
 
-  // 1. Check versions list
   if (Array.isArray(affected.versions)) {
-    for (const v of affected.versions) {
-      if (typeof v === "string") {
-        const coercedV = semver.coerce(v);
-        if (coercedV && semver.eq(latestSemver, coercedV.version)) {
-          return true;
-        }
-      }
+    hasVersionSemantics = true;
+    for (const rawVersion of affected.versions) {
+      if (typeof rawVersion !== "string") return true;
+      const listed = parseVersion(rawVersion);
+      if (!listed) return true;
+      if (semver.eq(latest, listed)) return true;
     }
   }
 
-  // 2. Check ranges
   if (Array.isArray(affected.ranges)) {
+    hasVersionSemantics = true;
     for (const range of affected.ranges) {
-      if (!isRecord(range)) continue;
-      if (Array.isArray(range.events)) {
-        let currentIntroduced: string | null = null;
-        for (const event of range.events) {
-          if (!isRecord(event)) continue;
-          if (typeof event.introduced === "string") {
-            currentIntroduced = event.introduced;
-          }
-          if (typeof event.fixed === "string" && currentIntroduced !== null) {
-            const intro = currentIntroduced;
-            const fixed = event.fixed;
-            currentIntroduced = null;
-
-            try {
-              const coercedIntro = semver.coerce(intro);
-              const coercedFixed = semver.coerce(fixed);
-              if (coercedIntro && coercedFixed) {
-                if (semver.gte(latestSemver, coercedIntro.version) && semver.lt(latestSemver, coercedFixed.version)) {
-                  return true;
-                }
-              } else if (intro === "0" && coercedFixed) {
-                if (semver.lt(latestSemver, coercedFixed.version)) {
-                  return true;
-                }
-              }
-            } catch {
-              // Ignore invalid semver
-            }
-          }
-          if (typeof event.last_affected === "string" && currentIntroduced !== null) {
-            const intro = currentIntroduced;
-            const lastAffected = event.last_affected;
-            currentIntroduced = null;
-
-            try {
-              const coercedIntro = semver.coerce(intro);
-              const coercedLastAffected = semver.coerce(lastAffected);
-              if (coercedIntro && coercedLastAffected) {
-                if (semver.gte(latestSemver, coercedIntro.version) && semver.lte(latestSemver, coercedLastAffected.version)) {
-                  return true;
-                }
-              } else if (intro === "0" && coercedLastAffected) {
-                if (semver.lte(latestSemver, coercedLastAffected.version)) {
-                  return true;
-                }
-              }
-            } catch {
-              // Ignore invalid semver
-            }
-          }
+      if (!isRecord(range) || !Array.isArray(range.events)) return true;
+      let introduced: string | undefined;
+      for (const event of range.events) {
+        if (!isRecord(event)) return true;
+        if (typeof event.introduced === "string") {
+          if (introduced !== undefined) return true;
+          introduced = event.introduced;
+          continue;
         }
-        if (currentIntroduced !== null) {
-          try {
-            const coercedIntro = semver.coerce(currentIntroduced);
-            if (coercedIntro) {
-              if (semver.gte(latestSemver, coercedIntro.version)) {
-                return true;
-              }
-            } else if (currentIntroduced === "0") {
-              return true;
-            }
-          } catch {
-            // Ignore
-          }
-        }
+        const fixed = stringAt(event, "fixed");
+        const lastAffected = stringAt(event, "last_affected");
+        if (!fixed && !lastAffected) continue;
+        if (introduced === undefined || (fixed && lastAffected)) return true;
+
+        const lower = introduced === "0" ? undefined : parseVersion(introduced);
+        const upper = parseVersion(fixed ?? lastAffected!);
+        if ((introduced !== "0" && !lower) || !upper) return true;
+        const afterLower = !lower || semver.gte(latest, lower);
+        const beforeUpper = fixed ? semver.lt(latest, upper) : semver.lte(latest, upper);
+        if (afterLower && beforeUpper) return true;
+        introduced = undefined;
+      }
+      if (introduced !== undefined) {
+        const lower = introduced === "0" ? undefined : parseVersion(introduced);
+        if (introduced !== "0" && !lower) return true;
+        if (!lower || semver.gte(latest, lower)) return true;
       }
     }
   }
 
-  return false;
+  // An affected record with no usable range/list does not prove safety.
+  return !hasVersionSemantics;
+}
+
+function severityFromScore(score: number): string {
+  if (score >= 9.0) return "CRITICAL";
+  if (score >= 7.0) return "HIGH";
+  if (score >= 4.0) return "MODERATE";
+  return "LOW";
+}
+
+function severityFromCvssV4(vector: string): string | undefined {
+  const parts = vector.split("/");
+  if (!/^CVSS:4\.[01]$/i.test(parts[0] ?? "")) return undefined;
+  const metrics = new Map<string, string>();
+  for (const part of parts.slice(1)) {
+    const [metric, value, ...extra] = part.split(":");
+    if (!metric || !value || extra.length > 0) return undefined;
+    metrics.set(metric.toUpperCase(), value.toUpperCase());
+  }
+  // V4 impact metrics are VC/VI/VA. Do not reinterpret them as v3 C/I/A.
+  const impacts = [metrics.get("VC"), metrics.get("VI"), metrics.get("VA")];
+  if (impacts.some((impact) => impact === undefined)) return undefined;
+  if (impacts.every((impact) => impact === "H")) return "CRITICAL";
+  if (impacts.some((impact) => impact === "H")) return "HIGH";
+  if (impacts.some((impact) => impact === "L")) return "MODERATE";
+  if (impacts.every((impact) => impact === "N")) return "LOW";
+  return undefined;
+}
+
+function severityFromCvss(vector: string): string | undefined {
+  if (/^CVSS:4\.[01]\//i.test(vector)) return severityFromCvssV4(vector);
+  if (!/^CVSS:3\.[01]\//i.test(vector)) return undefined;
+  try {
+    // V3.0 and V3.1 share base-score semantics; the dependency accepts V3.0.
+    const score = getBaseScore(vector.replace(/^CVSS:3\.1/i, "CVSS:3.0"));
+    return typeof score === "number" && Number.isFinite(score) ? severityFromScore(score) : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 function vulnerabilitiesFrom(
@@ -178,26 +189,10 @@ function vulnerabilitiesFrom(
       for (const entry of raw.severity) {
         if (isRecord(entry) && stringAt(entry, "score")) {
           const scoreStr = stringAt(entry, "score");
-          if (scoreStr) {
-            try {
-              // Normalize version prefix for cvss library (it only supports CVSS:3.0)
-              const normalizedScoreStr = scoreStr.replace(/^CVSS:[34]\.[0-9]/, "CVSS:3.0");
-              const score = getBaseScore(normalizedScoreStr);
-              if (typeof score === "number" && !isNaN(score)) {
-                if (score >= 9.0) {
-                  severity = "CRITICAL";
-                } else if (score >= 7.0) {
-                  severity = "HIGH";
-                } else if (score >= 4.0) {
-                  severity = "MODERATE";
-                } else {
-                  severity = "LOW";
-                }
-                break;
-              }
-            } catch {
-              // Ignore and try next
-            }
+          const parsedSeverity = scoreStr ? severityFromCvss(scoreStr) : undefined;
+          if (parsedSeverity) {
+            severity = parsedSeverity;
+            break;
           }
         }
       }
@@ -231,21 +226,10 @@ function vulnerabilitiesFrom(
             for (const event of range.events) {
               if (isRecord(event) && stringAt(event, "fixed")) {
                 const fixVer = stringAt(event, "fixed");
-                if (fixVer) {
-                  if (latestVersion) {
-                    try {
-                      const coercedFix = semver.coerce(fixVer);
-                      const coercedLatest = semver.coerce(latestVersion);
-                      if (coercedFix && coercedLatest && semver.gt(coercedFix.version, coercedLatest.version)) {
-                        fixedIn = fixVer;
-                      }
-                    } catch {
-                      fixedIn = fixVer;
-                    }
-                  } else {
-                    fixedIn = fixVer;
-                  }
-                }
+                // An active record can expose a future fix, but it must never
+                // imply that the selected version is already fixed. Invalid
+                // versions are excluded by the contract boundary.
+                if (fixVer && parseVersion(fixVer)) fixedIn = fixVer.trim();
               }
             }
           }
@@ -291,11 +275,12 @@ export class HttpEnricher implements Enricher {
     const depsUrl = `https://api.deps.dev/v3/systems/npm/packages/${encodedPackage}`;
     const osvUrl = "https://api.osv.dev/v1/query";
 
-    const ecosystems = await fetchJson(this.http, ecosystemsUrl);
+    const ecosystemsResult = await fetchJson(this.http, ecosystemsUrl);
+    const ecosystems = ecosystemsResult.status === "ok" ? ecosystemsResult.data : undefined;
     const ecosystemRecord = isRecord(ecosystems) ? ecosystems : undefined;
     const repositoryUrl = candidate.repoUrl ?? stringAt(ecosystemRecord, "repository_url");
     const scorecardUrl = githubProjectUrl(repositoryUrl);
-    const [depsDev, osv, scorecard] = await Promise.all([
+    const [depsDevResult, osvResult, scorecardResult] = await Promise.all([
       // The current bundle schema has no field for default version/deprecation,
       // but this request keeps the adapter ready for those contract additions.
       fetchJson(this.http, depsUrl),
@@ -304,8 +289,13 @@ export class HttpEnricher implements Enricher {
         headers: { "content-type": "application/json" },
         body: JSON.stringify({ package: { ecosystem: "npm", name: pkg } }),
       }),
-      scorecardUrl ? fetchJson(this.http, scorecardUrl) : Promise.resolve(undefined),
+      scorecardUrl
+        ? fetchJson(this.http, scorecardUrl)
+        : Promise.resolve<FetchResult>({ status: "ok", data: undefined }),
     ]);
+    const depsDev = depsDevResult.status === "ok" ? depsDevResult.data : undefined;
+    const osv = osvResult.status === "ok" ? osvResult.data : undefined;
+    const scorecard = scorecardResult.status === "ok" ? scorecardResult.data : undefined;
 
     const license = firstLicense(ecosystems);
     const repositoryMetadata = isRecord(ecosystemRecord?.repo_metadata)
@@ -326,6 +316,19 @@ export class HttpEnricher implements Enricher {
         confidence: license ? 1 : 0,
       },
       vulnerabilities: vulnerabilitiesFrom(osv, latestVersion, pkg),
+      sources: {
+        // A successful OSV response containing no advisories is positive
+        // evidence; a failed request is not equivalent to an empty result.
+        osv: osvResult.status === "failed"
+          ? "failed"
+          : isRecord(osv) && Array.isArray(osv.vulns) ? "ok" : "missing",
+        license: ecosystemsResult.status === "failed" ? "failed" : license ? "ok" : "missing",
+        scorecard: !scorecardUrl
+          ? "missing"
+          : scorecardResult.status === "failed"
+            ? scorecardResult.httpStatus === 404 ? "missing" : "failed"
+            : isRecord(scorecard) && isRecord(scorecard.scorecard) ? "ok" : "missing",
+      },
       scorecard: scorecardFrom(scorecard),
       maintenance: {
         ...(lastCommit ? { lastCommit } : {}),

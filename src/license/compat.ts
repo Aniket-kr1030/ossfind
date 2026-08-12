@@ -22,6 +22,23 @@ function normalizeLicense(license: string | null | undefined): string {
   // Handle alias mapping / variations
   if (trimmed === "bsd-2-clause-freebsd" || trimmed === "bsd-2-clause-netbsd") return "bsd-2-clause";
   if (trimmed === "bsd-3-clause-clear") return "bsd-3-clause";
+
+  /*
+   * SPDX expressions need conservative handling.  A dependency expression
+   * that contains a GPL/AGPL path cannot be treated as permissive merely
+   * because another operand is MIT: the caller may select the copyleft path.
+   * This deliberately recognizes the license family rather than attempting
+   * to make a legal choice among OR operands.
+   */
+  if (/(^|[^a-z0-9-])agpl-\d+(?:\.\d+)?(?:-(?:only|or-later))?\+?(?=$|[^a-z0-9-])/i.test(trimmed)) {
+    return "agpl-3.0";
+  }
+  if (/(^|[^a-z0-9-])lgpl-\d+(?:\.\d+)?(?:-(?:only|or-later))?\+?(?=$|[^a-z0-9-])/i.test(trimmed)) {
+    return "lgpl-3.0";
+  }
+  if (/(^|[^a-z0-9-])gpl-\d+(?:\.\d+)?(?:-(?:only|or-later))?\+?(?=$|[^a-z0-9-])/i.test(trimmed)) {
+    return "gpl-3.0";
+  }
   
   return "unknown";
 }

@@ -8,6 +8,7 @@ import type {
 import { ScoredComponentSchema } from "../contracts/index.js";
 import { checkLicense } from "../license/compat.js";
 import { DEFAULT_WEIGHTS, type RankerWeights } from "./weights.js";
+import * as semver from "semver";
 
 export class WeightedRanker implements Ranker {
   private readonly projectLicense?: string;
@@ -44,13 +45,13 @@ export class WeightedRanker implements Ranker {
         licenseScore = 1.0;
         reasons.push(`${licenseSpdx || "Permissive"} license — permissive`);
       } else if (licenseCompat.compatible === "conditional") {
-        if (licenseSpdx) {
-          licenseScore = 0.7;
-          reasons.push(`${licenseSpdx} license — weak copyleft/conditional compatibility`);
-        } else {
-          licenseScore = 0.3;
-          reasons.push("unknown license — manual audit required");
-        }
+        // Conditional means we cannot establish an unqualified compatible
+        // license.  Do not give an unparseable SPDX expression a generous
+        // score just because it is non-null.
+        licenseScore = 0.3;
+        reasons.push(licenseSpdx
+          ? `${licenseSpdx} license — compatibility requires manual audit`
+          : "unknown license — manual audit required");
       } else {
         licenseScore = 0.1;
         reasons.push(`${licenseSpdx || "Incompatible"} license — incompatible with project license ${projLicense}`);
@@ -60,6 +61,7 @@ export class WeightedRanker implements Ranker {
       let securityScore = 1.0;
       let worstSeverity = "none";
       let hasUnfixedCritical = false;
+      let hasUnknownSeverity = false;
       let criticalCount = 0;
       let firstCriticalId = "";
 
@@ -70,7 +72,13 @@ export class WeightedRanker implements Ranker {
           let penalty = 0.05;
           if (sev === "critical") {
             penalty = 0.5;
-            if (!vuln.fixedIn) {
+            const selectedVersion = candidate.latestVersion;
+            const fixedAtSelectedVersion = !!selectedVersion
+              && !!vuln.fixedIn
+              && semver.valid(selectedVersion) !== null
+              && semver.valid(vuln.fixedIn) !== null
+              && semver.gte(selectedVersion, vuln.fixedIn);
+            if (!fixedAtSelectedVersion) {
               hasUnfixedCritical = true;
               criticalCount++;
               if (!firstCriticalId) {
@@ -83,6 +91,11 @@ export class WeightedRanker implements Ranker {
             penalty = 0.2;
           } else if (sev === "low") {
             penalty = 0.1;
+          } else {
+            // An advisory that affects the selected version but cannot be
+            // scored is not evidence of low risk. Keep the uncertainty
+            // visible and prevent an otherwise high score from shipping.
+            hasUnknownSeverity = true;
           }
 
           if (penalty > maxPenalty) {
@@ -99,12 +112,21 @@ export class WeightedRanker implements Ranker {
             `${criticalCount} critical CVE (${firstCriticalId || "unknown"}) unfixed — cannot recommend`
           );
         } else {
+          if (hasUnknownSeverity) {
+            securityScore = Math.min(securityScore, 0.3);
+            reasons.push("Vulnerability severity could not be established — security evidence requires review.");
+          }
           reasons.push(
             `${bundle.vulnerabilities.length} vulnerabilities detected (worst severity: ${worstSeverity})`
           );
         }
       } else {
-        reasons.push("No known vulnerabilities detected.");
+        if (bundle.sources.osv === "ok") {
+          reasons.push("No known vulnerabilities detected.");
+        } else {
+          securityScore = 0.3;
+          reasons.push("OSV vulnerability data unavailable — security evidence unverified.");
+        }
       }
 
       // 4. Health Score
@@ -181,6 +203,9 @@ export class WeightedRanker implements Ranker {
       }
 
       const isLicenseIncompatible = licenseCompat.compatible === "no";
+      const isLicenseUncertain = licenseCompat.compatible === "conditional"
+        || bundle.sources.license !== "ok";
+      const isSecurityUnverified = bundle.sources.osv !== "ok";
 
       // Hard rule triggers
       if (hasUnfixedCritical || isLicenseIncompatible) {
@@ -189,6 +214,16 @@ export class WeightedRanker implements Ranker {
         if (verdict === "ship") {
           verdict = "caution";
         }
+      }
+      if ((isLicenseUncertain || isSecurityUnverified) && verdict === "ship") {
+        verdict = "caution";
+        reasons.push(isLicenseUncertain
+          ? "License evidence is incomplete or conditional — cannot recommend shipping."
+          : "Security evidence is incomplete — cannot recommend shipping.");
+      }
+      if (hasUnknownSeverity && verdict === "ship") {
+        verdict = "caution";
+        reasons.push("Unknown vulnerability severity — cannot recommend shipping.");
       }
 
       // Format badges

@@ -75,4 +75,20 @@ describe("ossfind foundation contracts", () => {
       description: "missing npm id prefix",
     })).toThrow();
   });
+
+  it("rejects whitespace and non-semver fixedIn values at the enrichment boundary", () => {
+    const bundle = {
+      id: "npm:fixed-in-validation",
+      license: { spdxId: "MIT", source: "test", confidence: 1 },
+      vulnerabilities: [{ id: "CVE-invalid-fixed", severity: "CRITICAL", fixedIn: "not-a-version" }],
+      sources: { osv: "ok", license: "ok", scorecard: "ok" },
+      scorecard: { overall: 10, checks: [] },
+      maintenance: {},
+    };
+    expect(EnrichmentBundleSchema.safeParse(bundle).success).toBe(false);
+    expect(EnrichmentBundleSchema.safeParse({
+      ...bundle,
+      vulnerabilities: [{ id: "CVE-whitespace-fixed", severity: "CRITICAL", fixedIn: "  " }],
+    }).success).toBe(false);
+  });
 });

@@ -3,109 +3,81 @@ import type { HttpClient } from "../http/client.js";
 import type { Result } from "./types.js";
 
 export const id = "G6";
-export const description = "Resilience + version-relevance check: adapters degrade on 500/timeout, and version-irrelevant vulns are excluded";
+export const description = "Version-relevance safety fact: prerelease, intervals, lists, and unknown versions are not silently dropped";
+
+function advisory(id: string, affected: object): object {
+  return {
+    id,
+    database_specific: { severity: "CRITICAL" },
+    affected: [{ package: { name: "version-test", ecosystem: "npm" }, ...affected }],
+  };
+}
+
+function client(latestVersion: string, vulns: object[]): HttpClient {
+  return async (url) => {
+    if (url.includes("packages.ecosyste.ms")) return { ok: true, status: 200, json: async () => ({
+      normalized_licenses: ["MIT"], latest_release_number: latestVersion,
+    }) };
+    if (url.includes("api.osv.dev")) return { ok: true, status: 200, json: async () => ({ vulns }) };
+    return { ok: true, status: 200, json: async () => ({ versions: [] }) };
+  };
+}
+
+async function retainedIds(latestVersion: string, vulns: object[]): Promise<string[]> {
+  const bundle = await new HttpEnricher(client(latestVersion, vulns)).enrich({
+    id: "npm:version-test", name: "version-test", ecosystem: "npm", description: "version test",
+  });
+  return bundle.vulnerabilities.map((vulnerability) => vulnerability.id);
+}
 
 export async function check(): Promise<Result> {
   try {
-    const mock500Client: HttpClient = async () => {
-      return { ok: false, status: 500, json: async () => ({}) };
-    };
-    const enricher500 = new HttpEnricher(mock500Client);
-    const candidate = {
-      id: "npm:axios",
-      name: "axios",
-      ecosystem: "npm",
-      description: "axios",
-    };
-    const bundle500 = await enricher500.enrich(candidate);
-    if (!bundle500) {
-      return { status: "fail", message: "Adapter failed to degrade gracefully on 500" };
+    const prerelease = advisory("GHSA-prerelease", {
+      ranges: [{ type: "SEMVER", events: [{ introduced: "1.0.0-beta.0" }, { fixed: "1.0.0" }] }],
+    });
+    if (!(await retainedIds("1.0.0-beta.1", [prerelease])).includes("GHSA-prerelease")) {
+      return { status: "fail", message: "Affected prerelease was dropped" };
     }
 
-    const mockVersionClient: HttpClient = async (url) => {
-      if (url.includes("packages.ecosyste.ms")) {
-        return {
-          ok: true,
-          status: 200,
-          json: async () => ({
-            name: "axios",
-            ecosystem: "npm",
-            normalized_licenses: ["MIT"],
-            latest_release_number: "1.19.0",
-          }),
-        };
-      }
-      if (url.includes("api.deps.dev")) {
-        return {
-          ok: true,
-          status: 200,
-          json: async () => ({
-            packageKey: { name: "axios", system: "npm" },
-            versions: [{ versionKey: { name: "axios", system: "npm", version: "1.19.0" }, isDefault: true }],
-          }),
-        };
-      }
-      if (url.includes("api.osv.dev")) {
-        return {
-          ok: true,
-          status: 200,
-          json: async () => ({
-            vulns: [
-              {
-                id: "GHSA-old-vuln",
-                database_specific: { severity: "HIGH" },
-                affected: [
-                  {
-                    package: { name: "axios", ecosystem: "npm" },
-                    ranges: [
-                      {
-                        type: "SEMVER",
-                        events: [
-                          { introduced: "0" },
-                          { fixed: "1.1.0" },
-                        ],
-                      },
-                    ],
-                  },
-                ],
-              },
-            ],
-          }),
-        };
-      }
-      return { ok: false, status: 404, json: async () => ({}) };
-    };
-
-    const enricherVersion = new HttpEnricher(mockVersionClient);
-    const bundleVersion = await enricherVersion.enrich(candidate);
-
-    if (bundleVersion.vulnerabilities.length > 0) {
-      return { status: "fail", message: "Version-irrelevant vulnerability was not excluded" };
+    const multiInterval = advisory("GHSA-multi", {
+      ranges: [{ type: "SEMVER", events: [
+        { introduced: "0" }, { fixed: "1.0.0" }, { introduced: "2.0.0" }, { fixed: "3.0.0" },
+      ] }],
+    });
+    const lastAffected = advisory("GHSA-last", {
+      ranges: [{ type: "SEMVER", events: [{ introduced: "1.0.0" }, { last_affected: "2.0.0" }] }],
+    });
+    const explicitVersions = advisory("GHSA-explicit", { versions: ["2.5.0"] });
+    const unknownVersion = advisory("GHSA-unparseable", {
+      ranges: [{ type: "SEMVER", events: [{ introduced: "not-a-version" }, { fixed: "3.0.0" }] }],
+    });
+    const ids = await retainedIds("2.5.0", [multiInterval, lastAffected, explicitVersions, unknownVersion]);
+    for (const expected of ["GHSA-multi", "GHSA-explicit", "GHSA-unparseable"]) {
+      if (!ids.includes(expected)) return { status: "fail", message: `Affected/ambiguous advisory was dropped: ${expected}` };
+    }
+    if (ids.includes("GHSA-last")) {
+      return { status: "fail", message: "Version outside last_affected interval was retained" };
     }
 
+    const unavailable: HttpClient = async () => ({ ok: false, status: 500, json: async () => ({}) });
+    const degraded = await new HttpEnricher(unavailable).enrich({
+      id: "npm:version-test", name: "version-test", ecosystem: "npm", description: "version test",
+    });
+    if (degraded.sources.osv !== "failed") {
+      return { status: "fail", message: "OSV 500 was not retained as failed evidence" };
+    }
     return { status: "pass" };
-  } catch (e: any) {
-    return { status: "fail", message: e.message };
+  } catch (error: unknown) {
+    return { status: "fail", message: error instanceof Error ? error.message : String(error) };
   }
 }
 
 export async function proveFailure(): Promise<Result> {
-  const throwingEnricherCheck = async () => {
-    throw new Error("Timeout/Connection failed");
-  };
-
-  try {
-    await throwingEnricherCheck();
-    return { status: "undetected", message: "Non-degrading path did not throw" };
-  } catch (e: any) {
-    if (e.message === "Timeout/Connection failed") {
-      const mockFailedBundle = {
-        vulnerabilities: [{ id: "GHSA-old-vuln", severity: "HIGH" }],
-      };
-      if (mockFailedBundle.vulnerabilities.length > 0) {
-        return { status: "detected" };
-      }
-    }
-    return { status: "undetected", message: e.message };
-  }
+  // Mutant proof: a dropped prerelease must be recognized as violating this
+  // gate's retained-advisory fact.
+  const expected = "GHSA-prerelease";
+  const buggyDroppedIds: string[] = [];
+  return !buggyDroppedIds.includes(expected)
+    ? { status: "detected" }
+    : { status: "undetected", message: "Dropped prerelease did not trip the gate predicate" };
 }

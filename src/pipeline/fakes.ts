@@ -147,6 +147,13 @@ export function mapEnrichmentFromRaw(
       confidence: license ? 1 : 0,
     },
     vulnerabilities,
+    sources: {
+      // Frozen fixtures are complete supplier responses; an empty OSV `vulns`
+      // array is therefore a verified clean result, not missing evidence.
+      osv: "ok",
+      license: license ? "ok" : "missing",
+      scorecard: scorecardRecord ? "ok" : "missing",
+    },
     scorecard: {
       overall: scorecardRecord ? numberAt(scorecardRecord, "overallScore") ?? null : null,
       checks,

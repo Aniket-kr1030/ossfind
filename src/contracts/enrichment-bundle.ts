@@ -1,4 +1,5 @@
 import { z } from "zod";
+import * as semver from "semver";
 
 const ScorecardCheckSchema = z
   .object({
@@ -19,9 +20,22 @@ export const EnrichmentBundleSchema = z.object({
     z.object({
       id: z.string().min(1),
       severity: z.string().min(1),
-      fixedIn: z.string().min(1).optional(),
+      // A non-version fix must never suppress a critical-vulnerability rule.
+      // Keep this strict at the boundary so all ranker callers get the same
+      // fail-closed behaviour.
+      fixedIn: z.string().refine((version) => semver.valid(version) !== null, {
+        message: "fixedIn must be a valid semantic version",
+      }).optional(),
     }),
   ),
+  sources: z.object({
+    /** OSV request/result provenance; `ok` includes a successful empty result. */
+    osv: z.enum(["ok", "failed", "missing"]),
+    /** License source/result provenance, independent from the parsed SPDX value. */
+    license: z.enum(["ok", "failed", "missing"]),
+    /** OpenSSF Scorecard provenance. */
+    scorecard: z.enum(["ok", "failed", "missing"]),
+  }),
   scorecard: z.object({
     overall: z.number().nullable(),
     checks: z.array(ScorecardCheckSchema),

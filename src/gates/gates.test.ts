@@ -5,9 +5,10 @@ import * as g3 from "./g3.js";
 import * as g4 from "./g4.js";
 import * as g5 from "./g5.js";
 import * as g6 from "./g6.js";
+import * as g7 from "./g7.js";
 
 describe("Quality Gates Battery Verification Test", () => {
-  const gates = [g1, g2, g3, g4, g5, g6];
+  const gates = [g1, g2, g3, g4, g5, g6, g7];
 
   for (const gate of gates) {
     it(`should pass check() and detect failure in proveFailure() for gate ${gate.id}`, async () => {

@@ -5,7 +5,34 @@ import {
   type ComponentCandidate,
 } from "../contracts/index.js";
 import { createFixtureHttpClient } from "../http/fixture-client.js";
+import type { HttpClient } from "../http/client.js";
 import { HttpEnricher } from "./enrichment.js";
+
+function osvClient(latestVersion: string, vulns: unknown[]): HttpClient {
+  return async (url) => {
+    if (url.includes("packages.ecosyste.ms")) {
+      return { ok: true, status: 200, json: async () => ({
+        normalized_licenses: ["MIT"], latest_release_number: latestVersion,
+      }) };
+    }
+    if (url.includes("api.osv.dev")) {
+      return { ok: true, status: 200, json: async () => ({ vulns }) };
+    }
+    if (url.includes("/projects/")) {
+      return { ok: true, status: 200, json: async () => ({ scorecard: { overallScore: 10, checks: [] } }) };
+    }
+    return { ok: true, status: 200, json: async () => ({ versions: [] }) };
+  };
+}
+
+function advisory(id: string, score: string, affected: object): object {
+  return {
+    id,
+    database_specific: {},
+    severity: [{ type: "CVSS", score }],
+    affected: [{ package: { name: "test-package", ecosystem: "npm" }, ...affected }],
+  };
+}
 
 function candidate(name: string, repoUrl: string): ComponentCandidate {
   return ComponentCandidateSchema.parse({
@@ -54,5 +81,86 @@ describe("HttpEnricher", () => {
     // Axios at latest 1.19.0 has almost all vulns fixed.
     expect(bundle.vulnerabilities.length).toBeLessThan(5);
     expect(EnrichmentBundleSchema.parse(bundle)).toEqual(bundle);
+  });
+
+  it.each([
+    "CVSS:3.0/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+    "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H",
+    "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:H/SI:H/SA:H",
+  ])("derives CRITICAL from a source CVSS vector (%s)", async (score) => {
+    const bundle = await new HttpEnricher(osvClient("1.0.0", [advisory(
+      "GHSA-cvss", score, { ranges: [{ type: "SEMVER", events: [{ introduced: "0" }] }] },
+    )])).enrich(candidate("test-package", "https://github.com/example/test-package"));
+
+    expect(bundle.vulnerabilities).toContainEqual({ id: "GHSA-cvss", severity: "CRITICAL" });
+    expect(bundle.sources.osv).toBe("ok");
+  });
+
+  it("keeps unknown CVSS severity unknown instead of inventing LOW", async () => {
+    const bundle = await new HttpEnricher(osvClient("1.0.0", [advisory(
+      "GHSA-unparseable", "CVSS:4.0/not-a-vector", { ranges: [{ type: "SEMVER", events: [{ introduced: "0" }] }] },
+    )])).enrich(candidate("test-package", "https://github.com/example/test-package"));
+
+    expect(bundle.vulnerabilities).toContainEqual({ id: "GHSA-unparseable", severity: "unknown" });
+  });
+
+  it("retains active future-fixed advisories and discards invalid fixedIn", async () => {
+    const active = advisory("GHSA-future-fix", "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", {
+      ranges: [{ type: "SEMVER", events: [{ introduced: "2.0.0" }, { fixed: "3.0.0" }] }],
+    });
+    const invalidFix = advisory("GHSA-invalid-fix", "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", {
+      ranges: [{ type: "SEMVER", events: [{ introduced: "0" }, { fixed: "not-a-version" }] }],
+    });
+    const bundle = await new HttpEnricher(osvClient("2.5.0", [active, invalidFix])).enrich(
+      candidate("test-package", "https://github.com/example/test-package"),
+    );
+
+    expect(bundle.vulnerabilities).toContainEqual({ id: "GHSA-future-fix", severity: "CRITICAL", fixedIn: "3.0.0" });
+    expect(bundle.vulnerabilities).toContainEqual({ id: "GHSA-invalid-fix", severity: "CRITICAL" });
+  });
+
+  it("uses prerelease-aware, multi-interval, last_affected, explicit-list, and fail-closed relevance", async () => {
+    const activePrerelease = advisory("GHSA-prerelease", "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", {
+      ranges: [{ type: "SEMVER", events: [{ introduced: "1.0.0-beta.0" }, { fixed: "1.0.0" }] }],
+    });
+    const secondInterval = advisory("GHSA-multi", "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", {
+      ranges: [{ type: "SEMVER", events: [{ introduced: "0" }, { fixed: "1.0.0" }, { introduced: "2.0.0" }, { fixed: "3.0.0" }] }],
+    });
+    const lastAffected = advisory("GHSA-last", "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", {
+      ranges: [{ type: "SEMVER", events: [{ introduced: "1.0.0" }, { last_affected: "2.0.0" }] }],
+    });
+    const explicit = advisory("GHSA-explicit", "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", { versions: ["2.5.0"] });
+    const ambiguous = advisory("GHSA-ambiguous", "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", {
+      ranges: [{ type: "SEMVER", events: [{ introduced: "not-a-version" }, { fixed: "3.0.0" }] }],
+    });
+
+    const prereleaseBundle = await new HttpEnricher(osvClient("1.0.0-beta.1", [activePrerelease])).enrich(candidate("test-package", "https://github.com/example/test-package"));
+    expect(prereleaseBundle.vulnerabilities.map((v) => v.id)).toContain("GHSA-prerelease");
+    const bundle = await new HttpEnricher(osvClient("2.5.0", [secondInterval, lastAffected, explicit, ambiguous])).enrich(candidate("test-package", "https://github.com/example/test-package"));
+    expect(bundle.vulnerabilities.map((v) => v.id)).toEqual(expect.arrayContaining(["GHSA-multi", "GHSA-explicit", "GHSA-ambiguous"]));
+    expect(bundle.vulnerabilities.map((v) => v.id)).not.toContain("GHSA-last");
+  });
+
+  it("distinguishes failed OSV evidence from a successful empty response and missing license", async () => {
+    const failedOsv: HttpClient = async (url) => {
+      if (url.includes("api.osv.dev")) return { ok: false, status: 500, json: async () => ({}) };
+      if (url.includes("packages.ecosyste.ms")) return { ok: true, status: 200, json: async () => ({ latest_release_number: "1.0.0" }) };
+      return { ok: true, status: 200, json: async () => ({}) };
+    };
+    const bundle = await new HttpEnricher(failedOsv).enrich(candidate("test-package", "https://github.com/example/test-package"));
+
+    expect(bundle.sources).toMatchObject({ osv: "failed", license: "missing" });
+    expect(bundle.vulnerabilities).toEqual([]);
+  });
+
+  it("treats a malformed successful OSV response as missing rather than clean evidence", async () => {
+    const malformedOsv: HttpClient = async (url) => {
+      if (url.includes("api.osv.dev")) return { ok: true, status: 200, json: async () => ({}) };
+      if (url.includes("packages.ecosyste.ms")) return { ok: true, status: 200, json: async () => ({ normalized_licenses: ["MIT"] }) };
+      return { ok: true, status: 200, json: async () => ({}) };
+    };
+    const bundle = await new HttpEnricher(malformedOsv).enrich(candidate("test-package", "https://github.com/example/test-package"));
+
+    expect(bundle.sources.osv).toBe("missing");
   });
 });
