@@ -36,9 +36,13 @@ Live mode stores successful supplier responses on disk to reduce repeat requests
 rate limits. Fixture mode remains local and does not use this cache.
 
 - `OSSFIND_CACHE_DIR` — cache directory (default `.cache/http/`).
-- `OSSFIND_CACHE_TTL` — cache lifetime in seconds (default `3600`).
+- `OSSFIND_CACHE_TTL` — cache lifetime in seconds for discovery, license, and health data (default `3600`).
+- `OSSFIND_SECURITY_TTL` — cache lifetime in seconds for OSV vulnerability data (default `300`).
 - `OSSFIND_CONCURRENCY` — maximum concurrent upstream enrichment requests (default `4`).
 - `OSSFIND_NO_CACHE=1` — disable the live-response cache.
+
+Security responses may be up to `OSSFIND_SECURITY_TTL` seconds stale; tune this value down when
+stricter vulnerability-data freshness is required.
 
 Supplier APIs are free but rate-limited; review each supplier's terms before commercial use.
 
@@ -80,13 +84,18 @@ each proven to **reject a known-bad input** (not just accept a good one):
 
 ## Audit trail
 
-- `AUDIT_REPORT.md` — independent adversarial audit that found 5 safety blockers.
+- `AUDIT_REPORT.md` — independent adversarial audit that found 5 safety blockers (all fixed).
 - `REAUDIT_REPORT.md` — independent re-audit confirming all 5 closed.
+- `CACHE_AUDIT.md` — independent audit of the live cache (key-collision + stale-signal, both fixed).
 
 ## Status & limitations (MVP)
 
-- Ecosystem: **npm** only (deps.dev/ecosyste.ms coverage strongest here). Python/others are next.
-- Fit is lexical; the interface is ready for embeddings.
-- Fixtures cover ~15 packages; non-fixtured packages show `unknown`/estimated data in offline mode
-  and enrich fully in live mode.
+- **Live mode works** against real suppliers, with a persistent disk cache (category-aware TTL:
+  security/OSV data defaults to 300s, everything else 3600s) and a concurrency cap. Fixture mode
+  stays offline and deterministic for tests/demos.
+- **Fit is vector-space (TF-IDF cosine)** with word/character n-grams; a pluggable
+  `EmbeddingsProvider` seam exists for dropping in a neural model later (not yet wired to a real model).
+- Ecosystem: **npm only** (deps.dev/ecosyste.ms coverage strongest here). PyPI/others are the next
+  ecosystem ticket — the pipeline already carries an `ecosystem` field.
+- Bundled fixtures cover ~15 packages for offline tests/demo; live mode enriches any package.
 - License output is **guidance, not legal advice.**

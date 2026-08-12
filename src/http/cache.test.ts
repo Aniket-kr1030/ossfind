@@ -1,10 +1,9 @@
-import { createHash } from "node:crypto";
-import { mkdtemp, rm, writeFile } from "node:fs/promises";
+import { mkdtemp, readdir, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import type { HttpClient, HttpResponse } from "./client.js";
-import { withCache } from "./cache.js";
+import { cacheCategoryFor, withCache } from "./cache.js";
 
 const directories: string[] = [];
 
@@ -53,6 +52,74 @@ describe("withCache", () => {
     expect(calls).toBe(2);
   });
 
+  it("uses a short TTL only for OSV security requests", async () => {
+    const directory = await cacheDirectory();
+    let now = 1_000;
+    const calls = new Map<string, number>();
+    const client = withCache(async (url) => {
+      const call = (calls.get(url) ?? 0) + 1;
+      calls.set(url, call);
+      return jsonResponse({ url, call });
+    }, {
+      dir: directory,
+      ttlSeconds: 3_600,
+      securityTtlSeconds: 300,
+      now: () => now,
+    });
+    const osvUrl = "https://api.osv.dev/v1/query";
+    const supplierUrl = "https://registry.npmjs.org/-/v1/search?text=axios";
+
+    await client(osvUrl, { method: "POST", body: "{}" });
+    await client(supplierUrl);
+    now += 300_001;
+
+    await expect(client(osvUrl, { method: "POST", body: "{}" }).then((response) => response.json()))
+      .resolves.toEqual({ url: osvUrl, call: 2 });
+    await expect(client(supplierUrl).then((response) => response.json()))
+      .resolves.toEqual({ url: supplierUrl, call: 1 });
+    expect(calls).toEqual(new Map([[osvUrl, 2], [supplierUrl, 1]]));
+  });
+
+  it("classifies OSV URLs as security-sensitive", () => {
+    expect(cacheCategoryFor("https://api.osv.dev/v1/query")).toBe("security");
+    expect(cacheCategoryFor("https://registry.npmjs.org/-/v1/search")).toBe("default");
+    expect(cacheCategoryFor("not a URL")).toBe("default");
+  });
+
+  it("keeps requests with moved newlines, methods, and bodies in distinct entries", async () => {
+    const directory = await cacheDirectory();
+    let calls = 0;
+    const client = withCache(async () => jsonResponse({ value: ++calls }), { dir: directory });
+    const newlineInUrl = "https://supplier.test/\nPOST";
+    const normalUrl = "https://supplier.test/";
+
+    await expect(client(newlineInUrl, { method: "GET", body: "body" }).then((response) => response.json()))
+      .resolves.toEqual({ value: 1 });
+    await expect(client(normalUrl, { method: "GET", body: "POST\nbody" }).then((response) => response.json()))
+      .resolves.toEqual({ value: 2 });
+    await expect(client(normalUrl, { method: "POST", body: "POST\nbody" }).then((response) => response.json()))
+      .resolves.toEqual({ value: 3 });
+    await expect(client(normalUrl, { method: "GET", body: "different" }).then((response) => response.json()))
+      .resolves.toEqual({ value: 4 });
+    await expect(client(newlineInUrl, { method: "GET", body: "body" }).then((response) => response.json()))
+      .resolves.toEqual({ value: 1 });
+    expect(calls).toBe(4);
+  });
+
+  it("bypasses the cache for non-serializable request bodies", async () => {
+    const directory = await cacheDirectory();
+    let calls = 0;
+    const client = withCache(async () => jsonResponse({ value: ++calls }), { dir: directory });
+    const body = new FormData();
+    body.append("package", "axios");
+
+    await expect(client("https://supplier.test/upload", { method: "POST", body }).then((response) => response.json()))
+      .resolves.toEqual({ value: 1 });
+    await expect(client("https://supplier.test/upload", { method: "POST", body }).then((response) => response.json()))
+      .resolves.toEqual({ value: 2 });
+    expect(calls).toBe(2);
+  });
+
   it.each([429, 500])("does not cache %i responses", async (status) => {
     const directory = await cacheDirectory();
     let calls = 0;
@@ -66,12 +133,13 @@ describe("withCache", () => {
   it("treats a corrupt cache file as a miss", async () => {
     const directory = await cacheDirectory();
     const url = "https://supplier.test/resource";
-    const key = createHash("sha256").update(`GET\n${url}\n`).digest("hex");
-    await writeFile(join(directory, `${key}.json`), "not json", "utf8");
     let calls = 0;
     const client = withCache(async () => jsonResponse({ value: ++calls }), { dir: directory });
 
-    await expect(client(url).then((response) => response.json())).resolves.toEqual({ value: 1 });
-    expect(calls).toBe(1);
+    await client(url);
+    const [file] = await readdir(directory);
+    await writeFile(join(directory, file!), "not json", "utf8");
+    await expect(client(url).then((response) => response.json())).resolves.toEqual({ value: 2 });
+    expect(calls).toBe(2);
   });
 });

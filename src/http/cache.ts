@@ -6,11 +6,15 @@ import type { HttpClient, HttpResponse } from "./client.js";
 export interface CacheOptions {
   /** Directory containing one JSON file per cached HTTP response. */
   dir?: string;
-  /** How long an entry remains usable, in seconds. */
+  /** How long a non-security entry remains usable, in seconds. */
   ttlSeconds?: number;
+  /** How long an OSV/vulnerability entry remains usable, in seconds. */
+  securityTtlSeconds?: number;
   /** Injectable wall clock, primarily for deterministic expiry tests. */
   now?: () => number;
 }
+
+export type CacheCategory = "default" | "security";
 
 interface CacheEntry {
   cachedAt: number;
@@ -25,24 +29,52 @@ function envNumber(value: string | undefined, fallback: number): number {
   return Number.isFinite(parsed) ? parsed : fallback;
 }
 
-function requestBody(body: RequestInit["body"] | undefined): string {
-  if (body === undefined || body === null) return "";
-  if (typeof body === "string") return body;
-  if (body instanceof URLSearchParams) return body.toString();
-  if (body instanceof ArrayBuffer) return Buffer.from(body).toString("base64");
-  if (ArrayBuffer.isView(body)) {
-    return Buffer.from(body.buffer, body.byteOffset, body.byteLength).toString("base64");
-  }
+type CacheableBody =
+  | { type: "empty" }
+  | { type: "string"; value: string }
+  | { type: "url-search-params"; value: string }
+  | { type: "json"; value: string };
 
-  // Live adapters currently submit JSON strings. Keep a deterministic fallback
-  // for other body shapes without consuming a potentially one-shot stream.
-  return String(body);
+function isPlainObject(value: object): boolean {
+  const prototype = Object.getPrototypeOf(value);
+  return prototype === Object.prototype || prototype === null;
 }
 
-function keyFor(url: string, init: RequestInit | undefined): string {
+/**
+ * Return a stable representation only when examining the body cannot consume
+ * it and its serialisation is unambiguous. Other body shapes are passed to the
+ * supplier directly, rather than risking a cache hit for a different request.
+ */
+function requestBody(body: RequestInit["body"] | undefined): CacheableBody | undefined {
+  if (body === undefined || body === null) return { type: "empty" };
+  if (typeof body === "string") return { type: "string", value: body };
+  if (body instanceof URLSearchParams) return { type: "url-search-params", value: body.toString() };
+  if (typeof body === "object" && isPlainObject(body)) {
+    try {
+      const value = JSON.stringify(body);
+      return value === undefined ? undefined : { type: "json", value };
+    } catch {
+      return undefined;
+    }
+  }
+
+  return undefined;
+}
+
+function keyFor(url: string, init: RequestInit | undefined): string | undefined {
   const method = init?.method?.toUpperCase() ?? "GET";
   const body = requestBody(init?.body);
-  return createHash("sha256").update(`${method}\n${url}\n${body}`).digest("hex");
+  if (!body) return undefined;
+  return createHash("sha256").update(JSON.stringify([method, url, body])).digest("hex");
+}
+
+/** Classifies security-sensitive OSV traffic so it can use a shorter TTL. */
+export function cacheCategoryFor(url: string): CacheCategory {
+  try {
+    return new URL(url).hostname === "api.osv.dev" ? "security" : "default";
+  } catch {
+    return "default";
+  }
 }
 
 function responseFrom(entry: CacheEntry): HttpResponse {
@@ -87,12 +119,18 @@ async function saveEntry(path: string, entry: CacheEntry): Promise<void> {
 export function withCache(inner: HttpClient, options: CacheOptions = {}): HttpClient {
   const dir = options.dir ?? process.env.OSSFIND_CACHE_DIR ?? ".cache/http";
   const ttlSeconds = options.ttlSeconds ?? envNumber(process.env.OSSFIND_CACHE_TTL, 3600);
+  const securityTtlSeconds = options.securityTtlSeconds
+    ?? envNumber(process.env.OSSFIND_SECURITY_TTL, 300);
   const now = options.now ?? Date.now;
 
   return async (url, init) => {
-    const path = join(dir, `${keyFor(url, init)}.json`);
+    const key = keyFor(url, init);
+    if (!key) return inner(url, init);
+
+    const path = join(dir, `${key}.json`);
     const cached = await loadEntry(path);
-    if (cached && now() - cached.cachedAt < ttlSeconds * 1_000) {
+    const ttl = cacheCategoryFor(url) === "security" ? securityTtlSeconds : ttlSeconds;
+    if (cached && now() - cached.cachedAt < ttl * 1_000) {
       return responseFrom(cached);
     }
 
