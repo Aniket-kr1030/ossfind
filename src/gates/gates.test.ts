@@ -1,0 +1,21 @@
+import { describe, expect, it } from "vitest";
+import * as g1 from "./g1.js";
+import * as g2 from "./g2.js";
+import * as g3 from "./g3.js";
+import * as g4 from "./g4.js";
+import * as g5 from "./g5.js";
+import * as g6 from "./g6.js";
+
+describe("Quality Gates Battery Verification Test", () => {
+  const gates = [g1, g2, g3, g4, g5, g6];
+
+  for (const gate of gates) {
+    it(`should pass check() and detect failure in proveFailure() for gate ${gate.id}`, async () => {
+      const checkRes = await gate.check();
+      expect(checkRes.status).toBe("pass");
+
+      const proveRes = await gate.proveFailure();
+      expect(proveRes.status).toBe("detected");
+    });
+  }
+});

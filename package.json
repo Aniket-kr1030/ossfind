@@ -10,6 +10,7 @@
     "build": "tsc -p .",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "gates": "tsx src/gates/run.ts",
     "mcp": "tsx src/mcp/server.ts",
     "web": "npm run build && node dist/web/server.js",
     "web:dev": "tsx watch src/web/server.ts"
@@ -18,13 +19,17 @@
     "ossfind-mcp": "dist/mcp/server.js"
   },
   "devDependencies": {
+    "@types/cvss": "^1.0.3",
     "@types/node": "^26.2.0",
+    "@types/semver": "^7.8.0",
     "tsx": "^4.20.0",
     "typescript": "^5.9.0",
     "vitest": "^3.2.0",
     "zod": "^3.25.0"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.30.0"
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "cvss": "^1.0.5",
+    "semver": "^7.8.5"
   }
 }

@@ -45,4 +45,14 @@ describe("HttpEnricher", () => {
     expect(bundle.vulnerabilities.length).toBeGreaterThan(0);
     expect(EnrichmentBundleSchema.parse(bundle)).toEqual(bundle);
   });
+
+  it("filters out vulnerabilities not affecting the latest version of axios", async () => {
+    const bundle = await new HttpEnricher(createFixtureHttpClient()).enrich(
+      candidate("axios", "https://github.com/axios/axios"),
+    );
+
+    // Axios at latest 1.19.0 has almost all vulns fixed.
+    expect(bundle.vulnerabilities.length).toBeLessThan(5);
+    expect(EnrichmentBundleSchema.parse(bundle)).toEqual(bundle);
+  });
 });

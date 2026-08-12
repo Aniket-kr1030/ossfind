@@ -1,0 +1,53 @@
+import * as g1 from "./g1.js";
+import * as g2 from "./g2.js";
+import * as g3 from "./g3.js";
+import * as g4 from "./g4.js";
+import * as g5 from "./g5.js";
+import * as g6 from "./g6.js";
+
+async function main() {
+  const gates = [g1, g2, g3, g4, g5, g6];
+  let anyFailed = false;
+
+  console.log(`\n=== Running Quality-Gate Battery ===\n`);
+  console.log(
+    `| Gate ID | Description | check() status | proveFailure() status |`
+  );
+  console.log(
+    `|---------|-------------|----------------|-----------------------|`
+  );
+
+  for (const gate of gates) {
+    const checkRes = await gate.check();
+    const proveRes = await gate.proveFailure();
+
+    const checkStr = checkRes.status === "pass" ? "pass" : `fail (${checkRes.status})`;
+    const proveStr = proveRes.status === "detected" ? "detected" : `fail (${proveRes.status})`;
+
+    console.log(
+      `| ${gate.id.padEnd(7)} | ${gate.description.padEnd(100)} | ${checkStr.padEnd(14)} | ${proveStr.padEnd(21)} |`
+    );
+
+    const isCheckPassed = checkRes.status === "pass";
+    const isProvePassed = proveRes.status === "detected";
+
+    if (!isCheckPassed || !isProvePassed) {
+      anyFailed = true;
+    }
+  }
+
+  console.log(`\n====================================\n`);
+
+  if (anyFailed) {
+    console.error("❌ Some quality gates failed or were not implemented.\n");
+    process.exit(1);
+  } else {
+    console.log("✅ All quality gates passed successfully!\n");
+    process.exit(0);
+  }
+}
+
+main().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
