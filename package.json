@@ -29,6 +29,7 @@
     "zod": "^3.25.0"
   },
   "dependencies": {
+    "@huggingface/transformers": "^4.2.0",
     "@modelcontextprotocol/sdk": "^1.30.0",
     "cvss": "^1.0.5",
     "semver": "^7.8.5"

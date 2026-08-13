@@ -11,6 +11,15 @@ export interface EmbeddingsProvider {
 }
 
 /**
+ * Optional extension for providers that can persist embeddings by candidate.
+ * Keeping this separate preserves the small, generic EmbeddingsProvider seam
+ * used by the deterministic fixture implementation.
+ */
+export interface CandidateEmbeddingsProvider extends EmbeddingsProvider {
+  embedCandidates(candidates: ComponentCandidate[]): Promise<number[][]>;
+}
+
+/**
  * Trivial deterministic default provider that implements a feature hashing vectorizer.
  * Useful for offline and network-free testing of the embeddings pipeline.
  */
@@ -78,11 +87,10 @@ export class EmbeddingFitScorer implements FitScorer {
       return `${namePart} ${c.description}`;
     });
 
-    const allTexts = [query, ...candidateTexts];
-    const embeddings = await this.provider.embed(allTexts);
-
-    const queryEmbedding = embeddings[0];
-    const candidateEmbeddings = embeddings.slice(1);
+    const queryEmbedding = (await this.provider.embed([query]))[0];
+    const candidateEmbeddings = isCandidateEmbeddingsProvider(this.provider)
+      ? await this.provider.embedCandidates(candidates)
+      : await this.provider.embed(candidateTexts);
 
     const STOPWORDS = new Set([
       "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "arent",
@@ -160,4 +168,8 @@ export class EmbeddingFitScorer implements FitScorer {
       });
     });
   }
+}
+
+function isCandidateEmbeddingsProvider(provider: EmbeddingsProvider): provider is CandidateEmbeddingsProvider {
+  return "embedCandidates" in provider && typeof provider.embedCandidates === "function";
 }

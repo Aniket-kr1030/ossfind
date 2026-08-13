@@ -11,6 +11,7 @@ interface NpmSearchResult {
   package?: {
     name?: unknown;
     description?: unknown;
+    keywords?: unknown;
     version?: unknown;
     date?: unknown;
     links?: {
@@ -31,6 +32,12 @@ function stringValue(value: unknown): string | undefined {
 
 function nonnegativeNumber(value: unknown): number | undefined {
   return typeof value === "number" && Number.isFinite(value) && value >= 0
+    ? value
+    : undefined;
+}
+
+function stringArray(value: unknown): string[] | undefined {
+  return Array.isArray(value) && value.every((item) => typeof item === "string")
     ? value
     : undefined;
 }
@@ -62,6 +69,7 @@ function candidateFromResult(result: NpmSearchResult): ComponentCandidate | unde
       name,
       ecosystem: "npm",
       description: stringValue(pkg?.description) ?? "",
+      keywords: stringArray(pkg?.keywords),
       repoUrl: normalizeUrl(pkg?.links?.repository),
       homepage: normalizeUrl(pkg?.links?.homepage),
       downloads: nonnegativeNumber(result.downloads?.monthly),

@@ -10,6 +10,8 @@ describe("HttpDiscoverer", () => {
 
     expect(candidates.length).toBeGreaterThanOrEqual(10);
     expect(candidates.some((candidate) => candidate.id === "npm:axios")).toBe(true);
+    expect(candidates.find((candidate) => candidate.id === "npm:axios")?.keywords)
+      .toEqual(["xhr", "http", "ajax", "promise", "node", "browser", "fetch", "rest", "api", "client"]);
     for (const candidate of candidates) {
       expect(ComponentCandidateSchema.parse(candidate)).toEqual(candidate);
     }

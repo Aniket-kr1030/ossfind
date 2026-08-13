@@ -1,10 +1,12 @@
 import { HttpDiscoverer } from "../adapters/discovery.js";
+import { type EmbeddingsProvider, EmbeddingFitScorer } from "../fit/embeddings.js";
 import { HttpEnricher } from "../adapters/enrichment.js";
 import { TfidfFitScorer } from "../fit/tfidf.js";
+import { TransformersEmbeddingsProvider } from "../fit/transformers-provider.js";
 import { withCache } from "../http/cache.js";
 import { defaultHttpClient, type HttpClient } from "../http/client.js";
 import { createFixtureHttpClient } from "../http/fixture-client.js";
-import type { PipelineDependencies } from "../pipeline/interfaces.js";
+import type { FitScorer, PipelineDependencies } from "../pipeline/interfaces.js";
 import { WeightedRanker } from "../ranking/rank.js";
 
 export interface BuildPipelineOptions {
@@ -12,6 +14,8 @@ export interface BuildPipelineOptions {
   fixtures?: boolean;
   /** SPDX identifier for the consuming project; defaults to MIT in the ranker. */
   projectLicense?: string;
+  /** Injectable live-only provider, principally for embedding integration tests. */
+  embeddingsProvider?: EmbeddingsProvider;
 }
 
 function fixtureModeRequested(): boolean {
@@ -28,6 +32,41 @@ function cacheDisabled(): boolean {
   return environment?.OSSFIND_NO_CACHE === "1";
 }
 
+function requestedFitMode(): "tfidf" | "embeddings" | undefined {
+  const environment = (globalThis as unknown as {
+    process?: { env?: Record<string, string | undefined> };
+  }).process?.env;
+  const mode = environment?.OSSFIND_FIT;
+  return mode === "tfidf" || mode === "embeddings" ? mode : undefined;
+}
+
+/**
+ * Uses the semantic scorer until its provider fails (for example, a missing
+ * local model), then permanently uses the deterministic scorer for this
+ * pipeline instance. This keeps live search useful when model loading is not.
+ */
+export class FallbackFitScorer implements FitScorer {
+  private primaryFailed = false;
+
+  constructor(
+    private readonly primary: FitScorer,
+    private readonly fallback: FitScorer,
+    private readonly warn: (message: string) => void = console.warn,
+  ) {}
+
+  async fit(query: string, candidates: Parameters<FitScorer["fit"]>[1]) {
+    if (this.primaryFailed) return this.fallback.fit(query, candidates);
+
+    try {
+      return await this.primary.fit(query, candidates);
+    } catch {
+      this.primaryFailed = true;
+      this.warn("[ossfind] embeddings unavailable; falling back to TF-IDF.");
+      return this.fallback.fit(query, candidates);
+    }
+  }
+}
+
 /** Construct the production pipeline, optionally replacing its HTTP boundary with fixtures. */
 export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDependencies {
   const fixtures = options.fixtures || fixtureModeRequested();
@@ -36,11 +75,19 @@ export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDepen
     : cacheDisabled()
       ? defaultHttpClient
       : withCache(defaultHttpClient);
+  const fallbackFitScorer = new TfidfFitScorer();
+  const fitMode = requestedFitMode();
+  const fitScorer: FitScorer = fixtures || fitMode === "tfidf"
+    ? fallbackFitScorer
+    : new FallbackFitScorer(
+        new EmbeddingFitScorer(options.embeddingsProvider ?? new TransformersEmbeddingsProvider()),
+        fallbackFitScorer,
+      );
 
   return {
     discoverer: new HttpDiscoverer(http),
     enricher: new HttpEnricher(http),
-    fitScorer: new TfidfFitScorer(),
+    fitScorer,
     ranker: new WeightedRanker({ projectLicense: options.projectLicense }),
   };
 }
