@@ -93,8 +93,10 @@ each proven to **reject a known-bad input** (not just accept a good one):
 - **Live mode works** against real suppliers, with a persistent disk cache (category-aware TTL:
   security/OSV data defaults to 300s, everything else 3600s) and a concurrency cap. Fixture mode
   stays offline and deterministic for tests/demos.
-- **Fit is vector-space (TF-IDF cosine)** with word/character n-grams; a pluggable
-  `EmbeddingsProvider` seam exists for dropping in a neural model later (not yet wired to a real model).
+- **Fit is semantic in live mode** — a local embedding model (`Xenova/all-MiniLM-L6-v2` via
+  `@huggingface/transformers`, mean-pooled, cached per package under `.cache/embeddings/`) ranks by
+  meaning. Fixture/test mode uses deterministic TF-IDF so tests stay offline and exact. Force either
+  with `OSSFIND_FIT=embeddings|tfidf`; live falls back to TF-IDF if the model can't load.
 - Ecosystem: **npm only** (deps.dev/ecosyste.ms coverage strongest here). PyPI/others are the next
   ecosystem ticket — the pipeline already carries an `ecosystem` field.
 - Bundled fixtures cover ~15 packages for offline tests/demo; live mode enriches any package.
