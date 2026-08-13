@@ -13,7 +13,8 @@
     "gates": "tsx src/gates/run.ts",
     "mcp": "tsx src/mcp/server.ts",
     "web": "npm run build && node dist/web/server.js",
-    "web:dev": "tsx watch src/web/server.ts"
+    "web:dev": "tsx watch src/web/server.ts",
+    "demo": "npm run build && node scripts/demo.mjs"
   },
   "bin": {
     "ossfind-mcp": "dist/mcp/server.js"
