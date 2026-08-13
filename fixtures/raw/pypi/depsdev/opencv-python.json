@@ -1,0 +1,700 @@
+{
+  "packageKey": {
+    "system": "PYPI",
+    "name": "opencv-python"
+  },
+  "versions": [
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.0.14"
+      },
+      "publishedAt": "2021-11-15T10:32:19Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.1.15"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.10.35"
+      },
+      "publishedAt": "2020-07-05T14:46:15Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "Release deprecated"
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.10.37"
+      },
+      "publishedAt": "2020-08-09T15:14:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.11.39"
+      },
+      "publishedAt": "2020-08-11T13:55:46Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "Release deprecated"
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.11.41"
+      },
+      "publishedAt": "2020-08-16T16:22:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.11.43"
+      },
+      "publishedAt": "2020-09-22T18:50:04Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.11.45"
+      },
+      "publishedAt": "2020-11-02T20:04:35Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.13.47"
+      },
+      "publishedAt": "2021-01-03T17:25:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.14.51"
+      },
+      "publishedAt": "2021-05-07T12:42:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.14.53"
+      },
+      "publishedAt": "2021-06-07T13:38:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.15.55"
+      },
+      "publishedAt": "2021-07-09T23:02:15Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.16.57"
+      },
+      "publishedAt": "2021-10-21T16:37:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.16.59"
+      },
+      "publishedAt": "2021-11-22T05:47:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.17.61"
+      },
+      "publishedAt": "2021-12-29T06:01:15Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.17.63"
+      },
+      "publishedAt": "2022-03-09T05:54:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.18.65"
+      },
+      "publishedAt": "2022-06-08T12:01:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.2.17"
+      },
+      "publishedAt": "2018-07-23T17:54:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.3.18"
+      },
+      "publishedAt": "2018-09-09T12:43:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.4.19"
+      },
+      "publishedAt": "2018-11-27T16:24:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.5.20"
+      },
+      "publishedAt": "2018-12-28T11:28:58Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.6.27"
+      },
+      "publishedAt": "2019-09-10T16:08:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.7.28"
+      },
+      "publishedAt": "2019-09-13T07:07:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.8.29"
+      },
+      "publishedAt": "2019-11-20T16:32:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.9.31"
+      },
+      "publishedAt": "2020-02-01T18:59:55Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "Release deprecated"
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "3.4.9.33"
+      },
+      "publishedAt": "2020-04-04T11:59:59Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.0.0.21"
+      },
+      "publishedAt": "2019-01-09T17:02:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.0.1.23"
+      },
+      "publishedAt": "2019-04-08T17:01:25Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "Release deprecated"
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.0.1.24"
+      },
+      "publishedAt": "2019-04-09T16:16:45Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.1.0.25"
+      },
+      "publishedAt": "2019-04-11T16:22:58Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.1.1.26"
+      },
+      "publishedAt": "2019-09-02T14:54:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.1.2.30"
+      },
+      "publishedAt": "2019-11-21T23:59:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.10.0.82"
+      },
+      "publishedAt": "2024-06-03T16:59:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.10.0.84"
+      },
+      "publishedAt": "2024-06-17T18:29:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.11.0.86"
+      },
+      "publishedAt": "2025-01-16T13:52:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.12.0.88"
+      },
+      "publishedAt": "2025-07-07T09:14:01Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.13.0.90"
+      },
+      "publishedAt": "2026-01-18T09:04:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.13.0.92"
+      },
+      "publishedAt": "2026-02-05T06:59:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.14.0.94"
+      },
+      "publishedAt": "2026-07-28T19:19:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.2.0.32"
+      },
+      "publishedAt": "2020-02-02T19:32:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.2.0.34"
+      },
+      "publishedAt": "2020-04-04T14:29:36Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.3.0.36"
+      },
+      "publishedAt": "2020-07-06T00:33:36Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.3.0.38"
+      },
+      "publishedAt": "2020-08-09T21:09:35Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.4.0.40"
+      },
+      "publishedAt": "2020-08-11T22:21:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.4.0.42"
+      },
+      "publishedAt": "2020-08-16T22:37:30Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.4.0.44"
+      },
+      "publishedAt": "2020-09-22T23:32:45Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.4.0.46"
+      },
+      "publishedAt": "2020-11-03T01:19:27Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.5.1.48"
+      },
+      "publishedAt": "2021-01-02T13:24:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.5.2.52"
+      },
+      "publishedAt": "2021-05-07T11:13:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.5.2.54"
+      },
+      "publishedAt": "2021-06-07T13:39:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.5.3.56"
+      },
+      "publishedAt": "2021-07-11T05:17:18Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.5.4.58"
+      },
+      "publishedAt": "2021-10-21T05:44:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.5.4.60"
+      },
+      "publishedAt": "2021-11-22T05:20:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.5.5.62"
+      },
+      "publishedAt": "2021-12-29T05:50:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.5.5.64"
+      },
+      "publishedAt": "2022-03-09T05:49:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.6.0.66"
+      },
+      "publishedAt": "2022-06-08T12:01:40Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.7.0.68"
+      },
+      "publishedAt": "2022-12-30T05:34:00Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.7.0.72"
+      },
+      "publishedAt": "2023-02-22T19:12:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.8.0.74"
+      },
+      "publishedAt": "2023-06-30T12:08:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.8.0.76"
+      },
+      "publishedAt": "2023-08-09T12:43:36Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.8.1.78"
+      },
+      "publishedAt": "2023-09-28T11:00:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "4.9.0.80"
+      },
+      "publishedAt": "2023-12-31T13:34:00Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "opencv-python",
+        "version": "5.0.0.93"
+      },
+      "publishedAt": "2026-07-02T06:55:03Z",
+      "isDefault": true,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    }
+  ]
+}

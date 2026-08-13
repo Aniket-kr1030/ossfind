@@ -1,0 +1,1086 @@
+{
+  "packageKey": {
+    "system": "PYPI",
+    "name": "diffusers"
+  },
+  "versions": [
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.0.1"
+      },
+      "publishedAt": "2022-05-30T16:25:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.0.2"
+      },
+      "publishedAt": "2022-06-07T17:38:35Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.0.3"
+      },
+      "publishedAt": "2022-06-15T13:55:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.0.4"
+      },
+      "publishedAt": "2022-06-15T14:28:01Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.1.0"
+      },
+      "publishedAt": "2022-07-21T03:01:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.1.1"
+      },
+      "publishedAt": "2022-07-21T03:01:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.1.2"
+      },
+      "publishedAt": "2022-07-21T13:01:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.1.3"
+      },
+      "publishedAt": "2022-07-28T08:49:19Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.10.0"
+      },
+      "publishedAt": "2022-12-08T18:30:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.10.1"
+      },
+      "publishedAt": "2022-12-09T14:11:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.10.2"
+      },
+      "publishedAt": "2022-12-09T18:18:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.11.0"
+      },
+      "publishedAt": "2022-12-19T17:08:05Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.11.1"
+      },
+      "publishedAt": "2022-12-20T16:29:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.12.0"
+      },
+      "publishedAt": "2023-01-25T15:00:45Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.12.1"
+      },
+      "publishedAt": "2023-01-27T07:55:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.13.0"
+      },
+      "publishedAt": "2023-02-17T21:50:00Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.13.1"
+      },
+      "publishedAt": "2023-02-20T07:42:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.14.0"
+      },
+      "publishedAt": "2023-03-03T15:53:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.15.0"
+      },
+      "publishedAt": "2023-04-12T15:23:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.15.1"
+      },
+      "publishedAt": "2023-04-17T17:22:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.16.0"
+      },
+      "publishedAt": "2023-04-26T11:42:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.16.1"
+      },
+      "publishedAt": "2023-04-28T12:25:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.17.0"
+      },
+      "publishedAt": "2023-06-08T15:04:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.17.1"
+      },
+      "publishedAt": "2023-06-12T12:14:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.18.0"
+      },
+      "publishedAt": "2023-07-06T17:40:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.18.1"
+      },
+      "publishedAt": "2023-07-07T14:56:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.18.2"
+      },
+      "publishedAt": "2023-07-11T17:20:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.19.0"
+      },
+      "publishedAt": "2023-07-26T19:07:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.19.1"
+      },
+      "publishedAt": "2023-07-27T18:38:18Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.19.2"
+      },
+      "publishedAt": "2023-07-28T18:11:40Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.19.3"
+      },
+      "publishedAt": "2023-07-30T10:20:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.2.0"
+      },
+      "publishedAt": "2022-08-16T15:49:42Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.2.1"
+      },
+      "publishedAt": "2022-08-16T16:26:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.2.2"
+      },
+      "publishedAt": "2022-08-16T17:38:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.2.3"
+      },
+      "publishedAt": "2022-08-22T08:51:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.2.4"
+      },
+      "publishedAt": "2022-08-22T16:59:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.20.0"
+      },
+      "publishedAt": "2023-08-17T08:38:05Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.20.1"
+      },
+      "publishedAt": "2023-08-28T04:40:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.20.2"
+      },
+      "publishedAt": "2023-08-31T18:38:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.21.0"
+      },
+      "publishedAt": "2023-09-13T14:13:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.21.1"
+      },
+      "publishedAt": "2023-09-14T11:15:59Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.21.2"
+      },
+      "publishedAt": "2023-09-18T22:11:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.21.3"
+      },
+      "publishedAt": "2023-09-27T16:45:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.21.4"
+      },
+      "publishedAt": "2023-09-29T15:43:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.22.0"
+      },
+      "publishedAt": "2023-11-06T12:59:12Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.22.1"
+      },
+      "publishedAt": "2023-11-06T14:45:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.22.2"
+      },
+      "publishedAt": "2023-11-07T17:40:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.22.3"
+      },
+      "publishedAt": "2023-11-08T12:27:25Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.23.0"
+      },
+      "publishedAt": "2023-11-09T16:30:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.23.1"
+      },
+      "publishedAt": "2023-11-16T14:46:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.24.0"
+      },
+      "publishedAt": "2023-11-29T19:06:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.25.0"
+      },
+      "publishedAt": "2023-12-27T13:46:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.25.1"
+      },
+      "publishedAt": "2024-01-17T16:38:52Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.26.0"
+      },
+      "publishedAt": "2024-01-31T22:34:42Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.26.1"
+      },
+      "publishedAt": "2024-02-02T09:16:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.26.2"
+      },
+      "publishedAt": "2024-02-06T02:08:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.26.3"
+      },
+      "publishedAt": "2024-02-13T08:36:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.27.0"
+      },
+      "publishedAt": "2024-03-14T15:50:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.27.1"
+      },
+      "publishedAt": "2024-03-19T03:58:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.27.2"
+      },
+      "publishedAt": "2024-03-20T01:54:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.28.0"
+      },
+      "publishedAt": "2024-05-27T12:08:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.28.1"
+      },
+      "publishedAt": "2024-06-04T10:31:04Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.28.2"
+      },
+      "publishedAt": "2024-06-04T20:14:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.29.0"
+      },
+      "publishedAt": "2024-06-12T20:13:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.29.1"
+      },
+      "publishedAt": "2024-06-20T23:04:56Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.29.2"
+      },
+      "publishedAt": "2024-06-27T03:58:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.3.0"
+      },
+      "publishedAt": "2022-09-08T17:05:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.30.0"
+      },
+      "publishedAt": "2024-08-07T07:33:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.30.1"
+      },
+      "publishedAt": "2024-08-24T04:59:03Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.30.2"
+      },
+      "publishedAt": "2024-08-31T00:05:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.30.3"
+      },
+      "publishedAt": "2024-09-17T05:40:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.31.0"
+      },
+      "publishedAt": "2024-10-22T14:13:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.32.0"
+      },
+      "publishedAt": "2024-12-23T15:59:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.32.1"
+      },
+      "publishedAt": "2024-12-25T12:21:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.32.2"
+      },
+      "publishedAt": "2025-01-15T15:45:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.33.0"
+      },
+      "publishedAt": "2025-04-09T13:25:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.33.1"
+      },
+      "publishedAt": "2025-04-10T05:20:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.34.0"
+      },
+      "publishedAt": "2025-06-24T14:56:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.35.0"
+      },
+      "publishedAt": "2025-08-19T03:22:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.35.1"
+      },
+      "publishedAt": "2025-08-20T04:16:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.35.2"
+      },
+      "publishedAt": "2025-10-15T04:05:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.36.0"
+      },
+      "publishedAt": "2025-12-08T10:14:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.37.0"
+      },
+      "publishedAt": "2026-03-05T14:58:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.37.1"
+      },
+      "publishedAt": "2026-03-25T08:04:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.38.0"
+      },
+      "publishedAt": "2026-05-01T05:42:12Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.39.0"
+      },
+      "publishedAt": "2026-07-03T08:48:45Z",
+      "isDefault": true,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.4.0"
+      },
+      "publishedAt": "2022-10-06T16:28:51Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.4.1"
+      },
+      "publishedAt": "2022-10-07T08:48:18Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.4.2"
+      },
+      "publishedAt": "2022-10-11T22:45:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.5.0"
+      },
+      "publishedAt": "2022-10-13T17:12:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.5.1"
+      },
+      "publishedAt": "2022-10-13T19:16:12Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.6.0"
+      },
+      "publishedAt": "2022-10-19T15:49:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.7.0"
+      },
+      "publishedAt": "2022-11-03T18:10:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.7.1"
+      },
+      "publishedAt": "2022-11-04T14:19:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.7.2"
+      },
+      "publishedAt": "2022-11-05T21:41:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.8.0"
+      },
+      "publishedAt": "2022-11-23T18:17:56Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.8.1"
+      },
+      "publishedAt": "2022-11-24T00:04:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "diffusers",
+        "version": "0.9.0"
+      },
+      "publishedAt": "2022-11-25T17:15:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    }
+  ]
+}

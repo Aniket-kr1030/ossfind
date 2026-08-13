@@ -3,3 +3,6 @@ dist/
 .cache/
 *.log
 coverage/
+
+# local secrets (never commit)
+.env.local

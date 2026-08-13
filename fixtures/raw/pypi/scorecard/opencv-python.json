@@ -1,0 +1,274 @@
+{
+  "projectKey": {
+    "id": "github.com/opencv/opencv-python"
+  },
+  "openIssuesCount": 203,
+  "starsCount": 5346,
+  "forksCount": 1033,
+  "license": "MIT",
+  "description": "Automated CI toolchain to produce precompiled opencv-python, opencv-python-headless, opencv-contrib-python and opencv-contrib-python-headless packages.",
+  "homepage": "https://pypi.org/project/opencv-python/",
+  "scorecard": {
+    "date": "2026-08-03T00:00:00Z",
+    "repository": {
+      "name": "github.com/opencv/opencv-python",
+      "commit": "2ba8bf62f2f1215ab620416b041c9659005fa25c"
+    },
+    "scorecard": {
+      "version": "v5.5.1-0.20260715062425-64febf8c5229",
+      "commit": "64febf8c5229a2a65d09c6b543677b28a51abb09"
+    },
+    "checks": [
+      {
+        "name": "Maintained",
+        "documentation": {
+          "shortDescription": "Determines if the project is \"actively maintained\".",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#maintained"
+        },
+        "score": 10,
+        "reason": "20 commit(s) and 1 issue activity found in the last 90 days -- score normalized to 10",
+        "details": []
+      },
+      {
+        "name": "Binary-Artifacts",
+        "documentation": {
+          "shortDescription": "Determines if the project has generated executable (binary) artifacts in the source repository.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#binary-artifacts"
+        },
+        "score": 10,
+        "reason": "no binaries found in the repo",
+        "details": []
+      },
+      {
+        "name": "Code-Review",
+        "documentation": {
+          "shortDescription": "Determines if the project requires human code review before pull requests (aka merge requests) are merged.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#code-review"
+        },
+        "score": 4,
+        "reason": "Found 7/17 approved changesets -- score normalized to 4",
+        "details": []
+      },
+      {
+        "name": "CII-Best-Practices",
+        "documentation": {
+          "shortDescription": "Determines if the project has an OpenSSF (formerly CII) Best Practices Badge.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#cii-best-practices"
+        },
+        "score": 0,
+        "reason": "no effort to earn an OpenSSF best practices badge detected",
+        "details": []
+      },
+      {
+        "name": "Token-Permissions",
+        "documentation": {
+          "shortDescription": "Determines if the project's workflows follow the principle of least privilege.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#token-permissions"
+        },
+        "score": 0,
+        "reason": "detected GitHub workflow tokens with excessive permissions",
+        "details": [
+          "Warn: no topLevel permission defined: .github/workflows/build_wheels_macos.yml:1",
+          "Warn: no topLevel permission defined: .github/workflows/build_wheels_macos_m1.yml:1",
+          "Warn: no topLevel permission defined: .github/workflows/build_wheels_manylinux.yml:1",
+          "Warn: no topLevel permission defined: .github/workflows/build_wheels_windows.yml:1",
+          "Info: no jobLevel write permissions found"
+        ]
+      },
+      {
+        "name": "Packaging",
+        "documentation": {
+          "shortDescription": "Determines if the project is published as a package that others can easily download, install, easily update, and uninstall.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#packaging"
+        },
+        "score": -1,
+        "reason": "packaging workflow not detected",
+        "details": [
+          "Warn: no GitHub/GitLab publishing workflow detected."
+        ]
+      },
+      {
+        "name": "Dangerous-Workflow",
+        "documentation": {
+          "shortDescription": "Determines if the project's GitHub Action workflows avoid dangerous patterns.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#dangerous-workflow"
+        },
+        "score": 10,
+        "reason": "no dangerous workflow patterns detected",
+        "details": []
+      },
+      {
+        "name": "Security-Policy",
+        "documentation": {
+          "shortDescription": "Determines if the project has published a security policy.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#security-policy"
+        },
+        "score": 0,
+        "reason": "security policy file not detected",
+        "details": [
+          "Warn: no security policy file detected",
+          "Warn: no security file to analyze",
+          "Warn: no security file to analyze",
+          "Warn: no security file to analyze"
+        ]
+      },
+      {
+        "name": "Fuzzing",
+        "documentation": {
+          "shortDescription": "Determines if the project uses fuzzing.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#fuzzing"
+        },
+        "score": 0,
+        "reason": "project is not fuzzed",
+        "details": [
+          "Warn: no fuzzer integrations found"
+        ]
+      },
+      {
+        "name": "License",
+        "documentation": {
+          "shortDescription": "Determines if the project has defined a license.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#license"
+        },
+        "score": 10,
+        "reason": "license file detected",
+        "details": [
+          "Info: project has a license file: LICENSE.txt:0",
+          "Info: FSF or OSI recognized license: MIT License: LICENSE.txt:0"
+        ]
+      },
+      {
+        "name": "Signed-Releases",
+        "documentation": {
+          "shortDescription": "Determines if the project cryptographically signs release artifacts.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#signed-releases"
+        },
+        "score": -1,
+        "reason": "no releases found",
+        "details": []
+      },
+      {
+        "name": "Branch-Protection",
+        "documentation": {
+          "shortDescription": "Determines if the default and release branches are protected with GitHub's branch protection settings.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#branch-protection"
+        },
+        "score": -1,
+        "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+        "details": []
+      },
+      {
+        "name": "SAST",
+        "documentation": {
+          "shortDescription": "Determines if the project uses static code analysis.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#sast"
+        },
+        "score": 0,
+        "reason": "SAST tool is not run on all commits -- score normalized to 0",
+        "details": [
+          "Warn: 0 commits out of 30 are checked with a SAST tool"
+        ]
+      },
+      {
+        "name": "Pinned-Dependencies",
+        "documentation": {
+          "shortDescription": "Determines if the project has declared and pinned the dependencies of its build process.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#pinned-dependencies"
+        },
+        "score": 0,
+        "reason": "dependency not pinned by hash detected -- score normalized to 0",
+        "details": [
+          "Info: Possibly incomplete results: error parsing shell code: not a valid arithmetic operator: info: travis_osx_brew_cache.sh:0",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos.yml:103: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos.yml:108: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos.yml:144: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos.yml:174: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos.yml:192: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos.yml:58: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos.yml:72: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:46: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos_m1.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:60: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos_m1.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:85: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos_m1.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:90: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos_m1.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:126: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos_m1.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:156: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos_m1.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:174: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_macos_m1.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_manylinux.yml:74: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_manylinux.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_manylinux.yml:82: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_manylinux.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_manylinux.yml:120: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_manylinux.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_manylinux.yml:137: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_manylinux.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_manylinux.yml:184: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_manylinux.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_manylinux.yml:189: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_manylinux.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_manylinux.yml:206: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_manylinux.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_manylinux.yml:220: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_manylinux.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_manylinux.yml:250: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_manylinux.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_manylinux.yml:269: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_manylinux.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_windows.yml:191: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_windows.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_windows.yml:49: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_windows.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_windows.yml:54: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_windows.yml/4.x?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/build_wheels_windows.yml:59: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_windows.yml/4.x?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/build_wheels_windows.yml:61: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_windows.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_windows.yml:73: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_windows.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_windows.yml:105: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_windows.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_windows.yml:110: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_windows.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_windows.yml:115: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_windows.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_windows.yml:145: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_windows.yml/4.x?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build_wheels_windows.yml:174: update your workflow using https://app.stepsecurity.io/secureworkflow/opencv/opencv-python/build_wheels_windows.yml/4.x?enable=pin",
+          "Warn: containerImage not pinned by hash: docker/manylinux1/Dockerfile_i686:1: pin your Docker image by updating quay.io/pypa/manylinux1_i686:latest to quay.io/pypa/manylinux1_i686:latest@sha256:cd449bd06d1b70207f41a7a813fcf987ff7ddfcdd34502198926d4e27ae65811",
+          "Warn: containerImage not pinned by hash: docker/manylinux1/Dockerfile_x86_64:1: pin your Docker image by updating quay.io/pypa/manylinux1_x86_64:latest to quay.io/pypa/manylinux1_x86_64:latest@sha256:506d34897aa3e6f41297bb05e721f92b6cebd23966b5c3a36b015ec7ba5c764d",
+          "Warn: containerImage not pinned by hash: docker/manylinux2014/Dockerfile_aarch64:4: pin your Docker image by updating quay.io/pypa/manylinux2014_aarch64:latest to quay.io/pypa/manylinux2014_aarch64:latest@sha256:5d366450eeff9abe09cc93db50fd2c9832bafaf473daa7a911d8b184424bbefd",
+          "Warn: containerImage not pinned by hash: docker/manylinux2014/Dockerfile_i686:1: pin your Docker image by updating quay.io/pypa/manylinux2014_i686:latest to quay.io/pypa/manylinux2014_i686:latest@sha256:abfc526a4f9d9692ed6d53b60ffd6be764aa7a4dc1d61522a1ce5ea64138aa53",
+          "Warn: containerImage not pinned by hash: docker/manylinux2014/Dockerfile_x86_64:4: pin your Docker image by updating quay.io/pypa/manylinux2014_x86_64:latest to quay.io/pypa/manylinux2014_x86_64:latest@sha256:c163a278006f45883c117b4166b93cdc7b574b62e58292ed9e52879579841d77",
+          "Warn: containerImage not pinned by hash: docker/manylinux_2_28/Dockerfile_aarch64:4: pin your Docker image by updating quay.io/pypa/manylinux_2_28_aarch64:latest to quay.io/pypa/manylinux_2_28_aarch64:latest@sha256:52e4da6e9348db7cd0b529a827623b62b7c1fe867ba515ae752fa13d41f7f46e",
+          "Warn: containerImage not pinned by hash: docker/manylinux_2_28/Dockerfile_x86_64:4: pin your Docker image by updating quay.io/pypa/manylinux_2_28_x86_64:latest to quay.io/pypa/manylinux_2_28_x86_64:latest@sha256:012f4a50472412f18bb2b450c1cce7158434cfae4ae878591c2748a13a30c2be",
+          "Warn: containerImage not pinned by hash: docker/musllinux_1_2/Dockerfile_aarch64:3: pin your Docker image by updating quay.io/pypa/musllinux_1_2_aarch64:latest to quay.io/pypa/musllinux_1_2_aarch64:latest@sha256:1fa8dcacab5e13769abb36028f98bd2c0a1af4dbde492505f774d7f0ce01e87f",
+          "Warn: containerImage not pinned by hash: docker/musllinux_1_2/Dockerfile_x86_64:3: pin your Docker image by updating quay.io/pypa/musllinux_1_2_x86_64:latest to quay.io/pypa/musllinux_1_2_x86_64:latest@sha256:f130bd3e3aebb39abcdec28a89f987f0d31b52d74bac5852318303698e9a5033",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos.yml:197",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos.yml:201",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos.yml:205",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos.yml:209",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos.yml:150",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos.yml:154",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos.yml:158",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos.yml:162",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos.yml:180",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:132",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:136",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:140",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:144",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:162",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:179",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:183",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:187",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_macos_m1.yml:191",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_manylinux.yml:198",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_manylinux.yml:199",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_manylinux.yml:226",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_manylinux.yml:230",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_manylinux.yml:234",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_manylinux.yml:238",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_manylinux.yml:257",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_manylinux.yml:274",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_manylinux.yml:278",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_manylinux.yml:282",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_manylinux.yml:286",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_windows.yml:150",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_windows.yml:154",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_windows.yml:158",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_windows.yml:162",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_windows.yml:179",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_windows.yml:196",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_windows.yml:200",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_windows.yml:204",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build_wheels_windows.yml:208",
+          "Info:   0 out of  33 GitHub-owned GitHubAction dependencies pinned",
+          "Info:   0 out of   2 third-party GitHubAction dependencies pinned",
+          "Info:   0 out of   9 containerImage dependencies pinned",
+          "Info:   0 out of  38 pipCommand dependencies pinned"
+        ]
+      }
+    ],
+    "overallScore": 4.7,
+    "metadata": []
+  }
+}

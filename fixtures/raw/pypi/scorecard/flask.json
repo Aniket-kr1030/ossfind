@@ -1,0 +1,214 @@
+{
+  "projectKey": {
+    "id": "github.com/pallets/flask"
+  },
+  "openIssuesCount": 8,
+  "starsCount": 72180,
+  "forksCount": 16937,
+  "license": "BSD-3-Clause",
+  "description": "The Python micro framework for building web applications.",
+  "homepage": "https://flask.palletsprojects.com",
+  "scorecard": {
+    "date": "2026-08-03T00:00:00Z",
+    "repository": {
+      "name": "github.com/pallets/flask",
+      "commit": "6a2f545bfd8ed31e19066a299296917e034aca58"
+    },
+    "scorecard": {
+      "version": "v5.5.1-0.20260715062425-64febf8c5229",
+      "commit": "64febf8c5229a2a65d09c6b543677b28a51abb09"
+    },
+    "checks": [
+      {
+        "name": "Dangerous-Workflow",
+        "documentation": {
+          "shortDescription": "Determines if the project's GitHub Action workflows avoid dangerous patterns.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#dangerous-workflow"
+        },
+        "score": 10,
+        "reason": "no dangerous workflow patterns detected",
+        "details": []
+      },
+      {
+        "name": "Maintained",
+        "documentation": {
+          "shortDescription": "Determines if the project is \"actively maintained\".",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#maintained"
+        },
+        "score": 10,
+        "reason": "10 commit(s) and 18 issue activity found in the last 90 days -- score normalized to 10",
+        "details": []
+      },
+      {
+        "name": "Code-Review",
+        "documentation": {
+          "shortDescription": "Determines if the project requires human code review before pull requests (aka merge requests) are merged.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#code-review"
+        },
+        "score": 0,
+        "reason": "Found 1/26 approved changesets -- score normalized to 0",
+        "details": []
+      },
+      {
+        "name": "Token-Permissions",
+        "documentation": {
+          "shortDescription": "Determines if the project's workflows follow the principle of least privilege.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#token-permissions"
+        },
+        "score": 10,
+        "reason": "GitHub workflow tokens follow principle of least privilege",
+        "details": [
+          "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/publish.yaml:37",
+          "Info: found token with 'none' permissions: .github/workflows/lock.yaml:1",
+          "Info: found token with 'none' permissions: .github/workflows/pre-commit.yaml:1",
+          "Info: found token with 'none' permissions: .github/workflows/publish.yaml:1",
+          "Info: found token with 'none' permissions: .github/workflows/tests.yaml:1",
+          "Info: found token with 'none' permissions: .github/workflows/zizmor.yaml:1"
+        ]
+      },
+      {
+        "name": "Binary-Artifacts",
+        "documentation": {
+          "shortDescription": "Determines if the project has generated executable (binary) artifacts in the source repository.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#binary-artifacts"
+        },
+        "score": 10,
+        "reason": "no binaries found in the repo",
+        "details": []
+      },
+      {
+        "name": "CII-Best-Practices",
+        "documentation": {
+          "shortDescription": "Determines if the project has an OpenSSF (formerly CII) Best Practices Badge.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#cii-best-practices"
+        },
+        "score": 0,
+        "reason": "no effort to earn an OpenSSF best practices badge detected",
+        "details": []
+      },
+      {
+        "name": "Pinned-Dependencies",
+        "documentation": {
+          "shortDescription": "Determines if the project has declared and pinned the dependencies of its build process.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#pinned-dependencies"
+        },
+        "score": 8,
+        "reason": "dependency not pinned by hash detected -- score normalized to 8",
+        "details": [
+          "Warn: pipCommand not pinned by hash: .devcontainer/on-create-command.sh:5",
+          "Warn: pipCommand not pinned by hash: .devcontainer/on-create-command.sh:6",
+          "Info:  14 out of  14 GitHub-owned GitHubAction dependencies pinned",
+          "Info:   7 out of   7 third-party GitHubAction dependencies pinned",
+          "Info:   0 out of   2 pipCommand dependencies pinned"
+        ]
+      },
+      {
+        "name": "License",
+        "documentation": {
+          "shortDescription": "Determines if the project has defined a license.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#license"
+        },
+        "score": 10,
+        "reason": "license file detected",
+        "details": [
+          "Info: project has a license file: LICENSE.txt:0",
+          "Info: FSF or OSI recognized license: BSD 3-Clause \"New\" or \"Revised\" License: LICENSE.txt:0"
+        ]
+      },
+      {
+        "name": "Fuzzing",
+        "documentation": {
+          "shortDescription": "Determines if the project uses fuzzing.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#fuzzing"
+        },
+        "score": 10,
+        "reason": "project is fuzzed",
+        "details": [
+          "Info: OSSFuzz integration found"
+        ]
+      },
+      {
+        "name": "Branch-Protection",
+        "documentation": {
+          "shortDescription": "Determines if the default and release branches are protected with GitHub's branch protection settings.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#branch-protection"
+        },
+        "score": 3,
+        "reason": "branch protection is not maximal on development and all release branches",
+        "details": [
+          "Info: 'allow deletion' disabled on branch 'main'",
+          "Info: 'force pushes' disabled on branch 'main'",
+          "Warn: 'branch protection settings apply to administrators' is disabled on branch 'main'",
+          "Warn: could not determine whether codeowners review is allowed",
+          "Warn: no status checks found to merge onto branch 'main'",
+          "Warn: PRs are not required to make changes on branch 'main'; or we don't have data to detect it.If you think it might be the latter, make sure to run Scorecard with a PAT or use Repo Rules (that are always public) instead of Branch Protection settings"
+        ]
+      },
+      {
+        "name": "Signed-Releases",
+        "documentation": {
+          "shortDescription": "Determines if the project cryptographically signs release artifacts.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#signed-releases"
+        },
+        "score": 6,
+        "reason": "3 out of the last 5 releases have a total of 3 signed artifacts.",
+        "details": [
+          "Warn: release artifact 3.1.3 not signed: https://api.github.com/repos/pallets/flask/releases/287999283",
+          "Warn: release artifact 3.1.2 not signed: https://api.github.com/repos/pallets/flask/releases/241017558",
+          "Warn: release artifact 3.1.3 does not have provenance: https://api.github.com/repos/pallets/flask/releases/287999283",
+          "Warn: release artifact 3.1.2 does not have provenance: https://api.github.com/repos/pallets/flask/releases/241017558",
+          "Info: provenance for release artifact: multiple.intoto.jsonl: https://github.com/pallets/flask/releases/tag/3.1.1",
+          "Info: provenance for release artifact: multiple.intoto.jsonl: https://github.com/pallets/flask/releases/tag/3.1.0",
+          "Info: provenance for release artifact: multiple.intoto.jsonl: https://github.com/pallets/flask/releases/tag/3.0.3"
+        ]
+      },
+      {
+        "name": "Packaging",
+        "documentation": {
+          "shortDescription": "Determines if the project is published as a package that others can easily download, install, easily update, and uninstall.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#packaging"
+        },
+        "score": 10,
+        "reason": "packaging workflow detected",
+        "details": [
+          "Info: Project packages its releases by way of GitHub Actions.: .github/workflows/publish.yaml:47"
+        ]
+      },
+      {
+        "name": "Security-Policy",
+        "documentation": {
+          "shortDescription": "Determines if the project has published a security policy.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#security-policy"
+        },
+        "score": 9,
+        "reason": "security policy file detected",
+        "details": [
+          "Info: security policy file detected: github.com/pallets/.github/SECURITY.md:1",
+          "Info: Found linked content: github.com/pallets/.github/SECURITY.md:1",
+          "Warn: One or no descriptive hints of disclosure, vulnerability, and/or timelines in security policy",
+          "Info: Found text in security policy: github.com/pallets/.github/SECURITY.md:1"
+        ]
+      },
+      {
+        "name": "SAST",
+        "documentation": {
+          "shortDescription": "Determines if the project uses static code analysis.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#sast"
+        },
+        "score": 0,
+        "reason": "SAST tool is not run on all commits -- score normalized to 0",
+        "details": [
+          "Warn: 0 commits out of 9 are checked with a SAST tool"
+        ]
+      }
+    ],
+    "overallScore": 7.1,
+    "metadata": []
+  },
+  "ossFuzz": {
+    "lineCount": 6234,
+    "lineCoverCount": 2663,
+    "date": "2026-05-31T00:00:00Z",
+    "configUrl": "https://github.com/google/oss-fuzz/tree/master/projects/flask"
+  }
+}

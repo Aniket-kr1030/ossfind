@@ -1,0 +1,3068 @@
+{
+  "id": 2960703,
+  "name": "urllib3",
+  "ecosystem": "pypi",
+  "description": "HTTP library with thread-safe connection pooling, file post, and more.",
+  "homepage": null,
+  "licenses": "MIT",
+  "normalized_licenses": [
+    "MIT"
+  ],
+  "repository_url": "https://github.com/urllib3/urllib3",
+  "keywords_array": [
+    "filepost",
+    "http",
+    "httplib",
+    "https",
+    "pooling",
+    "ssl",
+    "threadsafe",
+    "urllib"
+  ],
+  "namespace": null,
+  "versions_count": 108,
+  "first_release_published_at": "2009-12-11T08:47:22.000Z",
+  "latest_release_published_at": "2026-05-07T16:13:17.000Z",
+  "latest_release_number": "2.7.0",
+  "last_synced_at": "2026-08-12T05:23:41.880Z",
+  "created_at": "2022-04-10T12:58:28.258Z",
+  "updated_at": "2026-08-13T01:23:49.794Z",
+  "registry_url": "https://pypi.org/project/urllib3/",
+  "install_command": "pip install urllib3 --index-url https://pypi.org/simple",
+  "documentation_url": "https://urllib3.readthedocs.io",
+  "metadata": {
+    "funding": null,
+    "documentation": "https://urllib3.readthedocs.io",
+    "classifiers": [
+      "Environment :: Web Environment",
+      "Intended Audience :: Developers",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3 :: Only",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.12",
+      "Programming Language :: Python :: 3.13",
+      "Programming Language :: Python :: 3.14",
+      "Programming Language :: Python :: Free Threading :: 2 - Beta",
+      "Programming Language :: Python :: Implementation :: CPython",
+      "Programming Language :: Python :: Implementation :: PyPy",
+      "Topic :: Internet :: WWW/HTTP",
+      "Topic :: Software Development :: Libraries"
+    ],
+    "normalized_name": "urllib3",
+    "project_status": null
+  },
+  "repo_metadata": {
+    "id": 1683210,
+    "uuid": "2410676",
+    "full_name": "urllib3/urllib3",
+    "owner": "urllib3",
+    "description": "urllib3 is a user-friendly HTTP client library for Python",
+    "archived": false,
+    "fork": false,
+    "pushed_at": "2026-08-06T14:06:45.000Z",
+    "size": 8876,
+    "stargazers_count": 4047,
+    "open_issues_count": 203,
+    "forks_count": 1500,
+    "subscribers_count": 97,
+    "default_branch": "main",
+    "last_synced_at": "2026-08-10T06:39:49.030Z",
+    "etag": null,
+    "topics": [
+      "http",
+      "http-client",
+      "python",
+      "urllib3"
+    ],
+    "latest_commit_sha": null,
+    "homepage": "https://urllib3.readthedocs.io",
+    "language": "Python",
+    "has_issues": true,
+    "has_wiki": null,
+    "has_pages": null,
+    "mirror_url": null,
+    "source_name": null,
+    "license": "mit",
+    "status": null,
+    "scm": "git",
+    "pull_requests_enabled": true,
+    "icon_url": "https://github.com/urllib3.png",
+    "metadata": {
+      "files": {
+        "readme": "README.md",
+        "changelog": "CHANGES.rst",
+        "contributing": "docs/contributing.rst",
+        "funding": ".github/FUNDING.yml",
+        "license": "LICENSE.txt",
+        "code_of_conduct": "CODE_OF_CONDUCT.md",
+        "threat_model": null,
+        "audit": null,
+        "citation": null,
+        "codeowners": ".github/CODEOWNERS",
+        "security": ".github/SECURITY.md",
+        "support": null,
+        "governance": null,
+        "roadmap": null,
+        "authors": null,
+        "dei": null,
+        "publiccode": null,
+        "codemeta": null,
+        "zenodo": null,
+        "notice": null,
+        "maintainers": null,
+        "copyright": null,
+        "agents": null,
+        "claude": null,
+        "gemini": null,
+        "cursor": null,
+        "copilot": null,
+        "dco": null,
+        "cla": null,
+        "disclosure": null
+      },
+      "funding": {
+        "tidelift": "pypi/urllib3",
+        "github": "urllib3",
+        "open_collective": "urllib3"
+      }
+    },
+    "created_at": "2011-09-18T18:08:28.000Z",
+    "updated_at": "2026-08-06T14:09:54.000Z",
+    "dependencies_parsed_at": "2026-08-10T06:43:59.310Z",
+    "dependency_job_id": null,
+    "html_url": "https://github.com/urllib3/urllib3",
+    "commit_stats": {
+      "total_commits": 3475,
+      "total_committers": 393,
+      "mean_commits": 8.842239185750635,
+      "dds": 0.8307913669064748,
+      "last_synced_commit": "0e7e0df0586573d51c78076d4871050783bec7c8"
+    },
+    "previous_names": [
+      "shazow/urllib3"
+    ],
+    "tags_count": 108,
+    "template": false,
+    "template_full_name": null,
+    "purl": "pkg:github/urllib3/urllib3",
+    "repository_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3",
+    "tags_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags",
+    "releases_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/releases",
+    "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/manifests",
+    "owner_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/owners/urllib3",
+    "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/refs/heads/main",
+    "sbom_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/sbom",
+    "scorecard": {
+      "id": 54632,
+      "data": {
+        "date": "2025-08-14T10:24:56Z",
+        "repo": {
+          "name": "github.com/urllib3/urllib3",
+          "commit": "ca3bfe3774e05ec0b6a88efc1ee650bb67cf19f0"
+        },
+        "scorecard": {
+          "version": "v5.0.0",
+          "commit": "ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4"
+        },
+        "score": 9,
+        "checks": [
+          {
+            "name": "Binary-Artifacts",
+            "score": 10,
+            "reason": "no binaries found in the repo",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project has generated executable (binary) artifacts in the source repository.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#binary-artifacts"
+            }
+          },
+          {
+            "name": "Branch-Protection",
+            "score": 5,
+            "reason": "branch protection is not maximal on development and all release branches",
+            "details": [
+              "Info: 'allow deletion' disabled on branch 'main'",
+              "Info: 'force pushes' disabled on branch 'main'",
+              "Warn: 'branch protection settings apply to administrators' is disable on branch 'main'",
+              "Info: 'stale review dismissal' is required to merge on branch 'main'",
+              "Warn: required approving review count is 1 on branch 'main'",
+              "Info: codeowner review is required on branch 'main'",
+              "Warn: 'last push approval' is disable on branch 'main'",
+              "Info: 'up-to-date branches' is required to merge on branch 'main'",
+              "Info: status check found to merge onto on branch 'main'",
+              "Info: PRs are required in order to make changes on branch 'main'"
+            ],
+            "documentation": {
+              "short": "Determines if the default and release branches are protected with GitHub's branch protection settings.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#branch-protection"
+            }
+          },
+          {
+            "name": "CI-Tests",
+            "score": 10,
+            "reason": "28 out of 28 merged PRs checked by a CI test -- score normalized to 10",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project runs tests before pull requests are merged.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#ci-tests"
+            }
+          },
+          {
+            "name": "CII-Best-Practices",
+            "score": 5,
+            "reason": "badge detected: Passing",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project has an OpenSSF (formerly CII) Best Practices Badge.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#cii-best-practices"
+            }
+          },
+          {
+            "name": "Code-Review",
+            "score": 9,
+            "reason": "Found 19/21 approved changesets -- score normalized to 9",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project requires human code review before pull requests (aka merge requests) are merged.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#code-review"
+            }
+          },
+          {
+            "name": "Contributors",
+            "score": 10,
+            "reason": "project has 125 contributing companies or organizations",
+            "details": [
+              "Info: fedora-infra contributor org/company found, core contributor org/company found, Maritime-Robotics-Student-Society contributor org/company found, fedora-erlang contributor org/company found, python-docs-translations contributor org/company found, sv24-archive contributor org/company found, jazzband contributor org/company found, pyflakes contributor org/company found, canvg contributor org/company found, pylab contributor org/company found, python-modernize contributor org/company found, Azure contributor org/company found, cycle148hki contributor org/company found, urllib3 contributor org/company found, SublimeText contributor org/company found, uber contributor org/company found, ultrajson contributor org/company found, jupyter contributor org/company found, util-linux contributor org/company found, python-attrs contributor org/company found, hapy contributor org/company found, European-XFEL contributor org/company found, prettytable contributor org/company found, sailoboats contributor org/company found, pydata contributor org/company found, h5py contributor org/company found, python-distro contributor org/company found, pygame contributor org/company found, unitedstates contributor org/company found, pexpect contributor org/company found, joommf contributor org/company found, liberfa contributor org/company found, termcolor contributor org/company found, pydata-helsinki contributor org/company found, FactoryBoy contributor org/company found, EuroPython contributor org/company found, space telescope science institute contributor org/company found, freifunk-ffm contributor org/company found, https://burke.services contributor org/company found, WRSC contributor org/company found, panosc-eu contributor org/company found, python-trio contributor org/company found, conda-forge contributor org/company found, didcot-data contributor org/company found, django-mptt contributor org/company found, xkbcommon contributor org/company found, NaNoGenMo contributor org/company found, UpCloudLtd contributor org/company found, python-http contributor org/company found, python-hyper contributor org/company found, afncloud contributor org/company found, asnible contributor org/company found, dask contributor org/company found, RDFLib contributor org/company found, astropy contributor org/company found, certifi contributor org/company found, pypa contributor org/company found, labyrinth-team contributor org/company found, jupyterhub contributor org/company found, NaPoGenMo contributor org/company found, pydantic contributor org/company found, PyCQA contributor org/company found, microsoft contributor org/company found, pytest-dev contributor org/company found, apple contributor org/company found, elastic contributor org/company found, aws contributor org/company found, southampton-python contributor org/company found, endoflife-date contributor org/company found, hellowebbooks contributor org/company found, libwww-perl contributor org/company found, strawberry-graphql contributor org/company found, upcloudltd contributor org/company found, ipython contributor org/company found, pypy contributor org/company found, pickleshare contributor org/company found, vipnode contributor org/company found, WahKazoo contributor org/company found, sublimehq contributor org/company found, BIDS contributor org/company found, sovereigntech contributor org/company found, PyConFI contributor org/company found, jupyter-resources contributor org/company found, mobbler contributor org/company found, python-twitter-tools contributor org/company found, helsinki-python contributor org/company found, psf contributor org/company found, rpm-software-management contributor org/company found, IRkernel contributor org/company found, chardet contributor org/company found, encode contributor org/company found, computationalmodelling contributor org/company found, github3py contributor org/company found, pioneer valley books contributor org/company found, fatiando contributor org/company found, nordsoftware contributor org/company found, requests contributor org/company found, thehackerwithin contributor org/company found, python-humanize contributor org/company found, Pioneer-Valley-Books contributor org/company found, flourishlib contributor org/company found, MerryMerkle contributor org/company found, flake8-implicit-str-concat contributor org/company found, european xfel contributor org/company found, django-auth-ldap contributor org/company found, OpenDreamKit contributor org/company found, home-assistant contributor org/company found, pyca contributor org/company found, collove contributor org/company found, salesforce contributor org/company found, railsadminteam contributor org/company found, python3statement contributor org/company found, pylast contributor org/company found, whyaretheflagsup contributor org/company found, gliderlabs contributor org/company found, citybikes contributor org/company found, sqlalchemy-redshift contributor org/company found, openhab contributor org/company found, django contributor org/company found, pyparsing contributor org/company found, python-ldap contributor org/company found, python contributor org/company found, python-pillow contributor org/company found, shenv contributor org/company found, twisted contributor org/company found, "
+            ],
+            "documentation": {
+              "short": "Determines if the project has a set of contributors from multiple organizations (e.g., companies).",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#contributors"
+            }
+          },
+          {
+            "name": "Dangerous-Workflow",
+            "score": 10,
+            "reason": "no dangerous workflow patterns detected",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project's GitHub Action workflows avoid dangerous patterns.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#dangerous-workflow"
+            }
+          },
+          {
+            "name": "Dependency-Update-Tool",
+            "score": 10,
+            "reason": "update tool detected",
+            "details": [
+              "Info: detected update tool: Dependabot: .github/dependabot.yml:1"
+            ],
+            "documentation": {
+              "short": "Determines if the project uses a dependency update tool.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#dependency-update-tool"
+            }
+          },
+          {
+            "name": "Fuzzing",
+            "score": 10,
+            "reason": "project is fuzzed",
+            "details": [
+              "Info: OSSFuzz integration found"
+            ],
+            "documentation": {
+              "short": "Determines if the project uses fuzzing.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#fuzzing"
+            }
+          },
+          {
+            "name": "License",
+            "score": 10,
+            "reason": "license file detected",
+            "details": [
+              "Info: project has a license file: LICENSE.txt:0",
+              "Info: FSF or OSI recognized license: MIT License: LICENSE.txt:0"
+            ],
+            "documentation": {
+              "short": "Determines if the project has defined a license.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#license"
+            }
+          },
+          {
+            "name": "Maintained",
+            "score": 10,
+            "reason": "30 commit(s) and 17 issue activity found in the last 90 days -- score normalized to 10",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project is \"actively maintained\".",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#maintained"
+            }
+          },
+          {
+            "name": "Packaging",
+            "score": 10,
+            "reason": "packaging workflow detected",
+            "details": [
+              "Info: Project packages its releases by way of GitHub Actions.: .github/workflows/publish.yml:59"
+            ],
+            "documentation": {
+              "short": "Determines if the project is published as a package that others can easily download, install, easily update, and uninstall.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#packaging"
+            }
+          },
+          {
+            "name": "Pinned-Dependencies",
+            "score": 7,
+            "reason": "dependency not pinned by hash detected -- score normalized to 7",
+            "details": [
+              "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:137: update your workflow using https://app.stepsecurity.io/secureworkflow/urllib3/urllib3/ci.yml/main?enable=pin",
+              "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:142: update your workflow using https://app.stepsecurity.io/secureworkflow/urllib3/urllib3/ci.yml/main?enable=pin",
+              "Warn: pipCommand not pinned by hash: ci/deploy.sh:5",
+              "Warn: pipCommand not pinned by hash: .github/workflows/ci.yml:33",
+              "Warn: pipCommand not pinned by hash: .github/workflows/publish.yml:39",
+              "Info:  24 out of  26 GitHub-owned GitHubAction dependencies pinned",
+              "Info:  10 out of  10 third-party GitHubAction dependencies pinned",
+              "Info:   0 out of   3 pipCommand dependencies pinned"
+            ],
+            "documentation": {
+              "short": "Determines if the project has declared and pinned the dependencies of its build process.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#pinned-dependencies"
+            }
+          },
+          {
+            "name": "SAST",
+            "score": 10,
+            "reason": "SAST tool is run on all commits",
+            "details": [
+              "Info: SAST configuration detected: CodeQL",
+              "Info: all commits (28) are checked with a SAST tool"
+            ],
+            "documentation": {
+              "short": "Determines if the project uses static code analysis.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#sast"
+            }
+          },
+          {
+            "name": "Security-Policy",
+            "score": 10,
+            "reason": "security policy file detected",
+            "details": [
+              "Info: security policy file detected: .github/SECURITY.md:1",
+              "Info: Found linked content: .github/SECURITY.md:1",
+              "Info: Found disclosure, vulnerability, and/or timelines in security policy: .github/SECURITY.md:1",
+              "Info: Found text in security policy: .github/SECURITY.md:1"
+            ],
+            "documentation": {
+              "short": "Determines if the project has published a security policy.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#security-policy"
+            }
+          },
+          {
+            "name": "Signed-Releases",
+            "score": 6,
+            "reason": "3 out of the last 5 releases have a total of 3 signed artifacts.",
+            "details": [
+              "Warn: release artifact 2.5.0 not signed: https://api.github.com/repos/urllib3/urllib3/releases/226185275",
+              "Warn: release artifact 2.4.0 not signed: https://api.github.com/repos/urllib3/urllib3/releases/211602744",
+              "Warn: release artifact 2.5.0 does not have provenance: https://api.github.com/repos/urllib3/urllib3/releases/226185275",
+              "Warn: release artifact 2.4.0 does not have provenance: https://api.github.com/repos/urllib3/urllib3/releases/211602744",
+              "Info: provenance for release artifact: multiple.intoto.jsonl: https://api.github.com/repos/urllib3/urllib3/releases/assets/215076696",
+              "Info: provenance for release artifact: multiple.intoto.jsonl: https://api.github.com/repos/urllib3/urllib3/releases/assets/192176541",
+              "Info: provenance for release artifact: multiple.intoto.jsonl: https://api.github.com/repos/urllib3/urllib3/releases/assets/189136013"
+            ],
+            "documentation": {
+              "short": "Determines if the project cryptographically signs release artifacts.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#signed-releases"
+            }
+          },
+          {
+            "name": "Token-Permissions",
+            "score": 10,
+            "reason": "GitHub workflow tokens follow principle of least privilege",
+            "details": [
+              "Info: jobLevel 'actions' permission set to 'read': .github/workflows/codeql.yml:21",
+              "Info: jobLevel 'contents' permission set to 'read': .github/workflows/codeql.yml:22",
+              "Warn: jobLevel 'contents' permission set to 'write': .github/workflows/publish.yml:64",
+              "Info: jobLevel 'actions' permission set to 'read': .github/workflows/scorecards.yml:21",
+              "Info: jobLevel 'contents' permission set to 'read': .github/workflows/scorecards.yml:20",
+              "Info: topLevel 'contents' permission set to 'read': .github/workflows/changelog.yml:8",
+              "Info: topLevel 'pull-requests' permission set to 'read': .github/workflows/changelog.yml:9",
+              "Info: topLevel 'contents' permission set to 'read': .github/workflows/ci.yml:6",
+              "Info: topLevel 'contents' permission set to 'read': .github/workflows/codeql.yml:13",
+              "Info: topLevel 'contents' permission set to 'read': .github/workflows/downstream.yml:6",
+              "Info: topLevel 'contents' permission set to 'read': .github/workflows/lint.yml:6",
+              "Info: topLevel 'contents' permission set to 'read': .github/workflows/publish.yml:14",
+              "Info: topLevel 'contents' permission set to 'read': .github/workflows/scorecards.yml:10"
+            ],
+            "documentation": {
+              "short": "Determines if the project's workflows follow the principle of least privilege.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#token-permissions"
+            }
+          },
+          {
+            "name": "Vulnerabilities",
+            "score": 10,
+            "reason": "0 existing vulnerabilities detected",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project has open, known unfixed vulnerabilities.",
+              "url": "https://github.com/ossf/scorecard/blob/ea7e27ed41b76ab879c862fa0ca4cc9c61764ee4/docs/checks.md#vulnerabilities"
+            }
+          }
+        ]
+      },
+      "last_synced_at": "2025-08-15T00:25:53.774Z",
+      "repository_id": 1683210,
+      "created_at": "2025-08-15T00:25:53.774Z",
+      "updated_at": "2025-08-15T00:25:53.774Z"
+    },
+    "host": {
+      "name": "GitHub",
+      "url": "https://github.com",
+      "kind": "github",
+      "repositories_count": 286080680,
+      "owners_count": 36500359,
+      "icon_url": "https://github.com/github.png",
+      "version": null,
+      "created_at": "2022-05-30T11:31:42.601Z",
+      "updated_at": "2026-08-06T04:43:03.162Z",
+      "status": "online",
+      "status_checked_at": "2026-08-10T02:00:05.122Z",
+      "response_time": 58,
+      "last_error": null,
+      "robots_txt_status": "success",
+      "robots_txt_updated_at": "2025-07-24T06:49:26.215Z",
+      "robots_txt_url": "https://github.com/robots.txt",
+      "online": true,
+      "can_crawl_api": true,
+      "host_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub",
+      "repositories_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories",
+      "repository_names_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repository_names",
+      "owners_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/owners"
+    },
+    "owner_record": {
+      "login": "urllib3",
+      "name": "urllib3",
+      "uuid": "26825299",
+      "kind": "organization",
+      "description": "",
+      "email": null,
+      "website": "https://urllib3.readthedocs.io",
+      "location": null,
+      "twitter": "urllib3",
+      "company": null,
+      "icon_url": "https://avatars.githubusercontent.com/u/26825299?v=4",
+      "repositories_count": 3,
+      "last_synced_at": "2026-08-05T12:35:39.203Z",
+      "metadata": {
+        "has_sponsors_listing": true,
+        "funding": null
+      },
+      "html_url": "https://github.com/urllib3",
+      "funding_links": [
+        "https://github.com/sponsors/urllib3"
+      ],
+      "total_stars": 4050,
+      "followers": 100,
+      "following": 0,
+      "created_at": "2022-11-03T03:40:03.636Z",
+      "updated_at": "2026-08-05T12:35:39.217Z",
+      "owner_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/owners/urllib3",
+      "repositories_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/owners/urllib3/repositories"
+    },
+    "tags": [
+      {
+        "name": "2.7.0",
+        "sha": "9a950b92d999f906b6020bb2d1076ee56cddd5d2",
+        "kind": "tag",
+        "published_at": "2026-05-07T16:03:24.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.7.0",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.7.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.7.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.7.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.7.0/manifests"
+      },
+      {
+        "name": "2.6.3",
+        "sha": "0248277dd7ac0239204889ca991353ad3e3a1ddc",
+        "kind": "tag",
+        "published_at": "2026-01-07T16:19:16.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.6.3",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.6.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.6.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.6.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.6.3/manifests"
+      },
+      {
+        "name": "2.6.2",
+        "sha": "83f8643ffb5b7f197457379148e2fa118ab0fcdc",
+        "kind": "tag",
+        "published_at": "2025-12-11T15:45:04.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.6.2",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.6.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.6.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.6.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.6.2/manifests"
+      },
+      {
+        "name": "2.6.1",
+        "sha": "bfe8e198a13800e3ee8ef8124a8928acb170c843",
+        "kind": "tag",
+        "published_at": "2025-12-08T15:06:11.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.6.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.6.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.6.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.6.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.6.1/manifests"
+      },
+      {
+        "name": "2.6.0",
+        "sha": "720f484b605f18887a48eef448d0084e2b76902d",
+        "kind": "tag",
+        "published_at": "2025-12-05T15:04:36.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.6.0",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.6.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.6.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.6.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.6.0/manifests"
+      },
+      {
+        "name": "2.5.0",
+        "sha": "aaab4eccc10c965897540b21e15f11859d0b62e7",
+        "kind": "tag",
+        "published_at": "2025-06-18T13:56:48.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.5.0",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.5.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.5.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.5.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.5.0/manifests"
+      },
+      {
+        "name": "2.4.0",
+        "sha": "a5ff7ac3bbb8659e2ec3ed41dd43889f06a7d7bc",
+        "kind": "tag",
+        "published_at": "2025-04-10T14:57:55.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.4.0",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.4.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.4.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.4.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.4.0/manifests"
+      },
+      {
+        "name": "2.3.0",
+        "sha": "2f68c5363ef632d73dd4d9300289d7ce5ff275b4",
+        "kind": "tag",
+        "published_at": "2024-12-22T07:34:56.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.3.0",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.3.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.3.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.3.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.3.0/manifests"
+      },
+      {
+        "name": "2.2.3",
+        "sha": "2458bfcd3dacdf6c196e98d077fc6bb02a5fc1df",
+        "kind": "tag",
+        "published_at": "2024-09-12T10:40:15.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.2.3",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.2.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.2.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.2.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.2.3/manifests"
+      },
+      {
+        "name": "1.26.20",
+        "sha": "6f2ad7ca0cdde53751bab29cbc10bcc965bb4387",
+        "kind": "tag",
+        "published_at": "2024-08-29T18:33:51.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.20",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.20",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.20",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.20",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.20/manifests"
+      },
+      {
+        "name": "2.0.5",
+        "sha": "d9f85a749488188c286cd50606d159874db94d5f",
+        "kind": "tag",
+        "published_at": "2024-07-09T03:52:24.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.0.5",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.0.5",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.0.5",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.5",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.5/manifests"
+      },
+      {
+        "name": "1.26.19",
+        "sha": "d9d85c88aa644af56d5e129634e750ce76e1a765",
+        "kind": "tag",
+        "published_at": "2024-06-17T14:30:27.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.19",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.19",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.19",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.19",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.19/manifests"
+      },
+      {
+        "name": "2.2.2",
+        "sha": "27e2a5c5a7ab6a517252cc8dcef3ffa6ffb8f61a",
+        "kind": "tag",
+        "published_at": "2024-06-17T08:02:21.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.2.2",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.2.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.2.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.2.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.2.2/manifests"
+      },
+      {
+        "name": "2.2.1",
+        "sha": "54d6edf2a671510a5c029d3b76ffe71a5b07147a",
+        "kind": "tag",
+        "published_at": "2024-02-18T03:46:03.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.2.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.2.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.2.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.2.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.2.1/manifests"
+      },
+      {
+        "name": "2.2.0",
+        "sha": "04df048cf4b1c3790c56e26c659db764aad62d6f",
+        "kind": "tag",
+        "published_at": "2024-01-30T15:12:42.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.2.0",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.2.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.2.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.2.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.2.0/manifests"
+      },
+      {
+        "name": "2.1.0",
+        "sha": "69be2992f8a25a1f27e49f339e4d5b98dec07462",
+        "kind": "tag",
+        "published_at": "2023-11-13T12:21:12.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.1.0",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.1.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.1.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.1.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.1.0/manifests"
+      },
+      {
+        "name": "2.0.7",
+        "sha": "56f01e088dc006c03d4ee6ea9da4ab810f1ed700",
+        "kind": "tag",
+        "published_at": "2023-10-17T17:28:44.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.0.7",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.0.7",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.0.7",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.7",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.7/manifests"
+      },
+      {
+        "name": "1.26.18",
+        "sha": "9c2c2307dd1d6af504e09aac0326d86ee3597a0b",
+        "kind": "tag",
+        "published_at": "2023-10-17T17:27:41.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.18",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.18",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.18",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.18",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.18/manifests"
+      },
+      {
+        "name": "1.26.17",
+        "sha": "c9016bf464751a02b7e46f8b86504f47d4238784",
+        "kind": "tag",
+        "published_at": "2023-10-02T17:09:55.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.17",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.17",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.17",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.17",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.17/manifests"
+      },
+      {
+        "name": "2.0.6",
+        "sha": "262e3e332209ee93ff70e2b13502c8f20c105ac8",
+        "kind": "tag",
+        "published_at": "2023-10-02T17:07:55.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.0.6",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.0.6",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.0.6",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.6",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.6/manifests"
+      },
+      {
+        "name": "v2.0.5",
+        "sha": "d9f85a749488188c286cd50606d159874db94d5f",
+        "kind": "tag",
+        "published_at": "2023-09-20T07:00:22.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/v2.0.5",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/v2.0.5",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@v2.0.5",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/v2.0.5",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/v2.0.5/manifests"
+      },
+      {
+        "name": "2.0.4",
+        "sha": "c9fa144545eedb5dc4a2cc3f255e95602a1d7db0",
+        "kind": "tag",
+        "published_at": "2023-07-19T15:18:00.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.0.4",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.0.4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.0.4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.4/manifests"
+      },
+      {
+        "name": "2.0.3",
+        "sha": "92196a0f08b2c2139117546ccfbdd3429eb72469",
+        "kind": "tag",
+        "published_at": "2023-06-07T10:14:35.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.0.3",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.0.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.0.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.3/manifests"
+      },
+      {
+        "name": "1.26.16",
+        "sha": "d94029b7e2193ff47b627906a70e06377a09aae8",
+        "kind": "tag",
+        "published_at": "2023-05-23T10:37:11.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.16",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.16",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.16",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.16",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.16/manifests"
+      },
+      {
+        "name": "2.0.2",
+        "sha": "b234aaf7ccbcb64012d8b33d21eb8bc9f768935d",
+        "kind": "tag",
+        "published_at": "2023-05-03T22:30:56.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.0.2",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.0.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.0.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.2/manifests"
+      },
+      {
+        "name": "2.0.1",
+        "sha": "b85e93d619a323b92c2954da852857e0119d71b8",
+        "kind": "tag",
+        "published_at": "2023-04-30T08:46:44.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.0.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.0.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.0.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.1/manifests"
+      },
+      {
+        "name": "2.0.0",
+        "sha": "6446fef0cf432ca035169602a1447a0d8ef53e80",
+        "kind": "tag",
+        "published_at": "2023-04-26T17:09:40.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.0.0",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.0.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.0.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.0/manifests"
+      },
+      {
+        "name": "2.0.0a4",
+        "sha": "c479b73ba6114c0ec1010db86f6eb193fe874c84",
+        "kind": "tag",
+        "published_at": "2023-04-25T18:22:29.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.0.0a4",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.0.0a4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.0.0a4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.0a4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.0a4/manifests"
+      },
+      {
+        "name": "1.26.15",
+        "sha": "95ca35211d23d8baf7646e1f60aa31e3650178a8",
+        "kind": "tag",
+        "published_at": "2023-03-10T23:52:07.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.15",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.15",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.15",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.15",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.15/manifests"
+      },
+      {
+        "name": "1.26.14",
+        "sha": "f96a1cfc568beddf1e17ce7609609eca40780be5",
+        "kind": "tag",
+        "published_at": "2023-01-11T12:57:32.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.14",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.14",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.14",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.14",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.14/manifests"
+      },
+      {
+        "name": "2.0.0a3",
+        "sha": "2889596e309d30220d1f4ef2e80d4a92a906fa0a",
+        "kind": "tag",
+        "published_at": "2023-01-11T12:56:56.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.0.0a3",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.0.0a3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.0.0a3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.0a3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.0a3/manifests"
+      },
+      {
+        "name": "2.0.0a2",
+        "sha": "1af920653cfed1920a576e80cc7a856fe4df2ac9",
+        "kind": "tag",
+        "published_at": "2022-11-23T22:40:14.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.0.0a2",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.0.0a2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.0.0a2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.0a2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.0a2/manifests"
+      },
+      {
+        "name": "1.26.13",
+        "sha": "64b7f792c8ab62e301147d4115c4bca98529593a",
+        "kind": "tag",
+        "published_at": "2022-11-23T21:48:36.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.13",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.13",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.13",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.13",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.13/manifests"
+      },
+      {
+        "name": "2.0.0a1",
+        "sha": "612cead3f9704716f4ab2a1334a16e0f05fce942",
+        "kind": "tag",
+        "published_at": "2022-11-15T14:58:41.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/2.0.0a1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/2.0.0a1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@2.0.0a1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.0a1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/2.0.0a1/manifests"
+      },
+      {
+        "name": "1.26.12",
+        "sha": "a5b29ac1025f9bb30f2c9b756f3b171389c2c039",
+        "kind": "tag",
+        "published_at": "2022-08-22T13:15:20.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.12",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.12",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.12",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.12",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.12/manifests"
+      },
+      {
+        "name": "1.26.11",
+        "sha": "aa3def7d242525e6e854991247c4b68583d15135",
+        "kind": "tag",
+        "published_at": "2022-07-25T12:48:07.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.11",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.11",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.11",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.11",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.11/manifests"
+      },
+      {
+        "name": "1.26.10",
+        "sha": "ac61b73da703df53707c31030b4ea51aab22d43c",
+        "kind": "tag",
+        "published_at": "2022-07-07T15:04:38.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.10",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.10",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.10",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.10",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.10/manifests"
+      },
+      {
+        "name": "1.26.9",
+        "sha": "6de3330eb54f73a57c7860f75123bde8b043dbd2",
+        "kind": "tag",
+        "published_at": "2022-03-16T13:26:35.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.9",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.9",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.9",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.9",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.9/manifests"
+      },
+      {
+        "name": "1.26.8",
+        "sha": "b1f60e44d43b13e5272d5b6003f125af9c25c8ad",
+        "kind": "tag",
+        "published_at": "2022-01-07T15:54:56.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.8",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.8",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.8",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.8",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.8/manifests"
+      },
+      {
+        "name": "1.26.7",
+        "sha": "342aff50ff300d96a58e9be22f27fcee771ce98d",
+        "kind": "tag",
+        "published_at": "2021-09-22T17:58:27.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.7",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.7",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.7",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.7",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.7/manifests"
+      },
+      {
+        "name": "1.26.6",
+        "sha": "ba95e9eac73452d3bccfb5413b00d9a4fe3e4c31",
+        "kind": "commit",
+        "published_at": "2021-06-25T13:16:15.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.6",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.6",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.6",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.6",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.6/manifests"
+      },
+      {
+        "name": "1.26.5",
+        "sha": "d1616473df94b94f0f5ad19d2a6608cfe93b7cdf",
+        "kind": "tag",
+        "published_at": "2021-05-26T17:00:10.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.5",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.5",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.5",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.5",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.5/manifests"
+      },
+      {
+        "name": "1.26.4",
+        "sha": "a8913042b676c510e94fc2b097f6b514ae11a537",
+        "kind": "tag",
+        "published_at": "2021-03-15T15:02:16.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.4",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.4/manifests"
+      },
+      {
+        "name": "1.26.3",
+        "sha": "361f1e2a61afdef86cb2feb0fa3f302e06c5fe2c",
+        "kind": "tag",
+        "published_at": "2021-01-26T18:53:41.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.3",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.3/manifests"
+      },
+      {
+        "name": "1.26.2",
+        "sha": "dd00949dbded99869981880270d3ec900989e82b",
+        "kind": "tag",
+        "published_at": "2020-11-12T22:12:40.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.2",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.2/manifests"
+      },
+      {
+        "name": "1.26.1",
+        "sha": "969fd3957a652ebe90bfe60483a478ad8b88f44a",
+        "kind": "tag",
+        "published_at": "2020-11-11T20:19:53.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.1/manifests"
+      },
+      {
+        "name": "1.26.0",
+        "sha": "ddb8c96bd93f3a00fe9eba142e6739533c2b7164",
+        "kind": "tag",
+        "published_at": "2020-11-10T19:50:47.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.26.0",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.26.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.26.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.26.0/manifests"
+      },
+      {
+        "name": "1.25.11",
+        "sha": "9b95f29c575d73260ec4f5a8c0ea368cf242019e",
+        "kind": "tag",
+        "published_at": "2020-10-19T14:08:52.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.25.11",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.25.11",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.25.11",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.11",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.11/manifests"
+      },
+      {
+        "name": "1.25.10",
+        "sha": "3c3fb0299f5e56613003bc293a9a9082e264c982",
+        "kind": "tag",
+        "published_at": "2020-07-22T15:42:46.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.25.10",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.25.10",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.25.10",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.10",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.10/manifests"
+      },
+      {
+        "name": "1.25.9",
+        "sha": "21758b0694ea53b499e832a993e8d1ada01135b2",
+        "kind": "tag",
+        "published_at": "2020-04-16T15:38:01.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.25.9",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.25.9",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.25.9",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.9",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.9/manifests"
+      },
+      {
+        "name": "1.25.8",
+        "sha": "2a57bc5758075a9248cc0d87f66a2ff678338478",
+        "kind": "tag",
+        "published_at": "2020-01-21T20:37:18.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.25.8",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.25.8",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.25.8",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.8",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.8/manifests"
+      },
+      {
+        "name": "1.25.7",
+        "sha": "37ba61a8b8120cbd866d057eaa3936f4b140dee0",
+        "kind": "tag",
+        "published_at": "2019-11-11T15:06:09.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.25.7",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.25.7",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.25.7",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.7",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.7/manifests"
+      },
+      {
+        "name": "1.25.6",
+        "sha": "6b4ac9b6b973c405d3e58aaa4ef1ad86252208c0",
+        "kind": "tag",
+        "published_at": "2019-09-24T14:33:32.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.25.6",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.25.6",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.25.6",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.6",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.6/manifests"
+      },
+      {
+        "name": "1.25.5",
+        "sha": "edc3ddb3d1cbc5871df4a17a53ca53be7b37facc",
+        "kind": "commit",
+        "published_at": "2019-09-20T01:28:30.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.25.5",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.25.5",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.25.5",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.5",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.5/manifests"
+      },
+      {
+        "name": "1.25.4",
+        "sha": "7e856c04723036934fe314c63701466e4f42d2ee",
+        "kind": "tag",
+        "published_at": "2019-09-19T14:46:31.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.25.4",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.25.4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.25.4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.4/manifests"
+      },
+      {
+        "name": "1.25.3",
+        "sha": "337992aba77104fb84e7b14f5a2c9aa1d3039415",
+        "kind": "tag",
+        "published_at": "2019-05-23T18:59:08.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.25.3",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.25.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.25.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.3/manifests"
+      },
+      {
+        "name": "1.24.3",
+        "sha": "9c61bdaafc9022a8f1e1d0a5334c46b61651508a",
+        "kind": "tag",
+        "published_at": "2019-05-02T15:35:30.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.24.3",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.24.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.24.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.24.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.24.3/manifests"
+      },
+      {
+        "name": "1.25.2",
+        "sha": "49eea8082ab34094d0c53f1d26e5c588d5372d74",
+        "kind": "tag",
+        "published_at": "2019-04-29T13:08:14.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.25.2",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.25.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.25.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.2/manifests"
+      },
+      {
+        "name": "1.25.1",
+        "sha": "85e7798378fe1eda5c7425c0141c045974bd976f",
+        "kind": "tag",
+        "published_at": "2019-04-24T15:18:04.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.25.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.25.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.25.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25.1/manifests"
+      },
+      {
+        "name": "1.25",
+        "sha": "c3157af5e3b272d3fbffef23ee6215a229f8c61f",
+        "kind": "tag",
+        "published_at": "2019-04-22T13:54:16.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.25",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.25",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.25",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.25/manifests"
+      },
+      {
+        "name": "1.24.2",
+        "sha": "1efadf43dc63317cd9eaa3e0fdb9e05ab07254b1",
+        "kind": "tag",
+        "published_at": "2019-04-17T17:48:51.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.24.2",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.24.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.24.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.24.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.24.2/manifests"
+      },
+      {
+        "name": "1.24.1",
+        "sha": "a6ec68a5c5c5743c59fe5c62c635c929586c429b",
+        "kind": "tag",
+        "published_at": "2018-11-02T19:10:30.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.24.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.24.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.24.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.24.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.24.1/manifests"
+      },
+      {
+        "name": "1.24",
+        "sha": "ef0c74542abe69421a86c4d3c6a86fe43cb809a4",
+        "kind": "tag",
+        "published_at": "2018-10-16T17:48:09.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.24",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.24",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.24",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.24",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.24/manifests"
+      },
+      {
+        "name": "1.23",
+        "sha": "7c216f433e39e184b84cbfa49e41135a89e4baa0",
+        "kind": "tag",
+        "published_at": "2018-06-05T03:21:36.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.23",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.23",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.23",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.23",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.23/manifests"
+      },
+      {
+        "name": "1.22",
+        "sha": "8e049799777cdf592ae54ae762d140151766123c",
+        "kind": "tag",
+        "published_at": "2017-07-20T09:04:30.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.22",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.22",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.22",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.22",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.22/manifests"
+      },
+      {
+        "name": "1.21.1",
+        "sha": "bce03aa7f06669254e63baef54fb6278e7fa6728",
+        "kind": "tag",
+        "published_at": "2017-05-02T10:56:34.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.21.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.21.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.21.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.21.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.21.1/manifests"
+      },
+      {
+        "name": "1.21",
+        "sha": "8c1d67f6b5ff465ccf3b8233c0b9539a29a04732",
+        "kind": "tag",
+        "published_at": "2017-04-25T11:10:25.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.21",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.21",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.21",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.21",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.21/manifests"
+      },
+      {
+        "name": "1.20",
+        "sha": "50705abd83be4ad7997eeefe9e732564af1db118",
+        "kind": "tag",
+        "published_at": "2017-01-19T09:51:58.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.20",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.20",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.20",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.20",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.20/manifests"
+      },
+      {
+        "name": "1.19.1",
+        "sha": "7b909be3346b3f6c88df086ec6d8063fa7b271c8",
+        "kind": "tag",
+        "published_at": "2016-11-16T10:11:27.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.19.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.19.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.19.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.19.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.19.1/manifests"
+      },
+      {
+        "name": "1.19",
+        "sha": "bb7e6685595c213dc6e5b41342029873a5cd0799",
+        "kind": "tag",
+        "published_at": "2016-11-03T15:17:53.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.19",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.19",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.19",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.19",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.19/manifests"
+      },
+      {
+        "name": "1.18.1",
+        "sha": "0e1f2f9173a4395f77a911cd27d582299524a3de",
+        "kind": "tag",
+        "published_at": "2016-10-27T11:00:42.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.18.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.18.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.18.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.18.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.18.1/manifests"
+      },
+      {
+        "name": "1.18",
+        "sha": "7d01b990cf77b33659e562189e6962862b292170",
+        "kind": "tag",
+        "published_at": "2016-09-26T08:50:01.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.18",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.18",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.18",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.18",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.18/manifests"
+      },
+      {
+        "name": "1.17",
+        "sha": "a8948b82f1a54c8f5ffabb01c52f2098785013a2",
+        "kind": "tag",
+        "published_at": "2016-09-06T14:24:27.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.17",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.17",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.17",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.17",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.17/manifests"
+      },
+      {
+        "name": "1.16",
+        "sha": "52463752d3a79790b43e23182bcc750d6bb53554",
+        "kind": "commit",
+        "published_at": "2016-06-11T20:33:54.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.16",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.16",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.16",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.16",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.16/manifests"
+      },
+      {
+        "name": "1.15.1",
+        "sha": "2762e84dae1858866a915f427ff1b92e825ea1c6",
+        "kind": "tag",
+        "published_at": "2016-04-11T17:25:35.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.15.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.15.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.15.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.15.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.15.1/manifests"
+      },
+      {
+        "name": "1.15",
+        "sha": "32cfb59710af10bf5febd9ce80d1e22f0047c0b1",
+        "kind": "commit",
+        "published_at": "2016-04-06T19:16:59.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.15",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.15",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.15",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.15",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.15/manifests"
+      },
+      {
+        "name": "1.14",
+        "sha": "27df29b1d94d6c50af1eb1bd85b4ee12adf8a3c2",
+        "kind": "commit",
+        "published_at": "2015-12-29T20:28:22.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.14",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.14",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.14",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.14",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.14/manifests"
+      },
+      {
+        "name": "1.13.1",
+        "sha": "12d04b7cc8cefce176f5788485db7b0692b9adb2",
+        "kind": "commit",
+        "published_at": "2015-12-18T22:47:27.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.13.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.13.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.13.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.13.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.13.1/manifests"
+      },
+      {
+        "name": "1.13",
+        "sha": "d5526e25c91876e8785edbe68424d5cc3f1edc23",
+        "kind": "commit",
+        "published_at": "2015-12-14T21:09:51.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.13",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.13",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.13",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.13",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.13/manifests"
+      },
+      {
+        "name": "1.12",
+        "sha": "d7d9caafdb9e5fedd2dd3841e1fd40f1b7a5e57c",
+        "kind": "commit",
+        "published_at": "2015-09-06T18:40:23.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.12",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.12",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.12",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.12",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.12/manifests"
+      },
+      {
+        "name": "1.11",
+        "sha": "9fc5e52e52aafd942fbfba428aff37cd61fde834",
+        "kind": "commit",
+        "published_at": "2015-07-21T13:42:33.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.11",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.11",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.11",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.11",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.11/manifests"
+      },
+      {
+        "name": "1.10.4",
+        "sha": "8434c77d845255c4002b505c6c2d79c3b35def0d",
+        "kind": "commit",
+        "published_at": "2015-05-03T14:13:08.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.10.4",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.10.4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.10.4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.10.4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.10.4/manifests"
+      },
+      {
+        "name": "1.10.3",
+        "sha": "0b744993bbe30fe6e3e4e0c93416412d8e598301",
+        "kind": "commit",
+        "published_at": "2015-04-21T20:05:42.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.10.3",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.10.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.10.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.10.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.10.3/manifests"
+      },
+      {
+        "name": "1.10.2",
+        "sha": "e84a91e466ed7d9b4d1bd2f8dbc773a06f7fc6ad",
+        "kind": "commit",
+        "published_at": "2015-02-25T23:19:05.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.10.2",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.10.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.10.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.10.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.10.2/manifests"
+      },
+      {
+        "name": "1.10.1",
+        "sha": "85dfc16817df1e3604c238ad5d64f3b229e0598b",
+        "kind": "commit",
+        "published_at": "2015-02-11T02:47:59.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.10.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.10.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.10.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.10.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.10.1/manifests"
+      },
+      {
+        "name": "1.10",
+        "sha": "f653f3907a15b4dc0dd60d0697777ea4b79568fc",
+        "kind": "commit",
+        "published_at": "2014-12-14T21:25:45.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.10",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.10",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.10",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.10",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.10/manifests"
+      },
+      {
+        "name": "1.9.1",
+        "sha": "f8fc8f8df2af46ff1fa531bf690a27fce70c93f8",
+        "kind": "commit",
+        "published_at": "2014-09-13T18:18:58.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.9.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.9.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.9.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.9.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.9.1/manifests"
+      },
+      {
+        "name": "1.9",
+        "sha": "c8128a876a138621c8d4f05998518f4d6ac9fa87",
+        "kind": "commit",
+        "published_at": "2014-07-07T20:56:11.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.9",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.9",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.9",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.9",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.9/manifests"
+      },
+      {
+        "name": "1.8.3",
+        "sha": "d0280699c5a6f134bc926162a4fad14a5675372d",
+        "kind": "commit",
+        "published_at": "2014-06-23T23:44:40.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.8.3",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.8.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.8.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.8.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.8.3/manifests"
+      },
+      {
+        "name": "1.8.2",
+        "sha": "576965bbaffb7b52773fac71abeaf0aa44da74fc",
+        "kind": "commit",
+        "published_at": "2014-04-18T06:38:12.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.8.2",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.8.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.8.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.8.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.8.2/manifests"
+      },
+      {
+        "name": "1.8.1",
+        "sha": "6cd4138c21ed1aed35bf826ddd0b5ff7bac3c687",
+        "kind": "commit",
+        "published_at": "2014-04-18T05:37:15.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.8.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.8.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.8.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.8.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.8.1/manifests"
+      },
+      {
+        "name": "1.8",
+        "sha": "8a8c601beee813acb5ca8d3e934f2c4aba8dc6ff",
+        "kind": "commit",
+        "published_at": "2014-03-04T19:21:33.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.8",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.8",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.8",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.8",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.8/manifests"
+      },
+      {
+        "name": "1.7.1",
+        "sha": "0a037a2faa0a280ed904008380fdf5c17533421a",
+        "kind": "commit",
+        "published_at": "2013-09-25T16:04:10.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.7.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.7.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.7.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.7.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.7.1/manifests"
+      },
+      {
+        "name": "1.7",
+        "sha": "8b0cec5804933251d557abfbc721e75ff34c1462",
+        "kind": "commit",
+        "published_at": "2013-08-14T21:44:40.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.7",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.7",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.7",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.7",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.7/manifests"
+      },
+      {
+        "name": "1.6",
+        "sha": "dde0d120bfaab642e604b8ba65d99d6bd4599b96",
+        "kind": "commit",
+        "published_at": "2013-04-25T18:48:45.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.6",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.6",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.6",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.6",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.6/manifests"
+      },
+      {
+        "name": "1.5",
+        "sha": "f7eaa46ff1a96c5f0d209d8f2cedb48e759f522b",
+        "kind": "commit",
+        "published_at": "2012-08-02T17:07:42.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.5",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.5",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.5",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.5",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.5/manifests"
+      },
+      {
+        "name": "1.4",
+        "sha": "1ffd99e57acb3edfd2e04eb62de23e3f0813fe01",
+        "kind": "commit",
+        "published_at": "2012-06-16T20:53:11.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.4",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.4/manifests"
+      },
+      {
+        "name": "1.3",
+        "sha": "5366c01258e5f0ccd77252a361c2723c2481d4df",
+        "kind": "commit",
+        "published_at": "2012-03-25T18:22:36.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.3",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.3/manifests"
+      },
+      {
+        "name": "1.2.1",
+        "sha": "a0cd4effae04788b72bd68fba18137bbdc03edbb",
+        "kind": "commit",
+        "published_at": "2012-02-05T20:13:27.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.2.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.2.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.2.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.2.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.2.1/manifests"
+      },
+      {
+        "name": "1.2",
+        "sha": "86cf15473413ecf15c513ada57e36ff25ceb9776",
+        "kind": "commit",
+        "published_at": "2012-01-29T23:54:06.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.2",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.2/manifests"
+      },
+      {
+        "name": "1.1",
+        "sha": "c90d7e578e7b393ecb7b8c93807c989b9bc5aefd",
+        "kind": "commit",
+        "published_at": "2012-01-07T22:39:57.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.1/manifests"
+      },
+      {
+        "name": "1.0.2",
+        "sha": "fffd5b60a1b3dde980766a20382369e8ae7a4f19",
+        "kind": "commit",
+        "published_at": "2011-11-04T16:43:34.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.0.2",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.0.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.0.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.0.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.0.2/manifests"
+      },
+      {
+        "name": "1.0.1",
+        "sha": "9f6e2eaae4b8ef84b6d3dddf55197c4d17946ca1",
+        "kind": "commit",
+        "published_at": "2011-10-11T01:57:28.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.0.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.0.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.0.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.0.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.0.1/manifests"
+      },
+      {
+        "name": "1.0",
+        "sha": "04c6c18b6630386334fb010079a3ae3cdc59eea2",
+        "kind": "commit",
+        "published_at": "2011-10-09T21:49:47.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/1.0",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/1.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@1.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/1.0/manifests"
+      },
+      {
+        "name": "0.4.1",
+        "sha": "da51a324362069a5d557530a9d5d79a10826c94a",
+        "kind": "commit",
+        "published_at": "2011-07-18T03:22:25.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/0.4.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/0.4.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@0.4.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/0.4.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/0.4.1/manifests"
+      },
+      {
+        "name": "0.4",
+        "sha": "25bd17933f213ea5466cea7885d4a21bcfbdc828",
+        "kind": "commit",
+        "published_at": "2011-03-30T19:31:41.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/0.4",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/0.4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@0.4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/0.4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/0.4/manifests"
+      },
+      {
+        "name": "0.3.1",
+        "sha": "f330cd2df28f326d7b97d09f917f16c3ee30ab0f",
+        "kind": "commit",
+        "published_at": "2010-07-13T23:49:09.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/0.3.1",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/0.3.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@0.3.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/0.3.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/0.3.1/manifests"
+      },
+      {
+        "name": "0.3",
+        "sha": "d4caff242edfe325aae3497b7a37895e38ff659f",
+        "kind": "commit",
+        "published_at": "2010-05-25T20:57:57.000Z",
+        "download_url": "https://codeload.github.com/urllib3/urllib3/tar.gz/0.3",
+        "html_url": "https://github.com/urllib3/urllib3/releases/tag/0.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/urllib3/urllib3@0.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/0.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/tags/0.3/manifests"
+      }
+    ]
+  },
+  "repo_metadata_updated_at": "2026-08-12T17:28:36.185Z",
+  "dependent_packages_count": 5751,
+  "downloads": 1816916883,
+  "downloads_period": "last-month",
+  "dependent_repos_count": 422295,
+  "rankings": {
+    "downloads": 0.00018341657388844972,
+    "dependent_repos_count": 0.0007336662955537989,
+    "dependent_packages_count": 0.004768830921099692,
+    "stargazers_count": 1.7950980086462571,
+    "forks_count": 1.6413949197277364,
+    "docker_downloads_count": 0.0018341657388844972,
+    "average": 0.5740021679839034
+  },
+  "purl": "pkg:pypi/urllib3",
+  "advisories": [
+    {
+      "uuid": "GSA_kwCzR0hTQS1tZjl2LW1meHItajYzas4ABWj_",
+      "url": "https://github.com/advisories/GHSA-mf9v-mfxr-j63j",
+      "title": "urllib3: Decompression-bomb safeguards bypassed in parts of the streaming API",
+      "description": "### Impact\n\nurllib3's [streaming API](https://urllib3.readthedocs.io/en/2.7.0/advanced-usage.html#streaming-and-i-o) is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once.\n\nurllib3 can perform decompression based on the HTTP `Content-Encoding` header (e.g., `gzip`, `deflate`, `br`, or `zstd`). When using the streaming API since version 2.6.0, the library decompresses only the necessary bytes, enabling partial content consumption.\n\nHowever, urllib3 before version 2.7.0 could still decompress the whole response instead of the requested portion in two cases:\n1. During the second `HTTPResponse.read(amt=N)` call when the response was decompressed using the official [Brotli](https://pypi.org/project/brotli/) library.\n2. When `HTTPResponse.drain_conn()` was called after the response had been read and decompressed partially (compression algorithm did not matter here).\n\nThese issues could cause urllib3 to fully decode a small amount of highly compressed data in a single operation. This could result in excessive resource consumption (high CPU usage and massive memory allocation for the decompressed data; CWE-409) on the client side.\n\n\n### Affected usages\n\nApplications and libraries using urllib3 versions earlier than 2.7.0 may be affected when streaming compressed responses from untrusted sources in either of these cases, unless decompression is explicitly disabled:\n\n1. A response encoded with `br` is read incrementally with at least two `HTTPResponse.read(amt=N)` or `HTTPResponse.stream(amt=N)` calls while using the official [Brotli](https://pypi.org/project/brotli/) library.\n2. `HTTPResponse.drain_conn()` is called after response decompression has already started.\n\n\n### Remediation\n\nUpgrade to at least urllib3 version 2.7.0 in which the library:\n1. Is more efficient for reads with Brotli.\n2. Always skips decompression for `HTTPResponse.drain_conn()`.\n\nIf upgrading is not immediately possible, the following workarounds may reduce exposure in specific cases:\n1. For the Brotli-specific issue only, switch from [brotli](https://pypi.org/project/brotli/) to [brotlicffi](https://pypi.org/project/brotlicffi/) until you can upgrade urllib3; the official Brotli package is affected because of https://github.com/google/brotli/issues/1396.\n2. If your code explicitly calls `HTTPResponse.drain_conn()`, call `HTTPResponse.close()` instead when connection reuse is not important.\n\n\n### Credits\n\nThe Brotli-specific issue was reported by @kimkou2024.\n`HTTPResponse.drain_conn()` inefficiency was reported by @Cycloctane.",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2026-05-11T14:51:45.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 8.9,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H",
+      "references": [
+        "https://github.com/urllib3/urllib3/security/advisories/GHSA-mf9v-mfxr-j63j",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-44432",
+        "https://github.com/pypa/advisory-database/tree/main/vulns/urllib3/PYSEC-2026-142.yaml",
+        "https://github.com/advisories/GHSA-mf9v-mfxr-j63j"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-mf9v-mfxr-j63j",
+        "CVE-2026-44432"
+      ],
+      "repository_url": null,
+      "blast_radius": 0,
+      "created_at": "2026-05-11T15:00:09.598Z",
+      "updated_at": "2026-07-23T21:01:43.722Z",
+      "epss_percentage": 0.0068,
+      "epss_percentile": 0.4857,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1tZjl2LW1meHItajYzas4ABWj_",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS1tZjl2LW1meHItajYzas4ABWj_",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "2.7.0",
+              "vulnerable_version_range": ">= 2.6.0, < 2.7.0"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1tZjl2LW1meHItajYzas4ABWj_/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS1xY2NwLWdmY3AteHh2Y84ABWj-",
+      "url": "https://github.com/advisories/GHSA-qccp-gfcp-xxvc",
+      "title": "urllib3: Sensitive headers forwarded across origins in proxied low-level redirects",
+      "description": "### Impact\n\nWhen following cross-origin redirects for requests made using urllib3’s high-level APIs, such as `urllib3.request()`, `PoolManager.request()`, and `ProxyManager.request()`, sensitive headers — `Authorization`, `Cookie`, and `Proxy-Authorization` (defined in `Retry.DEFAULT_REMOVE_HEADERS_ON_REDIRECT`) — are stripped by default, as expected.\n\nHowever, cross-origin redirects followed from the low-level API via `ProxyManager.connection_from_url().urlopen(..., assert_same_host=False)` still forward these sensitive headers.\n\n### Affected usage\n\nApplications and libraries using urllib3 versions earlier than 2.7.0 may be affected if they allow cross-origin redirects while making requests through `HTTPConnection.urlopen()` instances created via `ProxyManager.connection_from_url()`.\n\n### Remediation\n\nUpgrade to urllib3 version 2.7.0 or later, in which sensitive headers are stripped from redirects followed by `HTTPConnection`.\n\nIf upgrading is not immediately possible, avoid using this low-level redirect flow for cross-origin redirects. If appropriate for your use case, switch to `ProxyManager.request()`.",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2026-05-11T14:51:20.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 8.2,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:H/AT:P/PR:N/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N",
+      "references": [
+        "https://github.com/urllib3/urllib3/security/advisories/GHSA-qccp-gfcp-xxvc",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-44431",
+        "https://github.com/advisories/GHSA-qccp-gfcp-xxvc"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-qccp-gfcp-xxvc",
+        "CVE-2026-44431"
+      ],
+      "repository_url": null,
+      "blast_radius": 0,
+      "created_at": "2026-05-11T15:00:09.598Z",
+      "updated_at": "2026-07-29T14:02:40.130Z",
+      "epss_percentage": 0.00331,
+      "epss_percentile": 0.2559,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1xY2NwLWdmY3AteHh2Y84ABWj-",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS1xY2NwLWdmY3AteHh2Y84ABWj-",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "2.7.0",
+              "vulnerable_version_range": ">= 1.23, < 2.7.0"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1xY2NwLWdmY3AteHh2Y84ABWj-/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS0zOGp2LTUyNzktd2c5Oc4ABQzx",
+      "url": "https://github.com/advisories/GHSA-38jv-5279-wg99",
+      "title": "Decompression-bomb safeguards bypassed when following HTTP redirects (streaming API)",
+      "description": "### Impact\n\nurllib3's [streaming API](https://urllib3.readthedocs.io/en/2.6.2/advanced-usage.html#streaming-and-i-o) is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once.\n\nurllib3 can perform decoding or decompression based on the HTTP `Content-Encoding` header (e.g., `gzip`, `deflate`, `br`, or `zstd`). When using the streaming API, the library decompresses only the necessary bytes, enabling partial content consumption.\n\nHowever, for HTTP redirect responses, the library would read the entire response body to drain the connection and decompress the content unnecessarily. This decompression occurred even before any read methods were called, and configured read limits did not restrict the amount of decompressed data. As a result, there was no safeguard against decompression bombs. A malicious server could exploit this to trigger excessive resource consumption on the client (high CPU usage and large memory allocations for decompressed data; CWE-409).\n\n### Affected usages\n\nApplications and libraries using urllib3 version 2.6.2 and earlier to stream content from untrusted sources by setting `preload_content=False` when they do not disable redirects.\n\n\n### Remediation\n\nUpgrade to at least urllib3 v2.6.3 in which the library does not decode content of redirect responses when `preload_content=False`.\n\nIf upgrading is not immediately possible, disable [redirects](https://urllib3.readthedocs.io/en/2.6.2/user-guide.html#retrying-requests) by setting `redirect=False` for requests to untrusted source.",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2026-01-07T19:18:14.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 8.9,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H",
+      "references": [
+        "https://github.com/urllib3/urllib3/security/advisories/GHSA-38jv-5279-wg99",
+        "https://github.com/urllib3/urllib3/commit/8864ac407bba8607950025e0979c4c69bc7abc7b",
+        "https://nvd.nist.gov/vuln/detail/CVE-2026-21441",
+        "https://lists.debian.org/debian-lts-announce/2026/01/msg00017.html",
+        "https://github.com/advisories/GHSA-38jv-5279-wg99"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-38jv-5279-wg99",
+        "CVE-2026-21441"
+      ],
+      "repository_url": null,
+      "blast_radius": 0,
+      "created_at": "2026-01-07T20:00:08.191Z",
+      "updated_at": "2026-08-11T14:07:20.340Z",
+      "epss_percentage": 0.02714,
+      "epss_percentile": 0.84572,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS0zOGp2LTUyNzktd2c5Oc4ABQzx",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS0zOGp2LTUyNzktd2c5Oc4ABQzx",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "2.6.3",
+              "vulnerable_version_range": ">= 1.22, < 2.6.3"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS0zOGp2LTUyNzktd2c5Oc4ABQzx/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS0yeHB3LXc2Z2ctanIzN84ABPOQ",
+      "url": "https://github.com/advisories/GHSA-2xpw-w6gg-jr37",
+      "title": "urllib3 streaming API improperly handles highly compressed data",
+      "description": "### Impact\n\nurllib3's [streaming API](https://urllib3.readthedocs.io/en/2.5.0/advanced-usage.html#streaming-and-i-o) is designed for the efficient handling of large HTTP responses by reading the content in chunks, rather than loading the entire response body into memory at once.\n\nWhen streaming a compressed response, urllib3 can perform decoding or decompression based on the HTTP `Content-Encoding` header (e.g., `gzip`, `deflate`, `br`, or `zstd`). The library must read compressed data from the network and decompress it until the requested chunk size is met. Any resulting decompressed data that exceeds the requested amount is held in an internal buffer for the next read operation.\n\nThe decompression logic could cause urllib3 to fully decode a small amount of highly compressed data in a single operation. This can result in excessive resource consumption (high CPU usage and massive memory allocation for the decompressed data; CWE-409) on the client side, even if the application only requested a small chunk of data.\n\n\n### Affected usages\n\nApplications and libraries using urllib3 version 2.5.0 and earlier to stream large compressed responses or content from untrusted sources.\n\n`stream()`, `read(amt=256)`, `read1(amt=256)`, `read_chunked(amt=256)`, `readinto(b)` are examples of `urllib3.HTTPResponse` method calls using the affected logic unless decoding is disabled explicitly.\n\n\n### Remediation\n\nUpgrade to at least urllib3 v2.6.0 in which the library avoids decompressing data that exceeds the requested amount.\n\nIf your environment contains a package facilitating the Brotli encoding, upgrade to at least Brotli 1.2.0 or brotlicffi 1.2.0.0 too. These versions are enforced by the `urllib3[brotli]` extra in the patched versions of urllib3.\n\n\n### Credits\n\nThe issue was reported by @Cycloctane.\nSupplemental information was provided by @stamparm during a security audit performed by [7ASecurity](https://7asecurity.com/) and facilitated by [OSTIF](https://ostif.org/).",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2025-12-05T18:15:54.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 8.9,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H",
+      "references": [
+        "https://github.com/urllib3/urllib3/security/advisories/GHSA-2xpw-w6gg-jr37",
+        "https://github.com/urllib3/urllib3/commit/c19571de34c47de3a766541b041637ba5f716ed7",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-66471",
+        "https://github.com/advisories/GHSA-2xpw-w6gg-jr37"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-2xpw-w6gg-jr37",
+        "CVE-2025-66471"
+      ],
+      "repository_url": null,
+      "blast_radius": 0,
+      "created_at": "2025-12-05T19:00:08.648Z",
+      "updated_at": "2026-08-12T04:06:43.466Z",
+      "epss_percentage": 0.00692,
+      "epss_percentile": 0.49525,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS0yeHB3LXc2Z2ctanIzN84ABPOQ",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS0yeHB3LXc2Z2ctanIzN84ABPOQ",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "2.6.0",
+              "vulnerable_version_range": ">= 1.0, < 2.6.0"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS0yeHB3LXc2Z2ctanIzN84ABPOQ/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS1nbTYyLXh2MmotNHc1M84ABPOP",
+      "url": "https://github.com/advisories/GHSA-gm62-xv2j-4w53",
+      "title": "urllib3 allows an unbounded number of links in the decompression chain",
+      "description": "## Impact\n\nurllib3 supports chained HTTP encoding algorithms for response content according to RFC 9110 (e.g., `Content-Encoding: gzip, zstd`).\n\nHowever, the number of links in the decompression chain was unbounded allowing a malicious server to insert a virtually unlimited number of compression steps leading to high CPU usage and massive memory allocation for the decompressed data.\n\n\n## Affected usages\n\nApplications and libraries using urllib3 version 2.5.0 and earlier for HTTP requests to untrusted sources unless they disable content decoding explicitly.\n\n\n## Remediation\n\nUpgrade to at least urllib3 v2.6.0 in which the library limits the number of links to 5.\n\nIf upgrading is not immediately possible, use [`preload_content=False`](https://urllib3.readthedocs.io/en/2.5.0/advanced-usage.html#streaming-and-i-o) and ensure that `resp.headers[\"content-encoding\"]` contains a safe number of encodings before reading the response content.",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2025-12-05T18:15:19.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 8.9,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:H",
+      "references": [
+        "https://github.com/urllib3/urllib3/security/advisories/GHSA-gm62-xv2j-4w53",
+        "https://github.com/urllib3/urllib3/commit/24d7b67eac89f94e11003424bcf0d8f7b72222a8",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-66418",
+        "https://github.com/advisories/GHSA-gm62-xv2j-4w53"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-gm62-xv2j-4w53",
+        "CVE-2025-66418"
+      ],
+      "repository_url": null,
+      "blast_radius": 0,
+      "created_at": "2025-12-05T19:00:08.648Z",
+      "updated_at": "2026-08-12T04:06:43.466Z",
+      "epss_percentage": 0.00692,
+      "epss_percentile": 0.49525,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1nbTYyLXh2MmotNHc1M84ABPOP",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS1nbTYyLXh2MmotNHc1M84ABPOP",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "2.6.0",
+              "vulnerable_version_range": ">= 1.24, < 2.6.0"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1nbTYyLXh2MmotNHc1M84ABPOP/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS00OHA0LTh4Y2YtdnhqNc4ABJPm",
+      "url": "https://github.com/advisories/GHSA-48p4-8xcf-vxj5",
+      "title": "urllib3 does not control redirects in browsers and Node.js",
+      "description": "urllib3 [supports](https://urllib3.readthedocs.io/en/2.4.0/reference/contrib/emscripten.html) being used in a Pyodide runtime utilizing the [JavaScript Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API) or falling back on [XMLHttpRequest](https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest). This means you can use Python libraries to make HTTP requests from your browser or Node.js. Additionally, urllib3 provides [a mechanism](https://urllib3.readthedocs.io/en/2.4.0/user-guide.html#retrying-requests) to control redirects.\n\nHowever, the `retries` and `redirect` parameters are ignored with Pyodide; the runtime itself determines redirect behavior.\n\n\n## Affected usages\n\nAny code which relies on urllib3 to control the number of redirects for an HTTP request in a Pyodide runtime.\n\n\n## Impact\n\nRedirects are often used to exploit SSRF vulnerabilities. An application attempting to mitigate SSRF or open redirect vulnerabilities by disabling redirects may remain vulnerable if a Pyodide runtime redirect mechanism is unsuitable.\n\n\n## Remediation\n\nIf you use urllib3 in Node.js, upgrade to a patched version of urllib3.\n\nUnfortunately, browsers provide no suitable way which urllib3 can use: `XMLHttpRequest` provides no control over redirects, the Fetch API returns `opaqueredirect` responses lacking data when redirects are controlled manually. Expect default browser behavior for redirects.",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2025-06-18T17:50:11.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 5.3,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N",
+      "references": [
+        "https://github.com/urllib3/urllib3/security/advisories/GHSA-48p4-8xcf-vxj5",
+        "https://github.com/urllib3/urllib3/commit/7eb4a2aafe49a279c29b6d1f0ed0f42e9736194f",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-50182",
+        "https://github.com/urllib3/urllib3/releases/tag/2.5.0",
+        "https://github.com/advisories/GHSA-48p4-8xcf-vxj5"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-48p4-8xcf-vxj5",
+        "CVE-2025-50182"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 0,
+      "created_at": "2025-06-18T18:08:36.216Z",
+      "updated_at": "2026-08-06T13:06:16.493Z",
+      "epss_percentage": 0.00331,
+      "epss_percentile": 0.25669,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS00OHA0LTh4Y2YtdnhqNc4ABJPm",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS00OHA0LTh4Y2YtdnhqNc4ABJPm",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "2.5.0",
+              "vulnerable_version_range": ">= 2.2.0, < 2.5.0"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS00OHA0LTh4Y2YtdnhqNc4ABJPm/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS1wcTY3LTZtNnEtbWoyds4ABJPl",
+      "url": "https://github.com/advisories/GHSA-pq67-6m6q-mj2v",
+      "title": "urllib3 redirects are not disabled when retries are disabled on PoolManager instantiation",
+      "description": "urllib3 handles redirects and retries using the same mechanism, which is controlled by the `Retry` object. The most common way to disable redirects is at the request level, as follows:\n\n```python\nresp = urllib3.request(\"GET\", \"https://httpbin.org/redirect/1\", redirect=False)\nprint(resp.status)\n# 302\n```\n\nHowever, it is also possible to disable redirects, for all requests, by instantiating a `PoolManager` and specifying `retries` in a way that disable redirects:\n\n```python\nimport urllib3\n\nhttp = urllib3.PoolManager(retries=0)  # should raise MaxRetryError on redirect\nhttp = urllib3.PoolManager(retries=urllib3.Retry(redirect=0))  # equivalent to the above\nhttp = urllib3.PoolManager(retries=False)  # should return the first response\n\nresp = http.request(\"GET\", \"https://httpbin.org/redirect/1\")\n```\n\nHowever, the `retries` parameter is currently ignored, which means all the above examples don't disable redirects.\n\n## Affected usages\n\nPassing `retries` on `PoolManager` instantiation to disable redirects or restrict their number.\n\nBy default, requests and botocore users are not affected.\n\n## Impact\n\nRedirects are often used to exploit SSRF vulnerabilities. An application attempting to mitigate SSRF or open redirect vulnerabilities by disabling redirects at the PoolManager level will remain vulnerable.\n\n## Remediation\n\nYou can remediate this vulnerability with the following steps:\n\n * Upgrade to a patched version of urllib3. If your organization would benefit from the continued support of urllib3 1.x, please contact [sethmichaellarson@gmail.com](mailto:sethmichaellarson@gmail.com) to discuss sponsorship or contribution opportunities.\n * Disable redirects at the `request()` level instead of the `PoolManager()` level.",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2025-06-18T17:50:00.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 5.3,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:N/S:U/C:H/I:N/A:N",
+      "references": [
+        "https://github.com/urllib3/urllib3/security/advisories/GHSA-pq67-6m6q-mj2v",
+        "https://github.com/urllib3/urllib3/commit/f05b1329126d5be6de501f9d1e3e36738bc08857",
+        "https://nvd.nist.gov/vuln/detail/CVE-2025-50181",
+        "https://github.com/urllib3/urllib3/releases/tag/2.5.0",
+        "https://github.com/advisories/GHSA-pq67-6m6q-mj2v"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-pq67-6m6q-mj2v",
+        "CVE-2025-50181"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 0,
+      "created_at": "2025-06-18T18:08:36.279Z",
+      "updated_at": "2026-08-06T13:06:20.786Z",
+      "epss_percentage": 0.00408,
+      "epss_percentile": 0.33591,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1wcTY3LTZtNnEtbWoyds4ABJPl",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS1wcTY3LTZtNnEtbWoyds4ABJPl",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "2.5.0",
+              "vulnerable_version_range": "< 2.5.0"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1wcTY3LTZtNnEtbWoyds4ABJPl/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS0zNGpoLXA5N2YtbXB4Zs4AA9I1",
+      "url": "https://github.com/advisories/GHSA-34jh-p97f-mpxf",
+      "title": "urllib3's Proxy-Authorization request header isn't stripped during cross-origin redirects",
+      "description": "When using urllib3's proxy support with `ProxyManager`, the `Proxy-Authorization` header is only sent to the configured proxy, as expected.\n\nHowever, when sending HTTP requests *without* using urllib3's proxy support, it's possible to accidentally configure the `Proxy-Authorization` header even though it won't have any effect as the request is not using a forwarding proxy or a tunneling proxy. In those cases, urllib3 doesn't treat the `Proxy-Authorization` HTTP header as one carrying authentication material and thus doesn't strip the header on cross-origin redirects.\n\nBecause this is a highly unlikely scenario, we believe the severity of this vulnerability is low for almost all users. Out of an abundance of caution urllib3 will automatically strip the `Proxy-Authorization` header during cross-origin redirects to avoid the small chance that users are doing this on accident.\n\nUsers should use urllib3's proxy support or disable automatic redirects to achieve safe processing of the `Proxy-Authorization` header, but we still decided to strip the header by default in order to further protect users who aren't using the correct approach.\n\n## Affected usages\n\nWe believe the number of usages affected by this advisory is low. It requires all of the following to be true to be exploited:\n\n* Setting the `Proxy-Authorization` header without using urllib3's built-in proxy support.\n* Not disabling HTTP redirects.\n* Either not using an HTTPS origin server or for the proxy or target origin to redirect to a malicious origin.\n\n## Remediation\n\n* Using the `Proxy-Authorization` header with urllib3's `ProxyManager`.\n* Disabling HTTP redirects using `redirects=False` when sending requests.\n* Not using the `Proxy-Authorization` header.",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2024-06-17T21:37:20.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 4.4,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:H/UI:N/S:U/C:H/I:N/A:N",
+      "references": [
+        "https://github.com/urllib3/urllib3/security/advisories/GHSA-34jh-p97f-mpxf",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-37891",
+        "https://github.com/urllib3/urllib3/commit/40b6d1605814dd1db0a46e202d6e56f2e4c9a468",
+        "https://github.com/urllib3/urllib3/commit/accff72ecc2f6cf5a76d9570198a93ac7c90270e",
+        "https://lists.debian.org/debian-lts-announce/2024/12/msg00020.html",
+        "https://security.netapp.com/advisory/ntap-20240822-0003",
+        "https://www.vicarius.io/vsociety/posts/proxy-authorization-header-handling-vulnerability-in-urllib3-cve-2024-37891",
+        "https://github.com/advisories/GHSA-34jh-p97f-mpxf"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-34jh-p97f-mpxf",
+        "CVE-2024-37891"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 0,
+      "created_at": "2024-06-17T22:05:36.129Z",
+      "updated_at": "2026-08-13T01:11:38.082Z",
+      "epss_percentage": 0.01141,
+      "epss_percentile": 0.63512,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS0zNGpoLXA5N2YtbXB4Zs4AA9I1",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS0zNGpoLXA5N2YtbXB4Zs4AA9I1",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "2.2.2",
+              "vulnerable_version_range": ">= 2.0.0, < 2.2.2"
+            },
+            {
+              "first_patched_version": "1.26.19",
+              "vulnerable_version_range": "< 1.26.19"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS0zNGpoLXA5N2YtbXB4Zs4AA9I1/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS1nNG14LXE5dmctMjdwNM4AA2gt",
+      "url": "https://github.com/advisories/GHSA-g4mx-q9vg-27p4",
+      "title": "urllib3's request body not stripped after redirect from 303 status changes request method to GET",
+      "description": "urllib3 previously wouldn't remove the HTTP request body when an HTTP redirect response using status 303 \"See Other\" after the request had its method changed from one that could accept a request body (like `POST`) to `GET` as is required by HTTP RFCs. Although the behavior of removing the request body is not specified in the section for redirects, it can be inferred by piecing together information from different sections and we have observed the behavior in other major HTTP client implementations like curl and web browsers.\n\nFrom [RFC 9110 Section 9.3.1](https://www.rfc-editor.org/rfc/rfc9110.html#name-get):\n\n> A client SHOULD NOT generate content in a GET request unless it is made directly to an origin server that has previously indicated, in or out of band, that such a request has a purpose and will be adequately supported.\n\n## Affected usages\n\nBecause the vulnerability requires a previously trusted service to become compromised in order to have an impact on confidentiality we believe the exploitability of this vulnerability is low. Additionally, many users aren't putting sensitive data in HTTP request bodies, if this is the case then this vulnerability isn't exploitable.\n\nBoth of the following conditions must be true to be affected by this vulnerability:\n\n* If you're using urllib3 and submitting sensitive information in the HTTP request body (such as form data or JSON)\n* The origin service is compromised and starts redirecting using 303 to a malicious peer or the redirected-to service becomes compromised.\n\n## Remediation\n\nYou can remediate this vulnerability with any of the following steps:\n\n* Upgrade to a patched version of urllib3 (v1.26.18 or v2.0.7)\n* Disable redirects for services that you aren't expecting to respond with redirects with `redirects=False`.\n* Disable automatic redirects with `redirects=False` and handle 303 redirects manually by stripping the HTTP request body.",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2023-10-17T20:15:25.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 5.7,
+      "cvss_vector": "CVSS:4.0/AV:A/AC:L/AT:P/PR:H/UI:N/VC:H/VI:N/VA:N/SC:N/SI:N/SA:N",
+      "references": [
+        "https://github.com/urllib3/urllib3/security/advisories/GHSA-g4mx-q9vg-27p4",
+        "https://github.com/urllib3/urllib3/commit/4e50fbc5db74e32cabd5ccc1ab81fc103adfe0b3",
+        "https://github.com/urllib3/urllib3/commit/b594c5ceaca38e1ac215f916538fb128e3526a36",
+        "https://github.com/urllib3/urllib3/releases/tag/1.26.18",
+        "https://github.com/urllib3/urllib3/releases/tag/2.0.7",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-45803",
+        "https://github.com/urllib3/urllib3/commit/4e98d57809dacab1cbe625fddeec1a290c478ea9",
+        "https://www.rfc-editor.org/rfc/rfc9110.html#name-get",
+        "https://github.com/pypa/advisory-database/tree/main/vulns/urllib3/PYSEC-2023-212.yaml",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/4R2Y5XK3WALSR3FNAGN7JBYV2B343ZKB",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/5F5CUBAN5XMEBVBZPHFITBLMJV5FIJJ5",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/PPDPLM6UUMN55ESPQWJFLLIZY4ZKCNRX",
+        "https://lists.debian.org/debian-lts-announce/2024/12/msg00020.html",
+        "https://github.com/advisories/GHSA-g4mx-q9vg-27p4"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-g4mx-q9vg-27p4",
+        "CVE-2023-45803"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 32.06601085447005,
+      "created_at": "2023-10-17T21:06:01.129Z",
+      "updated_at": "2026-08-13T01:15:25.906Z",
+      "epss_percentage": 0.00539,
+      "epss_percentile": 0.42528,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1nNG14LXE5dmctMjdwNM4AA2gt",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS1nNG14LXE5dmctMjdwNM4AA2gt",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "1.26.18",
+              "vulnerable_version_range": ">= 0, < 1.26.18"
+            },
+            {
+              "first_patched_version": "2.0.7",
+              "vulnerable_version_range": ">= 2.0.0, < 2.0.7"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1nNG14LXE5dmctMjdwNM4AA2gt/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS1nd3ZtLTQ1Z3gtM2NmOM4AA2c6",
+      "url": "https://github.com/advisories/GHSA-gwvm-45gx-3cf8",
+      "title": "Authorization Header forwarded on redirect",
+      "description": "urllib3 before 1.24.2 does not remove the authorization HTTP header when following a cross-origin redirect (i.e., a redirect that differs in host, port, or scheme). This can allow for credentials in the authorization header to be exposed to unintended hosts or transmitted in cleartext. NOTE: this issue exists because of an incomplete fix for CVE-2018-20060 (which was case-sensitive).",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2023-10-15T21:30:26.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 5.3,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:N/VI:N/VA:N/SC:L/SI:L/SA:N",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2018-25091",
+        "https://github.com/urllib3/urllib3/issues/1510",
+        "https://github.com/urllib3/urllib3/commit/adb358f8e06865406d1f05e581a16cbea2136fbc",
+        "https://github.com/urllib3/urllib3/compare/1.24.1...1.24.2",
+        "https://github.com/pypa/advisory-database/tree/main/vulns/urllib3/PYSEC-2023-207.yaml",
+        "https://github.com/advisories/GHSA-gwvm-45gx-3cf8"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-gwvm-45gx-3cf8",
+        "CVE-2018-25091"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 29.81576447871776,
+      "created_at": "2023-10-17T15:06:36.853Z",
+      "updated_at": "2026-08-13T01:15:30.851Z",
+      "epss_percentage": 0.00516,
+      "epss_percentile": 0.41086,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1nd3ZtLTQ1Z3gtM2NmOM4AA2c6",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS1nd3ZtLTQ1Z3gtM2NmOM4AA2c6",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "1.24.2",
+              "vulnerable_version_range": "< 1.24.2"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1nd3ZtLTQ1Z3gtM2NmOM4AA2c6/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS12ODQ1LWp4eDUtdmM5Zs4AA2MD",
+      "url": "https://github.com/advisories/GHSA-v845-jxx5-vc9f",
+      "title": "`Cookie` HTTP header isn't stripped on cross-origin redirects",
+      "description": "urllib3 doesn't treat the `Cookie` HTTP header special or provide any helpers for managing cookies over HTTP, that is the responsibility of the user. However, it is possible for a user to specify a `Cookie` header and unknowingly leak information via HTTP redirects to a different origin if that user doesn't disable redirects explicitly.\n\nUsers **must** handle redirects themselves instead of relying on urllib3's automatic redirects to achieve safe processing of the `Cookie` header, thus we decided to strip the header by default in order to further protect users who aren't using the correct approach.\n\n## Affected usages\n\nWe believe the number of usages affected by this advisory is low. It requires all of the following to be true to be exploited:\n\n* Using an affected version of urllib3 (patched in v1.26.17 and v2.0.6)\n* Using the `Cookie` header on requests, which is mostly typical for impersonating a browser.\n* Not disabling HTTP redirects\n* Either not using HTTPS or for the origin server to redirect to a malicious origin.\n\n## Remediation\n\n* Upgrading to at least urllib3 v1.26.17 or v2.0.6\n* Disabling HTTP redirects using `redirects=False` when sending requests.\n* Not using the `Cookie` header.",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2023-10-02T23:27:05.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 7.4,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:H/UI:N/VC:H/VI:H/VA:N/SC:N/SI:N/SA:N",
+      "references": [
+        "https://github.com/urllib3/urllib3/security/advisories/GHSA-v845-jxx5-vc9f",
+        "https://github.com/urllib3/urllib3/commit/01220354d389cd05474713f8c982d05c9b17aafb",
+        "https://github.com/urllib3/urllib3/commit/644124ecd0b6e417c527191f866daa05a5a2056d",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-43804",
+        "https://lists.debian.org/debian-lts-announce/2023/10/msg00012.html",
+        "https://github.com/pypa/advisory-database/tree/main/vulns/urllib3/PYSEC-2023-192.yaml",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/5F5CUBAN5XMEBVBZPHFITBLMJV5FIJJ5",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/I3PR7C6RJ6JUBQKIJ644DMIJSUP36VDY",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NDAGZXYJ7H2G3SB47M453VQVNAWKAEJJ",
+        "https://security.netapp.com/advisory/ntap-20241213-0007",
+        "https://www.vicarius.io/vsociety/posts/cve-2023-43804-urllib3-vulnerability-3",
+        "https://lists.debian.org/debian-lts-announce/2024/12/msg00020.html",
+        "https://github.com/advisories/GHSA-v845-jxx5-vc9f"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-v845-jxx5-vc9f",
+        "CVE-2023-43804"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 41.629557951417254,
+      "created_at": "2023-10-03T00:05:59.299Z",
+      "updated_at": "2026-08-13T01:15:42.781Z",
+      "epss_percentage": 0.01207,
+      "epss_percentile": 0.65503,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS12ODQ1LWp4eDUtdmM5Zs4AA2MD",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS12ODQ1LWp4eDUtdmM5Zs4AA2MD",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "1.26.17",
+              "vulnerable_version_range": "< 1.26.17"
+            },
+            {
+              "first_patched_version": "2.0.6",
+              "vulnerable_version_range": ">= 2.0.0, < 2.0.6"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS12ODQ1LWp4eDUtdmM5Zs4AA2MD/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS12NHc1LXAyaGctOGZoNs4AAcGU",
+      "url": "https://github.com/advisories/GHSA-v4w5-p2hg-8fh6",
+      "title": "Urllib3 Incorrect Certificate Validation",
+      "description": "Versions 1.17 and 1.18 of the Python urllib3 library suffer from a vulnerability that can cause them, in certain configurations, to not correctly validate TLS certificates. This places users of the library with those configurations at risk of man-in-the-middle and information leakage attacks. This vulnerability affects users using versions 1.17 and 1.18 of the urllib3 library, who are using the optional PyOpenSSL support for TLS instead of the regular standard library TLS backend, and who are using OpenSSL 1.1.0 via PyOpenSSL. This is an extremely uncommon configuration, so the security impact of this vulnerability is low.",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2022-05-17T03:05:04.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 6.3,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:P/PR:N/UI:N/VC:L/VI:N/VA:N/SC:N/SI:N/SA:N",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2016-9015",
+        "http://www.openwall.com/lists/oss-security/2016/10/27/6",
+        "https://web.archive.org/web/20210123184150/http://www.securityfocus.com/bid/93941",
+        "https://github.com/urllib3/urllib3/commit/c32cdbc16a9634fa0f8c829d1270301570158715",
+        "https://github.com/pypa/advisory-database/tree/main/vulns/urllib3/PYSEC-2017-98.yaml",
+        "https://github.com/advisories/GHSA-v4w5-p2hg-8fh6"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-v4w5-p2hg-8fh6",
+        "CVE-2016-9015"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 35.44138041809847,
+      "created_at": "2023-07-31T21:03:49.887Z",
+      "updated_at": "2026-08-13T01:15:00.455Z",
+      "epss_percentage": 0.00775,
+      "epss_percentile": 0.52525,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS12NHc1LXAyaGctOGZoNs4AAcGU",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS12NHc1LXAyaGctOGZoNs4AAcGU",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "1.18.1",
+              "vulnerable_version_range": ">= 1.17, <= 1.18"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS12NHc1LXAyaGctOGZoNs4AAcGU/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS1yNjRxLXc4anItZzlxcM3wRw",
+      "url": "https://github.com/advisories/GHSA-r64q-w8jr-g9qp",
+      "title": "Improper Neutralization of CRLF Sequences in urllib3 library for Python",
+      "description": "In the urllib3 library through 1.24.2 for Python, CRLF injection is possible if the attacker controls the request parameter.",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2022-05-13T01:09:23.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 5.3,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:P/VC:N/VI:N/VA:N/SC:L/SI:L/SA:N",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2019-11236",
+        "https://github.com/urllib3/urllib3/issues/1553",
+        "https://access.redhat.com/errata/RHSA-2019:2272",
+        "https://access.redhat.com/errata/RHSA-2019:3335",
+        "https://access.redhat.com/errata/RHSA-2019:3590",
+        "https://lists.debian.org/debian-lts-announce/2019/06/msg00016.html",
+        "https://lists.debian.org/debian-lts-announce/2021/06/msg00015.html",
+        "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00039.html",
+        "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00041.html",
+        "https://github.com/advisories/GHSA-r64q-w8jr-g9qp",
+        "https://github.com/pypa/advisory-database/tree/main/vulns/urllib3/PYSEC-2019-132.yaml",
+        "https://lists.debian.org/debian-lts-announce/2023/10/msg00012.html",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NKGPJLVLVYCL4L4B4G5TIOTVK4BKPG72",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/R62XGEYPUTXMRHGX5I37EBCGQ5COHGKR",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/TBI45HO533KYHNB5YRO43TBYKA3E3VRL",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XOSA2NT4DUQDBEIWE6O7KKD24XND7TE2",
+        "https://usn.ubuntu.com/3990-1",
+        "https://usn.ubuntu.com/3990-2"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-r64q-w8jr-g9qp",
+        "CVE-2019-11236"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 29.81576447871776,
+      "created_at": "2022-12-21T16:12:16.744Z",
+      "updated_at": "2026-08-13T01:19:43.146Z",
+      "epss_percentage": 0.02056,
+      "epss_percentile": 0.79547,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1yNjRxLXc4anItZzlxcM3wRw",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS1yNjRxLXc4anItZzlxcM3wRw",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "1.24.3",
+              "vulnerable_version_range": "<= 1.24.2"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1yNjRxLXc4anItZzlxcM3wRw/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXdxdnEtNW04Yy02ZzI0",
+      "url": "https://github.com/advisories/GHSA-wqvq-5m8c-6g24",
+      "title": "CRLF injection in urllib3",
+      "description": "urllib3 before 1.25.9 allows CRLF injection if the attacker controls the HTTP request method, as demonstrated by inserting CR and LF control characters in the first argument of `putrequest()`. NOTE: this is similar to CVE-2020-26116.",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2021-06-18T18:46:43.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 6.9,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-26137",
+        "https://github.com/urllib3/urllib3/pull/1800",
+        "https://github.com/urllib3/urllib3/commit/1dd69c5c5982fae7c87a620d487c2ebf7a6b436b",
+        "https://bugs.python.org/issue39603",
+        "https://lists.debian.org/debian-lts-announce/2021/06/msg00015.html",
+        "https://www.oracle.com/security-alerts/cpuoct2021.html",
+        "https://www.oracle.com/security-alerts/cpujul2022.html",
+        "https://lists.debian.org/debian-lts-announce/2023/10/msg00012.html",
+        "https://github.com/pypa/advisory-database/tree/main/vulns/urllib3/PYSEC-2020-148.yaml",
+        "https://usn.ubuntu.com/4570-1",
+        "https://github.com/advisories/GHSA-wqvq-5m8c-6g24"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-wqvq-5m8c-6g24",
+        "CVE-2020-26137"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 38.8167499817269,
+      "created_at": "2022-12-21T16:12:58.621Z",
+      "updated_at": "2026-06-29T07:08:47.138Z",
+      "epss_percentage": 0.02269,
+      "epss_percentile": 0.80836,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXdxdnEtNW04Yy02ZzI0",
+      "html_url": "https://advisories.ecosyste.ms/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXdxdnEtNW04Yy02ZzI0",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "1.25.9",
+              "vulnerable_version_range": "< 1.25.9"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXdxdnEtNW04Yy02ZzI0/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXEycTctNXBwNC13NnBn",
+      "url": "https://github.com/advisories/GHSA-q2q7-5pp4-w6pg",
+      "title": "Catastrophic backtracking in URL authority parser when passed URL containing many @ characters",
+      "description": "### Impact\n\nWhen provided with a URL containing many `@` characters in the authority component the authority regular expression exhibits catastrophic backtracking causing a denial of service if a URL were passed as a parameter or redirected to via an HTTP redirect.\n\n\n### Patches\n\nThe issue has been fixed in urllib3 v1.26.5.\n\n### References\n\n- [CVE-2021-33503](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2021-33503)\n- [JVNVU#92413403 (English)](https://jvn.jp/en/vu/JVNVU92413403/)\n- [JVNVU#92413403 (Japanese)](https://jvn.jp/vu/JVNVU92413403/)\n- [urllib3 v1.26.5](https://github.com/urllib3/urllib3/releases/tag/1.26.5)\n\n### For more information\nIf you have any questions or comments about this advisory:\n* Ask in our [community Discord](https://discord.gg/urllib3)\n* Email [sethmichaellarson@gmail.com](mailto:sethmichaellarson@gmail.com)",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2021-06-01T21:19:32.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 8.7,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+      "references": [
+        "https://github.com/urllib3/urllib3/security/advisories/GHSA-q2q7-5pp4-w6pg",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-33503",
+        "https://github.com/urllib3/urllib3/commit/2d4a3fee6de2fa45eb82169361918f759269b4ec",
+        "https://security.gentoo.org/glsa/202107-36",
+        "https://www.oracle.com/security-alerts/cpuoct2021.html",
+        "https://github.com/urllib3/urllib3/commit/5b047b645f5f93900d5e2fc31230848c25eb1f5f#diff-52026d639119bf1e0364836b4e8a18bd9ed3c95c6ba39b26534a5057a65e35bbR65",
+        "https://github.com/pypa/advisory-database/tree/main/vulns/urllib3/PYSEC-2021-108.yaml",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/6SCV7ZNAHS3E6PBFLJGENCDRDRWRZZ6W",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/FMUGWEAUYGGHTPPXT6YBD53WYXQGVV73",
+        "https://github.com/advisories/GHSA-q2q7-5pp4-w6pg"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-q2q7-5pp4-w6pg",
+        "CVE-2021-33503"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 48.942858672612175,
+      "created_at": "2022-12-21T16:11:57.734Z",
+      "updated_at": "2026-08-13T01:16:33.577Z",
+      "epss_percentage": 0.03273,
+      "epss_percentile": 0.87175,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXEycTctNXBwNC13NnBn",
+      "html_url": "https://advisories.ecosyste.ms/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXEycTctNXBwNC13NnBn",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "1.26.5",
+              "vulnerable_version_range": ">= 1.25.4, < 1.26.5"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXEycTctNXBwNC13NnBn/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLWhtdjItNzlxOC1mdjZn",
+      "url": "https://github.com/advisories/GHSA-hmv2-79q8-fv6g",
+      "title": "Uncontrolled Resource Consumption in urllib3",
+      "description": "The _encode_invalid_chars function in util/url.py in the urllib3 library 1.25.2 through 1.25.7 for Python allows a denial of service (CPU consumption) because of an inefficient algorithm. The percent_encodings array contains all matches of percent encodings. It is not deduplicated. For a URL of length N, the size of percent_encodings may be up to O(N). The next step (normalize existing percent-encoded bytes) also takes up to O(N) for each step, so the total time is O(N^2). If percent_encodings were deduplicated, the time to compute _encode_invalid_chars would be O(kN), where k is at most 484 ((10+6*2)^2).",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2021-04-30T17:31:43.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 8.7,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:N/VA:H/SC:N/SI:N/SA:N",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-7212",
+        "https://github.com/urllib3/urllib3/commit/a74c9cfbaed9f811e7563cfc3dce894928e0221a",
+        "https://github.com/urllib3/urllib3/blob/master/CHANGES.rst",
+        "https://github.com/advisories/GHSA-hmv2-79q8-fv6g",
+        "https://github.com/pypa/advisory-database/tree/main/vulns/urllib3/PYSEC-2020-149.yaml",
+        "https://pypi.org/project/urllib3/1.25.8"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-hmv2-79q8-fv6g",
+        "CVE-2020-7212"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 48.942858672612175,
+      "created_at": "2022-12-21T16:13:06.405Z",
+      "updated_at": "2026-08-13T01:21:51.573Z",
+      "epss_percentage": 0.03371,
+      "epss_percentile": 0.87506,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLWhtdjItNzlxOC1mdjZn",
+      "html_url": "https://advisories.ecosyste.ms/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLWhtdjItNzlxOC1mdjZn",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "1.25.8",
+              "vulnerable_version_range": ">= 1.25.2, <= 1.25.7"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLWhtdjItNzlxOC1mdjZn/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTVwaGYtcHA3cC12YzJy",
+      "url": "https://github.com/advisories/GHSA-5phf-pp7p-vc2r",
+      "title": "Using default SSLContext for HTTPS requests in an HTTPS proxy doesn't verify certificate hostname for proxy connection",
+      "description": "### Impact\n\nUsers who are using an HTTPS proxy to issue HTTPS requests and haven't configured their own SSLContext via `proxy_config`.\nOnly the default SSLContext is impacted.\n\n### Patches\n\n[urllib3 >=1.26.4 has the issue resolved](https://github.com/urllib3/urllib3/releases/tag/1.26.4). urllib3<1.26 is not impacted due to not supporting HTTPS requests via HTTPS proxies.\n\n### Workarounds\n\nUpgrading is recommended as this is a minor release and not likely to break current usage.\n\nConfiguring an `SSLContext` with `check_hostname=True` and passing via `proxy_config` instead of relying on the default `SSLContext`\n\n### For more information\nIf you have any questions or comments about this advisory:\n* Email us at [sethmichaellarson@gmail.com](mailto:sethmichaellarson@gmail.com)",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2021-03-19T19:42:11.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 6.9,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:L/VA:N/SC:N/SI:N/SA:N",
+      "references": [
+        "https://github.com/urllib3/urllib3/security/advisories/GHSA-5phf-pp7p-vc2r",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-28363",
+        "https://github.com/urllib3/urllib3/commit/8d65ea1ecf6e2cdc27d42124e587c1b83a3118b0",
+        "https://github.com/urllib3/urllib3/releases/tag/1.26.4",
+        "https://github.com/urllib3/urllib3/commits/main",
+        "https://github.com/urllib3/urllib3/blob/main/CHANGES.rst#1264-2021-03-15",
+        "https://security.gentoo.org/glsa/202107-36",
+        "https://www.oracle.com/security-alerts/cpuoct2021.html",
+        "https://github.com/pypa/advisory-db/tree/main/vulns/urllib3/PYSEC-2021-59.yaml",
+        "https://security.gentoo.org/glsa/202305-02",
+        "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/4S65ZQVZ2ODGB52IC7VJDBUK4M5INCXL",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/4S65ZQVZ2ODGB52IC7VJDBUK4M5INCXL",
+        "https://pypi.org/project/urllib3/1.26.4",
+        "https://security.netapp.com/advisory/ntap-20240621-0007",
+        "https://github.com/pypa/advisory-database/tree/main/vulns/urllib3/PYSEC-2021-59.yaml",
+        "https://github.com/advisories/GHSA-5phf-pp7p-vc2r"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-5phf-pp7p-vc2r",
+        "CVE-2021-28363"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 38.8167499817269,
+      "created_at": "2022-12-21T16:12:44.332Z",
+      "updated_at": "2026-07-19T12:11:01.746Z",
+      "epss_percentage": 0.02109,
+      "epss_percentile": 0.79504,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTVwaGYtcHA3cC12YzJy",
+      "html_url": "https://advisories.ecosyste.ms/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTVwaGYtcHA3cC12YzJy",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "1.26.4",
+              "vulnerable_version_range": ">= 1.26.0, < 1.26.4"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTVwaGYtcHA3cC12YzJy/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLW1oMzMtN3JycS02NjJ3",
+      "url": "https://github.com/advisories/GHSA-mh33-7rrq-662w",
+      "title": "Improper Certificate Validation in urllib3",
+      "description": "The urllib3 library before 1.24.2 for Python mishandles certain cases where the desired set of CA certificates is different from the OS store of CA certificates, which results in SSL connections succeeding in situations where a verification failure is the correct outcome. This is related to use of the `ssl_context`, `ca_certs`, or `ca_certs_dir` argument.",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2019-04-19T16:55:10.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 8.7,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:N/VI:H/VA:N/SC:N/SI:N/SA:N",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2019-11324",
+        "https://github.com/urllib3/urllib3/compare/a6ec68a...1efadf4",
+        "https://access.redhat.com/errata/RHSA-2019:3335",
+        "https://access.redhat.com/errata/RHSA-2019:3590",
+        "https://lists.debian.org/debian-lts-announce/2021/06/msg00015.html",
+        "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00039.html",
+        "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00041.html",
+        "http://www.openwall.com/lists/oss-security/2019/04/19/1",
+        "https://github.com/urllib3/urllib3/commit/1efadf43dc63317cd9eaa3e0fdb9e05ab07254b1",
+        "https://lists.debian.org/debian-lts-announce/2023/10/msg00012.html",
+        "https://github.com/advisories/GHSA-mh33-7rrq-662w",
+        "https://github.com/pypa/advisory-database/tree/main/vulns/urllib3/PYSEC-2019-133.yaml",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NKGPJLVLVYCL4L4B4G5TIOTVK4BKPG72",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XOSA2NT4DUQDBEIWE6O7KKD24XND7TE2",
+        "https://pypi.org/project/urllib3/1.24.2",
+        "https://usn.ubuntu.com/3990-1"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-mh33-7rrq-662w",
+        "CVE-2019-11324"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 48.942858672612175,
+      "created_at": "2022-12-21T16:13:30.408Z",
+      "updated_at": "2026-07-07T03:08:29.870Z",
+      "epss_percentage": 0.02836,
+      "epss_percentile": 0.84936,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLW1oMzMtN3JycS02NjJ3",
+      "html_url": "https://advisories.ecosyste.ms/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLW1oMzMtN3JycS02NjJ3",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "1.24.2",
+              "vulnerable_version_range": "< 1.24.2"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLW1oMzMtN3JycS02NjJ3/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXd3dzItdjd4ai14cmM2",
+      "url": "https://github.com/advisories/GHSA-www2-v7xj-xrc6",
+      "title": "Exposure of Sensitive Information to an Unauthorized Actor in urllib3",
+      "description": "urllib3 before version 1.23 does not remove the Authorization HTTP header when following a cross-origin redirect (i.e., a redirect that differs in host, port, or scheme). This can allow for credentials in the Authorization header to be exposed to unintended hosts or transmitted in cleartext.",
+      "origin": "UNSPECIFIED",
+      "severity": "CRITICAL",
+      "published_at": "2018-12-12T15:52:07.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 9.3,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:H/VI:H/VA:H/SC:N/SI:N/SA:N",
+      "references": [
+        "https://nvd.nist.gov/vuln/detail/CVE-2018-20060",
+        "https://github.com/urllib3/urllib3/issues/1316",
+        "https://github.com/urllib3/urllib3/pull/1346",
+        "https://access.redhat.com/errata/RHSA-2019:2272",
+        "https://bugzilla.redhat.com/show_bug.cgi?id=1649153",
+        "https://github.com/urllib3/urllib3/blob/master/CHANGES.rst",
+        "https://lists.debian.org/debian-lts-announce/2021/06/msg00015.html",
+        "http://lists.opensuse.org/opensuse-security-announce/2019-09/msg00039.html",
+        "https://github.com/urllib3/urllib3/commit/560bd227b90f74417ffaedebf5f8d05a8ee4f532",
+        "https://github.com/pypa/advisory-database/tree/main/vulns/urllib3/PYSEC-2018-32.yaml",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/5SJERZEJDSUYQP7BNBXMBHRHGY26HRZD",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/BXLAXHM3Z6DUCXZ7ZXZ2EAYJXWDCZFCT",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/XWP36YW3KSVLXDBY3QJKDYEPCIMN3VQZ",
+        "https://usn.ubuntu.com/3990-1",
+        "https://security.netapp.com/advisory/ntap-20241227-0010",
+        "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/XWP36YW3KSVLXDBY3QJKDYEPCIMN3VQZ",
+        "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/BXLAXHM3Z6DUCXZ7ZXZ2EAYJXWDCZFCT",
+        "https://lists.fedoraproject.org/archives/list/package-announce%40lists.fedoraproject.org/message/5SJERZEJDSUYQP7BNBXMBHRHGY26HRZD",
+        "https://github.com/advisories/GHSA-www2-v7xj-xrc6"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-www2-v7xj-xrc6",
+        "CVE-2018-20060"
+      ],
+      "repository_url": "https://github.com/urllib3/urllib3",
+      "blast_radius": 52.31822823624061,
+      "created_at": "2022-12-21T16:12:32.142Z",
+      "updated_at": "2026-07-30T14:07:07.028Z",
+      "epss_percentage": 0.04488,
+      "epss_percentile": 0.90501,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXd3dzItdjd4ai14cmM2",
+      "html_url": "https://advisories.ecosyste.ms/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXd3dzItdjd4ai14cmM2",
+      "packages": [
+        {
+          "ecosystem": "pypi",
+          "package_name": "urllib3",
+          "versions": [
+            {
+              "first_patched_version": "1.23",
+              "vulnerable_version_range": "< 1.23"
+            }
+          ],
+          "purl": "pkg:pypi/urllib3"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXd3dzItdjd4ai14cmM2/related_packages",
+      "related_advisories": []
+    }
+  ],
+  "docker_usage_url": "https://docker.ecosyste.ms/usage/pypi/urllib3",
+  "docker_dependents_count": 34103,
+  "docker_downloads_count": 13647318895,
+  "usage_url": "https://repos.ecosyste.ms/usage/pypi/urllib3",
+  "dependent_repositories_url": "https://repos.ecosyste.ms/api/v1/usage/pypi/urllib3/dependencies",
+  "status": null,
+  "funding_links": [
+    "https://tidelift.com/funding/github/pypi/urllib3",
+    "https://github.com/sponsors/urllib3",
+    "https://opencollective.com/urllib3"
+  ],
+  "critical": true,
+  "issue_metadata": {
+    "last_synced_at": "2026-08-12T00:20:56.212Z",
+    "issues_count": 414,
+    "pull_requests_count": 1157,
+    "avg_time_to_close_issue": 25209577.63486842,
+    "avg_time_to_close_pull_request": 1880076.5288367546,
+    "issues_closed_count": 304,
+    "pull_requests_closed_count": 1023,
+    "pull_request_authors_count": 250,
+    "issue_authors_count": 281,
+    "avg_comments_per_issue": 5.113526570048309,
+    "avg_comments_per_pull_request": 1.4891961970613656,
+    "merged_pull_requests_count": 760,
+    "bot_issues_count": 0,
+    "bot_pull_requests_count": 189,
+    "past_year_issues_count": 48,
+    "past_year_pull_requests_count": 261,
+    "past_year_avg_time_to_close_issue": 2792038.846153846,
+    "past_year_avg_time_to_close_pull_request": 1570969.5585106383,
+    "past_year_issues_closed_count": 26,
+    "past_year_pull_requests_closed_count": 188,
+    "past_year_pull_request_authors_count": 122,
+    "past_year_issue_authors_count": 43,
+    "past_year_avg_comments_per_issue": 1.5625,
+    "past_year_avg_comments_per_pull_request": 0.9386973180076629,
+    "past_year_bot_issues_count": 0,
+    "past_year_bot_pull_requests_count": 37,
+    "past_year_merged_pull_requests_count": 98,
+    "issues_url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/repositories/urllib3%2Furllib3/issues",
+    "maintainers": [
+      {
+        "login": "pquentin",
+        "count": 219,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/pquentin"
+      },
+      {
+        "login": "illia-v",
+        "count": 157,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/illia-v"
+      },
+      {
+        "login": "sethmlarson",
+        "count": 110,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/sethmlarson"
+      },
+      {
+        "login": "hramezani",
+        "count": 16,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/hramezani"
+      },
+      {
+        "login": "shazow",
+        "count": 9,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/shazow"
+      },
+      {
+        "login": "nateprewitt",
+        "count": 8,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/nateprewitt"
+      },
+      {
+        "login": "bluetech",
+        "count": 3,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/bluetech"
+      },
+      {
+        "login": "ecerulm",
+        "count": 2,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/ecerulm"
+      },
+      {
+        "login": "franekmagiera",
+        "count": 2,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/franekmagiera"
+      },
+      {
+        "login": "jdufresne",
+        "count": 1,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/jdufresne"
+      }
+    ],
+    "active_maintainers": [
+      {
+        "login": "illia-v",
+        "count": 48,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/illia-v"
+      },
+      {
+        "login": "pquentin",
+        "count": 8,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/pquentin"
+      },
+      {
+        "login": "nateprewitt",
+        "count": 3,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/nateprewitt"
+      },
+      {
+        "login": "sethmlarson",
+        "count": 3,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/sethmlarson"
+      },
+      {
+        "login": "shazow",
+        "count": 3,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/shazow"
+      }
+    ]
+  },
+  "versions_url": "https://packages.ecosyste.ms/api/v1/registries/pypi.org/packages/urllib3/versions",
+  "version_numbers_url": "https://packages.ecosyste.ms/api/v1/registries/pypi.org/packages/urllib3/version_numbers",
+  "latest_version_url": "https://packages.ecosyste.ms/api/v1/registries/pypi.org/packages/urllib3/latest_version",
+  "dependent_packages_url": "https://packages.ecosyste.ms/api/v1/registries/pypi.org/packages/urllib3/dependent_packages",
+  "related_packages_url": "https://packages.ecosyste.ms/api/v1/registries/pypi.org/packages/urllib3/related_packages",
+  "codemeta_url": "https://packages.ecosyste.ms/api/v1/registries/pypi.org/packages/urllib3/codemeta",
+  "maintainers": [
+    {
+      "uuid": "shazow",
+      "login": "shazow",
+      "name": null,
+      "email": null,
+      "url": null,
+      "packages_count": 10,
+      "html_url": "https://pypi.org/user/shazow/",
+      "role": null,
+      "created_at": "2022-11-23T22:47:08.853Z",
+      "updated_at": "2022-11-23T22:47:08.853Z",
+      "packages_url": "https://packages.ecosyste.ms/api/v1/registries/pypi.org/maintainers/shazow/packages"
+    },
+    {
+      "uuid": "SethMichaelLarson",
+      "login": "SethMichaelLarson",
+      "name": null,
+      "email": null,
+      "url": null,
+      "packages_count": 41,
+      "html_url": "https://pypi.org/user/SethMichaelLarson/",
+      "role": null,
+      "created_at": "2022-11-23T22:47:08.862Z",
+      "updated_at": "2022-11-23T22:47:08.862Z",
+      "packages_url": "https://packages.ecosyste.ms/api/v1/registries/pypi.org/maintainers/SethMichaelLarson/packages"
+    },
+    {
+      "uuid": "illia-v",
+      "login": "illia-v",
+      "name": null,
+      "email": null,
+      "url": null,
+      "packages_count": 1,
+      "html_url": "https://pypi.org/user/illia-v/",
+      "role": "Owner",
+      "created_at": "2025-06-23T20:32:08.077Z",
+      "updated_at": "2025-06-23T20:32:08.077Z",
+      "packages_url": "https://packages.ecosyste.ms/api/v1/registries/pypi.org/maintainers/illia-v/packages"
+    }
+  ]
+}

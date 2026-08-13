@@ -1,0 +1,1278 @@
+{
+  "packageKey": {
+    "system": "PYPI",
+    "name": "imageio"
+  },
+  "versions": [
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "0.2.1"
+      },
+      "publishedAt": "2012-07-15T21:52:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "0.2.2"
+      },
+      "publishedAt": "2012-07-16T23:18:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "0.2.2.win32"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "0.2.3"
+      },
+      "publishedAt": "2012-07-17T12:17:45Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "0.2.3.win32"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "0.3.0"
+      },
+      "publishedAt": "2013-03-15T10:16:30Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "0.3.1"
+      },
+      "publishedAt": "2013-03-15T10:37:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "0.3.2"
+      },
+      "publishedAt": "2013-03-15T12:28:05Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "0.4.0"
+      },
+      "publishedAt": "2013-03-27T13:37:09Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "0.4.1"
+      },
+      "publishedAt": "2013-10-26T12:49:04Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "0.5.0"
+      },
+      "publishedAt": "2014-06-23T13:59:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "0.5.1"
+      },
+      "publishedAt": "2014-06-23T14:48:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.0.0"
+      },
+      "publishedAt": "2014-11-13T13:57:52Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.1-linux32"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.1-linux64"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.1-osx64"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.1-win32"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.1-win64"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.1.0"
+      },
+      "publishedAt": "2015-02-04T13:27:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.2-linux32"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.2-linux64"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.2-osx64"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.2-win32"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.2-win64"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.2.0"
+      },
+      "publishedAt": "2015-02-23T15:38:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.3-linux32"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.3-linux64"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.3-osx64"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.3-win32"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.3-win64"
+      },
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.3.0"
+      },
+      "publishedAt": "2015-07-01T09:27:19Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.4.0"
+      },
+      "publishedAt": "2015-11-18T13:32:09Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.5.0"
+      },
+      "publishedAt": "2016-01-30T22:44:45Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "1.6.0"
+      },
+      "publishedAt": "2016-09-19T09:47:35Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.0.0"
+      },
+      "publishedAt": "2016-12-09T23:57:03Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.0.1"
+      },
+      "publishedAt": "2016-12-10T14:09:01Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.1.0"
+      },
+      "publishedAt": "2016-12-22T11:10:12Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.1.1"
+      },
+      "publishedAt": "2016-12-24T16:34:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.1.2"
+      },
+      "publishedAt": "2017-02-02T11:07:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.10.1"
+      },
+      "publishedAt": "2021-10-27T11:36:25Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.10.2"
+      },
+      "publishedAt": "2021-11-05T02:30:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.10.3"
+      },
+      "publishedAt": "2021-11-06T02:30:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.10.4"
+      },
+      "publishedAt": "2021-11-13T02:29:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.10.5"
+      },
+      "publishedAt": "2021-11-17T08:41:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.11.0"
+      },
+      "publishedAt": "2021-11-18T02:31:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.11.1"
+      },
+      "publishedAt": "2021-11-20T02:33:03Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.12.0"
+      },
+      "publishedAt": "2021-11-24T02:31:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.13.0"
+      },
+      "publishedAt": "2021-11-29T02:33:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.13.1"
+      },
+      "publishedAt": "2021-12-01T04:54:12Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.13.2"
+      },
+      "publishedAt": "2021-12-07T02:38:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.13.3"
+      },
+      "publishedAt": "2021-12-08T19:10:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.13.4"
+      },
+      "publishedAt": "2021-12-21T02:41:45Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.13.5"
+      },
+      "publishedAt": "2021-12-23T02:39:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.14.0"
+      },
+      "publishedAt": "2022-01-20T13:46:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.14.1"
+      },
+      "publishedAt": "2022-01-24T08:55:18Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.15.0"
+      },
+      "publishedAt": "2022-02-07T12:40:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.16.0"
+      },
+      "publishedAt": "2022-02-14T02:23:27Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "A missmatch between python_requires and dependencies cause installation problems for python 3.5 and python 3.6. Details: https://github.com/imageio/imageio/issues/756"
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.16.1"
+      },
+      "publishedAt": "2022-02-28T02:36:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.16.2"
+      },
+      "publishedAt": "2022-04-11T05:31:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.17.0"
+      },
+      "publishedAt": "2022-04-18T03:20:04Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.18.0"
+      },
+      "publishedAt": "2022-04-25T06:53:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.19.0"
+      },
+      "publishedAt": "2022-05-02T04:02:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.19.1"
+      },
+      "publishedAt": "2022-05-09T03:26:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.19.2"
+      },
+      "publishedAt": "2022-05-16T03:05:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.19.3"
+      },
+      "publishedAt": "2022-05-30T03:37:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.19.5"
+      },
+      "publishedAt": "2022-07-18T09:58:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.2.0"
+      },
+      "publishedAt": "2017-05-25T14:24:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.20.0"
+      },
+      "publishedAt": "2022-07-25T19:57:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.21.0"
+      },
+      "publishedAt": "2022-08-01T04:15:18Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.21.1"
+      },
+      "publishedAt": "2022-08-08T11:24:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.21.2"
+      },
+      "publishedAt": "2022-08-29T04:19:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.21.3"
+      },
+      "publishedAt": "2022-09-12T04:30:58Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.22.0"
+      },
+      "publishedAt": "2022-09-19T04:33:17Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.22.1"
+      },
+      "publishedAt": "2022-10-03T06:20:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.22.2"
+      },
+      "publishedAt": "2022-10-16T19:25:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.22.3"
+      },
+      "publishedAt": "2022-10-31T20:53:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.22.4"
+      },
+      "publishedAt": "2022-11-07T03:33:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.23.0"
+      },
+      "publishedAt": "2022-12-19T02:44:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.24.0"
+      },
+      "publishedAt": "2023-01-09T02:51:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.25.0"
+      },
+      "publishedAt": "2023-01-23T02:50:04Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.25.1"
+      },
+      "publishedAt": "2023-02-13T02:58:36Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.26.0"
+      },
+      "publishedAt": "2023-02-27T02:58:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.26.1"
+      },
+      "publishedAt": "2023-03-20T06:56:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.27.0"
+      },
+      "publishedAt": "2023-03-27T02:38:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.28.0"
+      },
+      "publishedAt": "2023-04-24T02:44:36Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.28.1"
+      },
+      "publishedAt": "2023-05-01T07:47:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.29.0"
+      },
+      "publishedAt": "2023-05-23T19:32:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.3.0"
+      },
+      "publishedAt": "2018-03-20T09:42:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.30.0"
+      },
+      "publishedAt": "2023-05-29T02:48:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.31.0"
+      },
+      "publishedAt": "2023-06-05T03:01:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.31.1"
+      },
+      "publishedAt": "2023-06-12T03:02:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.31.2"
+      },
+      "publishedAt": "2023-08-26T12:23:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.31.3"
+      },
+      "publishedAt": "2023-09-04T02:23:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.31.4"
+      },
+      "publishedAt": "2023-09-25T02:16:00Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.31.5"
+      },
+      "publishedAt": "2023-10-02T02:15:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.31.6"
+      },
+      "publishedAt": "2023-10-23T02:15:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.32.0"
+      },
+      "publishedAt": "2023-11-06T02:23:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.33.0"
+      },
+      "publishedAt": "2023-11-20T02:26:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.33.1"
+      },
+      "publishedAt": "2023-12-11T02:26:42Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.34.0"
+      },
+      "publishedAt": "2024-02-12T02:14:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.34.1"
+      },
+      "publishedAt": "2024-04-22T02:22:35Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.34.2"
+      },
+      "publishedAt": "2024-06-24T08:09:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.35.0"
+      },
+      "publishedAt": "2024-08-13T04:42:04Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.35.1"
+      },
+      "publishedAt": "2024-08-19T02:35:25Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.36.0"
+      },
+      "publishedAt": "2024-10-14T02:48:59Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.36.1"
+      },
+      "publishedAt": "2024-11-28T08:11:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.37.0"
+      },
+      "publishedAt": "2025-01-20T02:42:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.37.2"
+      },
+      "publishedAt": "2025-11-04T14:29:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.37.3"
+      },
+      "publishedAt": "2026-03-09T11:31:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.37.4"
+      },
+      "publishedAt": "2026-07-20T05:26:09Z",
+      "isDefault": true,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.4.0"
+      },
+      "publishedAt": "2018-09-06T08:43:15Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.4.1"
+      },
+      "publishedAt": "2018-09-06T14:11:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.5.0"
+      },
+      "publishedAt": "2019-02-06T10:56:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.6.0"
+      },
+      "publishedAt": "2019-10-07T08:15:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.6.1"
+      },
+      "publishedAt": "2019-10-08T09:55:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.8.0"
+      },
+      "publishedAt": "2020-02-18T23:10:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "PYPI",
+        "name": "imageio",
+        "version": "2.9.0"
+      },
+      "publishedAt": "2020-07-06T13:20:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    }
+  ]
+}
