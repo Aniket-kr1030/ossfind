@@ -21,8 +21,8 @@ function notFound(): HttpResponse {
   return response({}, 404);
 }
 
-function querySlug(url: URL): string {
-  return (url.searchParams.get("text") ?? "").trim().toLowerCase().replace(/\s+/g, "-");
+function querySlug(url: URL, parameter = "text"): string {
+  return (url.searchParams.get(parameter) ?? "").trim().toLowerCase().replace(/\s+/g, "-");
 }
 
 function packageFromPath(url: URL, marker: string): string | undefined {
@@ -86,6 +86,11 @@ export function createFixtureHttpClient(): HttpClient {
       const url = new URL(requestUrl);
       if (url.hostname === "registry.npmjs.org" && url.pathname === "/-/v1/search") {
         return response(await loadSearch(querySlug(url)));
+      }
+      // libraries.io uses `q`, while its credentials and requested page size are
+      // deliberately irrelevant to a frozen, query-keyed fixture response.
+      if (url.hostname === "libraries.io" && url.pathname === "/api/search") {
+        return response(await loadSearch(querySlug(url, "q"), "pypi"));
       }
       if (url.hostname === "packages.ecosyste.ms") {
         const pkg = packageFromPath(url, "/packages/");

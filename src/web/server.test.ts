@@ -49,6 +49,14 @@ describe("Web Server", () => {
     }
   });
 
+  it("should route ecosystem=pypi to the PyPI fixture pipeline", async () => {
+    const res = await fetch(`${baseUrl}/api/search?q=video editing&ecosystem=pypi`);
+    expect(res.status).toBe(200);
+    const body = await res.json() as { results: unknown[] };
+    const ids = body.results.map((component) => ScoredComponentSchema.parse(component).id);
+    expect(ids).toContain("pypi:moviepy");
+  });
+
   it("should return a 400 error for an empty query parameter", async () => {
     const res = await fetch(`${baseUrl}/api/search?q=`);
     expect(res.status).toBe(400);

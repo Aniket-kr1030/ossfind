@@ -39,4 +39,14 @@ describe("search_components MCP tool", () => {
       content: [{ type: "text" }],
     });
   });
+
+  it("routes PyPI searches through the PyPI fixture pipeline", async () => {
+    const handler = createSearchComponentsHandler({ fixtures: true });
+
+    const result = await handler({ query: "video editing", ecosystem: "pypi" });
+    const results = structuredResults(result);
+
+    expect(result.isError).not.toBe(true);
+    expect(results.map((result) => ScoredComponentSchema.parse(result).id)).toContain("pypi:moviepy");
+  });
 });

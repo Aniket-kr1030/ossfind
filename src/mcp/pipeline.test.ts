@@ -2,6 +2,8 @@ import { describe, expect, it, vi } from "vitest";
 import type { ComponentCandidate } from "../contracts/index.js";
 import type { EmbeddingsProvider } from "../fit/embeddings.js";
 import { TfidfFitScorer } from "../fit/tfidf.js";
+import { ScoredComponentSchema } from "../contracts/index.js";
+import { searchComponents } from "../pipeline/orchestrator.js";
 import { buildPipeline } from "./pipeline.js";
 
 const candidates: ComponentCandidate[] = [
@@ -20,10 +22,12 @@ const candidates: ComponentCandidate[] = [
 ];
 
 describe("buildPipeline fit scorer selection", () => {
-  it("selects PyPI enrichment while discovery remains a no-op until M4b", async () => {
+  it("selects libraries.io PyPI discovery and PyPI enrichment in fixture mode", async () => {
     const pipeline = buildPipeline({ fixtures: true, ecosystem: "pypi" });
 
-    await expect(pipeline.discoverer.discover("video editing")).resolves.toEqual([]);
+    await expect(pipeline.discoverer.discover("video editing")).resolves.toContainEqual(
+      expect.objectContaining({ id: "pypi:moviepy", ecosystem: "pypi" }),
+    );
     await expect(pipeline.enricher.enrich({
       id: "pypi:moviepy",
       name: "moviepy",
@@ -35,6 +39,19 @@ describe("buildPipeline fit scorer selection", () => {
       license: { spdxId: "MIT" },
       sources: { osv: "ok" },
     });
+  });
+
+  it("runs the full PyPI pipeline offline with fixture discovery", async () => {
+    const results = await searchComponents("video editing", buildPipeline({
+      fixtures: true,
+      ecosystem: "pypi",
+    }));
+
+    expect(results.length).toBeGreaterThan(0);
+    expect(results.some((result) => result.id === "pypi:moviepy")).toBe(true);
+    for (const result of results) {
+      expect(ScoredComponentSchema.parse(result)).toEqual(result);
+    }
   });
 
   it("falls back to TF-IDF when the live embedding provider cannot initialize", async () => {

@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('search-form');
   const searchInput = document.getElementById('search-input');
   const licenseSelect = document.getElementById('license-select');
+  const ecosystemSelect = document.getElementById('ecosystem-select');
   const statusContainer = document.getElementById('status-container');
   const resultsList = document.getElementById('results-list');
 
@@ -15,10 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const projectLicense = licenseSelect.value;
+    const ecosystem = ecosystemSelect.value;
     
     // Construct search URL
     const url = new URL('/api/search', window.location.origin);
     url.searchParams.set('q', query);
+    url.searchParams.set('ecosystem', ecosystem);
     if (projectLicense) {
       url.searchParams.set('projectLicense', projectLicense);
     }

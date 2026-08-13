@@ -32,6 +32,7 @@ export function createWebServer(): http.Server {
         }
 
         const projectLicense = url.searchParams.get("projectLicense") || undefined;
+        const ecosystem = url.searchParams.get("ecosystem") === "pypi" ? "pypi" : "npm";
         const limitStr = url.searchParams.get("limit");
         let limit: number | undefined = undefined;
         if (limitStr) {
@@ -45,6 +46,7 @@ export function createWebServer(): http.Server {
           const pipeline = buildPipeline({
             fixtures: process.env.OSSFIND_FIXTURES === "1",
             projectLicense,
+            ecosystem,
           });
           const results = await searchComponents(q, pipeline, { limit });
 
