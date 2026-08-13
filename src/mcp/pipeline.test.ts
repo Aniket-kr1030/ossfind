@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { LibrariesIoDiscoverer } from "../adapters/libraries-discovery.js";
 import { LocalIndexDiscoverer } from "../adapters/local-index-discovery.js";
 import type { ComponentCandidate } from "../contracts/index.js";
+import { FederatedDiscoverer } from "../discovery/federated.js";
 import type { EmbeddingsProvider } from "../fit/embeddings.js";
 import { TfidfFitScorer } from "../fit/tfidf.js";
 import { ScoredComponentSchema } from "../contracts/index.js";
@@ -27,7 +28,7 @@ describe("buildPipeline fit scorer selection", () => {
   it("selects fixture-backed local-index PyPI discovery and PyPI enrichment in fixture mode", async () => {
     const pipeline = buildPipeline({ fixtures: true, ecosystem: "pypi" });
 
-    expect(pipeline.discoverer).toBeInstanceOf(LocalIndexDiscoverer);
+    expect(pipeline.discoverer).toBeInstanceOf(FederatedDiscoverer);
     await expect(pipeline.discoverer.discover("video editing")).resolves.toContainEqual(
       expect.objectContaining({ id: "pypi:moviepy", ecosystem: "pypi" }),
     );
@@ -66,6 +67,31 @@ describe("buildPipeline fit scorer selection", () => {
     }
   });
 
+  it("federates the fixture PyPI local index and libraries.io, deduping their union end-to-end", async () => {
+    vi.stubEnv("LIBRARIES_IO_API_KEY", "fixture");
+
+    try {
+      const pipeline = buildPipeline({ fixtures: true, ecosystem: "pypi" });
+      const discovered = await pipeline.discoverer.discover("video editing");
+      const ids = discovered.map((candidate) => candidate.id);
+      const results = await searchComponents("video editing", pipeline);
+
+      expect(pipeline.discoverer).toBeInstanceOf(FederatedDiscoverer);
+      expect(ids).toEqual(expect.arrayContaining([
+        "pypi:ffmpeg-python",
+        "pypi:moviepy",
+        "pypi:video-editing-ai-mcp",
+      ]));
+      expect(ids.filter((id) => id === "pypi:moviepy")).toHaveLength(1);
+      expect(results.length).toBeGreaterThan(0);
+      for (const result of results) {
+        expect(ScoredComponentSchema.parse(result)).toEqual(result);
+      }
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
+
   it("honors OSSFIND_PYPI_DISCOVERY=libraries", () => {
     vi.stubEnv("OSSFIND_PYPI_DISCOVERY", "libraries");
 
@@ -91,6 +117,7 @@ describe("buildPipeline fit scorer selection", () => {
 
   it("falls back to libraries.io in auto mode when the local index is unavailable", () => {
     vi.stubEnv("OSSFIND_PYPI_DISCOVERY", "auto");
+    vi.stubEnv("LIBRARIES_IO_API_KEY", "fixture");
 
     try {
       expect(buildPipeline({
@@ -100,6 +127,15 @@ describe("buildPipeline fit scorer selection", () => {
     } finally {
       vi.unstubAllEnvs();
     }
+  });
+
+  it("uses a one-source federation for npm without changing fixture results", async () => {
+    const pipeline = buildPipeline({ fixtures: true, ecosystem: "npm" });
+
+    expect(pipeline.discoverer).toBeInstanceOf(FederatedDiscoverer);
+    await expect(pipeline.discoverer.discover("http client")).resolves.toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: "npm:axios" }),
+    ]));
   });
 
   it("falls back to TF-IDF when the live embedding provider cannot initialize", async () => {

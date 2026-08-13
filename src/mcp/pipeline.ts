@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { HttpDiscoverer } from "../adapters/discovery.js";
 import { LibrariesIoDiscoverer } from "../adapters/libraries-discovery.js";
 import { LocalIndexDiscoverer } from "../adapters/local-index-discovery.js";
+import { FederatedDiscoverer, type FederatedSource } from "../discovery/federated.js";
 import { type EmbeddingsProvider, EmbeddingFitScorer } from "../fit/embeddings.js";
 import { HttpEnricher } from "../adapters/enrichment.js";
 import type { PackageEcosystem } from "../adapters/enrichment.js";
@@ -62,6 +63,13 @@ function requestedPypiDiscoveryMode(): PypiDiscoveryMode {
   return mode === "index" || mode === "libraries" ? mode : "auto";
 }
 
+function librariesIoKeyAvailable(): boolean {
+  const environment = (globalThis as unknown as {
+    process?: { env?: Record<string, string | undefined> };
+  }).process?.env;
+  return Boolean(environment?.LIBRARIES_IO_API_KEY ?? environment?.LIBRARY_IO_API_KEY);
+}
+
 let fixturePypiIndexPath: string | undefined;
 
 /**
@@ -81,13 +89,21 @@ function fixtureIndexPath(): string {
 }
 
 function pypiDiscoverer(http: HttpClient, fixtures: boolean, indexPath?: string) {
-  if (fixtures) return new LocalIndexDiscoverer("pypi", fixtureIndexPath());
-
-  const local = new LocalIndexDiscoverer("pypi", indexPath);
+  const local = new LocalIndexDiscoverer("pypi", fixtures ? fixtureIndexPath() : indexPath);
   const mode = requestedPypiDiscoveryMode();
-  if (mode === "index" || (mode === "auto" && local.isAvailable())) return local;
+  if (mode === "index") return local;
 
-  return new LibrariesIoDiscoverer(http);
+  const libraries = new LibrariesIoDiscoverer(http, fixtures ? { apiKey: "fixture" } : {});
+  if (mode === "libraries") return libraries;
+
+  const sources: FederatedSource[] = [];
+  if (local.isAvailable()) sources.push({ name: "local-index", discoverer: local });
+  if (fixtures || librariesIoKeyAvailable()) {
+    sources.push({ name: "libraries.io", discoverer: libraries });
+  }
+
+  if (sources.length === 1) return sources[0].discoverer;
+  return new FederatedDiscoverer(sources);
 }
 
 /**
@@ -137,7 +153,7 @@ export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDepen
 
   return {
     discoverer: ecosystem === "npm"
-      ? new HttpDiscoverer(http)
+      ? new FederatedDiscoverer([{ name: "npm-registry", discoverer: new HttpDiscoverer(http) }])
       : pypiDiscoverer(http, fixtures, options.pypiIndexPath),
     enricher: new HttpEnricher(http, undefined, ecosystem),
     fitScorer,
