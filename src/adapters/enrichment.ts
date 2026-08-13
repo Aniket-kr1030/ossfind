@@ -331,9 +331,7 @@ export class HttpEnricher implements Enricher {
       sources: {
         // A successful OSV response containing no advisories is positive
         // evidence; a failed request is not equivalent to an empty result.
-        osv: osvResult.status === "failed"
-          ? "failed"
-          : isRecord(osv) && Array.isArray(osv.vulns) ? "ok" : "missing",
+        osv: osvResult.status === "failed" ? "failed" : "ok",
         license: ecosystemsResult.status === "failed" ? "failed" : license ? "ok" : "missing",
         scorecard: !scorecardUrl
           ? "missing"

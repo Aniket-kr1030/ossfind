@@ -6,6 +6,7 @@ import {
 } from "../contracts/index.js";
 import { createFixtureHttpClient } from "../http/fixture-client.js";
 import type { HttpClient } from "../http/client.js";
+import { WeightedRanker } from "../ranking/rank.js";
 import { HttpEnricher } from "./enrichment.js";
 
 function osvClient(latestVersion: string, vulns: unknown[]): HttpClient {
@@ -153,14 +154,45 @@ describe("HttpEnricher", () => {
     expect(bundle.vulnerabilities).toEqual([]);
   });
 
-  it("treats a malformed successful OSV response as missing rather than clean evidence", async () => {
-    const malformedOsv: HttpClient = async (url) => {
+  it("treats a successful empty OSV response as clean evidence that can ship", async () => {
+    const emptyOsv: HttpClient = async (url) => {
       if (url.includes("api.osv.dev")) return { ok: true, status: 200, json: async () => ({}) };
-      if (url.includes("packages.ecosyste.ms")) return { ok: true, status: 200, json: async () => ({ normalized_licenses: ["MIT"] }) };
+      if (url.includes("packages.ecosyste.ms")) {
+        return { ok: true, status: 200, json: async () => ({
+          normalized_licenses: ["MIT"], latest_release_number: "1.0.0",
+        }) };
+      }
+      if (url.includes("/projects/")) {
+        return { ok: true, status: 200, json: async () => ({ scorecard: { overallScore: 10, checks: [] } }) };
+      }
+      return { ok: true, status: 200, json: async () => ({ versions: [] }) };
+    };
+    const component = candidate("test-package", "https://github.com/example/test-package");
+    const bundle = await new HttpEnricher(emptyOsv).enrich(component);
+
+    expect(bundle.sources.osv).toBe("ok");
+    expect(bundle.vulnerabilities).toEqual([]);
+
+    const [scored] = new WeightedRanker({ projectLicense: "MIT" }).rank(
+      "test query",
+      [{ candidate: component, bundle }],
+      [{ id: component.id, fitScore: 1, rationale: "ideal fit" }],
+    );
+    expect(scored.verdict).toBe("ship");
+    expect(scored.reasons).not.toContain("OSV vulnerability data unavailable — security evidence unverified.");
+  });
+
+  it("does not mark a successful OSV response missing when its vulns field is absent", async () => {
+    const emptyOsv: HttpClient = async (url) => {
+      if (url.includes("api.osv.dev")) return { ok: true, status: 200, json: async () => ({}) };
       return { ok: true, status: 200, json: async () => ({}) };
     };
-    const bundle = await new HttpEnricher(malformedOsv).enrich(candidate("test-package", "https://github.com/example/test-package"));
 
-    expect(bundle.sources.osv).toBe("missing");
+    const bundle = await new HttpEnricher(emptyOsv).enrich(
+      candidate("test-package", "https://github.com/example/test-package"),
+    );
+
+    expect(bundle.sources.osv).toBe("ok");
+    expect(bundle.vulnerabilities).toEqual([]);
   });
 });
