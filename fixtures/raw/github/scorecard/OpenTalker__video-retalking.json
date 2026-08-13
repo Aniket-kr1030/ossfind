@@ -1,0 +1,11 @@
+{
+  "projectKey": {
+    "id": "github.com/opentalker/video-retalking"
+  },
+  "openIssuesCount": 215,
+  "starsCount": 7276,
+  "forksCount": 1051,
+  "license": "Apache-2.0",
+  "description": "[SIGGRAPH Asia 2022] VideoReTalking: Audio-based Lip Synchronization for Talking Head Video Editing In the Wild",
+  "homepage": "https://opentalker.github.io/video-retalking/"
+}

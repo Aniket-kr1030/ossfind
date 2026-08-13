@@ -1,0 +1,244 @@
+{
+  "projectKey": {
+    "id": "github.com/zulko/moviepy"
+  },
+  "openIssuesCount": 92,
+  "starsCount": 14845,
+  "forksCount": 2089,
+  "license": "MIT",
+  "description": "Video editing with Python",
+  "homepage": "https://zulko.github.io/moviepy/",
+  "scorecard": {
+    "date": "2026-08-03T00:00:00Z",
+    "repository": {
+      "name": "github.com/Zulko/moviepy",
+      "commit": "7ffa4f00376237137a25fe1c777355c37753e9af"
+    },
+    "scorecard": {
+      "version": "v5.5.1-0.20260715062425-64febf8c5229",
+      "commit": "64febf8c5229a2a65d09c6b543677b28a51abb09"
+    },
+    "checks": [
+      {
+        "name": "Maintained",
+        "documentation": {
+          "shortDescription": "Determines if the project is \"actively maintained\".",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#maintained"
+        },
+        "score": 0,
+        "reason": "0 commit(s) and 0 issue activity found in the last 90 days -- score normalized to 0",
+        "details": []
+      },
+      {
+        "name": "Code-Review",
+        "documentation": {
+          "shortDescription": "Determines if the project requires human code review before pull requests (aka merge requests) are merged.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#code-review"
+        },
+        "score": 3,
+        "reason": "Found 4/12 approved changesets -- score normalized to 3",
+        "details": []
+      },
+      {
+        "name": "Dangerous-Workflow",
+        "documentation": {
+          "shortDescription": "Determines if the project's GitHub Action workflows avoid dangerous patterns.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#dangerous-workflow"
+        },
+        "score": 10,
+        "reason": "no dangerous workflow patterns detected",
+        "details": []
+      },
+      {
+        "name": "Token-Permissions",
+        "documentation": {
+          "shortDescription": "Determines if the project's workflows follow the principle of least privilege.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#token-permissions"
+        },
+        "score": 0,
+        "reason": "detected GitHub workflow tokens with excessive permissions",
+        "details": [
+          "Warn: no topLevel permission defined: .github/workflows/build-docs.yml:1",
+          "Warn: no topLevel permission defined: .github/workflows/codeql-analysis.yml:1",
+          "Warn: no topLevel permission defined: .github/workflows/formatting_linting.yml:1",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/publish.yml:10",
+          "Warn: no topLevel permission defined: .github/workflows/test_suite.yml:1",
+          "Warn: no topLevel permission defined: .github/workflows/update-version.yml:1",
+          "Info: no jobLevel write permissions found"
+        ]
+      },
+      {
+        "name": "CII-Best-Practices",
+        "documentation": {
+          "shortDescription": "Determines if the project has an OpenSSF (formerly CII) Best Practices Badge.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#cii-best-practices"
+        },
+        "score": 0,
+        "reason": "no effort to earn an OpenSSF best practices badge detected",
+        "details": []
+      },
+      {
+        "name": "Binary-Artifacts",
+        "documentation": {
+          "shortDescription": "Determines if the project has generated executable (binary) artifacts in the source repository.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#binary-artifacts"
+        },
+        "score": 10,
+        "reason": "no binaries found in the repo",
+        "details": []
+      },
+      {
+        "name": "Security-Policy",
+        "documentation": {
+          "shortDescription": "Determines if the project has published a security policy.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#security-policy"
+        },
+        "score": 0,
+        "reason": "security policy file not detected",
+        "details": [
+          "Warn: no security policy file detected",
+          "Warn: no security file to analyze",
+          "Warn: no security file to analyze",
+          "Warn: no security file to analyze"
+        ]
+      },
+      {
+        "name": "License",
+        "documentation": {
+          "shortDescription": "Determines if the project has defined a license.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#license"
+        },
+        "score": 10,
+        "reason": "license file detected",
+        "details": [
+          "Info: project has a license file: LICENCE.txt:0",
+          "Info: FSF or OSI recognized license: MIT License: LICENCE.txt:0"
+        ]
+      },
+      {
+        "name": "Fuzzing",
+        "documentation": {
+          "shortDescription": "Determines if the project uses fuzzing.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#fuzzing"
+        },
+        "score": 0,
+        "reason": "project is not fuzzed",
+        "details": [
+          "Warn: no fuzzer integrations found"
+        ]
+      },
+      {
+        "name": "Packaging",
+        "documentation": {
+          "shortDescription": "Determines if the project is published as a package that others can easily download, install, easily update, and uninstall.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#packaging"
+        },
+        "score": -1,
+        "reason": "packaging workflow not detected",
+        "details": [
+          "Warn: no GitHub/GitLab publishing workflow detected."
+        ]
+      },
+      {
+        "name": "Signed-Releases",
+        "documentation": {
+          "shortDescription": "Determines if the project cryptographically signs release artifacts.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#signed-releases"
+        },
+        "score": -1,
+        "reason": "no releases found",
+        "details": []
+      },
+      {
+        "name": "Pinned-Dependencies",
+        "documentation": {
+          "shortDescription": "Determines if the project has declared and pinned the dependencies of its build process.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#pinned-dependencies"
+        },
+        "score": 0,
+        "reason": "dependency not pinned by hash detected -- score normalized to 0",
+        "details": [
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build-docs.yml:19: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/build-docs.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/build-docs.yml:22: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/build-docs.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/build-docs.yml:56: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/build-docs.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/codeql-analysis.yml:27: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/codeql-analysis.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/codeql-analysis.yml:31: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/codeql-analysis.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/codeql-analysis.yml:42: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/codeql-analysis.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/codeql-analysis.yml:56: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/codeql-analysis.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/formatting_linting.yml:23: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/formatting_linting.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/formatting_linting.yml:27: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/formatting_linting.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/formatting_linting.yml:36: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/formatting_linting.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/formatting_linting.yml:40: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/formatting_linting.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/formatting_linting.yml:57: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/formatting_linting.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/formatting_linting.yml:61: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/formatting_linting.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/publish.yml:19: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/publish.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/publish.yml:21: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/publish.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/publish.yml:33: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/publish.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/test_suite.yml:27: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/test_suite.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/test_suite.yml:28: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/test_suite.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/test_suite.yml:64: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/test_suite.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/test_suite.yml:66: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/test_suite.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/test_suite.yml:91: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/test_suite.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/test_suite.yml:94: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/test_suite.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/update-version.yml:13: update your workflow using https://app.stepsecurity.io/secureworkflow/Zulko/moviepy/update-version.yml/master?enable=pin",
+          "Warn: containerImage not pinned by hash: Dockerfile:1: pin your Docker image by updating python:3 to python:3@sha256:5f1cdbcab9a50594a79502dd73e885456d2a2fc31f1a1fa18484815b37ee9152",
+          "Warn: pipCommand not pinned by hash: Dockerfile:16",
+          "Warn: pipCommand not pinned by hash: Dockerfile:19",
+          "Warn: pipCommand not pinned by hash: Dockerfile:19",
+          "Warn: pipCommand not pinned by hash: Dockerfile:19",
+          "Warn: pipCommand not pinned by hash: Dockerfile:19",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build-docs.yml:31",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build-docs.yml:32",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build-docs.yml:45",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build-docs.yml:46",
+          "Warn: pipCommand not pinned by hash: .github/workflows/build-docs.yml:47",
+          "Warn: pipCommand not pinned by hash: .github/workflows/formatting_linting.yml:45",
+          "Warn: pipCommand not pinned by hash: .github/workflows/formatting_linting.yml:46",
+          "Warn: pipCommand not pinned by hash: .github/workflows/formatting_linting.yml:66",
+          "Warn: pipCommand not pinned by hash: .github/workflows/formatting_linting.yml:67",
+          "Warn: pipCommand not pinned by hash: .github/workflows/publish.yml:27",
+          "Warn: pipCommand not pinned by hash: .github/workflows/test_suite.yml:106",
+          "Warn: pipCommand not pinned by hash: .github/workflows/test_suite.yml:111",
+          "Warn: pipCommand not pinned by hash: .github/workflows/test_suite.yml:112",
+          "Warn: pipCommand not pinned by hash: .github/workflows/test_suite.yml:117",
+          "Warn: pipCommand not pinned by hash: .github/workflows/test_suite.yml:125",
+          "Warn: pipCommand not pinned by hash: .github/workflows/test_suite.yml:126",
+          "Warn: pipCommand not pinned by hash: .github/workflows/test_suite.yml:127",
+          "Warn: pipCommand not pinned by hash: .github/workflows/test_suite.yml:128",
+          "Info:   0 out of  19 GitHub-owned GitHubAction dependencies pinned",
+          "Info:   0 out of   4 third-party GitHubAction dependencies pinned",
+          "Info:   0 out of  23 pipCommand dependencies pinned",
+          "Info:   0 out of   1 containerImage dependencies pinned"
+        ]
+      },
+      {
+        "name": "Branch-Protection",
+        "documentation": {
+          "shortDescription": "Determines if the default and release branches are protected with GitHub's branch protection settings.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#branch-protection"
+        },
+        "score": 0,
+        "reason": "branch protection not enabled on development/release branches",
+        "details": [
+          "Warn: branch protection not enabled for branch 'master'",
+          "Warn: branch protection not enabled for branch 'v1.0.x'"
+        ]
+      },
+      {
+        "name": "SAST",
+        "documentation": {
+          "shortDescription": "Determines if the project uses static code analysis.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#sast"
+        },
+        "score": 9,
+        "reason": "SAST tool detected but not run on all commits",
+        "details": [
+          "Info: SAST configuration detected: CodeQL",
+          "Warn: 22 commits out of 26 are checked with a SAST tool"
+        ]
+      }
+    ],
+    "overallScore": 3.7,
+    "metadata": []
+  }
+}

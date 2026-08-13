@@ -1,0 +1,357 @@
+{
+  "projectKey": {
+    "id": "github.com/huggingface/diffusers"
+  },
+  "openIssuesCount": 1348,
+  "starsCount": 34271,
+  "forksCount": 7229,
+  "license": "Apache-2.0",
+  "description": "🤗 Diffusers: State-of-the-art diffusion models for image, video, and audio generation in PyTorch.",
+  "homepage": "https://huggingface.co/docs/diffusers",
+  "scorecard": {
+    "date": "2026-08-03T00:00:00Z",
+    "repository": {
+      "name": "github.com/huggingface/diffusers",
+      "commit": "09514d4892ebc6d48ef24a868d9513963bc7e0ff"
+    },
+    "scorecard": {
+      "version": "v5.5.1-0.20260715062425-64febf8c5229",
+      "commit": "64febf8c5229a2a65d09c6b543677b28a51abb09"
+    },
+    "checks": [
+      {
+        "name": "Maintained",
+        "documentation": {
+          "shortDescription": "Determines if the project is \"actively maintained\".",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#maintained"
+        },
+        "score": 10,
+        "reason": "30 commit(s) and 5 issue activity found in the last 90 days -- score normalized to 10",
+        "details": []
+      },
+      {
+        "name": "Security-Policy",
+        "documentation": {
+          "shortDescription": "Determines if the project has published a security policy.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#security-policy"
+        },
+        "score": 10,
+        "reason": "security policy file detected",
+        "details": [
+          "Info: security policy file detected: SECURITY.md:1",
+          "Info: Found linked content: SECURITY.md:1",
+          "Info: Found disclosure, vulnerability, and/or timelines in security policy: SECURITY.md:1",
+          "Info: Found text in security policy: SECURITY.md:1"
+        ]
+      },
+      {
+        "name": "Code-Review",
+        "documentation": {
+          "shortDescription": "Determines if the project requires human code review before pull requests (aka merge requests) are merged.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#code-review"
+        },
+        "score": 9,
+        "reason": "Found 29/30 approved changesets -- score normalized to 9",
+        "details": []
+      },
+      {
+        "name": "Dangerous-Workflow",
+        "documentation": {
+          "shortDescription": "Determines if the project's GitHub Action workflows avoid dangerous patterns.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#dangerous-workflow"
+        },
+        "score": 0,
+        "reason": "dangerous workflow patterns detected",
+        "details": [
+          "Warn: untrusted code checkout '${{ github.event.pull_request.base.sha }}': .github/workflows/pr_labeler.yml:22"
+        ]
+      },
+      {
+        "name": "CII-Best-Practices",
+        "documentation": {
+          "shortDescription": "Determines if the project has an OpenSSF (formerly CII) Best Practices Badge.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#cii-best-practices"
+        },
+        "score": 2,
+        "reason": "badge detected: InProgress",
+        "details": []
+      },
+      {
+        "name": "License",
+        "documentation": {
+          "shortDescription": "Determines if the project has defined a license.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#license"
+        },
+        "score": 10,
+        "reason": "license file detected",
+        "details": [
+          "Info: project has a license file: LICENSE:0",
+          "Info: FSF or OSI recognized license: Apache License 2.0: LICENSE:0"
+        ]
+      },
+      {
+        "name": "Token-Permissions",
+        "documentation": {
+          "shortDescription": "Determines if the project's workflows follow the principle of least privilege.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#token-permissions"
+        },
+        "score": 0,
+        "reason": "detected GitHub workflow tokens with excessive permissions",
+        "details": [
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/build_docker_images.yml:30",
+          "Info: jobLevel 'pull-requests' permission set to 'read': .github/workflows/build_docker_images.yml:31",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/build_docker_images.yml:93",
+          "Warn: jobLevel 'security-events' permission set to 'write': .github/workflows/codeql.yml:15",
+          "Info: jobLevel 'packages' permission set to 'read': .github/workflows/codeql.yml:16",
+          "Info: jobLevel 'actions' permission set to 'read': .github/workflows/codeql.yml:17",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/codeql.yml:18",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/pr_comment_gpu_tests.yml:122",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/pr_link_issue_reminder.yml:16",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/benchmark.yml:9",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/build_docker_images.yml:18",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/build_documentation.yml:16",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/build_pr_documentation.yml:15",
+          "Warn: topLevel 'contents' permission set to 'write': .github/workflows/claude_review.yml:10",
+          "Info: topLevel 'issues' permission set to 'read': .github/workflows/claude_review.yml:12",
+          "Warn: no topLevel permission defined: .github/workflows/codeql.yml:1",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/issue_labeler.yml:8",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/mirror_community_pipeline.yml:24",
+          "Warn: no topLevel permission defined: .github/workflows/new_model_request_reply.yml:1",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/nightly_tests.yml:9",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/notify_slack_about_release.yml:9",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/pr_comment_gpu_tests.yml:14",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/pr_dependency_test.yml:19",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/pr_labeler.yml:8",
+          "Warn: no topLevel permission defined: .github/workflows/pr_link_issue_reminder.yml:1",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/pr_modular_tests.yml:29",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/pr_style_bot.yml:9",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/pr_test_fetcher.yml:6",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/pr_tests.yml:20",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/pr_tests_gpu.yml:4",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/pr_torch_dependency_test.yml:19",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/push_tests.yml:14",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/push_tests_fast.yml:17",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/push_tests_mps.yml:7",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/pypi_publish.yaml:12",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/release_tests_fast.yml:14",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/serge_review.yml:26",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/ssh-pr-runner.yml:11",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/ssh-runner.yml:19",
+          "Warn: no topLevel permission defined: .github/workflows/stale.yml:1",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/trufflehog.yml:7",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/typos.yml:7",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/update_metadata.yml:11",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/upload_pr_documentation.yml:10"
+        ]
+      },
+      {
+        "name": "Binary-Artifacts",
+        "documentation": {
+          "shortDescription": "Determines if the project has generated executable (binary) artifacts in the source repository.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#binary-artifacts"
+        },
+        "score": 10,
+        "reason": "no binaries found in the repo",
+        "details": []
+      },
+      {
+        "name": "Branch-Protection",
+        "documentation": {
+          "shortDescription": "Determines if the default and release branches are protected with GitHub's branch protection settings.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#branch-protection"
+        },
+        "score": -1,
+        "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+        "details": []
+      },
+      {
+        "name": "Signed-Releases",
+        "documentation": {
+          "shortDescription": "Determines if the project cryptographically signs release artifacts.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#signed-releases"
+        },
+        "score": -1,
+        "reason": "no releases found",
+        "details": []
+      },
+      {
+        "name": "Fuzzing",
+        "documentation": {
+          "shortDescription": "Determines if the project uses fuzzing.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#fuzzing"
+        },
+        "score": 0,
+        "reason": "project is not fuzzed",
+        "details": [
+          "Warn: no fuzzer integrations found"
+        ]
+      },
+      {
+        "name": "Packaging",
+        "documentation": {
+          "shortDescription": "Determines if the project is published as a package that others can easily download, install, easily update, and uninstall.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#packaging"
+        },
+        "score": 10,
+        "reason": "packaging workflow detected",
+        "details": [
+          "Info: Project packages its releases by way of GitHub Actions.: .github/workflows/build_docker_images.yml:87"
+        ]
+      },
+      {
+        "name": "Pinned-Dependencies",
+        "documentation": {
+          "shortDescription": "Determines if the project has declared and pinned the dependencies of its build process.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#pinned-dependencies"
+        },
+        "score": 2,
+        "reason": "dependency not pinned by hash detected -- score normalized to 2",
+        "details": [
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/mirror_community_pipeline.yml:72: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/mirror_community_pipeline.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/mirror_community_pipeline.yml:78: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/mirror_community_pipeline.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/notify_slack_about_release.yml:16: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/notify_slack_about_release.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/notify_slack_about_release.yml:19: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/notify_slack_about_release.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_comment_gpu_tests.yml:128: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_comment_gpu_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_comment_gpu_tests.yml:169: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_comment_gpu_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_dependency_test.yml:25: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_dependency_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_dependency_test.yml:27: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_dependency_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_modular_tests.yml:48: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_modular_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_modular_tests.yml:50: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_modular_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_modular_tests.yml:68: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_modular_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_modular_tests.yml:70: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_modular_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_modular_tests.yml:96: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_modular_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_modular_tests.yml:126: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_modular_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_modular_tests.yml:154: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_modular_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_test_fetcher.yml:34: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_test_fetcher.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_test_fetcher.yml:48: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_test_fetcher.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_test_fetcher.yml:89: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_test_fetcher.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_test_fetcher.yml:115: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_test_fetcher.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_test_fetcher.yml:144: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_test_fetcher.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_test_fetcher.yml:170: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_test_fetcher.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests.yml:197: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests.yml:225: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests.yml:248: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests.yml:284: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests.yml:43: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests.yml:45: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests.yml:63: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests.yml:65: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests.yml:120: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests.yml:165: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests_gpu.yml:64: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests_gpu.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests_gpu.yml:66: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests_gpu.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests_gpu.yml:96: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests_gpu.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests_gpu.yml:114: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests_gpu.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests_gpu.yml:134: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests_gpu.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests_gpu.yml:184: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests_gpu.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests_gpu.yml:207: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests_gpu.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests_gpu.yml:253: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests_gpu.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests_gpu.yml:269: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests_gpu.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests_gpu.yml:301: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests_gpu.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests_gpu.yml:44: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests_gpu.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_tests_gpu.yml:46: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_tests_gpu.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_torch_dependency_test.yml:25: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_torch_dependency_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr_torch_dependency_test.yml:27: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/pr_torch_dependency_test.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests.yml:41: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests.yml:59: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests.yml:79: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests.yml:111: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests.yml:133: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests.yml:168: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests.yml:185: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests.yml:212: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests.yml:229: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests.yml:254: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests.yml:270: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests.yml:301: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests_fast.yml:60: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests_fast.yml:94: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests_mps.yml:32: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests_mps.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/push_tests_mps.yml:75: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/push_tests_mps.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:79: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:111: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:133: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:168: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:185: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:226: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:243: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:270: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:287: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:313: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:330: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:363: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:40: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release_tests_fast.yml:59: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/release_tests_fast.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ssh-runner.yml:41: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/ssh-runner.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ssh-runner.yml:50: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/ssh-runner.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/stale.yml:18: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/stale.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/stale.yml:21: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/stale.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/update_metadata.yml:21: update your workflow using https://app.stepsecurity.io/secureworkflow/huggingface/diffusers/update_metadata.yml/main?enable=pin",
+          "Warn: containerImage not pinned by hash: docker/diffusers-doc-builder/Dockerfile:1: pin your Docker image by updating python:3.10-slim to python:3.10-slim@sha256:c1e4e6c01eb489c422288b2de34b0761ca316f7a2d98e2c33f47659a73ed108a",
+          "Warn: containerImage not pinned by hash: docker/diffusers-onnxruntime-cpu/Dockerfile:1: pin your Docker image by updating ubuntu:20.04 to ubuntu:20.04@sha256:8feb4d8ca5354def3d8fce243717141ce31e2c428701f6682bd2fafe15388214",
+          "Warn: containerImage not pinned by hash: docker/diffusers-onnxruntime-cuda/Dockerfile:1: pin your Docker image by updating nvidia/cuda:12.1.0-runtime-ubuntu20.04 to nvidia/cuda:12.1.0-runtime-ubuntu20.04@sha256:c1869c30f46fff478a37ed58d9dace7e08519541274f03424d0b78bd35b2c73a",
+          "Warn: containerImage not pinned by hash: docker/diffusers-pytorch-cpu/Dockerfile:1: pin your Docker image by updating python:3.10-slim to python:3.10-slim@sha256:c1e4e6c01eb489c422288b2de34b0761ca316f7a2d98e2c33f47659a73ed108a",
+          "Warn: containerImage not pinned by hash: docker/diffusers-pytorch-cuda/Dockerfile:1: pin your Docker image by updating nvidia/cuda:12.9.1-runtime-ubuntu24.04 to nvidia/cuda:12.9.1-runtime-ubuntu24.04@sha256:1287141d283b8f06f45681b56a48a85791398c615888b1f96bfb9fc981392d98",
+          "Warn: containerImage not pinned by hash: docker/diffusers-pytorch-minimum-cuda/Dockerfile:1: pin your Docker image by updating nvidia/cuda:12.1.0-runtime-ubuntu20.04 to nvidia/cuda:12.1.0-runtime-ubuntu20.04@sha256:c1869c30f46fff478a37ed58d9dace7e08519541274f03424d0b78bd35b2c73a",
+          "Warn: containerImage not pinned by hash: docker/diffusers-pytorch-xformers-cuda/Dockerfile:1: pin your Docker image by updating nvidia/cuda:12.9.1-runtime-ubuntu24.04 to nvidia/cuda:12.9.1-runtime-ubuntu24.04@sha256:1287141d283b8f06f45681b56a48a85791398c615888b1f96bfb9fc981392d98",
+          "Warn: pipCommand not pinned by hash: docker/diffusers-doc-builder/Dockerfile:23",
+          "Warn: pipCommand not pinned by hash: docker/diffusers-onnxruntime-cpu/Dockerfile:29-47",
+          "Warn: pipCommand not pinned by hash: docker/diffusers-pytorch-cpu/Dockerfile:21",
+          "Warn: downloadThenRun not pinned by hash: docker/diffusers-pytorch-cuda/Dockerfile:27",
+          "Warn: downloadThenRun not pinned by hash: docker/diffusers-pytorch-minimum-cuda/Dockerfile:30",
+          "Warn: downloadThenRun not pinned by hash: docker/diffusers-pytorch-xformers-cuda/Dockerfile:27",
+          "Warn: downloadThenRun not pinned by hash: .github/workflows/build_pr_documentation.yml:32",
+          "Warn: pipCommand not pinned by hash: .github/workflows/issue_labeler.yml:18",
+          "Warn: pipCommand not pinned by hash: .github/workflows/mirror_community_pipeline.yml:83",
+          "Warn: pipCommand not pinned by hash: .github/workflows/mirror_community_pipeline.yml:84",
+          "Warn: pipCommand not pinned by hash: .github/workflows/mirror_community_pipeline.yml:103",
+          "Warn: pipCommand not pinned by hash: .github/workflows/mirror_community_pipeline.yml:108",
+          "Warn: pipCommand not pinned by hash: .github/workflows/notify_slack_about_release.yml:27",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_dependency_test.yml:32",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_dependency_test.yml:33",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_link_issue_reminder.yml:31",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_modular_tests.yml:55",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_modular_tests.yml:56",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_modular_tests.yml:75",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_modular_tests.yml:76",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_test_fetcher.yml:150",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_tests.yml:50",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_tests.yml:51",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_tests.yml:70",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_tests.yml:71",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_tests_gpu.yml:51",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_tests_gpu.yml:52",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_tests_gpu.yml:71",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_tests_gpu.yml:72",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_torch_dependency_test.yml:32",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pr_torch_dependency_test.yml:33",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pypi_publish.yaml:28",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pypi_publish.yaml:29",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pypi_publish.yaml:30",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pypi_publish.yaml:37",
+          "Warn: pipCommand not pinned by hash: .github/workflows/pypi_publish.yaml:45",
+          "Warn: pipCommand not pinned by hash: .github/workflows/stale.yml:27",
+          "Info:  39 out of 118 GitHub-owned GitHubAction dependencies pinned",
+          "Info:  16 out of  17 third-party GitHubAction dependencies pinned",
+          "Info:   1 out of  34 pipCommand dependencies pinned",
+          "Info:   0 out of   4 downloadThenRun dependencies pinned",
+          "Info:   0 out of   7 containerImage dependencies pinned"
+        ]
+      },
+      {
+        "name": "SAST",
+        "documentation": {
+          "shortDescription": "Determines if the project uses static code analysis.",
+          "url": "https://github.com/ossf/scorecard/blob/64febf8c5229a2a65d09c6b543677b28a51abb09/docs/checks.md#sast"
+        },
+        "score": 0,
+        "reason": "SAST tool is not run on all commits -- score normalized to 0",
+        "details": [
+          "Warn: 0 commits out of 30 are checked with a SAST tool"
+        ]
+      }
+    ],
+    "overallScore": 5.1,
+    "metadata": []
+  }
+}
