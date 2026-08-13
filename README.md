@@ -30,12 +30,21 @@ OSSFIND_FIXTURES=1 npm run mcp    # stdio MCP server exposing `search_components
 
 Drop `OSSFIND_FIXTURES=1` to hit live suppliers (npm registry, ecosyste.ms, deps.dev, OSV).
 
-## Ecosystems (npm + PyPI)
+## Ecosystems (npm + PyPI + GitHub)
 
-ossfind searches **npm** (default) and **PyPI**. Pick the ecosystem with the web/MCP selector, the
-`ecosystem` MCP tool argument, or `&ecosystem=pypi` on `/api/search`.
+ossfind searches **npm** (default), **PyPI**, and **GitHub** repositories. Pick the ecosystem with the
+web/MCP selector, the `ecosystem` MCP tool argument, or `&ecosystem=github` on `/api/search`.
+
+Discovery is **federated**: a `FederatedDiscoverer` composes multiple source adapters per query
+(parallel, per-source error isolation + timeouts, results merged and deduped by id). The safety-ranking
+layer is the same for every source — ossfind owns the ranking, not the corpus. GitHub is what surfaces
+AI-model repos (diffusers, CogVideo, …) that aren't on any package registry.
 
 - **npm** needs no key — discovery uses the npm registry search API.
+- **GitHub** uses the repo search API. A raw repo's dependency CVEs can't be verified the way a
+  published package's can, so **GitHub components fail-closed to at most "caution"** (never "ship");
+  license (SPDX) and OpenSSF health are still enriched and gated. Set an optional `GITHUB_TOKEN` in
+  `.env.local` for higher rate limits.
 - **PyPI** discovery uses a **self-hosted local index** by default (no key, no third-party service).
   Build/refresh it once:
   ```
@@ -115,11 +124,12 @@ each proven to **reject a known-bad input** (not just accept a good one):
   `@huggingface/transformers`, mean-pooled, cached per package under `.cache/embeddings/`) ranks by
   meaning. Fixture/test mode uses deterministic TF-IDF so tests stay offline and exact. Force either
   with `OSSFIND_FIT=embeddings|tfidf`; live falls back to TF-IDF if the model can't load.
-- Ecosystems: **npm and PyPI**. PyPI discovery is self-hosted (local FTS5 index, no key) with
-  libraries.io as fallback; npm uses the registry search. Other registries (Cargo, Go, Maven — all
-  supported by deps.dev/OSV) are the next ticket.
-- The local index is v1: lexical recall (FTS5/BM25) + semantic **rerank**. Full semantic *recall*
-  (embedding the whole corpus into a vector index) and larger corpus coverage are future work; the
-  default corpus is the top-N PyPI packages by downloads.
+- Ecosystems: **npm, PyPI, and GitHub**, via a federated discovery layer. Discovery composes existing
+  search sources (registry APIs, a self-hosted PyPI index, libraries.io, GitHub) — ossfind owns the
+  safety ranking, not the corpus. More sources (Hugging Face, Cargo/Go/Maven) are thin adapters away.
+- GitHub repo components fail-closed to "caution" (dependency-CVE data isn't available for a raw repo).
+- The self-hosted PyPI index is optional (one source in the federation): FTS5/BM25 recall + semantic
+  rerank, plus a stored-vector hybrid recall (`searchHybrid`). It does not scale to the full ~928k
+  corpus by API crawl — use ecosyste.ms bulk dumps + an ANN index for that (deliberately not built).
 - Bundled fixtures cover ~15 npm + 12 PyPI packages for offline tests/demo; live mode enriches any package.
 - License output is **guidance, not legal advice.**
