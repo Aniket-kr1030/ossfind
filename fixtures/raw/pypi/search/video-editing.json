@@ -1,0 +1,2776 @@
+[
+  {
+    "code_of_conduct_url": "https://github.com/CSOAI-ORG/video-editing-ai-mcp/blob/main/CODE_OF_CONDUCT.md",
+    "contributions_count": 1,
+    "contribution_guidelines_url": "https://github.com/CSOAI-ORG/video-editing-ai-mcp/blob/main/CONTRIBUTING.md",
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Video Editing Ai MCP server. Tools: split scenes, generate subtitles, thumbnail data. Built by MEOK AI Labs.",
+    "forks": 0,
+    "funding_urls": [
+      "https://buy.stripe.com/aFa7sNcgAdQS0ZT1Uc8k91t",
+      "https://meok.ai/sponsor",
+      "https://nlnet.nl/propose"
+    ],
+    "homepage": "https://meok.ai",
+    "keywords": [
+      "ai",
+      "editing",
+      "mcp",
+      "meok",
+      "video",
+      "ai-agents",
+      "ai-governance",
+      "claude",
+      "mcp-server",
+      "meok-ai-labs",
+      "model-context-protocol"
+    ],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "1.0.10",
+    "latest_release_published_at": "2026-06-13T09:47:16.000Z",
+    "latest_stable_release_number": "1.0.10",
+    "latest_stable_release_published_at": "2026-06-13T09:47:16.000Z",
+    "license_normalized": true,
+    "licenses": "MIT License\n        \n        Copyright (c) 2026 MEOK AI Labs (meok.ai)\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.",
+    "name": "video-editing-ai-mcp",
+    "normalized_licenses": [
+      "Other"
+    ],
+    "package_manager_url": "https://pypi.org/project/video-editing-ai-mcp/",
+    "platform": "Pypi",
+    "rank": 8,
+    "repository_license": "Other",
+    "repository_status": null,
+    "repository_url": "https://github.com/CSOAI-ORG/video-editing-ai-mcp",
+    "security_policy_url": "https://github.com/CSOAI-ORG/video-editing-ai-mcp/security/policy",
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "1.0.0",
+        "published_at": "2026-05-07T02:01:53.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License\n        \n        Copyright (c) 2026 MEOK AI Labs (meok.ai)\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.2",
+        "published_at": "2026-05-28T05:21:48.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License\n        \n        Copyright (c) 2026 MEOK AI Labs (meok.ai)\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.3",
+        "published_at": "2026-06-02T21:00:51.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License\n        \n        Copyright (c) 2026 MEOK AI Labs (meok.ai)\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.4",
+        "published_at": "2026-06-03T13:56:25.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License\n        \n        Copyright (c) 2026 MEOK AI Labs (meok.ai)\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.5",
+        "published_at": "2026-06-07T10:00:56.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License\n        \n        Copyright (c) 2026 MEOK AI Labs (meok.ai)\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.6",
+        "published_at": "2026-06-07T10:52:37.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License\n        \n        Copyright (c) 2026 MEOK AI Labs (meok.ai)\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.7",
+        "published_at": "2026-06-08T05:52:35.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License\n        \n        Copyright (c) 2026 MEOK AI Labs (meok.ai)\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.8",
+        "published_at": "2026-06-10T04:45:52.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License\n        \n        Copyright (c) 2026 MEOK AI Labs (meok.ai)\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.9",
+        "published_at": "2026-06-10T04:54:47.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License\n        \n        Copyright (c) 2026 MEOK AI Labs (meok.ai)\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.10",
+        "published_at": "2026-06-13T09:47:16.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License\n        \n        Copyright (c) 2026 MEOK AI Labs (meok.ai)\n        \n        Permission is hereby granted, free of charge, to any person obtaining a copy\n        of this software and associated documentation files (the \"Software\"), to deal\n        in the Software without restriction, including without limitation the rights\n        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n        copies of the Software, and to permit persons to whom the Software is\n        furnished to do so, subject to the following conditions:\n        \n        The above copyright notice and this permission notice shall be included in all\n        copies or substantial portions of the Software.\n        \n        THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\n        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 3,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Video Jungle MCP Server for Adding, Analysing, Searching, and Editing Videos",
+    "forks": 29,
+    "funding_urls": [],
+    "homepage": "https://github.com/burningion/video-editing-mcp",
+    "keywords": [],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "0.1.59",
+    "latest_release_published_at": "2025-10-09T02:49:48.000Z",
+    "latest_stable_release_number": "0.1.59",
+    "latest_stable_release_published_at": "2025-10-09T02:49:48.000Z",
+    "license_normalized": false,
+    "licenses": "",
+    "name": "video-editor-mcp",
+    "normalized_licenses": [],
+    "package_manager_url": "https://pypi.org/project/video-editor-mcp/",
+    "platform": "Pypi",
+    "rank": 9,
+    "repository_license": null,
+    "repository_status": null,
+    "repository_url": "https://github.com/burningion/video-editing-mcp",
+    "security_policy_url": null,
+    "stars": 215,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1.0",
+        "published_at": "2024-12-07T16:02:04.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.1",
+        "published_at": "2024-12-07T16:12:07.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.2",
+        "published_at": "2024-12-07T16:20:59.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.3",
+        "published_at": "2024-12-07T16:30:23.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.4",
+        "published_at": "2024-12-07T16:44:14.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.5",
+        "published_at": "2024-12-07T17:55:32.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.6",
+        "published_at": "2024-12-09T02:03:35.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.7",
+        "published_at": "2024-12-15T19:16:16.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.8",
+        "published_at": "2024-12-16T18:22:35.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.9",
+        "published_at": "2024-12-16T18:23:31.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.10",
+        "published_at": "2024-12-17T02:16:29.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.11",
+        "published_at": "2024-12-17T18:05:20.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.12",
+        "published_at": "2024-12-17T22:02:21.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.13",
+        "published_at": "2024-12-17T22:03:54.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.16",
+        "published_at": "2025-04-18T17:02:49.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.17",
+        "published_at": "2025-05-06T14:24:13.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.18",
+        "published_at": "2025-05-06T16:10:03.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.19",
+        "published_at": "2025-05-06T16:25:10.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.20",
+        "published_at": "2025-05-07T13:34:17.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.21",
+        "published_at": "2025-05-13T02:03:58.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.22",
+        "published_at": "2025-05-13T02:05:55.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.23",
+        "published_at": "2025-05-13T02:36:37.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.24",
+        "published_at": "2025-05-13T12:23:21.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.25",
+        "published_at": "2025-05-13T16:56:59.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.26",
+        "published_at": "2025-05-15T15:07:13.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.27",
+        "published_at": "2025-05-21T17:31:38.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.28",
+        "published_at": "2025-05-21T17:37:24.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.29",
+        "published_at": "2025-05-21T17:54:50.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.30",
+        "published_at": "2025-05-23T18:32:40.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.31",
+        "published_at": "2025-05-28T14:53:47.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.32",
+        "published_at": "2025-05-29T14:24:38.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.33",
+        "published_at": "2025-05-30T02:10:35.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.34",
+        "published_at": "2025-05-30T13:06:11.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.35",
+        "published_at": "2025-06-04T15:24:03.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.36",
+        "published_at": "2025-06-04T16:30:42.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.37",
+        "published_at": "2025-07-11T19:31:52.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.38",
+        "published_at": "2025-07-11T20:14:20.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.39",
+        "published_at": "2025-07-11T20:42:55.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.40",
+        "published_at": "2025-07-12T15:00:02.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.41",
+        "published_at": "2025-07-12T15:04:50.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.42",
+        "published_at": "2025-07-12T15:17:04.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.43",
+        "published_at": "2025-07-12T15:25:35.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.44",
+        "published_at": "2025-07-12T15:30:25.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.45",
+        "published_at": "2025-07-12T15:34:43.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.46",
+        "published_at": "2025-07-12T23:30:08.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.47",
+        "published_at": "2025-07-22T03:10:27.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.48",
+        "published_at": "2025-08-12T17:12:43.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.49",
+        "published_at": "2025-08-12T20:43:41.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.50",
+        "published_at": "2025-08-13T01:57:46.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.52",
+        "published_at": "2025-08-25T02:18:37.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.53",
+        "published_at": "2025-08-31T02:29:56.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.54",
+        "published_at": "2025-09-10T13:49:53.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.55",
+        "published_at": "2025-09-12T12:57:19.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.56",
+        "published_at": "2025-10-04T18:02:28.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.57",
+        "published_at": "2025-10-05T14:57:33.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.58",
+        "published_at": "2025-10-07T02:30:56.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.59",
+        "published_at": "2025-10-09T02:49:48.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 2,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Command line tools for quick video editing.",
+    "forks": 11,
+    "funding_urls": [],
+    "homepage": "http://github.com/wkentaro/video-cli",
+    "keywords": [
+      "cli",
+      "command-line",
+      "python",
+      "video"
+    ],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "1.3.3",
+    "latest_release_published_at": "2022-02-20T18:31:16.000Z",
+    "latest_stable_release_number": "1.3.3",
+    "latest_stable_release_published_at": "2022-02-20T18:31:16.000Z",
+    "license_normalized": false,
+    "licenses": "MIT",
+    "name": "video-cli",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/video-cli/",
+    "platform": "Pypi",
+    "rank": 9,
+    "repository_license": null,
+    "repository_status": null,
+    "repository_url": "https://github.com/wkentaro/video-cli",
+    "security_policy_url": null,
+    "stars": 135,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1",
+        "published_at": "2020-03-26T17:48:11.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.1",
+        "published_at": "2020-03-26T17:49:28.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.0",
+        "published_at": "2020-03-28T01:50:18.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.3.0",
+        "published_at": "2020-03-29T05:55:50.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.4.0",
+        "published_at": "2020-03-30T10:19:19.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.4.0.post0",
+        "published_at": "2020-03-31T09:14:09.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.0",
+        "published_at": "2020-03-31T09:23:41.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.1",
+        "published_at": "2020-04-09T00:30:35.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.2",
+        "published_at": "2020-04-09T00:33:54.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.3",
+        "published_at": "2020-04-21T10:53:55.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.4",
+        "published_at": "2020-05-12T17:30:27.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.5",
+        "published_at": "2020-06-17T16:46:30.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.6",
+        "published_at": "2020-06-27T16:14:18.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.0",
+        "published_at": "2021-02-12T08:17:45.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.2.0",
+        "published_at": "2021-05-11T01:48:53.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.3.0",
+        "published_at": "2021-06-15T06:07:31.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.3.1",
+        "published_at": "2021-08-28T11:42:10.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.3.2",
+        "published_at": "2022-02-10T17:44:10.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.3.3",
+        "published_at": "2022-02-20T18:31:16.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 179,
+    "contribution_guidelines_url": "https://github.com/Zulko/moviepy/blob/master/CONTRIBUTING.md",
+    "dependent_repos_count": 417,
+    "dependents_count": 775,
+    "deprecation_reason": null,
+    "description": "Video editing with Python",
+    "forks": 2085,
+    "funding_urls": [],
+    "homepage": "https://zulko.github.io/moviepy/",
+    "keywords": [
+      "video",
+      "editing",
+      "audio",
+      "compositing",
+      "ffmpeg",
+      "animation",
+      "gif",
+      "hacktoberfest",
+      "python",
+      "video-editing",
+      "video-processing"
+    ],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "2.2.1",
+    "latest_release_published_at": "2025-05-21T19:31:50.000Z",
+    "latest_stable_release_number": "2.2.1",
+    "latest_stable_release_published_at": "2025-05-21T19:31:50.000Z",
+    "license_normalized": true,
+    "licenses": "MIT License",
+    "name": "moviepy",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/moviepy/",
+    "platform": "Pypi",
+    "rank": 21,
+    "repository_license": "MIT",
+    "repository_status": null,
+    "repository_url": "",
+    "security_policy_url": null,
+    "stars": 14836,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.2.1",
+        "published_at": "2013-09-17T07:13:38.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.1",
+        "published_at": "2013-09-17T18:29:43.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.2",
+        "published_at": "2013-09-17T18:50:33.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.3",
+        "published_at": "2013-09-17T19:03:09.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.4",
+        "published_at": "2013-09-17T19:06:00.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.5",
+        "published_at": "2013-09-17T19:16:42.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.6",
+        "published_at": "2013-09-17T21:22:28.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.6.1",
+        "published_at": "2013-09-19T16:19:07.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.6.2",
+        "published_at": "2013-10-01T19:00:46.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.6.3",
+        "published_at": "2013-10-11T21:25:51.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.6.4",
+        "published_at": "2013-12-20T20:19:53.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.6.5",
+        "published_at": "2014-01-23T21:17:34.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.6.7",
+        "published_at": "2014-01-23T21:23:15.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.6.8",
+        "published_at": "2014-01-24T20:48:14.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.6.9",
+        "published_at": "2014-01-25T21:10:36.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.6.91",
+        "published_at": "2014-01-25T23:03:32.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.6.92",
+        "published_at": "2014-01-26T17:29:09.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.6.93",
+        "published_at": "2014-02-01T20:23:53.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7",
+        "published_at": "2014-02-14T21:20:45.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.02",
+        "published_at": "2014-02-17T08:45:23.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.03",
+        "published_at": "2014-02-17T09:25:31.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.08",
+        "published_at": "2014-02-25T19:55:16.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.09",
+        "published_at": "2014-02-25T20:20:18.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.10",
+        "published_at": "2014-03-20T08:59:39.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.11",
+        "published_at": "2014-03-23T13:15:35.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.12",
+        "published_at": "2014-03-23T22:49:43.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.13",
+        "published_at": "2014-03-25T07:52:17.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.14",
+        "published_at": "2014-04-06T09:29:50.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.15",
+        "published_at": "2014-04-10T05:08:58.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.16",
+        "published_at": "2014-04-11T21:05:49.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.17",
+        "published_at": "2014-04-18T19:04:09.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.18",
+        "published_at": "2014-04-18T20:28:28.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.19",
+        "published_at": "2014-04-19T12:37:20.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.20",
+        "published_at": "2014-04-19T20:16:55.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.21",
+        "published_at": "2014-04-26T05:50:44.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.7.22",
+        "published_at": "2014-06-05T20:08:41.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.8",
+        "published_at": "2014-06-08T08:13:53.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.8.01",
+        "published_at": "2014-06-19T06:27:35.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.8.02",
+        "published_at": "2014-06-20T16:09:52.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.8.03",
+        "published_at": "2014-06-26T21:48:46.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.8.04",
+        "published_at": "2014-07-05T15:05:58.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.8.05",
+        "published_at": "2014-07-08T18:52:23.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.8.06",
+        "published_at": "2014-08-02T13:09:10.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.8.07",
+        "published_at": "2014-08-14T21:57:25.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.8.08",
+        "published_at": "2014-08-15T10:22:37.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.8.09",
+        "published_at": "2014-08-18T18:54:59.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.8.10",
+        "published_at": "2014-09-09T14:02:41.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.8.11",
+        "published_at": "2014-09-21T10:00:10.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.8.12",
+        "published_at": "2014-09-22T16:01:40.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.9",
+        "published_at": "2014-10-12T14:28:19.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.9.01",
+        "published_at": "2014-10-13T10:09:59.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.9.02",
+        "published_at": "2014-10-14T06:40:53.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.9.03",
+        "published_at": "2014-11-30T08:21:17.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.9.04",
+        "published_at": "2014-11-30T12:44:28.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.9.05",
+        "published_at": "2014-12-01T15:22:18.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1.9.07",
+        "published_at": "2014-12-07T15:11:54.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2",
+        "published_at": "2014-12-11T21:41:22.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2.01",
+        "published_at": "2014-12-15T08:39:53.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2.02",
+        "published_at": "2014-12-16T06:33:19.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2.03",
+        "published_at": "2014-12-28T09:25:21.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2.04",
+        "published_at": "2015-01-24T10:03:53.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2.05",
+        "published_at": "2015-01-31T11:16:37.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2.06",
+        "published_at": "2015-02-02T06:56:36.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2.07",
+        "published_at": "2015-02-02T08:32:53.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2.08",
+        "published_at": "2015-02-04T20:57:35.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2.09",
+        "published_at": "2015-02-09T18:42:40.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2.10",
+        "published_at": "2015-02-10T15:03:40.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2.11",
+        "published_at": "2015-02-11T18:42:52.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "see LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2.12",
+        "published_at": "2017-01-30T16:19:17.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2.13",
+        "published_at": "2017-02-15T14:23:20.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.3",
+        "published_at": "2017-04-05T03:43:24.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.3.1",
+        "published_at": "2017-04-05T03:50:01.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.3.2",
+        "published_at": "2017-04-13T12:28:19.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.3.3",
+        "published_at": "2018-04-17T23:20:46.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.3.4",
+        "published_at": "2018-04-22T18:11:22.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.3.5",
+        "published_at": "2018-05-31T20:43:49.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.3.6",
+        "published_at": "2018-12-16T19:38:15.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.4.0",
+        "published_at": "2018-12-16T19:46:30.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.0",
+        "published_at": "2019-02-14T01:10:56.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.1",
+        "published_at": "2019-10-01T19:13:16.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.2",
+        "published_at": "2020-03-26T10:51:14.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.3",
+        "published_at": "2020-05-07T16:27:46.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.0.0.dev1",
+        "published_at": "2020-06-04T10:25:05.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.0.0.dev2",
+        "published_at": "2020-10-05T00:26:29.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2",
+        "published_at": "2021-12-15T14:41:26.454Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "LICENSE.txt",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.0.0",
+        "published_at": "2024-11-20T05:21:11.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.1.0",
+        "published_at": "2024-11-24T23:45:06.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.1.1",
+        "published_at": "2024-11-25T04:33:19.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.1.2",
+        "published_at": "2025-01-10T11:54:12.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.2.0",
+        "published_at": "2025-05-21T14:13:51.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.2.1",
+        "published_at": "2025-05-21T19:31:50.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "MIT License",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 0,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "AMDV_VIDEO_EDITING is a Python package for video editing tasks, such as trimming, splitting, merging, and applying various effects to videos. This package aims to provide a simple and efficient interface for performing common video editing operations using the AMDV (Advanced Multimedia Data Visualization) library.",
+    "forks": 0,
+    "funding_urls": null,
+    "homepage": "https://github.com/AIFATS/AMDV_VIDEO_EDITHING.git",
+    "keywords": [
+      "python",
+      "video",
+      "stream",
+      "camera",
+      "sockets"
+    ],
+    "language": null,
+    "latest_download_url": null,
+    "latest_release_number": "1.0.1",
+    "latest_release_published_at": "2024-04-12T20:23:09.000Z",
+    "latest_stable_release_number": "1.0.1",
+    "latest_stable_release_published_at": "2024-04-12T20:23:09.000Z",
+    "license_normalized": true,
+    "licenses": "MIT License",
+    "name": "AMDV-VIDEO-EDITING",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/AMDV-VIDEO-EDITING/",
+    "platform": "Pypi",
+    "rank": 6,
+    "repository_license": null,
+    "repository_status": null,
+    "repository_url": "https://github.com/AIFATS/AMDV_VIDEO_EDITHING",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "1.0.0",
+        "published_at": "2024-04-12T20:09:49.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.1",
+        "published_at": "2024-04-12T20:23:09.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 3,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Video Jungle MCP Server for Adding, Analysing, Searching, and Editing Videos",
+    "forks": 29,
+    "funding_urls": [],
+    "homepage": "https://github.com/burningion/video-editing-mcp",
+    "keywords": [],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "0.1.62",
+    "latest_release_published_at": "2025-09-19T03:57:36.000Z",
+    "latest_stable_release_number": "0.1.62",
+    "latest_stable_release_published_at": "2025-09-19T03:57:36.000Z",
+    "license_normalized": false,
+    "licenses": "",
+    "name": "iflow-mcp_video-editor-mcp",
+    "normalized_licenses": [],
+    "package_manager_url": "https://pypi.org/project/iflow-mcp_video-editor-mcp/",
+    "platform": "Pypi",
+    "rank": 8,
+    "repository_license": null,
+    "repository_status": null,
+    "repository_url": "https://github.com/burningion/video-editing-mcp",
+    "security_policy_url": null,
+    "stars": 215,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1.55",
+        "published_at": "2025-09-18T09:07:42.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.56",
+        "published_at": "2025-09-18T09:14:19.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.57",
+        "published_at": "2025-09-18T09:42:35.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.61",
+        "published_at": "2025-09-19T02:41:01.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.62",
+        "published_at": "2025-09-19T03:57:36.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 1,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "NIRA Video Production MCP — professional video editing, grading, AI generation, and delivery (55 tools)",
+    "forks": 0,
+    "funding_urls": [],
+    "homepage": "https://github.com/pachote/nira-video-mcp",
+    "keywords": [
+      "ai-video",
+      "claude",
+      "color-grading",
+      "ffmpeg",
+      "mcp",
+      "production",
+      "video",
+      "ai-video-generation",
+      "video-production"
+    ],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "1.0.3",
+    "latest_release_published_at": "2026-05-28T02:12:19.000Z",
+    "latest_stable_release_number": "1.0.3",
+    "latest_stable_release_published_at": "2026-05-28T02:12:19.000Z",
+    "license_normalized": false,
+    "licenses": "MIT",
+    "name": "nira-video-mcp",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/nira-video-mcp/",
+    "platform": "Pypi",
+    "rank": 8,
+    "repository_license": null,
+    "repository_status": null,
+    "repository_url": "https://github.com/pachote/nira-video-mcp",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "1.0.0",
+        "published_at": "2026-05-27T23:55:32.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.1",
+        "published_at": "2026-05-28T00:37:48.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.2",
+        "published_at": "2026-05-28T01:15:46.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.3",
+        "published_at": "2026-05-28T02:12:19.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 1,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Video editing tool using ffmpeg",
+    "forks": 0,
+    "funding_urls": [],
+    "homepage": "https://github.com/snehangshuk/video-editor",
+    "keywords": [],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "1.1",
+    "latest_release_published_at": "2020-10-08T04:59:44.000Z",
+    "latest_stable_release_number": null,
+    "latest_stable_release_published_at": null,
+    "license_normalized": true,
+    "licenses": "MIT License",
+    "name": "video-editor",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/video-editor/",
+    "platform": "Pypi",
+    "rank": 6,
+    "repository_license": "MIT",
+    "repository_status": null,
+    "repository_url": "https://github.com/snehangshuk/video-editor",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "1.0",
+        "published_at": "2020-10-08T04:21:07.000Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1",
+        "published_at": "2020-10-08T04:59:44.000Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 0,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "A powerful Model Context Protocol server for video editing operations using MoviePy",
+    "forks": 0,
+    "funding_urls": [],
+    "homepage": "https://github.com/Aditya2755/video-edit-mcp",
+    "keywords": [
+      "ai",
+      "claude",
+      "editing",
+      "mcp",
+      "moviepy",
+      "server",
+      "video",
+      "video-processing"
+    ],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "0.1.1",
+    "latest_release_published_at": "2025-07-28T17:08:30.000Z",
+    "latest_stable_release_number": "0.1.1",
+    "latest_stable_release_published_at": "2025-07-28T17:08:30.000Z",
+    "license_normalized": false,
+    "licenses": "MIT",
+    "name": "video-edit-mcp",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/video-edit-mcp/",
+    "platform": "Pypi",
+    "rank": 7,
+    "repository_license": "MIT",
+    "repository_status": null,
+    "repository_url": "https://github.com/Aditya2755/video-edit-mcp",
+    "security_policy_url": null,
+    "stars": 1,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1.0",
+        "published_at": "2025-07-27T05:09:20.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.1",
+        "published_at": "2025-07-28T17:08:30.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 0,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Declarative timeline-based video editing — single ffmpeg filter_complex per render, no frame pull into Python",
+    "forks": 0,
+    "funding_urls": [],
+    "homepage": "https://github.com/tomastimelock/video-arrange",
+    "keywords": [
+      "editing",
+      "ffmpeg",
+      "filter_complex",
+      "overlay",
+      "splitscreen",
+      "timeline",
+      "video"
+    ],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "0.1.0",
+    "latest_release_published_at": "2026-05-22T06:32:19.000Z",
+    "latest_stable_release_number": "0.1.0",
+    "latest_stable_release_published_at": "2026-05-22T06:32:19.000Z",
+    "license_normalized": true,
+    "licenses": "MIT License",
+    "name": "video-arrange",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/video-arrange/",
+    "platform": "Pypi",
+    "rank": 6,
+    "repository_license": "MIT",
+    "repository_status": null,
+    "repository_url": "https://github.com/tomastimelock/video-arrange",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1.0",
+        "published_at": "2026-05-22T06:32:19.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 0,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Video Jungle MCP Server for Adding, Analysing, Searching, and Editing Videos",
+    "forks": 0,
+    "funding_urls": [],
+    "homepage": "https://github.com/fastmcp-me/video-editing-mcp#readme",
+    "keywords": [],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "0.1.60",
+    "latest_release_published_at": "2025-12-24T16:41:17.000Z",
+    "latest_stable_release_number": "0.1.60",
+    "latest_stable_release_published_at": "2025-12-24T16:41:17.000Z",
+    "license_normalized": false,
+    "licenses": "",
+    "name": "video-editor-mcp-fastmcp",
+    "normalized_licenses": [],
+    "package_manager_url": "https://pypi.org/project/video-editor-mcp-fastmcp/",
+    "platform": "Pypi",
+    "rank": 4,
+    "repository_license": null,
+    "repository_status": null,
+    "repository_url": "https://github.com/fastmcp-me/video-editing-mcp",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1.60",
+        "published_at": "2025-12-24T16:41:17.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 1,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Package support cut, merge, insert hls video into hls video (m3u8)",
+    "forks": 0,
+    "funding_urls": [],
+    "homepage": "https://github.com/cptrodgers/hls-edit-file",
+    "keywords": [],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "0.0.1",
+    "latest_release_published_at": "2019-02-13T17:20:51.000Z",
+    "latest_stable_release_number": "0.0.1",
+    "latest_stable_release_published_at": "2019-02-13T17:20:51.000Z",
+    "license_normalized": true,
+    "licenses": "MIT License",
+    "name": "hls-edit-file",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/hls-edit-file/",
+    "platform": "Pypi",
+    "rank": 6,
+    "repository_license": "MIT",
+    "repository_status": null,
+    "repository_url": "https://github.com/cptrodgers/hls-edit-file",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.0.1",
+        "published_at": "2019-02-13T17:20:51.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 0,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Headless, project-agnostic video-editing CLI with atomic subcommands for AI agents.",
+    "forks": 0,
+    "funding_urls": null,
+    "homepage": null,
+    "keywords": [
+      "agents",
+      "cli",
+      "editing",
+      "ffmpeg",
+      "video"
+    ],
+    "language": null,
+    "latest_download_url": null,
+    "latest_release_number": "0.1.2",
+    "latest_release_published_at": "2026-07-14T21:33:29.000Z",
+    "latest_stable_release_number": "0.1.1",
+    "latest_stable_release_published_at": "2026-07-12T18:58:19.000Z",
+    "license_normalized": false,
+    "licenses": "",
+    "name": "video-edit-cli",
+    "normalized_licenses": [],
+    "package_manager_url": "https://pypi.org/project/video-edit-cli/",
+    "platform": "Pypi",
+    "rank": 4,
+    "repository_license": null,
+    "repository_status": null,
+    "repository_url": "https://github.com/computerlovetech/video-edit-cli",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1.0",
+        "published_at": "2026-07-12T18:31:23.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.1",
+        "published_at": "2026-07-12T18:58:19.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.2",
+        "published_at": "2026-07-14T21:33:29.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 0,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "MCP server for advanced video editing: aspect ratio adjustment, subtitles, overlays, concatenation, speed changes, and transitions",
+    "forks": 0,
+    "funding_urls": null,
+    "homepage": null,
+    "keywords": [
+      "editing",
+      "ffmpeg",
+      "mcp",
+      "overlay",
+      "subtitles",
+      "transitions",
+      "video"
+    ],
+    "language": null,
+    "latest_download_url": null,
+    "latest_release_number": "0.2.6",
+    "latest_release_published_at": "2025-11-10T06:52:10.000Z",
+    "latest_stable_release_number": "0.2.5",
+    "latest_stable_release_published_at": "2025-10-22T08:36:03.000Z",
+    "license_normalized": false,
+    "licenses": "MIT",
+    "name": "video-quick-editor-mcp",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/video-quick-editor-mcp/",
+    "platform": "Pypi",
+    "rank": 5,
+    "repository_license": null,
+    "repository_status": null,
+    "repository_url": "",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1.0",
+        "published_at": "2025-08-21T08:21:24.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.1",
+        "published_at": "2025-09-03T12:14:39.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.2",
+        "published_at": "2025-09-04T03:46:11.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.3",
+        "published_at": "2025-09-04T08:34:15.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.5",
+        "published_at": "2025-09-04T10:43:15.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.6",
+        "published_at": "2025-09-05T03:05:52.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.7",
+        "published_at": "2025-09-23T06:14:01.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.8",
+        "published_at": "2025-09-23T06:31:46.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.9",
+        "published_at": "2025-09-23T06:51:30.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.0",
+        "published_at": "2025-09-23T06:53:55.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1",
+        "published_at": "2025-09-23T07:16:53.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2",
+        "published_at": "2025-10-13T11:10:45.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.3",
+        "published_at": "2025-10-13T11:24:55.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.4",
+        "published_at": "2025-10-13T11:50:33.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.5",
+        "published_at": "2025-10-22T08:36:03.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.6",
+        "published_at": "2025-11-10T06:52:10.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 179,
+    "contribution_guidelines_url": "https://github.com/Zulko/moviepy/blob/master/CONTRIBUTING.md",
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Video editing with Python",
+    "forks": 2085,
+    "funding_urls": [],
+    "homepage": "https://zulko.github.io/moviepy/",
+    "keywords": [
+      "video",
+      "editing",
+      "audio",
+      "compositing",
+      "ffmpeg",
+      "animation",
+      "gif",
+      "hacktoberfest",
+      "python",
+      "video-editing",
+      "video-processing"
+    ],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "1.0.1",
+    "latest_release_published_at": "2020-02-26T04:35:31.000Z",
+    "latest_stable_release_number": "1.0.1",
+    "latest_stable_release_published_at": "2020-02-26T04:35:31.000Z",
+    "license_normalized": true,
+    "licenses": "MIT License",
+    "name": "moviepy-patch",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/moviepy-patch/",
+    "platform": "Pypi",
+    "rank": 12,
+    "repository_license": "MIT",
+    "repository_status": null,
+    "repository_url": "https://github.com/zulko/moviepy",
+    "security_policy_url": null,
+    "stars": 14836,
+    "status": null,
+    "versions": [
+      {
+        "number": "1.0.1",
+        "published_at": "2020-02-26T04:35:31.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  }
+]

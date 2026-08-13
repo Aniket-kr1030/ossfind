@@ -1,0 +1,2687 @@
+[
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 7,
+    "contribution_guidelines_url": "https://github.com/OpenVoiceOS/.github/blob/main/CONTRIBUTING.md",
+    "dependent_repos_count": 13,
+    "dependents_count": 16,
+    "deprecation_reason": null,
+    "description": "OpenVoiceOS's multilingual date and time parsing and formatting library",
+    "forks": 6,
+    "funding_urls": [
+      "https://github.com/OpenVoiceOS",
+      "https://patreon.com/openvoiceos",
+      "https://liberapay.com/OpenVoiceOS-Foundation",
+      "https://paypal.me/openvoiceos"
+    ],
+    "homepage": "https://github.com/OpenVoiceOS/ovos-date-parser",
+    "keywords": [
+      "dates",
+      "time",
+      "parsing",
+      "nlp",
+      "multilingual",
+      "ovos",
+      "openvoiceos"
+    ],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "0.29.0",
+    "latest_release_published_at": "2026-07-21T12:30:09.000Z",
+    "latest_stable_release_number": "0.29.0",
+    "latest_stable_release_published_at": "2026-07-21T12:30:09.000Z",
+    "license_normalized": true,
+    "licenses": "",
+    "name": "ovos-date-parser",
+    "normalized_licenses": [
+      "Apache-2.0"
+    ],
+    "package_manager_url": "https://pypi.org/project/ovos-date-parser/",
+    "platform": "Pypi",
+    "rank": 11,
+    "repository_license": "Apache-2.0",
+    "repository_status": null,
+    "repository_url": "https://github.com/OpenVoiceOS/ovos-date-parser",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.0.1a2",
+        "published_at": "2024-11-07T05:32:41.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.1",
+        "published_at": "2024-11-07T05:48:29.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.2a1",
+        "published_at": "2024-11-11T15:35:49.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.2",
+        "published_at": "2024-11-11T15:36:49.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.3a1",
+        "published_at": "2024-11-11T17:47:33.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.3",
+        "published_at": "2024-11-11T17:49:30.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.4a1",
+        "published_at": "2024-11-11T18:43:24.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.4",
+        "published_at": "2024-11-11T18:49:59.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.0a1",
+        "published_at": "2024-11-11T19:50:32.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.0",
+        "published_at": "2024-11-11T20:05:20.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.0a1",
+        "published_at": "2024-11-13T10:46:51.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.0",
+        "published_at": "2024-11-13T10:49:54.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1a1",
+        "published_at": "2024-11-13T20:08:11.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1",
+        "published_at": "2024-11-13T20:11:50.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.3.0a1",
+        "published_at": "2024-11-14T18:42:56.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.3.0",
+        "published_at": "2024-11-14T21:43:34.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.4.0a1",
+        "published_at": "2024-11-15T21:05:03.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.4.0",
+        "published_at": "2024-11-15T21:08:33.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.6.0a1",
+        "published_at": "2025-02-27T11:09:14.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.6.1",
+        "published_at": "2025-02-27T11:13:06.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.6.2a1",
+        "published_at": "2025-03-27T14:19:20.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.6.2",
+        "published_at": "2025-03-27T14:21:24.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.6.3a1",
+        "published_at": "2025-07-30T15:48:53.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.6.3",
+        "published_at": "2025-07-30T15:50:25.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.6.4a1",
+        "published_at": "2025-08-03T16:19:55.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.6.4",
+        "published_at": "2025-08-03T16:26:15.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.6.5a1",
+        "published_at": "2025-08-04T13:37:59.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.6.5",
+        "published_at": "2025-08-04T14:12:47.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.7.0a1",
+        "published_at": "2025-08-04T16:35:26.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.7.0a2",
+        "published_at": "2025-12-18T03:42:26.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.7.0a5",
+        "published_at": "2025-12-19T19:40:12.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.11.0a5",
+        "published_at": "2026-07-16T19:04:33.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.12.0a1",
+        "published_at": "2026-07-16T19:25:43.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.13.0a1",
+        "published_at": "2026-07-16T20:02:45.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.14.0a1",
+        "published_at": "2026-07-16T20:16:35.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.15.0a1",
+        "published_at": "2026-07-16T20:25:58.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.15.0a2",
+        "published_at": "2026-07-16T20:28:46.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.16.0a1",
+        "published_at": "2026-07-16T20:35:14.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.17.0a1",
+        "published_at": "2026-07-16T20:39:12.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.18.0a1",
+        "published_at": "2026-07-16T20:48:12.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.18.0a3",
+        "published_at": "2026-07-17T15:42:35.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.18.1a1",
+        "published_at": "2026-07-17T17:55:11.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.18.1a2",
+        "published_at": "2026-07-17T17:59:19.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.18.1a3",
+        "published_at": "2026-07-17T18:01:49.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.19.0a1",
+        "published_at": "2026-07-17T18:11:15.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.21.0a1",
+        "published_at": "2026-07-17T18:44:48.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.22.0a1",
+        "published_at": "2026-07-17T18:45:50.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.23.0a1",
+        "published_at": "2026-07-17T18:51:08.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.23.1a1",
+        "published_at": "2026-07-17T18:56:48.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.24.0a1",
+        "published_at": "2026-07-17T19:01:04.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.25.0a1",
+        "published_at": "2026-07-17T19:02:55.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.26.0a1",
+        "published_at": "2026-07-17T19:05:32.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.27.0a1",
+        "published_at": "2026-07-17T19:06:58.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.27.1a1",
+        "published_at": "2026-07-17T19:28:33.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.28.0a1",
+        "published_at": "2026-07-17T19:56:01.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.28.1a1",
+        "published_at": "2026-07-17T20:03:58.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.28.1a22",
+        "published_at": "2026-07-18T00:01:08.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.28.2a1",
+        "published_at": "2026-07-18T01:55:54.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.28.3a1",
+        "published_at": "2026-07-18T02:22:59.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.28.4a1",
+        "published_at": "2026-07-18T02:31:06.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.28.5a1",
+        "published_at": "2026-07-20T15:07:36.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.28.6a1",
+        "published_at": "2026-07-20T20:42:42.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.28.7a1",
+        "published_at": "2026-07-20T22:13:12.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.28.9a1",
+        "published_at": "2026-07-21T12:17:57.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.28.10a1",
+        "published_at": "2026-07-21T12:25:05.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.29.0a1",
+        "published_at": "2026-07-21T12:29:10.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.29.0",
+        "published_at": "2026-07-21T12:30:09.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 151,
+    "contribution_guidelines_url": "https://github.com/scrapinghub/dateparser/blob/master/CONTRIBUTING.rst",
+    "dependent_repos_count": 641,
+    "dependents_count": 1056,
+    "deprecation_reason": null,
+    "description": "Date parsing library designed to parse dates from HTML pages",
+    "forks": 510,
+    "funding_urls": [],
+    "homepage": "https://dateparser.readthedocs.org/en/latest/",
+    "keywords": [
+      "dateparser",
+      "hacktoberfest"
+    ],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "1.4.2",
+    "latest_release_published_at": "2026-08-04T12:11:01.000Z",
+    "latest_stable_release_number": "1.4.2",
+    "latest_stable_release_published_at": "2026-08-04T12:11:01.000Z",
+    "license_normalized": true,
+    "licenses": "",
+    "name": "dateparser",
+    "normalized_licenses": [
+      "BSD-3-Clause"
+    ],
+    "package_manager_url": "https://pypi.org/project/dateparser/",
+    "platform": "Pypi",
+    "rank": 23,
+    "repository_license": "BSD-3-Clause",
+    "repository_status": null,
+    "repository_url": "https://github.com/scrapinghub/dateparser",
+    "security_policy_url": "https://github.com/scrapinghub/dateparser/security/policy",
+    "stars": 2847,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1.0",
+        "published_at": "2014-11-24T17:43:18.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.0",
+        "published_at": "2015-06-17T23:35:50.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1",
+        "published_at": "2015-07-13T07:44:10.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.3.0",
+        "published_at": "2015-07-29T11:47:47.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.3.1",
+        "published_at": "2015-10-28T10:50:54.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.3.2",
+        "published_at": "2016-01-25T13:57:23.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.3.3",
+        "published_at": "2016-02-29T07:23:22.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.3.4",
+        "published_at": "2016-03-03T07:45:21.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.3.5",
+        "published_at": "2016-04-27T19:34:38.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.4.0",
+        "published_at": "2016-06-16T20:52:15.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.5.0",
+        "published_at": "2016-09-26T19:43:23.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.5.1",
+        "published_at": "2016-12-18T11:50:21.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.6.0",
+        "published_at": "2017-03-13T03:01:58.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.7.0",
+        "published_at": "2018-02-08T17:46:16.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.7.1",
+        "published_at": "2019-02-12T21:44:12.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.7.2",
+        "published_at": "2019-09-17T10:59:34.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.7.4",
+        "published_at": "2020-03-06T11:32:41.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.7.5",
+        "published_at": "2020-06-10T12:37:41.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.7.6",
+        "published_at": "2020-06-12T16:48:21.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.0",
+        "published_at": "2020-10-29T18:34:21.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.0",
+        "published_at": "2021-10-04T09:07:18.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.1",
+        "published_at": "2022-03-17T15:43:01.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.2",
+        "published_at": "2022-10-20T14:34:04.895Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.3",
+        "published_at": "2022-11-03T15:35:52.388Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.4",
+        "published_at": "2022-11-21T21:28:03.101Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.5",
+        "published_at": "2022-12-29T13:50:56.251Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.6",
+        "published_at": "2023-01-12T11:20:11.302Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.7",
+        "published_at": "2023-02-02T13:06:04.736Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.8",
+        "published_at": "2023-03-23T14:03:04.308Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.2.0",
+        "published_at": "2023-11-17T10:47:56.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.2.1",
+        "published_at": "2025-02-05T12:34:53.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.2.2",
+        "published_at": "2025-06-26T09:29:21.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.3.0",
+        "published_at": "2026-02-04T16:00:04.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.4.0",
+        "published_at": "2026-03-26T09:56:08.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.4.1",
+        "published_at": "2026-06-15T08:45:45.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.4.2",
+        "published_at": "2026-08-04T12:11:01.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 1,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Natural Language (NLP) Extraction of Date and Time",
+    "forks": 0,
+    "funding_urls": [],
+    "homepage": "",
+    "keywords": [
+      "date-parsing",
+      "time-parsing",
+      "date-extraction",
+      "nlp",
+      "natural-language",
+      "temporal-extraction",
+      "text-mining",
+      "datetime-parser",
+      "temporal-expressions",
+      "text-to-date",
+      "time-extraction"
+    ],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "1.3.2",
+    "latest_release_published_at": "2026-02-19T00:42:26.000Z",
+    "latest_stable_release_number": "1.3.2",
+    "latest_stable_release_published_at": "2026-02-19T00:42:26.000Z",
+    "license_normalized": false,
+    "licenses": "",
+    "name": "fast-parse-time",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/fast-parse-time/",
+    "platform": "Pypi",
+    "rank": 9,
+    "repository_license": "MIT",
+    "repository_status": null,
+    "repository_url": "https://github.com/craigtrim/fast-parse-time",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1.0",
+        "published_at": "2022-08-11T05:10:00.493Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.1",
+        "published_at": "2022-08-11T05:46:36.070Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.2",
+        "published_at": "2022-08-11T23:30:03.878Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.4",
+        "published_at": "2022-08-12T01:09:02.761Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.5",
+        "published_at": "2022-08-17T18:18:01.733Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.6",
+        "published_at": "2022-11-19T20:48:00.466Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "None",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.12",
+        "published_at": "2024-04-09T03:35:09.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "None",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.14",
+        "published_at": "2024-11-12T21:20:48.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "None",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.15",
+        "published_at": "2024-11-12T21:23:36.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "None",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.0",
+        "published_at": "2025-11-20T02:35:03.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.0",
+        "published_at": "2025-11-20T03:01:14.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.2.0",
+        "published_at": "2026-01-24T04:13:35.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.3.2",
+        "published_at": "2026-02-19T00:42:26.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 0,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 3,
+    "deprecation_reason": null,
+    "description": "ae namespace module portion parse_date: parse date strings more flexible and less strict",
+    "forks": 0,
+    "funding_urls": null,
+    "homepage": "https://gitlab.com/ae-group/ae_parse_date",
+    "keywords": [
+      "configuration",
+      "development",
+      "environment",
+      "productivity"
+    ],
+    "language": null,
+    "latest_download_url": null,
+    "latest_release_number": "0.3.4",
+    "latest_release_published_at": "2022-01-10T18:24:37.000Z",
+    "latest_stable_release_number": "0.3.5",
+    "latest_stable_release_published_at": "2023-02-16T10:06:00.734Z",
+    "license_normalized": true,
+    "licenses": "OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "name": "ae-parse-date",
+    "normalized_licenses": [
+      "AGPL-3.0",
+      "GPL-3.0+"
+    ],
+    "package_manager_url": "https://pypi.org/project/ae-parse-date/",
+    "platform": "Pypi",
+    "rank": 6,
+    "repository_license": null,
+    "repository_status": null,
+    "repository_url": "https://gitlab.com/ae-group/ae_parse_date",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1.0",
+        "published_at": "2020-09-26T11:08:02.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2",
+        "published_at": "2021-06-10T19:10:03.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.3",
+        "published_at": "2021-07-05T16:46:45.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.3.4",
+        "published_at": "2022-01-10T18:24:37.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.3.5",
+        "published_at": "2023-02-16T10:06:00.734Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 1,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Date subtraction, parsing, and random timestamp generation.",
+    "forks": 0,
+    "funding_urls": [],
+    "homepage": "https://github.com/ktraw2/misc-date-utilities",
+    "keywords": [],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "1.0.7",
+    "latest_release_published_at": "2019-12-10T23:16:00.000Z",
+    "latest_stable_release_number": "1.0.7",
+    "latest_stable_release_published_at": "2019-12-10T23:16:00.000Z",
+    "license_normalized": false,
+    "licenses": null,
+    "name": "misc-date-utilities",
+    "normalized_licenses": [
+      "GPL-3.0"
+    ],
+    "package_manager_url": "https://pypi.org/project/misc-date-utilities/",
+    "platform": "Pypi",
+    "rank": 7,
+    "repository_license": "GPL-3.0",
+    "repository_status": null,
+    "repository_url": "https://github.com/ktraw2/misc-date-utilities",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "1.0",
+        "published_at": "2019-02-16T09:09:05.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.1",
+        "published_at": "2019-02-16T09:17:49.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.2",
+        "published_at": "2019-02-16T09:27:52.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.3",
+        "published_at": "2019-02-16T19:59:46.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.4",
+        "published_at": "2019-03-01T23:28:29.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.5",
+        "published_at": "2019-03-01T23:41:31.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.6",
+        "published_at": "2019-03-02T19:48:17.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.7",
+        "published_at": "2019-12-10T23:16:00.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 1,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Parse different date strings into datetime objects",
+    "forks": 0,
+    "funding_urls": [],
+    "homepage": "https://github.com/evyatarmeged/date-parser",
+    "keywords": [
+      "date",
+      "parsing",
+      "strings",
+      "dateparser",
+      "python"
+    ],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "0.3",
+    "latest_release_published_at": "2017-12-12T00:23:25.000Z",
+    "latest_stable_release_number": null,
+    "latest_stable_release_published_at": null,
+    "license_normalized": false,
+    "licenses": "MIT",
+    "name": "date-parser",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/date-parser/",
+    "platform": "Pypi",
+    "rank": 6,
+    "repository_license": "MIT",
+    "repository_status": null,
+    "repository_url": "https://github.com/evyatarmeged/date-parser",
+    "security_policy_url": null,
+    "stars": 1,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1",
+        "published_at": "2017-11-30T15:16:17.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2",
+        "published_at": "2017-12-09T11:13:12.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.3",
+        "published_at": "2017-12-12T00:23:25.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 2,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Parse strings into Python types intelligently — booleans, numbers, dates, None, lists",
+    "forks": 0,
+    "funding_urls": [
+      "https://github.com/philiprehberger"
+    ],
+    "homepage": "https://github.com/philiprehberger/py-type-parse#readme",
+    "keywords": [
+      "bool",
+      "convert",
+      "date",
+      "parse",
+      "string",
+      "type"
+    ],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "0.3.0",
+    "latest_release_published_at": "2026-05-27T03:11:28.000Z",
+    "latest_stable_release_number": "0.3.0",
+    "latest_stable_release_published_at": "2026-05-27T03:11:28.000Z",
+    "license_normalized": true,
+    "licenses": "MIT License",
+    "name": "philiprehberger-type-parse",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/philiprehberger-type-parse/",
+    "platform": "Pypi",
+    "rank": 7,
+    "repository_license": "MIT",
+    "repository_status": null,
+    "repository_url": "https://github.com/philiprehberger/py-type-parse",
+    "security_policy_url": null,
+    "stars": 1,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1.1",
+        "published_at": "2026-03-15T20:38:06.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.2",
+        "published_at": "2026-03-16T16:14:02.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.3",
+        "published_at": "2026-03-16T16:33:09.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.4",
+        "published_at": "2026-03-16T20:26:53.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.5",
+        "published_at": "2026-03-16T21:10:23.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.0",
+        "published_at": "2026-03-17T01:59:02.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.1",
+        "published_at": "2026-03-20T20:18:13.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.2.2",
+        "published_at": "2026-04-01T18:41:55.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.3.0",
+        "published_at": "2026-05-27T03:11:28.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 14,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 254,
+    "dependents_count": 491,
+    "deprecation_reason": null,
+    "description": "Simple module to parse ISO 8601 dates",
+    "forks": 14,
+    "funding_urls": [],
+    "homepage": "https://github.com/micktwomey/pyiso8601",
+    "keywords": [],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "2.1.0",
+    "latest_release_published_at": "2023-10-03T00:25:32.000Z",
+    "latest_stable_release_number": "2.1.0",
+    "latest_stable_release_published_at": "2023-10-03T00:25:32.000Z",
+    "license_normalized": false,
+    "licenses": "MIT",
+    "name": "iso8601",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/iso8601/",
+    "platform": "Pypi",
+    "rank": 19,
+    "repository_license": "MIT",
+    "repository_status": null,
+    "repository_url": "https://github.com/micktwomey/pyiso8601",
+    "security_policy_url": null,
+    "stars": 35,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1",
+        "published_at": "2007-01-14T13:36:44.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.1",
+        "published_at": "2007-03-30T10:55:47.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.2",
+        "published_at": "2007-07-24T07:04:23.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.3",
+        "published_at": "2007-08-28T21:56:12.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.4",
+        "published_at": "2007-09-18T15:35:01.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.5",
+        "published_at": "2013-10-17T21:59:35.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.6",
+        "published_at": "2013-10-18T16:46:57.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.7",
+        "published_at": "2013-10-19T20:37:23.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.8",
+        "published_at": "2013-10-22T16:07:50.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.9",
+        "published_at": "2014-02-26T13:05:14.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.10",
+        "published_at": "2014-02-27T15:17:41.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.11",
+        "published_at": "2015-11-03T16:11:09.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.12",
+        "published_at": "2017-07-27T22:07:22.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.13",
+        "published_at": "2020-09-11T17:10:46.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.14",
+        "published_at": "2021-02-05T16:07:29.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.0a0",
+        "published_at": "2021-07-15T22:52:13.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.0a1",
+        "published_at": "2021-07-15T22:58:34.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.15",
+        "published_at": "2021-07-16T10:15:11.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.16",
+        "published_at": "2021-07-16T12:55:53.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.0",
+        "published_at": "2021-11-07T19:38:21.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.1",
+        "published_at": "2021-11-22T12:33:23.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.0.2",
+        "published_at": "2021-11-23T14:21:56.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.0",
+        "published_at": "2022-09-28T14:54:15.548Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.0.0",
+        "published_at": "2023-06-09T11:13:15.919Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.1.0",
+        "published_at": "2023-10-03T00:25:32.000Z",
+        "spdx_expression": "MIT",
+        "original_license": "MIT",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 48,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 64,
+    "dependents_count": 104,
+    "deprecation_reason": null,
+    "description": "Parse human-readable date/time text.",
+    "forks": 106,
+    "funding_urls": [],
+    "homepage": "https://github.com/bear/parsedatetime",
+    "keywords": [],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "2.6",
+    "latest_release_published_at": "2020-05-31T23:50:56.000Z",
+    "latest_stable_release_number": "1.1.2",
+    "latest_stable_release_published_at": "2013-03-04T16:51:05.000Z",
+    "license_normalized": true,
+    "licenses": "Apache License 2.0",
+    "name": "parsedatetime",
+    "normalized_licenses": [
+      "Apache-2.0"
+    ],
+    "package_manager_url": "https://pypi.org/project/parsedatetime/",
+    "platform": "Pypi",
+    "rank": 18,
+    "repository_license": "Apache-2.0",
+    "repository_status": null,
+    "repository_url": "https://github.com/bear/parsedatetime",
+    "security_policy_url": null,
+    "stars": 695,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.8.3",
+        "published_at": "2007-02-14T08:55:42.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "http://www.apache.org/licenses/LICENSE-2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.8.4",
+        "published_at": "2007-06-12T20:48:05.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "http://www.apache.org/licenses/LICENSE-2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.8.6",
+        "published_at": "2008-04-21T07:03:05.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.8.7",
+        "published_at": "2011-08-13T09:39:17.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.1",
+        "published_at": "2013-03-03T20:57:57.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "http://www.apache.org/licenses/LICENSE-2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.2",
+        "published_at": "2013-03-04T16:51:05.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "http://www.apache.org/licenses/LICENSE-2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.2",
+        "published_at": "2014-01-24T06:26:44.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.3",
+        "published_at": "2014-07-08T16:04:50.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "http://www.apache.org/licenses/LICENSE-2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.4",
+        "published_at": "2014-07-11T17:37:40.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache License 2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.5",
+        "published_at": "2015-06-25T11:53:57.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache License 2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.0",
+        "published_at": "2016-02-29T22:02:12.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.1",
+        "published_at": "2016-03-02T21:35:22.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.2",
+        "published_at": "2017-01-22T14:16:37.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.3",
+        "published_at": "2017-03-10T23:27:17.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.4",
+        "published_at": "2017-05-14T07:14:30.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.5",
+        "published_at": "2019-11-19T05:21:54.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "2.6",
+        "published_at": "2020-05-31T23:50:56.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "Apache License 2.0",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 0,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "provides a simple date range parsing django view",
+    "forks": 1,
+    "funding_urls": [],
+    "homepage": "https://bitbucket.org/freakypie/django-date-range-view",
+    "keywords": [],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "0.1.1",
+    "latest_release_published_at": "2014-06-19T22:28:36.000Z",
+    "latest_stable_release_number": "0.1.1",
+    "latest_stable_release_published_at": "2014-06-19T22:28:36.000Z",
+    "license_normalized": true,
+    "licenses": "BSD License",
+    "name": "django-date-range-view",
+    "normalized_licenses": [
+      "BSD-3-Clause"
+    ],
+    "package_manager_url": "https://pypi.org/project/django-date-range-view/",
+    "platform": "Pypi",
+    "rank": 5,
+    "repository_license": null,
+    "repository_status": null,
+    "repository_url": "https://bitbucket.org/freakypie/django-date-range-view",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.1",
+        "published_at": "2014-06-19T17:17:59.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "UNKNOWN",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.1",
+        "published_at": "2014-06-19T22:28:36.000Z",
+        "spdx_expression": "NOASSERTION",
+        "original_license": "BSD License",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": "https://github.com/pypa/.github/blob/main/CODE_OF_CONDUCT.md",
+    "contributions_count": 58,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "date package for parsing dates",
+    "forks": 1750,
+    "funding_urls": [],
+    "homepage": "https://github.com/pypa/sampleproject",
+    "keywords": [],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "0.1.0",
+    "latest_release_published_at": "2019-11-06T06:35:14.000Z",
+    "latest_stable_release_number": "0.1.0",
+    "latest_stable_release_published_at": "2019-11-06T06:35:14.000Z",
+    "license_normalized": true,
+    "licenses": "MIT License",
+    "name": "datelibrary-javis",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/datelibrary-javis/",
+    "platform": "Pypi",
+    "rank": 12,
+    "repository_license": "MIT",
+    "repository_status": "Hidden",
+    "repository_url": "https://github.com/pypa/sampleproject",
+    "security_policy_url": null,
+    "stars": 5245,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.0.1",
+        "published_at": "2019-11-05T13:13:09.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.2",
+        "published_at": "2019-11-05T13:17:45.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.3",
+        "published_at": "2019-11-05T19:46:22.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.4",
+        "published_at": "2019-11-05T19:48:55.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.5",
+        "published_at": "2019-11-05T19:51:16.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.6",
+        "published_at": "2019-11-05T22:05:21.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.7",
+        "published_at": "2019-11-05T22:21:24.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.8",
+        "published_at": "2019-11-05T22:45:42.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.9",
+        "published_at": "2019-11-06T06:22:32.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.1.0",
+        "published_at": "2019-11-06T06:35:14.000Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 1,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "A universal date parser to parse any kind of (possible) date strings.",
+    "forks": 0,
+    "funding_urls": [],
+    "homepage": "https://github.com/guangyu-he/universal_date_parser",
+    "keywords": [],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "0.0.2.1",
+    "latest_release_published_at": "2023-04-12T10:25:50.523Z",
+    "latest_stable_release_number": "0.0.2",
+    "latest_stable_release_published_at": "2023-03-27T09:46:00.526Z",
+    "license_normalized": false,
+    "licenses": "",
+    "name": "universal-date-parser",
+    "normalized_licenses": [],
+    "package_manager_url": "https://pypi.org/project/universal-date-parser/",
+    "platform": "Pypi",
+    "rank": 5,
+    "repository_license": null,
+    "repository_status": null,
+    "repository_url": "https://github.com/guangyu-he/universal_date_parser",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.0.2",
+        "published_at": "2023-03-27T09:46:00.526Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.2.1",
+        "published_at": "2023-04-12T10:25:50.523Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.1",
+        "published_at": "2023-03-27T09:36:29.589Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 0,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Universal Date Parsing Engine",
+    "forks": 0,
+    "funding_urls": null,
+    "homepage": null,
+    "keywords": [],
+    "language": null,
+    "latest_download_url": null,
+    "latest_release_number": "1.1.4",
+    "latest_release_published_at": "2026-01-13T07:40:50.000Z",
+    "latest_stable_release_number": "1.1.2",
+    "latest_stable_release_published_at": "2026-01-13T07:11:58.000Z",
+    "license_normalized": false,
+    "licenses": "",
+    "name": "date-model",
+    "normalized_licenses": [],
+    "package_manager_url": "https://pypi.org/project/date-model/",
+    "platform": "Pypi",
+    "rank": 4,
+    "repository_license": null,
+    "repository_status": null,
+    "repository_url": "",
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "1.0.0",
+        "published_at": "2026-01-13T05:38:01.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.0",
+        "published_at": "2026-01-13T06:57:17.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.2",
+        "published_at": "2026-01-13T07:11:58.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "1.1.4",
+        "published_at": "2026-01-13T07:40:50.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": "https://github.com/pypa/.github/blob/main/CODE_OF_CONDUCT.md",
+    "contributions_count": 58,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "date package for parsing dates",
+    "forks": 1750,
+    "funding_urls": [],
+    "homepage": "https://github.com/pypa/sampleproject",
+    "keywords": [],
+    "language": "Python",
+    "latest_download_url": null,
+    "latest_release_number": "0.0.1",
+    "latest_release_published_at": "2019-11-05T12:48:58.000Z",
+    "latest_stable_release_number": "0.0.1",
+    "latest_stable_release_published_at": "2019-11-05T12:48:58.000Z",
+    "license_normalized": true,
+    "licenses": "MIT License",
+    "name": "yadl-javis",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/yadl-javis/",
+    "platform": "Pypi",
+    "rank": 11,
+    "repository_license": "MIT",
+    "repository_status": "Hidden",
+    "repository_url": "https://github.com/pypa/sampleproject",
+    "security_policy_url": null,
+    "stars": 5245,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.0.1",
+        "published_at": "2019-11-05T12:48:58.000Z",
+        "spdx_expression": null,
+        "original_license": null,
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  },
+  {
+    "code_of_conduct_url": null,
+    "contributions_count": 0,
+    "contribution_guidelines_url": null,
+    "dependent_repos_count": 0,
+    "dependents_count": 0,
+    "deprecation_reason": null,
+    "description": "Package with class to parse dates from text input",
+    "forks": 0,
+    "funding_urls": null,
+    "homepage": null,
+    "keywords": [],
+    "language": null,
+    "latest_download_url": null,
+    "latest_release_number": "0.0.7",
+    "latest_release_published_at": "2022-03-17T13:47:54.000Z",
+    "latest_stable_release_number": "0.0.7",
+    "latest_stable_release_published_at": "2022-03-17T13:47:54.000Z",
+    "license_normalized": true,
+    "licenses": "MIT License",
+    "name": "ce-dates-parser",
+    "normalized_licenses": [
+      "MIT"
+    ],
+    "package_manager_url": "https://pypi.org/project/ce-dates-parser/",
+    "platform": "Pypi",
+    "rank": 4,
+    "repository_license": null,
+    "repository_status": null,
+    "repository_url": null,
+    "security_policy_url": null,
+    "stars": 0,
+    "status": null,
+    "versions": [
+      {
+        "number": "0.0.1",
+        "published_at": "2022-03-15T08:11:34.000Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.2",
+        "published_at": "2022-03-15T08:23:11.000Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.3",
+        "published_at": "2022-03-15T12:23:02.000Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.4",
+        "published_at": "2022-03-15T14:38:56.000Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.5",
+        "published_at": "2022-03-15T14:51:45.000Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.6",
+        "published_at": "2022-03-16T09:50:29.000Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      },
+      {
+        "number": "0.0.7",
+        "published_at": "2022-03-17T13:47:54.000Z",
+        "spdx_expression": "NONE",
+        "original_license": "",
+        "researched_at": null,
+        "repository_sources": [
+          "Pypi"
+        ]
+      }
+    ]
+  }
+]
