@@ -9,6 +9,8 @@ import {
   type ComponentCandidate,
 } from "../contracts/index.js";
 import type { IndexRecord } from "../index/corpus.js";
+import type { EmbeddingsProvider } from "../fit/embeddings.js";
+import { TransformersEmbeddingsProvider } from "../fit/transformers-provider.js";
 import type { Discoverer } from "../pipeline/interfaces.js";
 
 function validUrl(value: string | undefined): string | undefined {
@@ -48,11 +50,14 @@ export class LocalIndexDiscoverer implements Discoverer {
   private readonly cache = new Map<string, Promise<ComponentCandidate[]>>();
   private index: LocalIndex | undefined;
   private unavailable = false;
+  private defaultEmbedder: EmbeddingsProvider | undefined;
+  private embeddingWarningLogged = false;
 
   constructor(
     private readonly ecosystem = "pypi",
     private readonly dbPath = defaultIndexPath(ecosystem),
     private readonly limit = 25,
+    private readonly embedder?: EmbeddingsProvider,
   ) {}
 
   /** True when the index can be opened; false for missing or invalid databases. */
@@ -64,7 +69,7 @@ export class LocalIndexDiscoverer implements Discoverer {
     const cached = this.cache.get(query);
     if (cached) return cached;
 
-    const discovery = Promise.resolve(this.search(query));
+    const discovery = this.search(query);
     this.cache.set(query, discovery);
     return discovery;
   }
@@ -75,12 +80,34 @@ export class LocalIndexDiscoverer implements Discoverer {
     this.index = undefined;
   }
 
-  private search(query: string): ComponentCandidate[] {
+  private async search(query: string): Promise<ComponentCandidate[]> {
     const index = this.getIndex();
     if (!index) return [];
 
     try {
-      return index.search(query, { ecosystem: this.ecosystem, limit: this.limit })
+      let records: IndexRecord[];
+      if (index.hasVectors()) {
+        let queryVector: number[] | undefined;
+        try {
+          queryVector = (await this.getEmbedder().embed([query]))[0];
+          if (!queryVector) throw new Error("embedder returned no query embedding");
+        } catch (error) {
+          this.warnEmbeddingUnavailable(error);
+        }
+
+        if (queryVector) {
+          records = index.searchHybrid(query, queryVector, {
+            ecosystem: this.ecosystem,
+            limit: this.limit,
+          });
+        } else {
+          records = index.search(query, { ecosystem: this.ecosystem, limit: this.limit });
+        }
+      } else {
+        records = index.search(query, { ecosystem: this.ecosystem, limit: this.limit });
+      }
+
+      return records
         .flatMap((record) => {
           const candidate = candidateFromRecord(record);
           return candidate ? [candidate] : [];
@@ -91,6 +118,17 @@ export class LocalIndexDiscoverer implements Discoverer {
       this.unavailable = true;
       return [];
     }
+  }
+
+  private getEmbedder(): EmbeddingsProvider {
+    this.defaultEmbedder ??= this.embedder ?? new TransformersEmbeddingsProvider();
+    return this.defaultEmbedder;
+  }
+
+  private warnEmbeddingUnavailable(error: unknown): void {
+    if (this.embeddingWarningLogged) return;
+    this.embeddingWarningLogged = true;
+    console.warn("Local index embeddings are unavailable; falling back to BM25 recall.", error);
   }
 
   private getIndex(): LocalIndex | undefined {

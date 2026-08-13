@@ -1,14 +1,16 @@
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { ComponentCandidateSchema } from "../contracts/index.js";
+import { DefaultEmbeddingsProvider, type EmbeddingsProvider } from "../fit/embeddings.js";
 import type { IndexRecord } from "../index/corpus.js";
-import { buildIndex } from "../index/local-index.js";
+import { buildIndex, openIndex } from "../index/local-index.js";
 import { LocalIndexDiscoverer } from "./local-index-discovery.js";
 
 const directories: string[] = [];
 let discoverer: LocalIndexDiscoverer;
+let dbPath: string;
 
 async function fixtureRecords(): Promise<IndexRecord[]> {
   const fixture = new URL("../../fixtures/index/pypi-sample.json", import.meta.url);
@@ -18,7 +20,7 @@ async function fixtureRecords(): Promise<IndexRecord[]> {
 beforeEach(async () => {
   const directory = await mkdtemp(join(tmpdir(), "ossfind-local-discovery-"));
   directories.push(directory);
-  const dbPath = join(directory, "pypi.db");
+  dbPath = join(directory, "pypi.db");
   buildIndex(dbPath, await fixtureRecords());
   discoverer = new LocalIndexDiscoverer("pypi", dbPath);
 });
@@ -32,6 +34,81 @@ afterEach(async () => {
 });
 
 describe("LocalIndexDiscoverer", () => {
+  it("uses hybrid recall for vector-enabled indexes", async () => {
+    const records: IndexRecord[] = [
+      {
+        ecosystem: "pypi",
+        name: "diffusers",
+        description: "Generative toolkit for creating visual clips from text prompts.",
+        keywords: ["diffusion", "generative-ai", "text-to-image"],
+        downloads: 1,
+      },
+      {
+        ecosystem: "pypi",
+        name: "dateparser",
+        description: "Parse dates in natural language and multiple locales.",
+        keywords: ["date", "parsing", "datetime"],
+        downloads: 1,
+      },
+    ];
+    const embedder = new DefaultEmbeddingsProvider();
+
+    discoverer.close();
+    await buildIndex(dbPath, records, { embedder });
+
+    const index = openIndex(dbPath);
+    expect(index.search("video generation", { ecosystem: "pypi" })).toEqual([]);
+    index.close();
+
+    discoverer = new LocalIndexDiscoverer("pypi", dbPath, 25, embedder);
+    await expect(discoverer.discover("video generation")).resolves.toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: "pypi:diffusers" }),
+    ]));
+  });
+
+  it("uses BM25 without initializing an embedder for FTS-only indexes", async () => {
+    let embeds = 0;
+    const unavailableEmbedder: EmbeddingsProvider = {
+      async embed(): Promise<number[][]> {
+        embeds += 1;
+        throw new Error("model unavailable");
+      },
+    };
+
+    discoverer.close();
+    discoverer = new LocalIndexDiscoverer("pypi", dbPath, 25, unavailableEmbedder);
+
+    await expect(discoverer.discover("video editing")).resolves.toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: "pypi:moviepy" }),
+    ]));
+    expect(embeds).toBe(0);
+  });
+
+  it("falls back to BM25 when query embedding fails", async () => {
+    const embedder = new DefaultEmbeddingsProvider();
+    const failingEmbedder: EmbeddingsProvider = {
+      async embed(): Promise<number[][]> {
+        throw new Error("model unavailable");
+      },
+    };
+
+    discoverer.close();
+    await buildIndex(dbPath, await fixtureRecords(), { embedder });
+    discoverer = new LocalIndexDiscoverer("pypi", dbPath, 25, failingEmbedder);
+    const warning = vi.spyOn(console, "warn").mockImplementation(() => undefined);
+
+    try {
+      await expect(discoverer.discover("video editing")).resolves.toEqual(expect.arrayContaining([
+        expect.objectContaining({ id: "pypi:moviepy" }),
+        expect.objectContaining({ id: "pypi:ffmpeg-python" }),
+      ]));
+      await expect(discoverer.discover("video")).resolves.toEqual(expect.any(Array));
+      expect(warning).toHaveBeenCalledTimes(1);
+    } finally {
+      warning.mockRestore();
+    }
+  });
+
   it("maps fixture-index records into schema-valid PyPI candidates", async () => {
     const candidates = await discoverer.discover("video editing");
 
