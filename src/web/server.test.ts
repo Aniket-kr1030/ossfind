@@ -57,6 +57,14 @@ describe("Web Server", () => {
     expect(ids).toContain("pypi:moviepy");
   });
 
+  it("should route ecosystem=github to the GitHub fixture pipeline", async () => {
+    const res = await fetch(`${baseUrl}/api/search?q=video generation&ecosystem=github`);
+    expect(res.status).toBe(200);
+    const body = await res.json() as { results: unknown[] };
+    const ids = body.results.map((component) => ScoredComponentSchema.parse(component).id);
+    expect(ids).toContain("github:huggingface/diffusers");
+  });
+
   it("should return a 400 error for an empty query parameter", async () => {
     const res = await fetch(`${baseUrl}/api/search?q=`);
     expect(res.status).toBe(400);

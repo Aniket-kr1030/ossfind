@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const ComponentCandidateSchema = z.object({
-  id: z.string().regex(/^(npm|pypi):.+$/, 'id must use the "<ecosystem>:<name>" format'),
+  id: z.string().regex(/^(npm|pypi|github):.+$/, 'id must use the "<ecosystem>:<name>" format'),
   name: z.string().min(1),
   ecosystem: z.string().min(1),
   description: z.string(),
@@ -12,6 +12,10 @@ export const ComponentCandidateSchema = z.object({
   stars: z.number().nonnegative().optional(),
   latestVersion: z.string().min(1).optional(),
   publishedAt: z.string().min(1).optional(),
+  /** SPDX hint supplied by the discovery source; package metadata is enriched separately. */
+  license: z.string().min(1).optional(),
+  /** Source-level maintenance signal, currently supplied by GitHub repository search. */
+  archived: z.boolean().optional(),
 });
 
 export type ComponentCandidate = z.infer<typeof ComponentCandidateSchema>;

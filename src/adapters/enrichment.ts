@@ -10,9 +10,10 @@ import { getBaseScore } from "cvss";
 import * as semver from "semver";
 
 type JsonRecord = Record<string, unknown>;
-export type PackageEcosystem = "npm" | "pypi";
+export type PackageEcosystem = "npm" | "pypi" | "github";
+type RegistryEcosystem = Exclude<PackageEcosystem, "github">;
 
-const ecosystemAddressing: Record<PackageEcosystem, {
+const ecosystemAddressing: Record<RegistryEcosystem, {
   depsDevSystem: string;
   osvEcosystem: string;
   ecosystemsRegistry: string;
@@ -80,6 +81,20 @@ function githubProjectUrl(repositoryUrl: string | undefined): string | undefined
   } catch {
     return undefined;
   }
+}
+
+function githubProjectUrlForRepository(repository: string): string | undefined {
+  const [owner, name, ...rest] = repository.split("/");
+  if (!owner || !name || rest.length > 0) return undefined;
+  return `https://api.deps.dev/v3/projects/${encodeURIComponent(`github.com/${owner}/${name}`)}`;
+}
+
+function isGitHubRepository(candidate: ComponentCandidate): boolean {
+  return candidate.ecosystem === "github" || candidate.id.startsWith("github:");
+}
+
+function candidateArchived(candidate: ComponentCandidate): boolean | undefined {
+  return candidate.archived;
 }
 
 function firstLicense(ecosystems: unknown): string | undefined {
@@ -300,9 +315,12 @@ export class HttpEnricher implements Enricher {
   ) {}
 
   async enrich(candidate: ComponentCandidate): Promise<EnrichmentBundle> {
+    if (isGitHubRepository(candidate)) return this.enrichGitHubRepository(candidate);
+
     const pkg = packageName(candidate);
     const encodedPackage = encodeURIComponent(pkg);
-    const addressing = ecosystemAddressing[this.ecosystem];
+    const ecosystem: RegistryEcosystem = this.ecosystem === "pypi" ? "pypi" : "npm";
+    const addressing = ecosystemAddressing[ecosystem];
     const ecosystemsUrl = `https://packages.ecosyste.ms/api/v1/registries/${addressing.ecosystemsRegistry}/packages/${encodedPackage}`;
     const depsUrl = `https://api.deps.dev/v3/systems/${addressing.depsDevSystem}/packages/${encodedPackage}`;
     const osvUrl = "https://api.osv.dev/v1/query";
@@ -363,6 +381,51 @@ export class HttpEnricher implements Enricher {
       maintenance: {
         ...(lastCommit ? { lastCommit } : {}),
         ...(typeof archived === "boolean" ? { archived } : {}),
+      },
+    });
+  }
+
+  /**
+   * GitHub search returns repositories rather than installable packages. OSV's
+   * package query therefore cannot prove the dependency-vulnerability status
+   * of a repository checkout, so this path deliberately records OSV as
+   * missing and lets the ranker fail closed.
+   */
+  private async enrichGitHubRepository(candidate: ComponentCandidate): Promise<EnrichmentBundle> {
+    const repository = packageName(candidate);
+    const scorecardUrl = githubProjectUrlForRepository(repository)
+      ?? githubProjectUrl(candidate.repoUrl);
+    const scorecardResult = scorecardUrl
+      ? await this.limiter.run(() => fetchJson(this.http, scorecardUrl))
+      : { status: "failed" } as FetchResult;
+    const scorecard = scorecardResult.status === "ok" ? scorecardResult.data : undefined;
+    const spdxHint = candidate.license && candidate.license !== "NOASSERTION"
+      ? candidate.license
+      : undefined;
+    const archived = candidateArchived(candidate);
+
+    return EnrichmentBundleSchema.parse({
+      id: candidate.id,
+      license: {
+        spdxId: spdxHint ?? null,
+        source: "github",
+        confidence: spdxHint ? 1 : 0,
+      },
+      vulnerabilities: [],
+      sources: {
+        // This is intentionally not an empty successful response: OSV has no
+        // raw-repository query that verifies dependency vulnerability data.
+        osv: "missing",
+        license: spdxHint ? "ok" : "missing",
+        scorecard: !scorecardUrl
+          ? "missing"
+          : scorecardResult.status === "failed"
+            ? scorecardResult.httpStatus === 404 ? "missing" : "failed"
+            : isRecord(scorecard) && isRecord(scorecard.scorecard) ? "ok" : "missing",
+      },
+      scorecard: scorecardFrom(scorecard),
+      maintenance: {
+        ...(archived === undefined ? {} : { archived }),
       },
     });
   }

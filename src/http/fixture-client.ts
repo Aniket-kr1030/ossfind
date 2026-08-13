@@ -3,6 +3,8 @@ import {
   listFixturePackages,
   loadDepsDev,
   loadEcosystems,
+  loadGitHubScorecard,
+  loadGitHubSearch,
   loadOsv,
   loadScorecard,
   loadSearch,
@@ -92,6 +94,9 @@ export function createFixtureHttpClient(): HttpClient {
       if (url.hostname === "libraries.io" && url.pathname === "/api/search") {
         return response(await loadSearch(querySlug(url, "q"), "pypi"));
       }
+      if (url.hostname === "api.github.com" && url.pathname === "/search/repositories") {
+        return response(await loadGitHubSearch(querySlug(url, "q")));
+      }
       if (url.hostname === "packages.ecosyste.ms") {
         const pkg = packageFromPath(url, "/packages/");
         const ecosystem = ecosystemForRegistry(url);
@@ -100,10 +105,16 @@ export function createFixtureHttpClient(): HttpClient {
       if (url.hostname === "api.deps.dev" && url.pathname.includes("/projects/")) {
         const project = decodeURIComponent(url.pathname.slice("/v3/projects/".length));
         const fixture = (await projects).get(project);
-        if (!fixture) return notFound();
-
-        const scorecard = await loadScorecard(fixture.pkg, fixture.ecosystem);
-        return "__error" in scorecard ? response(scorecard, 404) : response(scorecard);
+        if (fixture) {
+          const scorecard = await loadScorecard(fixture.pkg, fixture.ecosystem);
+          return "__error" in scorecard ? response(scorecard, 404) : response(scorecard);
+        }
+        const githubProject = /^github\.com\/([^/]+)\/([^/]+)$/.exec(project);
+        if (githubProject) {
+          const scorecard = await loadGitHubScorecard(githubProject[1], githubProject[2]);
+          return "__error" in scorecard ? response(scorecard, 404) : response(scorecard);
+        }
+        return notFound();
       }
       if (url.hostname === "api.deps.dev") {
         const pkg = packageFromPath(url, "/packages/");

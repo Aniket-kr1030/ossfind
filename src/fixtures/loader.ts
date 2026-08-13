@@ -127,6 +127,12 @@ export interface NpmSearchFixture {
   [key: string]: unknown;
 }
 
+export interface GitHubSearchFixture {
+  total_count: number;
+  items: unknown[];
+  [key: string]: unknown;
+}
+
 const rawFixturesDirectory = decodeURIComponent(
   new URL("../../fixtures/raw/", import.meta.url).pathname,
 );
@@ -141,6 +147,10 @@ function fixtureSegment(value: string, label: string): string {
 
 function fixtureDirectory(ecosystem: FixtureEcosystem): string {
   return ecosystem === "pypi" ? `${rawFixturesDirectory}pypi/` : rawFixturesDirectory;
+}
+
+function githubFixturePath(supplier: "search" | "scorecard", name: string): string {
+  return `${rawFixturesDirectory}github/${supplier}/${name}.json`;
 }
 
 async function loadJson<T>(supplier: string, name: string, ecosystem: FixtureEcosystem = "npm"): Promise<T> {
@@ -174,6 +184,20 @@ export async function loadOsv(pkg: string, ecosystem: FixtureEcosystem = "npm"):
 /** Load an npm registry search response from the frozen local fixtures. */
 export async function loadSearch(slug: string, ecosystem: FixtureEcosystem = "npm"): Promise<NpmSearchFixture> {
   return loadJson("search", fixtureSegment(slug, "search slug"), ecosystem);
+}
+
+/** Load a frozen GitHub repository-search response. */
+export async function loadGitHubSearch(slug: string): Promise<GitHubSearchFixture> {
+  return JSON.parse(await readFile(
+    githubFixturePath("search", fixtureSegment(slug, "GitHub search slug")),
+    "utf8",
+  )) as GitHubSearchFixture;
+}
+
+/** Load a frozen deps.dev project/scorecard response for a GitHub repository. */
+export async function loadGitHubScorecard(owner: string, repository: string): Promise<ScorecardFixture> {
+  const fixtureName = `${fixtureSegment(owner, "GitHub owner")}__${fixtureSegment(repository, "GitHub repository")}`;
+  return JSON.parse(await readFile(githubFixturePath("scorecard", fixtureName), "utf8")) as ScorecardFixture;
 }
 
 /** Return package fixture names available across the package-oriented suppliers. */

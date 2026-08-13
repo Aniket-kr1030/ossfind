@@ -35,7 +35,7 @@ function advisory(id: string, score: string, affected: object): object {
   };
 }
 
-function candidate(name: string, repoUrl: string, ecosystem: "npm" | "pypi" = "npm"): ComponentCandidate {
+function candidate(name: string, repoUrl: string, ecosystem: "npm" | "pypi" | "github" = "npm"): ComponentCandidate {
   return ComponentCandidateSchema.parse({
     id: `${ecosystem}:${name}`,
     name,
@@ -46,6 +46,54 @@ function candidate(name: string, repoUrl: string, ecosystem: "npm" | "pypi" = "n
 }
 
 describe("HttpEnricher", () => {
+  it("uses GitHub's SPDX hint and scorecard, while fail-closing raw-repository OSV evidence", async () => {
+    const requested: string[] = [];
+    const githubHttp: HttpClient = async (url) => {
+      requested.push(url);
+      if (url === "https://api.deps.dev/v3/projects/github.com%2Fhuggingface%2Fdiffusers") {
+        return {
+          ok: true,
+          status: 200,
+          json: async () => ({ scorecard: { overallScore: 9, checks: [] } }),
+        };
+      }
+      throw new Error(`unexpected supplier request: ${url}`);
+    };
+    const githubCandidate = ComponentCandidateSchema.parse({
+      id: "github:huggingface/diffusers",
+      name: "huggingface/diffusers",
+      ecosystem: "github",
+      description: "Diffusion models",
+      repoUrl: "https://github.com/huggingface/diffusers",
+      license: "Apache-2.0",
+    });
+
+    const bundle = await new HttpEnricher(githubHttp).enrich(githubCandidate);
+
+    expect(requested).toEqual(["https://api.deps.dev/v3/projects/github.com%2Fhuggingface%2Fdiffusers"]);
+    expect(bundle.license).toEqual({ spdxId: "Apache-2.0", source: "github", confidence: 1 });
+    expect(bundle.sources).toEqual({ license: "ok", osv: "missing", scorecard: "ok" });
+    expect(bundle.vulnerabilities).toEqual([]);
+    expect(bundle.scorecard.overall).toBe(9);
+  });
+
+  it("makes NOASSERTION and missing GitHub scorecards explicit missing evidence", async () => {
+    const githubHttp: HttpClient = async () => ({ ok: false, status: 404, json: async () => ({}) });
+    const githubCandidate = ComponentCandidateSchema.parse({
+      id: "github:example/unknown-license",
+      name: "example/unknown-license",
+      ecosystem: "github",
+      description: "Unknown license fixture",
+      repoUrl: "https://github.com/example/unknown-license",
+      license: "NOASSERTION",
+    });
+
+    const bundle = await new HttpEnricher(githubHttp).enrich(githubCandidate);
+
+    expect(bundle.license).toEqual({ spdxId: null, source: "github", confidence: 0 });
+    expect(bundle.sources).toEqual({ license: "missing", osv: "missing", scorecard: "missing" });
+  });
+
   it("enriches PyPI fixtures with their ecosystem-specific supplier addresses", async () => {
     const bundle = await new HttpEnricher(createFixtureHttpClient(), undefined, "pypi").enrich(
       candidate("moviepy", "https://github.com/zulko/moviepy", "pypi"),

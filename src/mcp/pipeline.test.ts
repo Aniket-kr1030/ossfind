@@ -1,5 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
 import { LibrariesIoDiscoverer } from "../adapters/libraries-discovery.js";
+import { GitHubDiscoverer } from "../adapters/github-discovery.js";
 import { LocalIndexDiscoverer } from "../adapters/local-index-discovery.js";
 import type { ComponentCandidate } from "../contracts/index.js";
 import { FederatedDiscoverer } from "../discovery/federated.js";
@@ -136,6 +137,27 @@ describe("buildPipeline fit scorer selection", () => {
     await expect(pipeline.discoverer.discover("http client")).resolves.toEqual(expect.arrayContaining([
       expect.objectContaining({ id: "npm:axios" }),
     ]));
+  });
+
+  it("runs the full GitHub pipeline offline and keeps raw repositories out of ship verdicts", async () => {
+    const pipeline = buildPipeline({ fixtures: true, ecosystem: "github", projectLicense: "MIT" });
+    const discovered = await pipeline.discoverer.discover("video generation");
+    const results = await searchComponents("video generation", pipeline);
+    const byId = new Map(results.map((result) => [result.id, result]));
+
+    expect(pipeline.discoverer).toBeInstanceOf(GitHubDiscoverer);
+    expect(discovered).toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: "github:huggingface/diffusers", ecosystem: "github" }),
+      expect.objectContaining({ id: "github:zai-org/CogVideo", ecosystem: "github" }),
+    ]));
+    expect(results.length).toBeGreaterThan(0);
+    expect(byId.get("github:krillinai/KrillinAI")?.verdict).not.toBe("ship");
+    expect(byId.get("github:krillinai/KrillinAI")?.verdict).toBe("avoid");
+    expect(byId.get("github:Tencent-Hunyuan/HunyuanVideo")?.verdict).not.toBe("ship");
+    expect(byId.get("github:huggingface/diffusers")?.verdict).toBe("caution");
+    for (const result of results) {
+      expect(ScoredComponentSchema.parse(result)).toEqual(result);
+    }
   });
 
   it("falls back to TF-IDF when the live embedding provider cannot initialize", async () => {

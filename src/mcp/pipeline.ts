@@ -2,6 +2,7 @@ import { mkdtempSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { HttpDiscoverer } from "../adapters/discovery.js";
+import { GitHubDiscoverer } from "../adapters/github-discovery.js";
 import { LibrariesIoDiscoverer } from "../adapters/libraries-discovery.js";
 import { LocalIndexDiscoverer } from "../adapters/local-index-discovery.js";
 import { FederatedDiscoverer, type FederatedSource } from "../discovery/federated.js";
@@ -25,7 +26,7 @@ export interface BuildPipelineOptions {
   projectLicense?: string;
   /** Injectable live-only provider, principally for embedding integration tests. */
   embeddingsProvider?: EmbeddingsProvider;
-  /** Source package ecosystem. */
+  /** Source discovery ecosystem. */
   ecosystem?: PackageEcosystem;
   /** Override the PyPI local-index path, primarily for deterministic integration tests. */
   pypiIndexPath?: string;
@@ -154,7 +155,9 @@ export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDepen
   return {
     discoverer: ecosystem === "npm"
       ? new FederatedDiscoverer([{ name: "npm-registry", discoverer: new HttpDiscoverer(http) }])
-      : pypiDiscoverer(http, fixtures, options.pypiIndexPath),
+      : ecosystem === "github"
+        ? new GitHubDiscoverer(http)
+        : pypiDiscoverer(http, fixtures, options.pypiIndexPath),
     enricher: new HttpEnricher(http, undefined, ecosystem),
     fitScorer,
     ranker: new WeightedRanker({ projectLicense: options.projectLicense }),
