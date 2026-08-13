@@ -30,6 +30,21 @@ OSSFIND_FIXTURES=1 npm run mcp    # stdio MCP server exposing `search_components
 
 Drop `OSSFIND_FIXTURES=1` to hit live suppliers (npm registry, ecosyste.ms, deps.dev, OSV).
 
+## Ecosystems (npm + PyPI)
+
+ossfind searches **npm** (default) and **PyPI**. Pick the ecosystem with the web/MCP selector, the
+`ecosystem` MCP tool argument, or `&ecosystem=pypi` on `/api/search`.
+
+- **npm** needs no key — discovery uses the npm registry search API.
+- **PyPI** discovery uses [libraries.io](https://libraries.io) (PyPI has no usable free search API).
+  Get a free key at libraries.io/account and put it in a gitignored `.env.local`:
+  ```
+  LIBRARY_IO_API_KEY=your_key_here      # LIBRARIES_IO_API_KEY also accepted
+  ```
+  Load it at runtime with Node's env-file flag, e.g. `node --env-file=.env.local dist/web/server.js`.
+  Without a key, PyPI discovery degrades to empty results (never crashes); PyPI enrichment and all
+  offline tests need no key.
+
 ## Live mode & caching
 
 Live mode stores successful supplier responses on disk to reduce repeat requests and avoid supplier
@@ -97,7 +112,7 @@ each proven to **reject a known-bad input** (not just accept a good one):
   `@huggingface/transformers`, mean-pooled, cached per package under `.cache/embeddings/`) ranks by
   meaning. Fixture/test mode uses deterministic TF-IDF so tests stay offline and exact. Force either
   with `OSSFIND_FIT=embeddings|tfidf`; live falls back to TF-IDF if the model can't load.
-- Ecosystem: **npm only** (deps.dev/ecosyste.ms coverage strongest here). PyPI/others are the next
-  ecosystem ticket — the pipeline already carries an `ecosystem` field.
-- Bundled fixtures cover ~15 packages for offline tests/demo; live mode enriches any package.
+- Ecosystems: **npm and PyPI**. PyPI discovery needs a free libraries.io key (see above); npm needs
+  none. Other registries (Cargo, Go, Maven — all supported by deps.dev/OSV) are the next ticket.
+- Bundled fixtures cover ~15 npm + 12 PyPI packages for offline tests/demo; live mode enriches any package.
 - License output is **guidance, not legal advice.**
