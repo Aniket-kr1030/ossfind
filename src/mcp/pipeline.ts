@@ -1,12 +1,13 @@
 import { HttpDiscoverer } from "../adapters/discovery.js";
 import { type EmbeddingsProvider, EmbeddingFitScorer } from "../fit/embeddings.js";
 import { HttpEnricher } from "../adapters/enrichment.js";
+import type { PackageEcosystem } from "../adapters/enrichment.js";
 import { TfidfFitScorer } from "../fit/tfidf.js";
 import { TransformersEmbeddingsProvider } from "../fit/transformers-provider.js";
 import { withCache } from "../http/cache.js";
 import { defaultHttpClient, type HttpClient } from "../http/client.js";
 import { createFixtureHttpClient } from "../http/fixture-client.js";
-import type { FitScorer, PipelineDependencies } from "../pipeline/interfaces.js";
+import type { Discoverer, FitScorer, PipelineDependencies } from "../pipeline/interfaces.js";
 import { WeightedRanker } from "../ranking/rank.js";
 
 export interface BuildPipelineOptions {
@@ -16,6 +17,8 @@ export interface BuildPipelineOptions {
   projectLicense?: string;
   /** Injectable live-only provider, principally for embedding integration tests. */
   embeddingsProvider?: EmbeddingsProvider;
+  /** Source package ecosystem. PyPI discovery is deliberately deferred to M4b. */
+  ecosystem?: PackageEcosystem;
 }
 
 function fixtureModeRequested(): boolean {
@@ -38,6 +41,12 @@ function requestedFitMode(): "tfidf" | "embeddings" | undefined {
   }).process?.env;
   const mode = environment?.OSSFIND_FIT;
   return mode === "tfidf" || mode === "embeddings" ? mode : undefined;
+}
+
+class NoopDiscoverer implements Discoverer {
+  async discover(): Promise<[]> {
+    return [];
+  }
 }
 
 /**
@@ -69,6 +78,7 @@ export class FallbackFitScorer implements FitScorer {
 
 /** Construct the production pipeline, optionally replacing its HTTP boundary with fixtures. */
 export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDependencies {
+  const ecosystem = options.ecosystem ?? "npm";
   const fixtures = options.fixtures || fixtureModeRequested();
   const http: HttpClient = fixtures
     ? createFixtureHttpClient()
@@ -85,8 +95,8 @@ export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDepen
       );
 
   return {
-    discoverer: new HttpDiscoverer(http),
-    enricher: new HttpEnricher(http),
+    discoverer: ecosystem === "npm" ? new HttpDiscoverer(http) : new NoopDiscoverer(),
+    enricher: new HttpEnricher(http, undefined, ecosystem),
     fitScorer,
     ranker: new WeightedRanker({ projectLicense: options.projectLicense }),
   };

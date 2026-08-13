@@ -20,6 +20,23 @@ const candidates: ComponentCandidate[] = [
 ];
 
 describe("buildPipeline fit scorer selection", () => {
+  it("selects PyPI enrichment while discovery remains a no-op until M4b", async () => {
+    const pipeline = buildPipeline({ fixtures: true, ecosystem: "pypi" });
+
+    await expect(pipeline.discoverer.discover("video editing")).resolves.toEqual([]);
+    await expect(pipeline.enricher.enrich({
+      id: "pypi:moviepy",
+      name: "moviepy",
+      ecosystem: "pypi",
+      description: "Video editing with Python",
+      repoUrl: "https://github.com/zulko/moviepy",
+    })).resolves.toMatchObject({
+      id: "pypi:moviepy",
+      license: { spdxId: "MIT" },
+      sources: { osv: "ok" },
+    });
+  });
+
   it("falls back to TF-IDF when the live embedding provider cannot initialize", async () => {
     const unavailable: EmbeddingsProvider = {
       embed: vi.fn().mockRejectedValue(new Error("model unavailable")),

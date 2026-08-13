@@ -9,6 +9,7 @@ import {
   type ScoredComponent,
 } from "../contracts/index.js";
 import {
+  type FixtureEcosystem,
   listFixturePackages,
   loadDepsDev,
   loadEcosystems,
@@ -39,7 +40,7 @@ function firstString(value: unknown): string | undefined {
 }
 
 function canonicalPackageName(candidate: ComponentCandidate): string {
-  return candidate.id.slice("npm:".length);
+  return candidate.id.slice(candidate.id.indexOf(":") + 1);
 }
 
 function asUrl(value: string | undefined): string | undefined {
@@ -53,7 +54,7 @@ function asUrl(value: string | undefined): string | undefined {
 }
 
 /** Maps one ecosyste.ms package record into the candidate contract. */
-export function mapCandidateFromRaw(raw: unknown): ComponentCandidate {
+export function mapCandidateFromRaw(raw: unknown, ecosystem: FixtureEcosystem = "npm"): ComponentCandidate {
   if (!isRecord(raw)) throw new Error("Expected an ecosyste.ms package object");
   const name = stringAt(raw, "name");
   if (!name) throw new Error("Ecosyste.ms fixture has no package name");
@@ -62,9 +63,9 @@ export function mapCandidateFromRaw(raw: unknown): ComponentCandidate {
   const downloads = numberAt(raw, "downloads") ?? (metadata && numberAt(metadata, "downloads"));
 
   return ComponentCandidateSchema.parse({
-    id: `npm:${name}`,
+    id: `${ecosystem}:${name}`,
     name,
-    ecosystem: stringAt(raw, "ecosystem") ?? "npm",
+    ecosystem,
     description: stringAt(raw, "description") ?? "",
     repoUrl: asUrl(stringAt(raw, "repository_url")),
     homepage: asUrl(stringAt(raw, "homepage")),
@@ -183,13 +184,15 @@ export class FixtureDiscoverer implements Discoverer {
 }
 
 export class FixtureEnricher implements Enricher {
+  constructor(private readonly ecosystem: FixtureEcosystem = "npm") {}
+
   async enrich(candidate: ComponentCandidate): Promise<EnrichmentBundle> {
     const packageName = canonicalPackageName(candidate);
     const [ecosystems, depsDev, osv, scorecard] = await Promise.all([
-      loadEcosystems(packageName),
-      loadDepsDev(packageName),
-      loadOsv(packageName),
-      loadScorecard(packageName),
+      loadEcosystems(packageName, this.ecosystem),
+      loadDepsDev(packageName, this.ecosystem),
+      loadOsv(packageName, this.ecosystem),
+      loadScorecard(packageName, this.ecosystem),
     ]);
     return mapEnrichmentFromRaw(candidate, ecosystems, depsDev, osv, scorecard);
   }

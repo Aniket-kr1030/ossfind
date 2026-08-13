@@ -35,17 +35,43 @@ function advisory(id: string, score: string, affected: object): object {
   };
 }
 
-function candidate(name: string, repoUrl: string): ComponentCandidate {
+function candidate(name: string, repoUrl: string, ecosystem: "npm" | "pypi" = "npm"): ComponentCandidate {
   return ComponentCandidateSchema.parse({
-    id: `npm:${name}`,
+    id: `${ecosystem}:${name}`,
     name,
-    ecosystem: "npm",
+    ecosystem,
     description: "fixture test candidate",
     repoUrl,
   });
 }
 
 describe("HttpEnricher", () => {
+  it("enriches PyPI fixtures with their ecosystem-specific supplier addresses", async () => {
+    const bundle = await new HttpEnricher(createFixtureHttpClient(), undefined, "pypi").enrich(
+      candidate("moviepy", "https://github.com/zulko/moviepy", "pypi"),
+    );
+
+    expect(bundle.id).toBe("pypi:moviepy");
+    expect(bundle.license.spdxId).toBe("MIT");
+    expect(bundle.sources).toMatchObject({ license: "ok", osv: "ok", scorecard: "ok" });
+    expect(EnrichmentBundleSchema.parse(bundle)).toEqual(bundle);
+  });
+
+  it("keeps PyPI CVE evidence and degrades a missing scorecard without throwing", async () => {
+    const enricher = new HttpEnricher(createFixtureHttpClient(), undefined, "pypi");
+    const vulnerable = await enricher.enrich(
+      candidate("urllib3", "https://github.com/urllib3/urllib3", "pypi"),
+    );
+    const noScorecard = await enricher.enrich(
+      candidate("moviepy", "https://github.com/example/no-scorecard", "pypi"),
+    );
+
+    expect(vulnerable.vulnerabilities.length).toBeGreaterThan(0);
+    expect(vulnerable.sources.osv).toBe("ok");
+    expect(noScorecard.scorecard.overall).toBeNull();
+    expect(noScorecard.sources.scorecard).toBe("missing");
+  });
+
   it("maps express from offline supplier fixtures into a valid bundle", async () => {
     const bundle = await new HttpEnricher(createFixtureHttpClient()).enrich(
       candidate("express", "https://github.com/expressjs/express"),

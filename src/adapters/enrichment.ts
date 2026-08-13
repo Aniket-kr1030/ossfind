@@ -10,6 +10,24 @@ import { getBaseScore } from "cvss";
 import * as semver from "semver";
 
 type JsonRecord = Record<string, unknown>;
+export type PackageEcosystem = "npm" | "pypi";
+
+const ecosystemAddressing: Record<PackageEcosystem, {
+  depsDevSystem: string;
+  osvEcosystem: string;
+  ecosystemsRegistry: string;
+}> = {
+  npm: {
+    depsDevSystem: "npm",
+    osvEcosystem: "npm",
+    ecosystemsRegistry: "npmjs.org",
+  },
+  pypi: {
+    depsDevSystem: "pypi",
+    osvEcosystem: "PyPI",
+    ecosystemsRegistry: "pypi.org",
+  },
+};
 
 function isRecord(value: unknown): value is JsonRecord {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -48,7 +66,7 @@ async function fetchJson(http: HttpClient, url: string, init?: RequestInit): Pro
 }
 
 function packageName(candidate: ComponentCandidate): string {
-  return candidate.id.slice("npm:".length);
+  return candidate.id.slice(candidate.id.indexOf(":") + 1);
 }
 
 function githubProjectUrl(repositoryUrl: string | undefined): string | undefined {
@@ -278,13 +296,15 @@ export class HttpEnricher implements Enricher {
   constructor(
     private readonly http: HttpClient = defaultHttpClient,
     private readonly limiter: Limiter = createLimiter(concurrencyFromEnvironment()),
+    private readonly ecosystem: PackageEcosystem = "npm",
   ) {}
 
   async enrich(candidate: ComponentCandidate): Promise<EnrichmentBundle> {
     const pkg = packageName(candidate);
     const encodedPackage = encodeURIComponent(pkg);
-    const ecosystemsUrl = `https://packages.ecosyste.ms/api/v1/registries/npmjs.org/packages/${encodedPackage}`;
-    const depsUrl = `https://api.deps.dev/v3/systems/npm/packages/${encodedPackage}`;
+    const addressing = ecosystemAddressing[this.ecosystem];
+    const ecosystemsUrl = `https://packages.ecosyste.ms/api/v1/registries/${addressing.ecosystemsRegistry}/packages/${encodedPackage}`;
+    const depsUrl = `https://api.deps.dev/v3/systems/${addressing.depsDevSystem}/packages/${encodedPackage}`;
     const osvUrl = "https://api.osv.dev/v1/query";
 
     const ecosystemsResult = await this.limiter.run(() => fetchJson(this.http, ecosystemsUrl));
@@ -299,7 +319,7 @@ export class HttpEnricher implements Enricher {
       this.limiter.run(() => fetchJson(this.http, osvUrl, {
         method: "POST",
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({ package: { ecosystem: "npm", name: pkg } }),
+        body: JSON.stringify({ package: { ecosystem: addressing.osvEcosystem, name: pkg } }),
       })),
       scorecardUrl
         ? this.limiter.run(() => fetchJson(this.http, scorecardUrl))

@@ -10,7 +10,7 @@ const ScorecardCheckSchema = z
   .passthrough();
 
 export const EnrichmentBundleSchema = z.object({
-  id: z.string().regex(/^npm:.+$/, 'id must use the "npm:<name>" format'),
+  id: z.string().regex(/^(npm|pypi):.+$/, 'id must use the "<ecosystem>:<name>" format'),
   license: z.object({
     spdxId: z.string().min(1).nullable(),
     source: z.string().min(1),

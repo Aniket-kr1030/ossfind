@@ -1,5 +1,7 @@
 import { readFile, readdir } from "node:fs/promises";
 
+export type FixtureEcosystem = "npm" | "pypi";
+
 /**
  * Minimal, supplier-shaped representations of the frozen API responses.
  * These deliberately remain separate from the application's normalized contracts.
@@ -137,41 +139,46 @@ function fixtureSegment(value: string, label: string): string {
   return value;
 }
 
-async function loadJson<T>(supplier: string, name: string): Promise<T> {
-  const path = `${rawFixturesDirectory}${supplier}/${name}.json`;
+function fixtureDirectory(ecosystem: FixtureEcosystem): string {
+  return ecosystem === "pypi" ? `${rawFixturesDirectory}pypi/` : rawFixturesDirectory;
+}
+
+async function loadJson<T>(supplier: string, name: string, ecosystem: FixtureEcosystem = "npm"): Promise<T> {
+  const path = `${fixtureDirectory(ecosystem)}${supplier}/${name}.json`;
   return JSON.parse(await readFile(path, "utf8")) as T;
 }
 
 /** Load an ecosyste.ms package response from the frozen local fixtures. */
 export async function loadEcosystems(
   pkg: string,
+  ecosystem: FixtureEcosystem = "npm",
 ): Promise<EcosystemsPackageFixture> {
-  return loadJson("ecosystems", fixtureSegment(pkg, "package name"));
+  return loadJson("ecosystems", fixtureSegment(pkg, "package name"), ecosystem);
 }
 
 /** Load a deps.dev package response from the frozen local fixtures. */
-export async function loadDepsDev(pkg: string): Promise<DepsDevPackageFixture> {
-  return loadJson("depsdev", fixtureSegment(pkg, "package name"));
+export async function loadDepsDev(pkg: string, ecosystem: FixtureEcosystem = "npm"): Promise<DepsDevPackageFixture> {
+  return loadJson("depsdev", fixtureSegment(pkg, "package name"), ecosystem);
 }
 
 /** Load a deps.dev project/scorecard response from the frozen local fixtures. */
-export async function loadScorecard(pkg: string): Promise<ScorecardFixture> {
-  return loadJson("scorecard", fixtureSegment(pkg, "package name"));
+export async function loadScorecard(pkg: string, ecosystem: FixtureEcosystem = "npm"): Promise<ScorecardFixture> {
+  return loadJson("scorecard", fixtureSegment(pkg, "package name"), ecosystem);
 }
 
 /** Load an OSV vulnerability response from the frozen local fixtures. */
-export async function loadOsv(pkg: string): Promise<OsvFixture> {
-  return loadJson("osv", fixtureSegment(pkg, "package name"));
+export async function loadOsv(pkg: string, ecosystem: FixtureEcosystem = "npm"): Promise<OsvFixture> {
+  return loadJson("osv", fixtureSegment(pkg, "package name"), ecosystem);
 }
 
 /** Load an npm registry search response from the frozen local fixtures. */
-export async function loadSearch(slug: string): Promise<NpmSearchFixture> {
-  return loadJson("search", fixtureSegment(slug, "search slug"));
+export async function loadSearch(slug: string, ecosystem: FixtureEcosystem = "npm"): Promise<NpmSearchFixture> {
+  return loadJson("search", fixtureSegment(slug, "search slug"), ecosystem);
 }
 
 /** Return package fixture names available across the package-oriented suppliers. */
-export async function listFixturePackages(): Promise<string[]> {
-  const files = await readdir(`${rawFixturesDirectory}ecosystems`, {
+export async function listFixturePackages(ecosystem: FixtureEcosystem = "npm"): Promise<string[]> {
+  const files = await readdir(`${fixtureDirectory(ecosystem)}ecosystems`, {
     withFileTypes: true,
   });
 

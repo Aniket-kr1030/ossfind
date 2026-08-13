@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 export const ComponentCandidateSchema = z.object({
-  id: z.string().regex(/^npm:.+$/, 'id must use the "npm:<name>" format'),
+  id: z.string().regex(/^(npm|pypi):.+$/, 'id must use the "<ecosystem>:<name>" format'),
   name: z.string().min(1),
   ecosystem: z.string().min(1),
   description: z.string(),
