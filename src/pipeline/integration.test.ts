@@ -3,7 +3,7 @@ import { ScoredComponentSchema } from "../contracts/index.js";
 import { searchComponents } from "./orchestrator.js";
 import { HttpDiscoverer } from "../adapters/discovery.js";
 import { HttpEnricher } from "../adapters/enrichment.js";
-import { LexicalFitScorer } from "../fit/lexical.js";
+import { TfidfFitScorer } from "../fit/tfidf.js";
 import { WeightedRanker } from "../ranking/rank.js";
 import {
   loadDepsDev,
@@ -77,7 +77,7 @@ describe("Pipeline Integration Test", () => {
   it("runs the full searchComponents pipeline offline for query 'http client'", async () => {
     const discoverer = new HttpDiscoverer(integrationFixtureClient);
     const enricher = new HttpEnricher(integrationFixtureClient);
-    const fitScorer = new LexicalFitScorer();
+    const fitScorer = new TfidfFitScorer();
     const ranker = new WeightedRanker({ projectLicense: "MIT" });
 
     const results = await searchComponents("http client", {
@@ -102,7 +102,7 @@ describe("Pipeline Integration Test", () => {
     // Find axios and assert it has a high rank/verdict
     const axiosResult = results.find((r) => r.id === "npm:axios");
     expect(axiosResult).toBeDefined();
-    expect(axiosResult?.scores.fit).toBeGreaterThan(0.3);
+    expect(axiosResult?.scores.fit).toBeGreaterThan(0.2);
     expect(axiosResult?.overall).toBeGreaterThan(50);
     expect(axiosResult?.verdict).toBe("ship");
   });

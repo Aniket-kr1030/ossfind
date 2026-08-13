@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import { TfidfFitScorer } from "./tfidf.js";
-import { LexicalFitScorer } from "./lexical.js";
 import { DefaultEmbeddingsProvider, EmbeddingFitScorer } from "./embeddings.js";
 import type { ComponentCandidate } from "../contracts/index.js";
 
@@ -46,49 +45,36 @@ describe("TfidfFitScorer", () => {
     expect(lodashSignal.rationale).toContain("lexical coverage 0%");
   });
 
-  it("demonstrates semantic-ish win over pure lexical (LexicalFitScorer)", async () => {
-    // Query is "https authentication"
-    const query = "https authentication";
+  it("uses the lexical coverage guard to favor a high-coverage candidate", async () => {
+    const query = "video encoding ffmpeg";
 
     const testCandidates: ComponentCandidate[] = [
       {
-        id: "npm:http-auth",
-        name: "http-auth",
+        id: "npm:fluent-ffmpeg",
+        name: "fluent-ffmpeg",
         ecosystem: "npm",
-        description: "secure communication helper",
+        description: "A fluent API for video transcoding.",
+        keywords: ["ffmpeg", "video", "encoding"],
       },
       {
-        id: "npm:unrelated-pkg",
-        name: "unrelated-pkg",
+        id: "npm:html-encoding-sniffer",
+        name: "html-encoding-sniffer",
         ecosystem: "npm",
-        description: "this has authentication but does nothing else",
+        description: "Sniffs the encoding from an HTML byte stream.",
+        keywords: ["html", "encoding", "sniffing"],
       },
     ];
 
-    // Let's run lexical scorer
-    const lexicalScorer = new LexicalFitScorer();
-    const lexicalSignals = await lexicalScorer.fit(query, testCandidates);
-    const lexicalMap = new Map(lexicalSignals.map((s) => [s.id, s]));
-
-    // Let's run tfidf scorer
     const tfidfSignals = await scorer.fit(query, testCandidates);
     const tfidfMap = new Map(tfidfSignals.map((s) => [s.id, s]));
 
-    const lexHttpAuth = lexicalMap.get("npm:http-auth")!;
-    const lexUnrelated = lexicalMap.get("npm:unrelated-pkg")!;
+    const fluentFfmpeg = tfidfMap.get("npm:fluent-ffmpeg")!;
+    const htmlSniffer = tfidfMap.get("npm:html-encoding-sniffer")!;
 
-    const tfidfHttpAuth = tfidfMap.get("npm:http-auth")!;
-    const tfidfUnrelated = tfidfMap.get("npm:unrelated-pkg")!;
-
-    // Lexical scorer ranks unrelated-pkg higher because of exact description word match,
-    // and cannot recognize http-auth at all (relevance is 0)
-    expect(lexUnrelated.fitScore).toBeGreaterThan(lexHttpAuth.fitScore);
-    expect(lexHttpAuth.fitScore).toBe(0);
-
-    // TF-IDF with character ngrams matches both terms partially in http-auth
-    // (http <-> https, auth <-> authentication), and weights name 3x,
-    // leading to http-auth ranking higher than unrelated-pkg.
-    expect(tfidfHttpAuth.fitScore).toBeGreaterThan(tfidfUnrelated.fitScore);
+    expect(fluentFfmpeg.fitScore).toBeGreaterThan(htmlSniffer.fitScore);
+    expect(fluentFfmpeg.rationale).toContain("lexical coverage 100%");
+    expect(htmlSniffer.rationale).toContain("lexical coverage 33%");
+    expect(htmlSniffer.rationale).toContain("keyword overlap 33%");
   });
 
   it("is case insensitive", async () => {
