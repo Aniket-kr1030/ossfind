@@ -1,5 +1,9 @@
+import { mkdtempSync, readFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { join } from "node:path";
 import { HttpDiscoverer } from "../adapters/discovery.js";
 import { LibrariesIoDiscoverer } from "../adapters/libraries-discovery.js";
+import { LocalIndexDiscoverer } from "../adapters/local-index-discovery.js";
 import { type EmbeddingsProvider, EmbeddingFitScorer } from "../fit/embeddings.js";
 import { HttpEnricher } from "../adapters/enrichment.js";
 import type { PackageEcosystem } from "../adapters/enrichment.js";
@@ -8,6 +12,8 @@ import { TransformersEmbeddingsProvider } from "../fit/transformers-provider.js"
 import { withCache } from "../http/cache.js";
 import { defaultHttpClient, type HttpClient } from "../http/client.js";
 import { createFixtureHttpClient } from "../http/fixture-client.js";
+import type { IndexRecord } from "../index/corpus.js";
+import { buildIndex } from "../index/local-index.js";
 import type { FitScorer, PipelineDependencies } from "../pipeline/interfaces.js";
 import { WeightedRanker } from "../ranking/rank.js";
 
@@ -20,6 +26,8 @@ export interface BuildPipelineOptions {
   embeddingsProvider?: EmbeddingsProvider;
   /** Source package ecosystem. */
   ecosystem?: PackageEcosystem;
+  /** Override the PyPI local-index path, primarily for deterministic integration tests. */
+  pypiIndexPath?: string;
 }
 
 function fixtureModeRequested(): boolean {
@@ -42,6 +50,44 @@ function requestedFitMode(): "tfidf" | "embeddings" | undefined {
   }).process?.env;
   const mode = environment?.OSSFIND_FIT;
   return mode === "tfidf" || mode === "embeddings" ? mode : undefined;
+}
+
+type PypiDiscoveryMode = "index" | "libraries" | "auto";
+
+function requestedPypiDiscoveryMode(): PypiDiscoveryMode {
+  const environment = (globalThis as unknown as {
+    process?: { env?: Record<string, string | undefined> };
+  }).process?.env;
+  const mode = environment?.OSSFIND_PYPI_DISCOVERY;
+  return mode === "index" || mode === "libraries" ? mode : "auto";
+}
+
+let fixturePypiIndexPath: string | undefined;
+
+/**
+ * The package-search API fixtures are intentionally not used for PyPI
+ * discovery: fixtures exercise the same FTS index path as production. The
+ * process-local temp directory also keeps checked-in caches out of test runs.
+ */
+function fixtureIndexPath(): string {
+  if (fixturePypiIndexPath) return fixturePypiIndexPath;
+
+  const fixture = new URL("../../fixtures/index/pypi-sample.json", import.meta.url);
+  const records = JSON.parse(readFileSync(fixture, "utf8")) as IndexRecord[];
+  const directory = mkdtempSync(join(tmpdir(), "ossfind-pypi-index-"));
+  fixturePypiIndexPath = join(directory, "pypi.db");
+  buildIndex(fixturePypiIndexPath, records);
+  return fixturePypiIndexPath;
+}
+
+function pypiDiscoverer(http: HttpClient, fixtures: boolean, indexPath?: string) {
+  if (fixtures) return new LocalIndexDiscoverer("pypi", fixtureIndexPath());
+
+  const local = new LocalIndexDiscoverer("pypi", indexPath);
+  const mode = requestedPypiDiscoveryMode();
+  if (mode === "index" || (mode === "auto" && local.isAvailable())) return local;
+
+  return new LibrariesIoDiscoverer(http);
 }
 
 /**
@@ -90,11 +136,9 @@ export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDepen
       );
 
   return {
-    // Fixture requests intentionally use a harmless placeholder rather than
-    // requiring a developer's libraries.io credential in offline test runs.
     discoverer: ecosystem === "npm"
       ? new HttpDiscoverer(http)
-      : new LibrariesIoDiscoverer(http, { apiKey: fixtures ? "fixture" : undefined }),
+      : pypiDiscoverer(http, fixtures, options.pypiIndexPath),
     enricher: new HttpEnricher(http, undefined, ecosystem),
     fitScorer,
     ranker: new WeightedRanker({ projectLicense: options.projectLicense }),

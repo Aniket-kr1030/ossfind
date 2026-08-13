@@ -1,4 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
+import { LibrariesIoDiscoverer } from "../adapters/libraries-discovery.js";
+import { LocalIndexDiscoverer } from "../adapters/local-index-discovery.js";
 import type { ComponentCandidate } from "../contracts/index.js";
 import type { EmbeddingsProvider } from "../fit/embeddings.js";
 import { TfidfFitScorer } from "../fit/tfidf.js";
@@ -22,9 +24,10 @@ const candidates: ComponentCandidate[] = [
 ];
 
 describe("buildPipeline fit scorer selection", () => {
-  it("selects libraries.io PyPI discovery and PyPI enrichment in fixture mode", async () => {
+  it("selects fixture-backed local-index PyPI discovery and PyPI enrichment in fixture mode", async () => {
     const pipeline = buildPipeline({ fixtures: true, ecosystem: "pypi" });
 
+    expect(pipeline.discoverer).toBeInstanceOf(LocalIndexDiscoverer);
     await expect(pipeline.discoverer.discover("video editing")).resolves.toContainEqual(
       expect.objectContaining({ id: "pypi:moviepy", ecosystem: "pypi" }),
     );
@@ -41,16 +44,61 @@ describe("buildPipeline fit scorer selection", () => {
     });
   });
 
-  it("runs the full PyPI pipeline offline with fixture discovery", async () => {
-    const results = await searchComponents("video editing", buildPipeline({
-      fixtures: true,
-      ecosystem: "pypi",
-    }));
+  it("runs the full PyPI pipeline offline through the fixture local index", async () => {
+    const pipeline = buildPipeline({ fixtures: true, ecosystem: "pypi" });
+    const results = await searchComponents("video editing", pipeline);
+    const discovered = await pipeline.discoverer.discover("video editing");
+    const missingFixture = discovered.find((candidate) => candidate.id === "pypi:imageio-ffmpeg");
 
+    expect(discovered).toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: "pypi:moviepy" }),
+      expect.objectContaining({ id: "pypi:ffmpeg-python" }),
+    ]));
+    expect(missingFixture).toBeDefined();
+    await expect(pipeline.enricher.enrich(missingFixture!)).resolves.toMatchObject({
+      id: "pypi:imageio-ffmpeg",
+      sources: { license: "failed", osv: "failed", scorecard: "missing" },
+    });
     expect(results.length).toBeGreaterThan(0);
     expect(results.some((result) => result.id === "pypi:moviepy")).toBe(true);
     for (const result of results) {
       expect(ScoredComponentSchema.parse(result)).toEqual(result);
+    }
+  });
+
+  it("honors OSSFIND_PYPI_DISCOVERY=libraries", () => {
+    vi.stubEnv("OSSFIND_PYPI_DISCOVERY", "libraries");
+
+    try {
+      expect(buildPipeline({ ecosystem: "pypi" }).discoverer).toBeInstanceOf(LibrariesIoDiscoverer);
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
+
+  it("honors OSSFIND_PYPI_DISCOVERY=index even when the index is unavailable", () => {
+    vi.stubEnv("OSSFIND_PYPI_DISCOVERY", "index");
+
+    try {
+      expect(buildPipeline({
+        ecosystem: "pypi",
+        pypiIndexPath: "/tmp/ossfind-no-such-index-directory/pypi.db",
+      }).discoverer).toBeInstanceOf(LocalIndexDiscoverer);
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
+
+  it("falls back to libraries.io in auto mode when the local index is unavailable", () => {
+    vi.stubEnv("OSSFIND_PYPI_DISCOVERY", "auto");
+
+    try {
+      expect(buildPipeline({
+        ecosystem: "pypi",
+        pypiIndexPath: "/tmp/ossfind-no-such-index-directory/pypi.db",
+      }).discoverer).toBeInstanceOf(LibrariesIoDiscoverer);
+    } finally {
+      vi.unstubAllEnvs();
     }
   });
 
