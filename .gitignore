@@ -6,3 +6,6 @@ coverage/
 
 # local secrets (never commit)
 .env.local
+
+# generated knowledge-graph output (not product source)
+graphify-out/
