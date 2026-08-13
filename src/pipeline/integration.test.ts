@@ -104,5 +104,6 @@ describe("Pipeline Integration Test", () => {
     expect(axiosResult).toBeDefined();
     expect(axiosResult?.scores.fit).toBeGreaterThan(0.3);
     expect(axiosResult?.overall).toBeGreaterThan(50);
+    expect(axiosResult?.verdict).toBe("ship");
   });
 });

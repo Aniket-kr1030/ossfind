@@ -217,6 +217,33 @@ describe("WeightedRanker", () => {
     expect(scored.verdict).toBe("ship");
   });
 
+  it("caps unverified health at caution while scorecard-backed health can ship", () => {
+    const ranker = new WeightedRanker({ projectLicense: "MIT" });
+    const candidate = makeCandidate("npm:health-evidence-pkg");
+    const fit = [makeFitSignal(candidate.id, 1.0)];
+
+    const [withoutScorecard] = ranker.rank("query", [{
+      candidate,
+      bundle: makeBundle(candidate.id, {
+        sources: { osv: "ok", license: "ok", scorecard: "missing" },
+        scorecard: { overall: null, checks: [] },
+      }),
+    }], fit);
+    const [withScorecard] = ranker.rank("query", [{
+      candidate,
+      bundle: makeBundle(candidate.id, {
+        sources: { osv: "ok", license: "ok", scorecard: "ok" },
+        scorecard: { overall: 9, checks: [] },
+      }),
+    }], fit);
+
+    expect(withoutScorecard.verdict).toBe("caution");
+    expect(withoutScorecard.reasons).toContain(
+      "Health unverified (no OpenSSF scorecard) — cannot recommend shipping."
+    );
+    expect(withScorecard.verdict).toBe("ship");
+  });
+
   it("applies penalty and prevents ship verdict if archived or deprecated", () => {
     const ranker = new WeightedRanker();
     const candidate = makeCandidate("npm:archived-pkg");

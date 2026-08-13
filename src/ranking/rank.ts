@@ -206,6 +206,8 @@ export class WeightedRanker implements Ranker {
       const isLicenseUncertain = licenseCompat.compatible === "conditional"
         || bundle.sources.license !== "ok";
       const isSecurityUnverified = bundle.sources.osv !== "ok";
+      const isHealthUnverified = bundle.sources.scorecard !== "ok"
+        || bundle.scorecard.overall == null;
 
       // Hard rule triggers
       if (hasUnfixedCritical || isLicenseIncompatible) {
@@ -215,11 +217,13 @@ export class WeightedRanker implements Ranker {
           verdict = "caution";
         }
       }
-      if ((isLicenseUncertain || isSecurityUnverified) && verdict === "ship") {
+      if ((isLicenseUncertain || isSecurityUnverified || isHealthUnverified) && verdict === "ship") {
         verdict = "caution";
         reasons.push(isLicenseUncertain
           ? "License evidence is incomplete or conditional — cannot recommend shipping."
-          : "Security evidence is incomplete — cannot recommend shipping.");
+          : isSecurityUnverified
+            ? "Security evidence is incomplete — cannot recommend shipping."
+            : "Health unverified (no OpenSSF scorecard) — cannot recommend shipping.");
       }
       if (hasUnknownSeverity && verdict === "ship") {
         verdict = "caution";
