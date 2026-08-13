@@ -14,7 +14,8 @@
     "mcp": "tsx src/mcp/server.ts",
     "web": "npm run build && node dist/web/server.js",
     "web:dev": "tsx watch src/web/server.ts",
-    "demo": "npm run build && node scripts/demo.mjs"
+    "demo": "npm run build && node scripts/demo.mjs",
+    "index:build": "tsx scripts/build-index.mjs"
   },
   "bin": {
     "ossfind-mcp": "dist/mcp/server.js"
