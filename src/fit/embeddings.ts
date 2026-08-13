@@ -2,6 +2,7 @@ import type { FitScorer } from "../pipeline/interfaces.js";
 import type { ComponentCandidate, FitSignal } from "../contracts/index.js";
 import { FitSignalSchema } from "../contracts/index.js";
 import { tokenize } from "./tfidf.js";
+import { applyLexicalSignal, lexicalSignal } from "./lexical-signal.js";
 
 /**
  * Pluggable provider interface for generating text embeddings.
@@ -92,24 +93,6 @@ export class EmbeddingFitScorer implements FitScorer {
       ? await this.provider.embedCandidates(candidates)
       : await this.provider.embed(candidateTexts);
 
-    const STOPWORDS = new Set([
-      "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "arent",
-      "as", "at", "be", "because", "been", "before", "being", "below", "between", "both", "but", "by",
-      "cant", "cannot", "could", "couldnt", "did", "didnt", "do", "does", "doesnt", "doing", "dont",
-      "down", "during", "each", "few", "for", "from", "further", "had", "hadnt", "has", "hasnt", "have",
-      "havent", "having", "he", "hed", "hell", "hes", "her", "here", "heres", "hers", "herself", "him",
-      "himself", "his", "how", "hows", "i", "id", "ill", "im", "ive", "if", "in", "into", "is", "isnt",
-      "it", "its", "itself", "lets", "me", "more", "most", "mustnt", "my", "myself", "no", "nor", "not",
-      "of", "off", "on", "once", "only", "or", "other", "ought", "our", "ours", "ourselves", "out",
-      "over", "own", "same", "shant", "she", "shed", "shell", "shes", "should", "shouldnt", "so", "some",
-      "such", "than", "that", "thats", "the", "their", "theirs", "them", "themselves", "then", "there",
-      "theres", "these", "they", "theyd", "theyll", "theyre", "theyve", "this", "those", "through", "to",
-      "too", "under", "until", "up", "very", "was", "wasnt", "we", "wed", "well", "were", "weve", "werent",
-      "what", "whats", "when", "whens", "where", "wheres", "which", "while", "who", "whos", "whom",
-      "why", "whys", "with", "wont", "would", "wouldnt", "you", "youd", "youll", "youre", "youve",
-      "your", "yours", "yourself", "yourselves"
-    ]);
-
     return candidates.map((candidate, idx) => {
       const candEmbedding = candidateEmbeddings[idx];
 
@@ -130,36 +113,11 @@ export class EmbeddingFitScorer implements FitScorer {
         cosine = dotProduct / (qNorm * cNorm);
       }
 
-      const fitScore = Math.max(0, Math.min(1, cosine));
+      const baseFitScore = Math.max(0, Math.min(1, cosine));
+      const lexical = lexicalSignal(query, candidate);
+      const fitScore = applyLexicalSignal(baseFitScore, lexical);
 
-      // Generate rationale based on token overlap
-      let rationale = "";
-      if (fitScore > 0) {
-        const matchedWords = new Set<string>();
-        const qRawWords = query.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 2 && !STOPWORDS.has(w));
-        const cRawWords = (candidate.name + " " + candidate.description)
-          .toLowerCase()
-          .split(/[^a-z0-9]+/)
-          .filter((w) => w.length >= 2 && !STOPWORDS.has(w));
-
-        for (const qw of qRawWords) {
-          for (const cw of cRawWords) {
-            if (qw === cw || cw.includes(qw) || qw.includes(cw)) {
-              matchedWords.add(qw);
-            }
-          }
-        }
-
-        if (matchedWords.size > 0) {
-          const list = Array.from(matchedWords).join(", ");
-          const strength = fitScore > 0.4 ? "strong" : "moderate";
-          rationale = `${strength} semantic overlap on: ${list}`;
-        } else {
-          rationale = `semantic similarity score of ${fitScore.toFixed(2)}`;
-        }
-      } else {
-        rationale = "No semantic overlap detected.";
-      }
+      const rationale = `semantic base ${baseFitScore.toFixed(2)}; lexical coverage ${(lexical.coverage * 100).toFixed(0)}%; keyword overlap ${(lexical.keywordOverlap * 100).toFixed(0)}%.`;
 
       return FitSignalSchema.parse({
         id: candidate.id,

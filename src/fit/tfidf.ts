@@ -1,6 +1,7 @@
 import type { FitScorer } from "../pipeline/interfaces.js";
 import type { ComponentCandidate, FitSignal } from "../contracts/index.js";
 import { FitSignalSchema } from "../contracts/index.js";
+import { applyLexicalSignal, lexicalSignal } from "./lexical-signal.js";
 
 const STOPWORDS = new Set([
   "a", "about", "above", "after", "again", "against", "all", "am", "an", "and", "any", "are", "arent",
@@ -148,49 +149,10 @@ export class TfidfFitScorer implements FitScorer {
         cosine = dotProduct / (queryNorm * docNorm);
       }
 
-      const fitScore = Math.max(0, Math.min(1, cosine));
-
-      // Generate a clear, human-readable rationale
-      let rationale = "";
-      if (fitScore > 0) {
-        const matchedWords = new Set<string>();
-        const qRawWords = query.toLowerCase().split(/[^a-z0-9]+/).filter((w) => w.length >= 2 && !STOPWORDS.has(w));
-        const cRawWords = (doc.candidate.name + " " + doc.candidate.description)
-          .toLowerCase()
-          .split(/[^a-z0-9]+/)
-          .filter((w) => w.length >= 2 && !STOPWORDS.has(w));
-
-        for (const qw of qRawWords) {
-          for (const cw of cRawWords) {
-            if (qw === cw) {
-              matchedWords.add(qw);
-            } else if (cw.includes(qw) || qw.includes(cw)) {
-              matchedWords.add(qw);
-            }
-          }
-        }
-
-        if (matchedWords.size > 0) {
-          const list = Array.from(matchedWords).join(", ");
-          const strength = fitScore > 0.4 ? "strong" : "moderate";
-          rationale = `${strength} term/semantic overlap on: ${list}`;
-        } else {
-          // If no raw words overlap but bigrams/ngrams did (e.g. partial matches)
-          const matchedTokenKeys = Array.from(queryVector.keys()).filter((t) => doc.termCounts.has(t));
-          const cleanList = matchedTokenKeys
-            .map((k) => k.replace(/^(char_ngram|bigram):/, ""))
-            .filter((v, i, a) => a.indexOf(v) === i)
-            .slice(0, 5)
-            .join(", ");
-          if (cleanList) {
-            rationale = `partial overlap on: ${cleanList}`;
-          } else {
-            rationale = "low term/semantic overlap.";
-          }
-        }
-      } else {
-        rationale = "No query terms matched the component's name or description.";
-      }
+      const baseFitScore = Math.max(0, Math.min(1, cosine));
+      const lexical = lexicalSignal(query, doc.candidate);
+      const fitScore = applyLexicalSignal(baseFitScore, lexical);
+      const rationale = `TF-IDF base ${baseFitScore.toFixed(2)}; lexical coverage ${(lexical.coverage * 100).toFixed(0)}%; keyword overlap ${(lexical.keywordOverlap * 100).toFixed(0)}%.`;
 
       return FitSignalSchema.parse({
         id: doc.candidate.id,

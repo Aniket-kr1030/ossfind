@@ -42,8 +42,8 @@ describe("TfidfFitScorer", () => {
     expect(gotSignal.fitScore).toBeGreaterThan(0);
     expect(lodashSignal.fitScore).toBe(0);
 
-    expect(axiosSignal.rationale).toContain("overlap");
-    expect(lodashSignal.rationale).toContain("No query terms matched");
+    expect(axiosSignal.rationale).toContain("lexical coverage");
+    expect(lodashSignal.rationale).toContain("lexical coverage 0%");
   });
 
   it("demonstrates semantic-ish win over pure lexical (LexicalFitScorer)", async () => {
