@@ -65,6 +65,14 @@ describe("Web Server", () => {
     expect(ids).toContain("github:huggingface/diffusers");
   });
 
+  it("should route ecosystem=huggingface to the Hugging Face fixture pipeline", async () => {
+    const res = await fetch(`${baseUrl}/api/search?q=video generation&ecosystem=huggingface`);
+    expect(res.status).toBe(200);
+    const body = await res.json() as { results: unknown[] };
+    const ids = body.results.map((component) => ScoredComponentSchema.parse(component).id);
+    expect(ids.some((id) => id.startsWith("huggingface:"))).toBe(true);
+  });
+
   it("should route ecosystem=all to the federated fixture pipeline", async () => {
     const res = await fetch(`${baseUrl}/api/search?q=video editing&ecosystem=all`);
     expect(res.status).toBe(200);
@@ -73,6 +81,7 @@ describe("Web Server", () => {
 
     expect(ids.some((id) => id.startsWith("pypi:"))).toBe(true);
     expect(ids.some((id) => id.startsWith("github:"))).toBe(true);
+    expect(ids.some((id) => id.startsWith("huggingface:"))).toBe(true);
   });
 
   it("should return a 400 error for an empty query parameter", async () => {

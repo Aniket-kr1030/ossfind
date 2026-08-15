@@ -5,6 +5,7 @@ import {
   loadEcosystems,
   loadGitHubScorecard,
   loadGitHubSearch,
+  loadHuggingFaceSearch,
   loadOsv,
   loadScorecard,
   loadSearch,
@@ -96,6 +97,9 @@ export function createFixtureHttpClient(): HttpClient {
       }
       if (url.hostname === "api.github.com" && url.pathname === "/search/repositories") {
         return response(await loadGitHubSearch(querySlug(url, "q")));
+      }
+      if (url.hostname === "huggingface.co" && url.pathname === "/api/models") {
+        return response(await loadHuggingFaceSearch(querySlug(url, "search")));
       }
       if (url.hostname === "packages.ecosyste.ms") {
         const pkg = packageFromPath(url, "/packages/");

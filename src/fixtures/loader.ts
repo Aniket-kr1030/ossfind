@@ -133,6 +133,12 @@ export interface GitHubSearchFixture {
   [key: string]: unknown;
 }
 
+/** Frozen Hugging Face model-search response. */
+export interface HuggingFaceSearchFixture {
+  [index: number]: unknown;
+  length: number;
+}
+
 const rawFixturesDirectory = decodeURIComponent(
   new URL("../../fixtures/raw/", import.meta.url).pathname,
 );
@@ -151,6 +157,10 @@ function fixtureDirectory(ecosystem: FixtureEcosystem): string {
 
 function githubFixturePath(supplier: "search" | "scorecard", name: string): string {
   return `${rawFixturesDirectory}github/${supplier}/${name}.json`;
+}
+
+function huggingFaceFixturePath(name: string): string {
+  return `${rawFixturesDirectory}huggingface/search/${name}.json`;
 }
 
 async function loadJson<T>(supplier: string, name: string, ecosystem: FixtureEcosystem = "npm"): Promise<T> {
@@ -192,6 +202,14 @@ export async function loadGitHubSearch(slug: string): Promise<GitHubSearchFixtur
     githubFixturePath("search", fixtureSegment(slug, "GitHub search slug")),
     "utf8",
   )) as GitHubSearchFixture;
+}
+
+/** Load a frozen Hugging Face model-search response. */
+export async function loadHuggingFaceSearch(slug: string): Promise<HuggingFaceSearchFixture> {
+  return JSON.parse(await readFile(
+    huggingFaceFixturePath(fixtureSegment(slug, "Hugging Face search slug")),
+    "utf8",
+  )) as HuggingFaceSearchFixture;
 }
 
 /** Load a frozen deps.dev project/scorecard response for a GitHub repository. */

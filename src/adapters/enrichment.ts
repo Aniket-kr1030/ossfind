@@ -10,8 +10,8 @@ import { getBaseScore } from "cvss";
 import * as semver from "semver";
 
 type JsonRecord = Record<string, unknown>;
-export type PackageEcosystem = "npm" | "pypi" | "github";
-type RegistryEcosystem = Exclude<PackageEcosystem, "github">;
+export type PackageEcosystem = "npm" | "pypi" | "github" | "huggingface";
+type RegistryEcosystem = Exclude<PackageEcosystem, "github" | "huggingface">;
 
 const ecosystemAddressing: Record<RegistryEcosystem, {
   depsDevSystem: string;
@@ -91,6 +91,10 @@ function githubProjectUrlForRepository(repository: string): string | undefined {
 
 function isGitHubRepository(candidate: ComponentCandidate): boolean {
   return candidate.id.startsWith("github:");
+}
+
+function isHuggingFaceModel(candidate: ComponentCandidate): boolean {
+  return candidate.id.startsWith("huggingface:");
 }
 
 /**
@@ -326,6 +330,7 @@ export class HttpEnricher implements Enricher {
 
   async enrich(candidate: ComponentCandidate): Promise<EnrichmentBundle> {
     if (isGitHubRepository(candidate)) return this.enrichGitHubRepository(candidate);
+    if (isHuggingFaceModel(candidate)) return this.enrichHuggingFaceModel(candidate);
 
     const pkg = packageName(candidate);
     const encodedPackage = encodeURIComponent(pkg);
@@ -436,6 +441,40 @@ export class HttpEnricher implements Enricher {
       scorecard: scorecardFrom(scorecard),
       maintenance: {
         ...(archived === undefined ? {} : { archived }),
+      },
+    });
+  }
+
+  /**
+   * Hugging Face search yields model cards rather than a package dependency
+   * graph. Its license tag is useful source evidence, but neither OSV nor
+   * OpenSSF Scorecard can verify a model's dependency or maintenance health.
+   * Preserve that uncertainty explicitly so the existing health policy caps
+   * these candidates at caution rather than recommending them for shipping.
+   */
+  private async enrichHuggingFaceModel(candidate: ComponentCandidate): Promise<EnrichmentBundle> {
+    const spdxHint = candidate.license && candidate.license !== "NOASSERTION"
+      ? candidate.license
+      : undefined;
+
+    return EnrichmentBundleSchema.parse({
+      id: candidate.id,
+      license: {
+        spdxId: spdxHint ?? null,
+        source: "huggingface",
+        confidence: spdxHint ? 1 : 0,
+      },
+      vulnerabilities: [],
+      sources: {
+        // There is no model-level OSV identity that proves dependency CVE state.
+        osv: "missing",
+        license: spdxHint ? "ok" : "missing",
+        scorecard: "missing",
+      },
+      scorecard: { overall: null, checks: [] },
+      maintenance: {
+        ...(candidate.publishedAt ? { lastCommit: candidate.publishedAt } : {}),
+        ...(candidate.archived === undefined ? {} : { archived: candidate.archived }),
       },
     });
   }

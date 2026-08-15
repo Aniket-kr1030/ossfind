@@ -21,6 +21,15 @@ describe("ComponentCandidateSchema", () => {
     })).toMatchObject({ id: "github:huggingface/diffusers", license: "Apache-2.0" });
   });
 
+  it("accepts Hugging Face model ids", () => {
+    expect(ComponentCandidateSchema.parse({
+      id: "huggingface:owner/model",
+      name: "owner/model",
+      ecosystem: "huggingface",
+      description: "text-to-video model",
+    }).id).toBe("huggingface:owner/model");
+  });
+
   it("rejects an unsupported ecosystem prefix", () => {
     expect(ComponentCandidateSchema.safeParse({
       id: "rubygems:rails",

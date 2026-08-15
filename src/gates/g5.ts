@@ -1,6 +1,7 @@
 import { buildPipeline } from "../mcp/pipeline.js";
 import { searchComponents } from "../pipeline/orchestrator.js";
 import { HttpEnricher } from "../adapters/enrichment.js";
+import type { ComponentCandidate } from "../contracts/index.js";
 import type { Result } from "./types.js";
 
 export const id = "G5";
@@ -41,10 +42,10 @@ export async function proveFailure(): Promise<Result> {
 
   try {
     const enricher = new HttpEnricher();
-    const candidate = {
+    const candidate: ComponentCandidate = {
       id: "npm:axios",
       name: "axios",
-      ecosystem: "npm",
+      ecosystem: "npm" as const,
       description: "axios",
     };
     await enricher.enrich(candidate);

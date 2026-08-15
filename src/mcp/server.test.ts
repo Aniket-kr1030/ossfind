@@ -60,13 +60,24 @@ describe("search_components MCP tool", () => {
       .toContain("github:huggingface/diffusers");
   });
 
+  it("routes Hugging Face searches through the fixture pipeline", async () => {
+    const handler = createSearchComponentsHandler({ fixtures: true });
+    const result = await handler({ query: "video generation", ecosystem: "huggingface" });
+    const results = structuredResults(result);
+
+    expect(result.isError).not.toBe(true);
+    expect(results.map((result) => ScoredComponentSchema.parse(result).id)
+      .some((id) => id.startsWith("huggingface:"))).toBe(true);
+  });
+
   it("routes all-ecosystem searches through the federated fixture pipeline", async () => {
     const handler = createSearchComponentsHandler({ fixtures: true });
-    const result = await handler({ query: "video editing", ecosystem: "all" });
+    const result = await handler({ query: "video editing", ecosystem: "all", limit: 30 });
     const ids = structuredResults(result).map((component) => ScoredComponentSchema.parse(component).id);
 
     expect(result.isError).not.toBe(true);
     expect(ids.some((id) => id.startsWith("pypi:"))).toBe(true);
     expect(ids.some((id) => id.startsWith("github:"))).toBe(true);
+    expect(ids.some((id) => id.startsWith("huggingface:"))).toBe(true);
   });
 });

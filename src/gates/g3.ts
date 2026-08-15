@@ -1,5 +1,6 @@
 import { HttpEnricher } from "../adapters/enrichment.js";
 import { WeightedRanker } from "../ranking/rank.js";
+import type { ComponentCandidate } from "../contracts/index.js";
 import type { HttpClient } from "../http/client.js";
 import type { Result } from "./types.js";
 
@@ -34,8 +35,8 @@ function shipsCritical(result: { verdict: string }, severity: string | undefined
 export async function check(): Promise<Result> {
   try {
     for (const score of criticalVectors) {
-      const candidate = {
-        id: "npm:test-critical-vector-only", name: "test-critical-vector-only", ecosystem: "npm",
+      const candidate: ComponentCandidate = {
+        id: "npm:test-critical-vector-only", name: "test-critical-vector-only", ecosystem: "npm" as const,
         description: "A test component", latestVersion: "1.0.0",
       };
       const bundle = await new HttpEnricher(sourceClient(score)).enrich(candidate);

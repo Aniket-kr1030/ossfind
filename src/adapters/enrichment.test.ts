@@ -35,7 +35,11 @@ function advisory(id: string, score: string, affected: object): object {
   };
 }
 
-function candidate(name: string, repoUrl: string, ecosystem: "npm" | "pypi" | "github" = "npm"): ComponentCandidate {
+function candidate(
+  name: string,
+  repoUrl: string,
+  ecosystem: "npm" | "pypi" | "github" | "huggingface" = "npm",
+): ComponentCandidate {
   return ComponentCandidateSchema.parse({
     id: `${ecosystem}:${name}`,
     name,
@@ -92,6 +96,39 @@ describe("HttpEnricher", () => {
 
     expect(bundle.license).toEqual({ spdxId: null, source: "github", confidence: 0 });
     expect(bundle.sources).toEqual({ license: "missing", osv: "missing", scorecard: "missing" });
+  });
+
+  it("uses Hugging Face license hints but fail-closes absent scorecard and OSV evidence", async () => {
+    const huggingFaceCandidate = ComponentCandidateSchema.parse({
+      id: "huggingface:owner/video-model",
+      name: "owner/video-model",
+      ecosystem: "huggingface",
+      description: "text-to-video model (diffusers)",
+      repoUrl: "https://huggingface.co/owner/video-model",
+      license: "apache-2.0",
+      publishedAt: "2026-06-14T10:45:09.000Z",
+    });
+    const bundle = await new HttpEnricher(async () => {
+      throw new Error("Hugging Face enrichment must not call external suppliers");
+    }).enrich(huggingFaceCandidate);
+
+    expect(bundle).toMatchObject({
+      id: "huggingface:owner/video-model",
+      license: { spdxId: "apache-2.0", source: "huggingface", confidence: 1 },
+      vulnerabilities: [],
+      sources: { license: "ok", osv: "missing", scorecard: "missing" },
+      scorecard: { overall: null, checks: [] },
+      maintenance: { lastCommit: "2026-06-14T10:45:09.000Z" },
+    });
+
+    const [scored] = new WeightedRanker({ projectLicense: "MIT" }).rank(
+      "video generation",
+      [{ candidate: huggingFaceCandidate, bundle }],
+      [{ id: huggingFaceCandidate.id, fitScore: 1, rationale: "ideal fit" }],
+    );
+    // Model cards cannot verify dependency CVEs, so no Hugging Face model can ship.
+    expect(scored?.verdict).not.toBe("ship");
+    expect(scored?.verdict).toBe("caution");
   });
 
   it("enriches PyPI fixtures with their ecosystem-specific supplier addresses", async () => {

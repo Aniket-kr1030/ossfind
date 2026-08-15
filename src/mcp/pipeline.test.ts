@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from "vitest";
 import { LibrariesIoDiscoverer } from "../adapters/libraries-discovery.js";
 import { GitHubDiscoverer } from "../adapters/github-discovery.js";
+import { HuggingFaceDiscoverer } from "../adapters/huggingface-discovery.js";
 import { LocalIndexDiscoverer } from "../adapters/local-index-discovery.js";
 import { HttpDiscoverer } from "../adapters/discovery.js";
 import type { ComponentCandidate } from "../contracts/index.js";
@@ -161,16 +162,37 @@ describe("buildPipeline fit scorer selection", () => {
     }
   });
 
+  it("runs the full Hugging Face pipeline offline and caps models at caution", async () => {
+    const pipeline = buildPipeline({ fixtures: true, ecosystem: "huggingface", projectLicense: "MIT" });
+    const discovered = await pipeline.discoverer.discover("video generation");
+    const results = await searchComponents("video generation", pipeline);
+
+    expect(pipeline.discoverer).toBeInstanceOf(HuggingFaceDiscoverer);
+    expect(discovered).toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: expect.stringMatching(/^huggingface:/), ecosystem: "huggingface" }),
+    ]));
+    expect(results.length).toBeGreaterThan(0);
+    // Models have no trustworthy dependency-CVE lookup; missing OSV provenance
+    // is intentionally fail-closed and must never produce a ship verdict.
+    expect(results.every((result) => result.verdict !== "ship")).toBe(true);
+    expect(results.every((result) => result.verdict === "caution" || result.verdict === "avoid")).toBe(true);
+    for (const result of results) {
+      expect(ScoredComponentSchema.parse(result)).toEqual(result);
+    }
+  });
+
   it("federates all fixture ecosystems and enriches every candidate from its own source", async () => {
     const pipeline = buildPipeline({ fixtures: true, ecosystem: "all" });
     const discovered = await pipeline.discoverer.discover("video editing");
     const byId = new Map(discovered.map((candidate) => [candidate.id, candidate]));
     const moviepy = byId.get("pypi:moviepy");
     const openshot = byId.get("github:OpenShot/openshot-qt");
+    const huggingface = discovered.find((candidate) => candidate.id.startsWith("huggingface:"));
 
     expect(pipeline.discoverer).toBeInstanceOf(FederatedDiscoverer);
     expect(discovered.some((candidate) => candidate.id.startsWith("pypi:"))).toBe(true);
     expect(discovered.some((candidate) => candidate.id.startsWith("github:"))).toBe(true);
+    expect(huggingface).toBeDefined();
     expect(moviepy).toBeDefined();
     expect(openshot).toBeDefined();
 
@@ -186,6 +208,11 @@ describe("buildPipeline fit scorer selection", () => {
       sources: { license: "missing", osv: "missing", scorecard: "ok" },
       scorecard: { overall: 3.8 },
     });
+    await expect(pipeline.enricher.enrich(huggingface!)).resolves.toMatchObject({
+      id: expect.stringMatching(/^huggingface:/),
+      sources: { osv: "missing", scorecard: "missing" },
+      scorecard: { overall: null, checks: [] },
+    });
   });
 
   it("isolates a failed all-ecosystem source while retaining the other fixture results", async () => {
@@ -199,6 +226,7 @@ describe("buildPipeline fit scorer selection", () => {
       expect(discovered).toEqual(expect.arrayContaining([
         expect.objectContaining({ id: "pypi:moviepy" }),
         expect.objectContaining({ id: "github:OpenShot/openshot-qt" }),
+        expect.objectContaining({ id: expect.stringMatching(/^huggingface:/) }),
       ]));
       expect(warning).toHaveBeenCalledWith("[ossfind] discovery source unavailable: npm-registry.");
     } finally {

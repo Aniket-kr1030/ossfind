@@ -33,4 +33,16 @@ describe("createFixtureHttpClient", () => {
     expect(scorecard.ok).toBe(true);
     expect(missing.status).toBe(404);
   });
+
+  it("maps Hugging Face model searches by their search query", async () => {
+    const client = createFixtureHttpClient();
+    const search = await client(
+      "https://huggingface.co/api/models?search=video+generation&sort=downloads&direction=-1&limit=20",
+    );
+
+    expect(search.ok).toBe(true);
+    await expect(search.json()).resolves.toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: "Ngvrd/video_generation_model-Q2_K-GGUF" }),
+    ]));
+  });
 });

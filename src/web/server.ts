@@ -33,7 +33,8 @@ export function createWebServer(): http.Server {
 
         const projectLicense = url.searchParams.get("projectLicense") || undefined;
         const requestedEcosystem = url.searchParams.get("ecosystem");
-        const ecosystem = requestedEcosystem === "pypi" || requestedEcosystem === "github" || requestedEcosystem === "all"
+        const ecosystem = requestedEcosystem === "pypi" || requestedEcosystem === "github"
+          || requestedEcosystem === "huggingface" || requestedEcosystem === "all"
           ? requestedEcosystem
           : "npm";
         const limitStr = url.searchParams.get("limit");
