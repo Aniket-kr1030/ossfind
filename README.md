@@ -32,8 +32,12 @@ Drop `OSSFIND_FIXTURES=1` to hit live suppliers (npm registry, ecosyste.ms, deps
 
 ## Ecosystems (npm + PyPI + GitHub)
 
-ossfind searches **npm** (default), **PyPI**, and **GitHub** repositories. Pick the ecosystem with the
-web/MCP selector, the `ecosystem` MCP tool argument, or `&ecosystem=github` on `/api/search`.
+ossfind searches **npm** (default), **PyPI**, **GitHub** repositories, or **all three at once**
+(`ecosystem: "all"`) — one query, results from every ecosystem merged and safety-ranked together, so
+you don't have to guess where the answer lives (e.g. "video generation" → PyPI's `decord` and a GitHub
+AI-model repo in the same result set). Pick the ecosystem with the web/MCP selector, the `ecosystem`
+MCP tool argument, or `&ecosystem=all` on `/api/search`. Enrichment routes each candidate by its own
+id prefix (`npm:`/`pypi:`/`github:`), so a mixed batch is enriched correctly per-source.
 
 Discovery is **federated**: a `FederatedDiscoverer` composes multiple source adapters per query
 (parallel, per-source error isolation + timeouts, results merged and deduped by id). The safety-ranking
