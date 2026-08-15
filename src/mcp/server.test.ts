@@ -59,4 +59,14 @@ describe("search_components MCP tool", () => {
     expect(results.map((result) => ScoredComponentSchema.parse(result).id))
       .toContain("github:huggingface/diffusers");
   });
+
+  it("routes all-ecosystem searches through the federated fixture pipeline", async () => {
+    const handler = createSearchComponentsHandler({ fixtures: true });
+    const result = await handler({ query: "video editing", ecosystem: "all" });
+    const ids = structuredResults(result).map((component) => ScoredComponentSchema.parse(component).id);
+
+    expect(result.isError).not.toBe(true);
+    expect(ids.some((id) => id.startsWith("pypi:"))).toBe(true);
+    expect(ids.some((id) => id.startsWith("github:"))).toBe(true);
+  });
 });

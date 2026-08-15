@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from "vitest";
 import { LibrariesIoDiscoverer } from "../adapters/libraries-discovery.js";
 import { GitHubDiscoverer } from "../adapters/github-discovery.js";
 import { LocalIndexDiscoverer } from "../adapters/local-index-discovery.js";
+import { HttpDiscoverer } from "../adapters/discovery.js";
 import type { ComponentCandidate } from "../contracts/index.js";
 import { FederatedDiscoverer } from "../discovery/federated.js";
 import type { EmbeddingsProvider } from "../fit/embeddings.js";
@@ -157,6 +158,52 @@ describe("buildPipeline fit scorer selection", () => {
     expect(byId.get("github:huggingface/diffusers")?.verdict).toBe("caution");
     for (const result of results) {
       expect(ScoredComponentSchema.parse(result)).toEqual(result);
+    }
+  });
+
+  it("federates all fixture ecosystems and enriches every candidate from its own source", async () => {
+    const pipeline = buildPipeline({ fixtures: true, ecosystem: "all" });
+    const discovered = await pipeline.discoverer.discover("video editing");
+    const byId = new Map(discovered.map((candidate) => [candidate.id, candidate]));
+    const moviepy = byId.get("pypi:moviepy");
+    const openshot = byId.get("github:OpenShot/openshot-qt");
+
+    expect(pipeline.discoverer).toBeInstanceOf(FederatedDiscoverer);
+    expect(discovered.some((candidate) => candidate.id.startsWith("pypi:"))).toBe(true);
+    expect(discovered.some((candidate) => candidate.id.startsWith("github:"))).toBe(true);
+    expect(moviepy).toBeDefined();
+    expect(openshot).toBeDefined();
+
+    await expect(pipeline.enricher.enrich(moviepy!)).resolves.toMatchObject({
+      id: "pypi:moviepy",
+      license: { spdxId: "MIT", source: "ecosyste.ms" },
+      sources: { license: "ok", osv: "ok", scorecard: "ok" },
+      scorecard: { overall: 3.7 },
+    });
+    await expect(pipeline.enricher.enrich(openshot!)).resolves.toMatchObject({
+      id: "github:OpenShot/openshot-qt",
+      license: { spdxId: null, source: "github" },
+      sources: { license: "missing", osv: "missing", scorecard: "ok" },
+      scorecard: { overall: 3.8 },
+    });
+  });
+
+  it("isolates a failed all-ecosystem source while retaining the other fixture results", async () => {
+    const discover = vi.spyOn(HttpDiscoverer.prototype, "discover").mockRejectedValue(new Error("npm unavailable"));
+    const warning = vi.spyOn(console, "warn").mockImplementation(() => undefined);
+
+    try {
+      const discovered = await buildPipeline({ fixtures: true, ecosystem: "all" })
+        .discoverer.discover("video editing");
+
+      expect(discovered).toEqual(expect.arrayContaining([
+        expect.objectContaining({ id: "pypi:moviepy" }),
+        expect.objectContaining({ id: "github:OpenShot/openshot-qt" }),
+      ]));
+      expect(warning).toHaveBeenCalledWith("[ossfind] discovery source unavailable: npm-registry.");
+    } finally {
+      discover.mockRestore();
+      warning.mockRestore();
     }
   });
 

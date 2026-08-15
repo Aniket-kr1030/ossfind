@@ -12,7 +12,7 @@ export const SearchComponentsInputSchema = z.object({
   query: z.string().trim().min(1, "query must not be empty"),
   projectLicense: z.string().trim().min(1).optional(),
   limit: z.number().int().nonnegative().default(10),
-  ecosystem: z.enum(["npm", "pypi", "github"]).default("npm"),
+  ecosystem: z.enum(["npm", "pypi", "github", "all"]).default("npm"),
 });
 
 const SearchComponentsOutputSchema = z.object({
@@ -81,7 +81,7 @@ export function createMcpServer(): McpServer {
     "search_components",
     {
       title: "Search open-source components",
-      description: "Discover, enrich, score, and rank npm, PyPI, or GitHub components for a query.",
+      description: "Discover, enrich, score, and rank npm, PyPI, GitHub, or all-ecosystem components for a query.",
       inputSchema: SearchComponentsInputSchema,
       outputSchema: SearchComponentsOutputSchema,
     },

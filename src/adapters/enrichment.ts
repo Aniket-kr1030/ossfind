@@ -90,7 +90,16 @@ function githubProjectUrlForRepository(repository: string): string | undefined {
 }
 
 function isGitHubRepository(candidate: ComponentCandidate): boolean {
-  return candidate.ecosystem === "github" || candidate.id.startsWith("github:");
+  return candidate.id.startsWith("github:");
+}
+
+/**
+ * Candidate IDs are the canonical source identity, including when several
+ * discovery ecosystems feed the same pipeline. Route package suppliers from
+ * that identity rather than from a pipeline-wide selection.
+ */
+function registryEcosystemFor(candidate: ComponentCandidate): RegistryEcosystem {
+  return candidate.id.startsWith("pypi:") ? "pypi" : "npm";
 }
 
 function candidateArchived(candidate: ComponentCandidate): boolean | undefined {
@@ -311,7 +320,8 @@ export class HttpEnricher implements Enricher {
   constructor(
     private readonly http: HttpClient = defaultHttpClient,
     private readonly limiter: Limiter = createLimiter(concurrencyFromEnvironment()),
-    private readonly ecosystem: PackageEcosystem = "npm",
+    /** Kept for constructor compatibility; supplier routing is candidate-ID based. */
+    _legacyEcosystem?: PackageEcosystem,
   ) {}
 
   async enrich(candidate: ComponentCandidate): Promise<EnrichmentBundle> {
@@ -319,7 +329,7 @@ export class HttpEnricher implements Enricher {
 
     const pkg = packageName(candidate);
     const encodedPackage = encodeURIComponent(pkg);
-    const ecosystem: RegistryEcosystem = this.ecosystem === "pypi" ? "pypi" : "npm";
+    const ecosystem = registryEcosystemFor(candidate);
     const addressing = ecosystemAddressing[ecosystem];
     const ecosystemsUrl = `https://packages.ecosyste.ms/api/v1/registries/${addressing.ecosystemsRegistry}/packages/${encodedPackage}`;
     const depsUrl = `https://api.deps.dev/v3/systems/${addressing.depsDevSystem}/packages/${encodedPackage}`;

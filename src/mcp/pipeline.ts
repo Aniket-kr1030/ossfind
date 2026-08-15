@@ -19,6 +19,8 @@ import { buildIndex } from "../index/local-index.js";
 import type { FitScorer, PipelineDependencies } from "../pipeline/interfaces.js";
 import { WeightedRanker } from "../ranking/rank.js";
 
+export type SearchEcosystem = PackageEcosystem | "all";
+
 export interface BuildPipelineOptions {
   /** Use the frozen supplier responses instead of making network requests. */
   fixtures?: boolean;
@@ -27,7 +29,7 @@ export interface BuildPipelineOptions {
   /** Injectable live-only provider, principally for embedding integration tests. */
   embeddingsProvider?: EmbeddingsProvider;
   /** Source discovery ecosystem. */
-  ecosystem?: PackageEcosystem;
+  ecosystem?: SearchEcosystem;
   /** Override the PyPI local-index path, primarily for deterministic integration tests. */
   pypiIndexPath?: string;
 }
@@ -157,8 +159,14 @@ export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDepen
       ? new FederatedDiscoverer([{ name: "npm-registry", discoverer: new HttpDiscoverer(http) }])
       : ecosystem === "github"
         ? new GitHubDiscoverer(http)
-        : pypiDiscoverer(http, fixtures, options.pypiIndexPath),
-    enricher: new HttpEnricher(http, undefined, ecosystem),
+        : ecosystem === "pypi"
+          ? pypiDiscoverer(http, fixtures, options.pypiIndexPath)
+          : new FederatedDiscoverer([
+              { name: "npm-registry", discoverer: new HttpDiscoverer(http) },
+              { name: "pypi", discoverer: pypiDiscoverer(http, fixtures, options.pypiIndexPath) },
+              { name: "github", discoverer: new GitHubDiscoverer(http) },
+            ]),
+    enricher: new HttpEnricher(http),
     fitScorer,
     ranker: new WeightedRanker({ projectLicense: options.projectLicense }),
   };
