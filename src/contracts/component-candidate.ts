@@ -16,6 +16,12 @@ export const ComponentCandidateSchema = z.object({
   license: z.string().min(1).optional(),
   /** Source-level maintenance signal, currently supplied by GitHub repository search. */
   archived: z.boolean().optional(),
-});
+}).refine(
+  ({ id, ecosystem }) => id.startsWith(`${ecosystem}:`),
+  {
+    message: "id prefix must match ecosystem",
+    path: ["id"],
+  },
+);
 
 export type ComponentCandidate = z.infer<typeof ComponentCandidateSchema>;

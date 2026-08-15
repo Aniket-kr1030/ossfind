@@ -3,10 +3,11 @@ import { WeightedRanker } from "./rank.js";
 import type { ComponentCandidate, EnrichmentBundle, FitSignal } from "../contracts/index.js";
 
 function makeCandidate(id: string, description = ""): ComponentCandidate {
+  const separator = id.indexOf(":");
   return {
     id,
-    name: id.slice("npm:".length),
-    ecosystem: "npm",
+    name: id.slice(separator + 1),
+    ecosystem: id.slice(0, separator) as ComponentCandidate["ecosystem"],
     description,
     repoUrl: "https://github.com/example/repo",
   };
@@ -243,6 +244,31 @@ describe("WeightedRanker", () => {
     );
     expect(withScorecard.verdict).toBe("ship");
   });
+
+  it.each(["github:owner/repo", "huggingface:owner/model"])(
+    "caps forged all-positive raw component evidence below ship: %s",
+    (id) => {
+      const candidate = makeCandidate(id);
+      const [scored] = new WeightedRanker({ projectLicense: "MIT" }).rank(
+        "query",
+        [{
+          candidate,
+          bundle: makeBundle(id, {
+            license: { spdxId: "MIT", source: "forged", confidence: 1 },
+            sources: { osv: "ok", license: "ok", scorecard: "ok" },
+            scorecard: { overall: 10, checks: [] },
+          }),
+        }],
+        [makeFitSignal(id, 1)],
+      );
+
+      expect(scored.overall).toBeGreaterThanOrEqual(75);
+      expect(scored.verdict).toBe("caution");
+      expect(scored.reasons).toContain(
+        "GitHub/Hugging Face components cannot be verified for dependency vulnerabilities the way a published package can — capped below ship.",
+      );
+    },
+  );
 
   it("applies penalty and prevents ship verdict if archived or deprecated", () => {
     const ranker = new WeightedRanker();

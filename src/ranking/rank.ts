@@ -230,6 +230,20 @@ export class WeightedRanker implements Ranker {
         reasons.push("Unknown vulnerability severity — cannot recommend shipping.");
       }
 
+      // Raw repositories and model cards do not have a package-level OSV
+      // identity that can prove dependency-vulnerability status. Keep this
+      // structural cap independent of any upstream provenance claim.
+      const isRawRepositoryOrModel = candidate.id.startsWith("github:")
+        || candidate.id.startsWith("huggingface:");
+      if (isRawRepositoryOrModel) {
+        if (verdict === "ship") {
+          verdict = "caution";
+        }
+        reasons.push(
+          "GitHub/Hugging Face components cannot be verified for dependency vulnerabilities the way a published package can — capped below ship.",
+        );
+      }
+
       // Format badges
       const badges = {
         license: licenseSpdx ?? "unknown",

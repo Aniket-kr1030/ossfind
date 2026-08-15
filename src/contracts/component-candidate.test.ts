@@ -38,4 +38,26 @@ describe("ComponentCandidateSchema", () => {
       description: "Web framework",
     }).success).toBe(false);
   });
+
+  it.each([
+    ["npm:not-real", "github"],
+    ["pypi:github", "npm"],
+    ["github:owner/repo", "huggingface"],
+    ["huggingface:owner/model", "github"],
+  ] as const)("rejects id %s when its declared ecosystem is %s", (id, ecosystem) => {
+    const result = ComponentCandidateSchema.safeParse({
+      id,
+      name: "contradictory",
+      ecosystem,
+      description: "contradictory identity",
+    });
+
+    expect(result.success).toBe(false);
+    if (!result.success) {
+      expect(result.error.issues).toContainEqual(expect.objectContaining({
+        path: ["id"],
+        message: "id prefix must match ecosystem",
+      }));
+    }
+  });
 });
