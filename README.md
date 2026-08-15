@@ -30,25 +30,30 @@ OSSFIND_FIXTURES=1 npm run mcp    # stdio MCP server exposing `search_components
 
 Drop `OSSFIND_FIXTURES=1` to hit live suppliers (npm registry, ecosyste.ms, deps.dev, OSV).
 
-## Ecosystems (npm + PyPI + GitHub)
+## Ecosystems (npm + PyPI + GitHub + Hugging Face)
 
-ossfind searches **npm** (default), **PyPI**, **GitHub** repositories, or **all three at once**
-(`ecosystem: "all"`) — one query, results from every ecosystem merged and safety-ranked together, so
-you don't have to guess where the answer lives (e.g. "video generation" → PyPI's `decord` and a GitHub
-AI-model repo in the same result set). Pick the ecosystem with the web/MCP selector, the `ecosystem`
-MCP tool argument, or `&ecosystem=all` on `/api/search`. Enrichment routes each candidate by its own
-id prefix (`npm:`/`pypi:`/`github:`), so a mixed batch is enriched correctly per-source.
+ossfind searches **npm** (default), **PyPI**, **GitHub** repositories, **Hugging Face** models, or
+**all four at once** (`ecosystem: "all"`) — one query, results from every ecosystem merged and
+safety-ranked together, so you don't have to guess where the answer lives (e.g. "video generation" →
+PyPI's `decord`, a GitHub AI-model repo, and a Hugging Face model in the same result set). Pick the
+ecosystem with the web/MCP selector, the `ecosystem` MCP tool argument, or `&ecosystem=all` on
+`/api/search`.
 
 Discovery is **federated**: a `FederatedDiscoverer` composes multiple source adapters per query
-(parallel, per-source error isolation + timeouts, results merged and deduped by id). The safety-ranking
-layer is the same for every source — ossfind owns the ranking, not the corpus. GitHub is what surfaces
-AI-model repos (diffusers, CogVideo, …) that aren't on any package registry.
+(parallel, per-source error isolation + timeouts, results merged and deduped by id). Enrichment routes
+each candidate by its own id prefix (`npm:`/`pypi:`/`github:`/`huggingface:`), so a mixed batch is
+enriched correctly per-source. The safety-ranking layer is the same for every source — ossfind owns
+the ranking, not the corpus. GitHub and Hugging Face are what surface AI-model repos/models (diffusers,
+CogVideo, …) that aren't on any package registry.
 
 - **npm** needs no key — discovery uses the npm registry search API.
-- **GitHub** uses the repo search API. A raw repo's dependency CVEs can't be verified the way a
-  published package's can, so **GitHub components fail-closed to at most "caution"** (never "ship");
-  license (SPDX) and OpenSSF health are still enriched and gated. Set an optional `GITHUB_TOKEN` in
-  `.env.local` for higher rate limits.
+- **GitHub** uses the repo search API. Set an optional `GITHUB_TOKEN` in `.env.local` for higher rate
+  limits.
+- **Hugging Face** needs no key — discovery uses the public models search API.
+- **GitHub and Hugging Face components fail-closed to at most "caution"** (never "ship") — a raw repo's
+  or model's dependency CVEs can't be verified the way a published package's can; Hugging Face also has
+  no OpenSSF-style health score, so it relies on the existing missing-scorecard cap. License (SPDX) is
+  still enriched and gated for both.
 - **PyPI** discovery uses a **self-hosted local index** by default (no key, no third-party service).
   Build/refresh it once:
   ```
