@@ -1,0 +1,104 @@
+[
+  {
+    "_id": "650746ffbc8788c406340f5e",
+    "id": "orensul/llama-2-7b-video-editing",
+    "likes": 2,
+    "private": false,
+    "downloads": 12,
+    "tags": [
+      "transformers",
+      "pytorch",
+      "llama",
+      "text-generation",
+      "text-generation-inference",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "text-generation",
+    "library_name": "transformers",
+    "createdAt": "2023-09-17T18:35:43.000Z",
+    "modelId": "orensul/llama-2-7b-video-editing"
+  },
+  {
+    "_id": "65f9fba45e73a5b33ba04297",
+    "id": "yehiawp4/videomae-base-finetuned-kinetics-finetuned-caer-subset-EDITING",
+    "likes": 0,
+    "private": false,
+    "downloads": 7,
+    "tags": [
+      "transformers",
+      "safetensors",
+      "videomae",
+      "video-classification",
+      "generated_from_trainer",
+      "base_model:MCG-NJU/videomae-base-finetuned-kinetics",
+      "base_model:finetune:MCG-NJU/videomae-base-finetuned-kinetics",
+      "license:cc-by-nc-4.0",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "video-classification",
+    "library_name": "transformers",
+    "createdAt": "2024-03-19T20:55:00.000Z",
+    "modelId": "yehiawp4/videomae-base-finetuned-kinetics-finetuned-caer-subset-EDITING"
+  },
+  {
+    "_id": "65fa018a734d7aabdcc39851",
+    "id": "yehiawp4/videomae-base-finetuned-caer-subset-EDITING-2-s2sv2",
+    "likes": 1,
+    "private": false,
+    "downloads": 5,
+    "tags": [
+      "transformers",
+      "safetensors",
+      "videomae",
+      "video-classification",
+      "generated_from_trainer",
+      "base_model:MCG-NJU/videomae-base",
+      "base_model:finetune:MCG-NJU/videomae-base",
+      "license:cc-by-nc-4.0",
+      "endpoints_compatible",
+      "region:us"
+    ],
+    "pipeline_tag": "video-classification",
+    "library_name": "transformers",
+    "createdAt": "2024-03-19T21:20:10.000Z",
+    "modelId": "yehiawp4/videomae-base-finetuned-caer-subset-EDITING-2-s2sv2"
+  },
+  {
+    "_id": "65f89603af4b7f9e81abcb29",
+    "id": "dani1975/videoediting",
+    "likes": 0,
+    "private": false,
+    "downloads": 0,
+    "tags": [
+      "region:us"
+    ],
+    "createdAt": "2024-03-18T19:29:07.000Z",
+    "modelId": "dani1975/videoediting"
+  },
+  {
+    "_id": "68ee3106b1a634a8825baea5",
+    "id": "BDE0RUFUS/Videoediting",
+    "likes": 0,
+    "private": false,
+    "downloads": 0,
+    "tags": [
+      "region:us"
+    ],
+    "createdAt": "2025-10-14T11:16:22.000Z",
+    "modelId": "BDE0RUFUS/Videoediting"
+  },
+  {
+    "_id": "6a77d22014fd2a104611baec",
+    "id": "ka7k/video-editing-pricing",
+    "likes": 0,
+    "private": false,
+    "downloads": 0,
+    "tags": [
+      "region:us"
+    ],
+    "createdAt": "2026-08-09T01:04:32.000Z",
+    "modelId": "ka7k/video-editing-pricing"
+  }
+]
