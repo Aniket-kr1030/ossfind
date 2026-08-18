@@ -34,6 +34,7 @@
     "web": "npm run build && node dist/web/server.js",
     "web:dev": "tsx watch src/web/server.ts",
     "demo": "npm run build && node scripts/demo.mjs",
+    "bench": "npm run build && node scripts/bench.mjs",
     "index:build": "tsx scripts/build-index.mjs"
   },
   "bin": {
