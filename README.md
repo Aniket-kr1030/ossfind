@@ -8,6 +8,10 @@ ranking engine.
 Its core promise: **never recommend ("ship") a component whose safety evidence is unsafe, missing, or
 ambiguous.** The engine fails *closed*.
 
+**New here?** → [`GETTING_STARTED.md`](GETTING_STARTED.md) — install, try the offline demo, go live,
+and connect it to an AI agent over MCP (Claude Code / Claude Desktop / Cursor config included), in
+about five minutes.
+
 ## Quick start
 
 ```bash
