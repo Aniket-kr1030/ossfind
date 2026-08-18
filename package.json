@@ -1,13 +1,32 @@
 {
   "name": "ossfind",
   "version": "0.1.0",
+  "description": "Safety-ranked open-source component discovery across npm, PyPI, GitHub, and Hugging Face for humans and AI agents.",
   "private": true,
   "type": "module",
+  "keywords": [
+    "open-source",
+    "component-discovery",
+    "npm",
+    "pypi",
+    "github",
+    "hugging-face",
+    "ai-agents",
+    "security"
+  ],
+  "files": [
+    "dist",
+    "public",
+    "fixtures",
+    "scripts",
+    "README.md"
+  ],
   "engines": {
     "node": ">=22"
   },
   "scripts": {
     "build": "tsc -p .",
+    "prepare": "npm run build",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "gates": "tsx src/gates/run.ts",
@@ -18,7 +37,8 @@
     "index:build": "tsx scripts/build-index.mjs"
   },
   "bin": {
-    "ossfind-mcp": "dist/mcp/server.js"
+    "ossfind-mcp": "dist/mcp/server.js",
+    "ossfind-web": "bin/ossfind-web"
   },
   "devDependencies": {
     "@types/cvss": "^1.0.3",
@@ -26,13 +46,13 @@
     "@types/semver": "^7.8.0",
     "tsx": "^4.20.0",
     "typescript": "^5.9.0",
-    "vitest": "^3.2.0",
-    "zod": "^3.25.0"
+    "vitest": "^3.2.0"
   },
   "dependencies": {
     "@huggingface/transformers": "^4.2.0",
     "@modelcontextprotocol/sdk": "^1.30.0",
     "cvss": "^1.0.5",
-    "semver": "^7.8.5"
+    "semver": "^7.8.5",
+    "zod": "^3.25.0"
   }
 }
