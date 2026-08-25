@@ -1,0 +1,75 @@
+{
+  "dist": {
+    "shasum": "2d724b2c990dcb8c8444063f3580a903f6d500cc",
+    "tarball": "https://registry.npmjs.org/@types/express/-/express-5.0.6.tgz",
+    "fileCount": 5,
+    "integrity": "sha512-sKYVuV7Sv9fbPIt/442koC7+IIwK5olP1KWeD88e/idgoJqDm3JV/YUiPwkoKK92ylff2MGxSz1CSjsXelx0YA==",
+    "signatures": [
+      {
+        "sig": "MEUCIQDm1AMsQNzbpWGocN6VjjMu2pSr2QB3HkZHmLzr3K8qYAIgd9Y+k5HxoaSSFb3oz6dqnw3YBAAceyMCA4Hn4oamxgs=",
+        "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U"
+      }
+    ],
+    "unpackedSize": 7576
+  },
+  "main": "",
+  "name": "@types/express",
+  "types": "index.d.ts",
+  "license": "MIT",
+  "scripts": {},
+  "_npmUser": {
+    "name": "types",
+    "email": "ts-npm-types@microsoft.com"
+  },
+  "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/express",
+  "repository": {
+    "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git",
+    "type": "git",
+    "directory": "types/express"
+  },
+  "description": "TypeScript definitions for express",
+  "directories": {},
+  "maintainers": [
+    {
+      "name": "types",
+      "email": "ts-npm-types@microsoft.com"
+    }
+  ],
+  "contributors": [
+    {
+      "url": "https://github.com/borisyankov",
+      "name": "Boris Yankov",
+      "githubUsername": "borisyankov"
+    },
+    {
+      "url": "https://github.com/puneetar",
+      "name": "Puneet Arora",
+      "githubUsername": "puneetar"
+    },
+    {
+      "url": "https://github.com/dfrankland",
+      "name": "Dylan Frankland",
+      "githubUsername": "dfrankland"
+    },
+    {
+      "url": "https://github.com/bjohansebas",
+      "name": "Sebastian Beltran",
+      "githubUsername": "bjohansebas"
+    }
+  ],
+  "dependencies": {
+    "@types/body-parser": "*",
+    "@types/serve-static": "^2",
+    "@types/express-serve-static-core": "^5.0.0"
+  },
+  "_hasShrinkwrap": false,
+  "peerDependencies": {},
+  "typeScriptVersion": "5.2",
+  "_npmOperationalInternal": {
+    "tmp": "tmp/express_5.0.6_1764621351309_0.39245408346585364",
+    "host": "s3://npm-registry-packages-npm-production"
+  },
+  "typesPublisherContentHash": "d4b85097ff826bcd411f53fe4b61bcdfa304d54cc0efb8e64b184f65d149d2f8",
+  "_id": "@types/express@5.0.6",
+  "version": "5.0.6"
+}

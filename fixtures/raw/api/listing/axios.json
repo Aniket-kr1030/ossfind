@@ -1,0 +1,527 @@
+{
+  "default": "/dist/axios.min.js",
+  "files": [
+    {
+      "name": "/CHANGELOG.md",
+      "hash": "ABLWMBa4RtThemRBo7saG41ZTSDzNVI5x4ftDed/Hno=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 136554
+    },
+    {
+      "name": "/dist/axios.js",
+      "hash": "yX3+uZY39UL1MOehYp3rQ2jegOf2ttgkIYfGXHrCLuo=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 195267
+    },
+    {
+      "name": "/dist/axios.min.js",
+      "hash": "MqDOyD14FMn5IfvW+lIfohKtwoSdyRr2Eki1JCukeYU=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 65099
+    },
+    {
+      "name": "/dist/axios.min.js.map",
+      "hash": "Ihqy5EfSqW/Z5QFbJeVyKJ/TBGGk2qSWUfSruWdHcU8=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 251184
+    },
+    {
+      "name": "/dist/browser/axios.cjs",
+      "hash": "Hx3qgwqqK0UHWodQDiQ/PFqnvRCgLkHWQsgMPIjSXN0=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 150798
+    },
+    {
+      "name": "/dist/esm/axios.js",
+      "hash": "Ab6m4OM0eNi/PXGmyM463xtbtX4/1+BiMfoNifNJrZ0=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 151770
+    },
+    {
+      "name": "/dist/esm/axios.min.js",
+      "hash": "62W4wnKQcMT61ufp/bZc7kXqaZZHyn7Kth4OuHzqDec=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 48485
+    },
+    {
+      "name": "/dist/esm/axios.min.js.map",
+      "hash": "QJSnPVZQUmGkxhdFRmDE+vGKLOLkyKA8rcSJBwL2aeI=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 240883
+    },
+    {
+      "name": "/dist/node/axios.cjs",
+      "hash": "AKvicVAmTxWQPicRkWQm34nSGus95hAdcJqFxiWP6yQ=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 216518
+    },
+    {
+      "name": "/index.d.cts",
+      "hash": "/NRNkMs3YMKI0hAyyFfJ+vocNZ/jl+E0qkVfUedwTOY=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 23568
+    },
+    {
+      "name": "/index.d.ts",
+      "hash": "N2jrCXXwMDUuyWGQqqSFr0GRACnZpi2ccFV8l2swpvc=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 23232
+    },
+    {
+      "name": "/index.js",
+      "hash": "QihqFY6o3GJE5+mFt8GV1PC6Jbl8klAwXmBJKPhRN4w=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 704
+    },
+    {
+      "name": "/lib/adapters/adapters.js",
+      "hash": "LT30mTcmTLd9365RIb+xX2Bra410WC2kaRvKmD/IGl0=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 3505
+    },
+    {
+      "name": "/lib/adapters/fetch.js",
+      "hash": "lnINaVNlvxN4iNRHNfGDLdyOZMwXLBelOTpp/6RbBc0=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 20367
+    },
+    {
+      "name": "/lib/adapters/http.js",
+      "hash": "Rn+eXOrBwIY5KUu4jReesuvKbaJ2JYvkQZ09GZ2+Hvc=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 50476
+    },
+    {
+      "name": "/lib/adapters/README.md",
+      "hash": "guetZiIgETpy2RveNq1cQxOTELHJ1zx7mW1kWHmvPvI=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 911
+    },
+    {
+      "name": "/lib/adapters/xhr.js",
+      "hash": "qFYO/UEC0AMmmQYDrkd6/ME8fsn6qXESHiUoyp83P5g=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 7617
+    },
+    {
+      "name": "/lib/axios.js",
+      "hash": "HuTc5M6YIijymAqkVzpJZGSor9X4ZlkqRwALOuJc1Js=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 2558
+    },
+    {
+      "name": "/lib/cancel/CanceledError.js",
+      "hash": "Inp/fWsfFNg1YEOOJWPBlQ4zmeSOwlGZKmntoA03DxU=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 618
+    },
+    {
+      "name": "/lib/cancel/CancelToken.js",
+      "hash": "kzsZzDbgxKKdhfDmWyPThurUFCO+CBAWv4ARzTQx7sc=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 2796
+    },
+    {
+      "name": "/lib/cancel/isCancel.js",
+      "hash": "xeyeJ/nZCsDdaqeSHCc8o+PZrsqKz5PFTF3YMFu2JPE=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 99
+    },
+    {
+      "name": "/lib/core/Axios.js",
+      "hash": "31uBuwX1s2GD0wPtsFD6KLGg9VVdDgNxtp65t+pIc5U=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 8926
+    },
+    {
+      "name": "/lib/core/AxiosError.js",
+      "hash": "bChgoGKSqzfOX8FyUUFxKI8nRcZx/aFwXDsOCHD+Aa4=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 7005
+    },
+    {
+      "name": "/lib/core/AxiosHeaders.js",
+      "hash": "lWhs0Q5GoB5Bojx2s9t/gePw/AmlASk8nRQ2MbQQcZY=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 10338
+    },
+    {
+      "name": "/lib/core/buildFullPath.js",
+      "hash": "w4/Lboq/OH7YLFfCDfQ8BY2YLPkjWaLPxR6jaRG6amw=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 3151
+    },
+    {
+      "name": "/lib/core/dispatchRequest.js",
+      "hash": "/KHMSxcJ/i6Wx3q78s+uJ9+N+TarAaYU/BBUf+Cd95Q=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 2652
+    },
+    {
+      "name": "/lib/core/InterceptorManager.js",
+      "hash": "d+yRwOClzA4L6L+ejnz/kDqDcxyHf6KxzPyIW/Imz9w=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1594
+    },
+    {
+      "name": "/lib/core/mergeConfig.js",
+      "hash": "sLx68UOAm/cce0hNGRHi/hb82sQGVR0IyBxA+iPQGHM=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 5761
+    },
+    {
+      "name": "/lib/core/README.md",
+      "hash": "aYKoafTaRAWnt04YLKLuoNoq3lg+3WBtGCv8Sa7kzSo=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 399
+    },
+    {
+      "name": "/lib/core/setFormDataHeaders.js",
+      "hash": "zlBe/6RJl7rue6AMgncW8iSfnoY0OvRU3t0LCRxlk50=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 907
+    },
+    {
+      "name": "/lib/core/settle.js",
+      "hash": "gcs0VUi7Dt7SQiRDvmEzzvblVSFdGNCYCNAYOClyvYk=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 846
+    },
+    {
+      "name": "/lib/core/transformData.js",
+      "hash": "8f1yDmTlgTrKTTYqC6e3YcJDh2zhGqgKeMnhlf0zyqo=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 776
+    },
+    {
+      "name": "/lib/defaults/index.js",
+      "hash": "oR2REhhBQ2gKdhJNXwGVfYrxRFxInG1/c/UNiNdcgng=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 4977
+    },
+    {
+      "name": "/lib/defaults/transitional.js",
+      "hash": "LYEit5tLn8HTk4HsU+eN26TJf5jGDy9b4CEm0ENMmFA=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 239
+    },
+    {
+      "name": "/lib/env/classes/FormData.js",
+      "hash": "xNwlDl3PCzRGUmyD34bTFcbt+hKjjAzpy5rkdtqZD2g=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 106
+    },
+    {
+      "name": "/lib/env/data.js",
+      "hash": "tF4uljrnaCdPeafQDEO62/FQH2orAcgvi9QSJBDYywE=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 32
+    },
+    {
+      "name": "/lib/env/README.md",
+      "hash": "ntxnw8kUqOswptjMwS1szyGTevJbvQW2F2ZH277BO1A=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 131
+    },
+    {
+      "name": "/lib/helpers/AxiosTransformStream.js",
+      "hash": "K/vyYGkqHcgm7/GFVENFqkAOcan/W4YqWqK/vkgMXos=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 3809
+    },
+    {
+      "name": "/lib/helpers/AxiosURLSearchParams.js",
+      "hash": "vn3Cq0gJYwtEvpcfXkBSC8VuvJGnWk12dAh73/G3Bm0=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1416
+    },
+    {
+      "name": "/lib/helpers/bind.js",
+      "hash": "mgS5NaErMcoQSto7aNSExTccdRu4Xc8YIVMJ9d6RiNI=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 444
+    },
+    {
+      "name": "/lib/helpers/buildURL.js",
+      "hash": "l6QKwbsY/2N1bqyZ6rqUuxFQR6vdEPZzAO15N6WmztM=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1819
+    },
+    {
+      "name": "/lib/helpers/callbackify.js",
+      "hash": "p+I/zkiJcqomTO7QRwtuDs8LHf+rJPdixlx5E6PhfJ0=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 417
+    },
+    {
+      "name": "/lib/helpers/combineURLs.js",
+      "hash": "9K4rIh6O4w+plDKhQZ9KCcC7jv9BvOcdxCi6eH4YcX8=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 492
+    },
+    {
+      "name": "/lib/helpers/composeSignals.js",
+      "hash": "Rvx+lm/JWQBQFEVBskkpYKfA6c2A5aFO8cDqUD+3KdU=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1531
+    },
+    {
+      "name": "/lib/helpers/cookies.js",
+      "hash": "ezx5MTWStNU3xHoy7VF4lw0n81zGcUimb9LCPq3jB9c=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 2152
+    },
+    {
+      "name": "/lib/helpers/deprecatedMethod.js",
+      "hash": "DvmrvYMLsmByUHrD6znjLwaFCK/QBiK087Z/S59MPvQ=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 777
+    },
+    {
+      "name": "/lib/helpers/estimateDataURLDecodedBytes.js",
+      "hash": "8gx7ExBxTgOQ9ize6+W8gnFCl8ucRLEVyakvCgWtbyg=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 4885
+    },
+    {
+      "name": "/lib/helpers/formDataToJSON.js",
+      "hash": "QOy+wpbL5/G8jRJCLzXPyh0vz45MGfyhau8IRIxlxCI=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 3490
+    },
+    {
+      "name": "/lib/helpers/formDataToStream.js",
+      "hash": "3hS2waASUEmrp+S2UACIy7Q5VoMDK9W8AtfiazmPGiw=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 3100
+    },
+    {
+      "name": "/lib/helpers/fromDataURI.js",
+      "hash": "Jvlg4+B/O/DQJT3QwOm5O6/9Y7t85JuDUIYhwmhTpvE=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1905
+    },
+    {
+      "name": "/lib/helpers/Http2Sessions.js",
+      "hash": "EsGP4mqWVarJSUZEeYzaP2iD9XDusS6FjOQhLvs9O74=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 2622
+    },
+    {
+      "name": "/lib/helpers/HttpStatusCode.js",
+      "hash": "q1jGD3zn+CYE+djv4u+50Qg9ZV6sPBp9SkpmB0aRry0=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1799
+    },
+    {
+      "name": "/lib/helpers/isAbsoluteURL.js",
+      "hash": "CI1DKW8P+xLy6F1IN1xUSxc7o3Jjrmq8GmEG+7x21Gk=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 617
+    },
+    {
+      "name": "/lib/helpers/isAxiosError.js",
+      "hash": "w+bQlEQH46mXKVSucnAf1DKfCTV/M5MvWzWAIJeChVk=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 369
+    },
+    {
+      "name": "/lib/helpers/isURLSameOrigin.js",
+      "hash": "1O8KF0kbgB2W5UWh0WMrYFDqMDt1igFyXNsveQvMZ1U=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 464
+    },
+    {
+      "name": "/lib/helpers/null.js",
+      "hash": "sNW8uszFbkfNVRSj9sZq1p3tx9ejUDWUOXGrOoJywKw=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 56
+    },
+    {
+      "name": "/lib/helpers/parseHeaders.js",
+      "hash": "ke5L207whgW3WNB9MpAmSzALYSv71mCpqhtOqkvQwUg=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1501
+    },
+    {
+      "name": "/lib/helpers/parseProtocol.js",
+      "hash": "ltRLcwqjxvlC/qxDafqIDS3kv+R/Cb91H7AfTyP9qog=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 153
+    },
+    {
+      "name": "/lib/helpers/progressEventReducer.js",
+      "hash": "lKm0h1RL0gmTVnt87h9WmHoF8YwJYqlb+2fuQ9E+C0g=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1452
+    },
+    {
+      "name": "/lib/helpers/readBlob.js",
+      "hash": "AWnFTvMnGkgmEJp7kRQa/rYjclQOjJ798n+Zdz4EKUE=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 323
+    },
+    {
+      "name": "/lib/helpers/README.md",
+      "hash": "uP4iar7Vvdn8Xu0dm5BvTv90L4OGhbWrT9COQf5XwZM=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 351
+    },
+    {
+      "name": "/lib/helpers/resolveConfig.js",
+      "hash": "RQ7X0Chpes5No+AvUyYhMZTMn2cnGAUyzudGjbqaiNs=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 3516
+    },
+    {
+      "name": "/lib/helpers/sanitizeHeaderValue.js",
+      "hash": "FNiuePyGWz84Pby9/sbre+gyS95ViB9+epE/f+CRB2Q=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1589
+    },
+    {
+      "name": "/lib/helpers/shouldBypassProxy.js",
+      "hash": "dGnQc154lO3WmwlSgChjrgfP+z0z3Mcg+A/Y/w5rNzk=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 10446
+    },
+    {
+      "name": "/lib/helpers/speedometer.js",
+      "hash": "sYwXR2d7wVRF1EbvV2LkRSIsIMwpZARsQ1rEcdUhqao=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1094
+    },
+    {
+      "name": "/lib/helpers/spread.js",
+      "hash": "ajDFpU37BDAFVZFwMmNJp5XxJfMqOYuQiujYgvQiX2I=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 566
+    },
+    {
+      "name": "/lib/helpers/throttle.js",
+      "hash": "GQyblgDOltVC9xJI16g+1KlZKHvze+jWFM1FD97Xocs=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 854
+    },
+    {
+      "name": "/lib/helpers/toFormData.js",
+      "hash": "mTkd582pSXpYPzYBtNEAnmN9xwbx0Tv1DuUsGNB1xFk=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 7891
+    },
+    {
+      "name": "/lib/helpers/toURLEncodedForm.js",
+      "hash": "EZ7lYSkDk//kojRsjMudDYDxAF/q+out50FlZNhcgyY=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 542
+    },
+    {
+      "name": "/lib/helpers/trackStream.js",
+      "hash": "551pzSF8KTGK2F3vNPRMaRDhbydsPy6pyPYyie4N1og=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1764
+    },
+    {
+      "name": "/lib/helpers/validator.js",
+      "hash": "TdC02J3tQh3NfeSeM1sFdjTbXBldCKciQWVTxY8pnrg=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 3083
+    },
+    {
+      "name": "/lib/helpers/ZlibHeaderTransformStream.js",
+      "hash": "17Ho022Rjh3624OzdY3LQBqJAL3gstGKayyc23L0lUc=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 688
+    },
+    {
+      "name": "/lib/platform/browser/classes/Blob.js",
+      "hash": "Pw+4xrMj7mwf6BSsswsIW7GEm25vcYwyrm+3vs9vh1g=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 73
+    },
+    {
+      "name": "/lib/platform/browser/classes/FormData.js",
+      "hash": "nlKA0n5+eOLjf4NUGBYaqyz7aRAaEhNU/YbSdx+/pRo=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 81
+    },
+    {
+      "name": "/lib/platform/browser/classes/URLSearchParams.js",
+      "hash": "jkEHaaMpTAXq+IzLNQRZl9Atr3t3QhWP0FTG1zpijBg=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 188
+    },
+    {
+      "name": "/lib/platform/browser/index.js",
+      "hash": "W7VNQ6uP45qygPVlcWAIffiwP0Vqr7oxmNtkP/kEQLw=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 310
+    },
+    {
+      "name": "/lib/platform/common/utils.js",
+      "hash": "t0Tu5X8Dko+96anIgT36AKD1t/iAOEDTStlElWEXSuM=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1603
+    },
+    {
+      "name": "/lib/platform/index.js",
+      "hash": "/1PXvqnpZP/fNIzVnr6THa+EMK2u+AcaPo8D/USsSaA=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 132
+    },
+    {
+      "name": "/lib/platform/node/classes/Buffer.js",
+      "hash": "e6d0RNU1URbIx4+fUgt51k8InwRDp5UVbjd4ukVs6BM=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 158
+    },
+    {
+      "name": "/lib/platform/node/classes/FormData.js",
+      "hash": "+A2N1a4WgJjw4Kuv9lKiHyUncEjUmPSwIH0ZgK/Qcnc=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 60
+    },
+    {
+      "name": "/lib/platform/node/classes/URLSearchParams.js",
+      "hash": "kCq0TGAu0n02CzGZS0aOblF7kFYIYr8ybjJgTxVXzYU=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 74
+    },
+    {
+      "name": "/lib/platform/node/index.js",
+      "hash": "cZemvSN4zsdIHDqWl8i/BCSYrkJ8ufAFZ6y0a42tNrM=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 837
+    },
+    {
+      "name": "/lib/utils.js",
+      "hash": "VPCCBhg0RBj2sjpYugox8DmX9GV2O23nfbWBCrFPAAo=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 27455
+    },
+    {
+      "name": "/LICENSE",
+      "hash": "gnYQWertrLM1aAOuqKFw2CmGCfkbFPwy7hv7QNaQGDw=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1084
+    },
+    {
+      "name": "/MIGRATION_GUIDE.md",
+      "hash": "7HJtgCnylpLuWtKoHYsaEB1zMFEzPpmNsq/PbfC61Ek=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 21742
+    },
+    {
+      "name": "/package.json",
+      "hash": "ya/OjGXJ+trrqsQcqQ2yZ3nv3F6VrspJtOlHe2G8xLI=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 6681
+    },
+    {
+      "name": "/README.md",
+      "hash": "TbAz+OXDnMNCcHjflOvgeaN6fG5VcYDm9hZjivXjNY8=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 98401
+    }
+  ]
+}

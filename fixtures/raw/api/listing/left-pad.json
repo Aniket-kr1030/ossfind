@@ -1,0 +1,65 @@
+{
+  "default": "/index.min.js",
+  "files": [
+    {
+      "name": "/.travis.yml",
+      "hash": "nvPt3R5j1OJEYaYsiHxvTTRytb3e0sos7IQDK6A3qQk=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 58
+    },
+    {
+      "name": "/COPYING",
+      "hash": "rpI0KkOCFc1aRTWfsH6C0StCtasBlptW5lou2tkUq9k=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 502
+    },
+    {
+      "name": "/index.d.ts",
+      "hash": "GkwCMjVr1v+S0jg1dCk3Q4h5TWBJQmvFuwViPnqZD/E=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 302
+    },
+    {
+      "name": "/index.js",
+      "hash": "MmQbazwr2AC8yCgyBe4nQmrtJVnx6Ot9k3dTD2IpJoY=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1469
+    },
+    {
+      "name": "/package.json",
+      "hash": "HrNWtuXT9VaO5icTEpP+Ts+sa4AjIiVz85qknhCNQsQ=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 646
+    },
+    {
+      "name": "/perf/es6Repeat.js",
+      "hash": "pDNkrB/CyCWTAk6pv64pD312yaHSUTVdqqWpwcbEWPs=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 216
+    },
+    {
+      "name": "/perf/O(n).js",
+      "hash": "/j7xI51Tv1sj/xzfxbg8l2KbNS5d4LmEUOT168D2fI0=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 241
+    },
+    {
+      "name": "/perf/perf.js",
+      "hash": "F+yqfietZ8aOizIqDdX3b8xIsK3yYdYy88rFrsWu2jI=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1442
+    },
+    {
+      "name": "/README.md",
+      "hash": "o2VsSfXhKFWAhq8IvTDFhnLbT7hd8L+mrTyN7uTWogk=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 871
+    },
+    {
+      "name": "/test.js",
+      "hash": "QYo5wucGG4PMC+TNSXsoFTfxc596Sj2imsrOehiRf1c=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 4005
+    }
+  ]
+}

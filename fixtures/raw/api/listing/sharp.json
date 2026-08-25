@@ -1,0 +1,287 @@
+{
+  "default": "/dist/index.cjs",
+  "files": [
+    {
+      "name": "/dist/channel.cjs",
+      "hash": "dEVWfoAB9L4xJjdOTBfignd+0Uxxisyodckb7Gmi16E=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 5383
+    },
+    {
+      "name": "/dist/channel.mjs",
+      "hash": "YGewul68yWgqAdC0UKErVISalcjtAX+Ehb3bX9C525E=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 5376
+    },
+    {
+      "name": "/dist/colour.cjs",
+      "hash": "2nYBhuddT9i22gphfs8SLe7C+m2V/cwZS77gyxxeRgU=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 5622
+    },
+    {
+      "name": "/dist/colour.mjs",
+      "hash": "dg5/qBYUMqnMl/Cj2fPgt1fmYInJZ+azbzExyf2vobU=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 5610
+    },
+    {
+      "name": "/dist/composite.cjs",
+      "hash": "FU56vEX+W4AbhZ5CVN9LboUK2iBedmIKs2OsP6YvS/8=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 9079
+    },
+    {
+      "name": "/dist/composite.mjs",
+      "hash": "+BgoRahacoNvaaqzEZ6zcRFcqlBU+IkvRCSgRgdvutE=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 9072
+    },
+    {
+      "name": "/dist/constructor.cjs",
+      "hash": "URhsPxgT1fjgPK0+cXbS8w7iNK6a1Epb1bNj4eKvutY=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 20355
+    },
+    {
+      "name": "/dist/constructor.mjs",
+      "hash": "JCD+GGC1vMiN5zykOtrn0kEMN/8jrfTvh+Pski5b+dM=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 20331
+    },
+    {
+      "name": "/dist/index.cjs",
+      "hash": "1p8nW8SfzSphiLJrNcmG1NsyobAIZT/viK20WYaIIyo=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 620
+    },
+    {
+      "name": "/dist/index.d.cts",
+      "hash": "/PEzsL+pTfsy1zRfTum3yvErNtqqn1IpIe60lqexSL0=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 92777
+    },
+    {
+      "name": "/dist/index.d.mts",
+      "hash": "hU5QuTCQs/j9bjVbB04dJNzhrgJA8c5GVj41/qIQptU=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 87878
+    },
+    {
+      "name": "/dist/index.mjs",
+      "hash": "Do+VXGihsLzPC6U0PJJNv6akanag1JHsJ/5rMoMRNj4=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 573
+    },
+    {
+      "name": "/dist/input.cjs",
+      "hash": "LRdquGC+8R00DesiP7QJf8qvJFrcsdl2csCUzo22yTw=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 33642
+    },
+    {
+      "name": "/dist/input.mjs",
+      "hash": "wTSAHSLKgrHPVuIeNGhZJYXimwk8vXx2Y2CNK6+TMI4=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 33630
+    },
+    {
+      "name": "/dist/is.cjs",
+      "hash": "P9BcpvbNdiwMInlUXmEUYj1wj0mFGz0juDlsYhRVzMg=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 2932
+    },
+    {
+      "name": "/dist/is.mjs",
+      "hash": "2HIg4sTOBCAikP39eBBaZdMq3OP+rWSqqsoVz+Mk+V0=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 2930
+    },
+    {
+      "name": "/dist/libvips.cjs",
+      "hash": "NBn2y0MD/q9KdqvhIs4cr13HVfnxf6ATr9VWGCe2EGI=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 5833
+    },
+    {
+      "name": "/dist/libvips.mjs",
+      "hash": "2ZhGAbCq/kTDk7Kc5LBxKxxAiQw9dA1P2kmEKk6lhz0=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 5828
+    },
+    {
+      "name": "/dist/operation.cjs",
+      "hash": "EyP8mDLt/fPf0PyBXh/zvmWAQr57huEA2oKTaDWcAOk=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 32677
+    },
+    {
+      "name": "/dist/operation.mjs",
+      "hash": "4rYzxb1DOsUz6HvwbyXhR2BAtr/OI9g1HMgu21P0J3k=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 32670
+    },
+    {
+      "name": "/dist/output.cjs",
+      "hash": "hRPRevJ13RTEaId1/+pnXRXVS37ECJwRKrBfSZxdK0U=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 65461
+    },
+    {
+      "name": "/dist/output.mjs",
+      "hash": "iD3mLZX1anj3tdUlX0nx5PzNw0l4B18TZIUAKGGLOcI=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 65444
+    },
+    {
+      "name": "/dist/resize.cjs",
+      "hash": "TWjmk5RtCfHJxcqmkzspDmej09UD7w9lUBzOAAhVkSo=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 22600
+    },
+    {
+      "name": "/dist/resize.mjs",
+      "hash": "KuVwCx60gdCFhvQ6KJ55to6qK+Dm56TEKokYIB6gYQ4=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 22593
+    },
+    {
+      "name": "/dist/sharp.cjs",
+      "hash": "T8Be3q5m6oIHMy98AwRYVuQ/NxqEhAGgFJH/Fed9g58=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 6199
+    },
+    {
+      "name": "/dist/sharp.mjs",
+      "hash": "mUIwhZ3PoSNd7lv2EgadFIRBU7mXz3MJ3rLqABLsVBk=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 6294
+    },
+    {
+      "name": "/dist/utility.cjs",
+      "hash": "D3oUhY36jr0BssbCJyKX96NMSvPYTwwLkmFGxJomVbE=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 9786
+    },
+    {
+      "name": "/dist/utility.mjs",
+      "hash": "dhVm4WW8H8kLxt1no7VgwaY+bP6YAJtybTUohgbWKbk=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 9862
+    },
+    {
+      "name": "/install/build.js",
+      "hash": "/qkuDVXM6GkkE8R5AhFzqhUSME4bhJA5lJy+6dbOsd4=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 860
+    },
+    {
+      "name": "/lib/index.d.ts",
+      "hash": "/PEzsL+pTfsy1zRfTum3yvErNtqqn1IpIe60lqexSL0=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 92777
+    },
+    {
+      "name": "/LICENSE",
+      "hash": "c7p036pSC0mkAbXSFFmoUjoUbzt1GKgz7qXvqFEwv2g=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 10273
+    },
+    {
+      "name": "/package.json",
+      "hash": "Dzp+frTyKXjf3kbmx8bs87hrQ+M8PTZt6IszS0YQw/8=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 8120
+    },
+    {
+      "name": "/README.md",
+      "hash": "iXcpYfzxlbl2Vzh0VV8pAr/gSj5XvmGvJhrGXOk0hzU=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 3162
+    },
+    {
+      "name": "/src/binding.gyp",
+      "hash": "nQpDtdtdtOakpmL/BZ2L8w5X6kA9LiB/xAioxqoKuMg=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 10805
+    },
+    {
+      "name": "/src/common.cc",
+      "hash": "+0+cs+5RFKgxDBVvkh1wibbtnBJ8mY2R16oVH+42mag=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 41350
+    },
+    {
+      "name": "/src/common.h",
+      "hash": "rmOv4JNBmPVeiN5URBC74MHnY7m9360JRIXvo3z2MZo=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 10988
+    },
+    {
+      "name": "/src/metadata.cc",
+      "hash": "oSfBNMnlN9ucY5Yv8aodB2Ko1RfXRqhE5rQ7KZ4RpYE=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 15320
+    },
+    {
+      "name": "/src/metadata.h",
+      "hash": "XgLCXsghpSWwyvMRYbHoZ1/zLP0JjBfNoLiIRANisFc=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1878
+    },
+    {
+      "name": "/src/operations.cc",
+      "hash": "ph5lRc3n0vKuUItOzu7snbnvcRIR1cuh7UcPkyX5FPs=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 17412
+    },
+    {
+      "name": "/src/operations.h",
+      "hash": "b0HTKWNEcd/44JPRLjj/NWKTB54q7sxbki/CO6mXmeY=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 3625
+    },
+    {
+      "name": "/src/pipeline.cc",
+      "hash": "dgENGYBPN/IjHz1wWv3Qk3rFk2Y3l3gKNsBsOVLNZXE=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 90883
+    },
+    {
+      "name": "/src/pipeline.h",
+      "hash": "4Jw9vYcwcaNz5tlWebRwpv4b5fwu94GwD9h5WLWrXpg=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 10131
+    },
+    {
+      "name": "/src/sharp.cc",
+      "hash": "n0B7ULstAuXrcRt2nwXT5mWQKEMOBVxCceWrFZP1olc=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1529
+    },
+    {
+      "name": "/src/stats.cc",
+      "hash": "cvjyrQ5DFZUciLEVUR65Z0H9BHk4XtCUFB970lRzl5E=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 6756
+    },
+    {
+      "name": "/src/stats.h",
+      "hash": "24VPDDxKDbF1ECHtZ2QTxtXKAL7MCL3BMliykEdFC4w=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1267
+    },
+    {
+      "name": "/src/utilities.cc",
+      "hash": "aUGVpfKqfk71CqepfAOB2KhYprOkN5l+F7lyr/CTpJM=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 9532
+    },
+    {
+      "name": "/src/utilities.h",
+      "hash": "CxJqtjzxrt+OcebLgXmJnT7wLEZBkQDoR7LKQoS4kBs=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 741
+    }
+  ]
+}

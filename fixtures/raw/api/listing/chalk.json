@@ -1,0 +1,77 @@
+{
+  "default": null,
+  "files": [
+    {
+      "name": "/license",
+      "hash": "XJMtiCVrSrlY9kqFb6SOi9H1W8HZa4FJxlaJ4MYXidM=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1117
+    },
+    {
+      "name": "/package.json",
+      "hash": "WoU/xtwMUpvBJvl2RZienWDQai6bIPZqa0iw6O+do+8=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1743
+    },
+    {
+      "name": "/readme.md",
+      "hash": "g6/JQgWVwfe7StXhPC13YUZ2mD898eWKy7aYXtairXs=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 13891
+    },
+    {
+      "name": "/source/index.d.ts",
+      "hash": "1u9NDiQH7vMWWGdFv6xm1SgPx7KtfN3nX8skxE/yJSw=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 9987
+    },
+    {
+      "name": "/source/index.js",
+      "hash": "COkvIzCjTSMviqmH2k2VOJMJS+WyqozDndtDE3Q/IG4=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 8183
+    },
+    {
+      "name": "/source/utilities.js",
+      "hash": "pY2BSUNmIRUJ6iw3MyjPaKY2WpS+hkXzPB7UnxKIZQo=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1187
+    },
+    {
+      "name": "/source/vendor/ansi-styles/index.d.ts",
+      "hash": "CeyQBuLOo9XtnrESnT/czmiiXc/slTsCzvjELACYfuk=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 6828
+    },
+    {
+      "name": "/source/vendor/ansi-styles/index.js",
+      "hash": "8o8e3lm+MnYm5K5fnwU4ergHLymLoat/nJJi05kjol0=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 6996
+    },
+    {
+      "name": "/source/vendor/supports-color/browser.d.ts",
+      "hash": "CdeRv2RxIH63VTwXpssD1ua9HXifGbvsZ9orCOybtXA=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 36
+    },
+    {
+      "name": "/source/vendor/supports-color/browser.js",
+      "hash": "m686BEdOHRzKjLi9RqTJyiEvRIwsL28XJe32LM+KSZc=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 586
+    },
+    {
+      "name": "/source/vendor/supports-color/index.d.ts",
+      "hash": "9hpNySRQYJw1Nzjwotrr+MrnGyRxbb2VJFbYCx4aSLY=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1010
+    },
+    {
+      "name": "/source/vendor/supports-color/index.js",
+      "hash": "V/VruQpYamx6ZfyDHK5H8Hc7j0Lt8Rq7fE8ic7gvtj4=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 4465
+    }
+  ]
+}

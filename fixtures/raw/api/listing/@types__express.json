@@ -1,0 +1,29 @@
+{
+  "default": null,
+  "files": [
+    {
+      "name": "/index.d.ts",
+      "hash": "jgTPBojg2SERFlnCtVhRlXAXFI+nuXewJydHfRVbPEc=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 4189
+    },
+    {
+      "name": "/LICENSE",
+      "hash": "ws/MuBL+SCEBqPBFl9/FqZkaaydIJmxHrJG2parhU4M=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1141
+    },
+    {
+      "name": "/package.json",
+      "hash": "1AlnHX+pA2uUI7XUGjYd9/ehkCStXXcKk5CXWk9Gpm4=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 1412
+    },
+    {
+      "name": "/README.md",
+      "hash": "yMUcCI3EQ1vDuvXf533NKvcHFX0n4TPHMzqeGGxFH64=",
+      "time": "1985-10-26T08:15:00.000Z",
+      "size": 834
+    }
+  ]
+}
