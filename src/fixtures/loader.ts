@@ -295,3 +295,41 @@ export async function listFixturePackages(ecosystem: FixtureEcosystem = "npm"): 
     .map((file) => file.name.slice(0, -".json".length))
     .sort();
 }
+
+export interface PyApiPypiFixture {
+  info: {
+    name: string;
+    version: string;
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
+}
+
+export interface PyApiTypeshedMetaFixture {
+  package: string;
+  distribution?: string;
+  importPackage?: string;
+  path?: string;
+  bytes?: number;
+  __error?: number;
+  note?: string;
+  [key: string]: unknown;
+}
+
+/** Load the frozen PyPI package JSON document. */
+export async function loadPyApiPypi(packageName: string): Promise<PyApiPypiFixture> {
+  const slug = packageName.toLowerCase();
+  return JSON.parse(await readFile(`${rawFixturesDirectory}pyapi/pypi/${slug}.json`, "utf8")) as PyApiPypiFixture;
+}
+
+/** Load typeshed stub content and its metadata for a package. */
+export async function loadPyApiTypeshed(packageName: string): Promise<{ content?: string; metadata: PyApiTypeshedMetaFixture }> {
+  const slug = packageName.toLowerCase();
+  const meta = JSON.parse(await readFile(`${rawFixturesDirectory}pyapi/typeshed/${slug}.meta.json`, "utf8")) as PyApiTypeshedMetaFixture;
+  if (meta.__error === 404) {
+    return { metadata: meta };
+  }
+  const content = await readFile(`${rawFixturesDirectory}pyapi/typeshed/${slug}.pyi`, "utf8");
+  return { content, metadata: meta };
+}
+

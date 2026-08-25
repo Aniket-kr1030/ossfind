@@ -10,6 +10,15 @@ export const IntegrationManifestSchema = z.object({
     esm: z.string().min(1).nullable(),
     cjs: z.string().min(1).nullable(),
     typesPackage: z.string().min(1).nullable(),
+    // Python does not have an ESM/CJS split. Keep the existing npm fields
+    // intact and use this optional shape when a package has Python-specific
+    // import evidence.
+    python: z.object({
+      importName: z.string().min(1).nullable(),
+      statements: z.array(z.string().min(1)),
+      confidence: z.enum(["verified", "likely", "unknown"]),
+      evidence: z.string().min(1),
+    }).optional(),
   }),
   runtime: z.object({
     engines: z.record(z.string(), z.string()),

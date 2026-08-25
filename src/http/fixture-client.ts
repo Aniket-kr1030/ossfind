@@ -11,6 +11,8 @@ import {
   loadGitHubSearch,
   loadHuggingFaceSearch,
   loadOsv,
+  loadPyApiPypi,
+  loadPyApiTypeshed,
   loadScorecard,
   loadSearch,
 } from "../fixtures/loader.js";
@@ -132,7 +134,38 @@ export function createFixtureHttpClient(): HttpClient {
         const packageName = apiListingPackage(url);
         if (packageName) return response(await loadApiListing(packageName));
       }
+      if (url.hostname === "pypi.org") {
+        const match = /^\/pypi\/([^/]+)\/json$/.exec(url.pathname);
+        if (match) {
+          const pkg = decodeURIComponent(match[1]).toLowerCase();
+          try {
+            return response(await loadPyApiPypi(pkg));
+          } catch {
+            return notFound();
+          }
+        }
+      }
       if (url.hostname === "cdn.jsdelivr.net") {
+        if (url.pathname.startsWith("/gh/python/typeshed@main/")) {
+          const subpath = url.pathname.slice("/gh/python/typeshed@main/".length);
+          const parts = subpath.split("/");
+          if (parts[0] === "stubs" && parts.length >= 2) {
+            const dist = parts[1];
+            const pkgSlug = dist.toLowerCase();
+            try {
+              const typeshed = await loadPyApiTypeshed(pkgSlug);
+              if (typeshed.content && typeshed.metadata.path === subpath) {
+                const content = typeshed.metadata.truncated && !/\/\/\s*\[fixture truncated\]|#\s*\[fixture truncated\]/i.test(typeshed.content)
+                  ? `${typeshed.content}\n# [fixture truncated]\n`
+                  : typeshed.content;
+                return response(content);
+              }
+            } catch {
+              return notFound();
+            }
+          }
+          return notFound();
+        }
         const request = apiDtsRequest(url);
         if (request) {
           const dts = await loadApiDts(request.packageName);
