@@ -1,4 +1,8 @@
 import {
+  loadApiDts,
+  loadApiListing,
+  loadApiReexportDts,
+  loadApiRegistry,
   type FixtureEcosystem,
   listFixturePackages,
   loadDepsDev,
@@ -17,6 +21,9 @@ function response(body: unknown, status = 200): HttpResponse {
     ok: status >= 200 && status < 300,
     status,
     json: async () => body,
+    // Declaration files are fetched as text by the API-surface extractor.
+    // Keep JSON fixtures usable through the existing json() boundary too.
+    text: async () => typeof body === "string" ? body : JSON.stringify(body),
   };
 }
 
@@ -31,6 +38,36 @@ function querySlug(url: URL, parameter = "text"): string {
 function packageFromPath(url: URL, marker: string): string | undefined {
   const index = url.pathname.indexOf(marker);
   return index >= 0 ? decodeURIComponent(url.pathname.slice(index + marker.length)) : undefined;
+}
+
+function apiRegistryPackage(url: URL): string | undefined {
+  const suffix = "/latest";
+  if (!url.pathname.startsWith("/") || !url.pathname.endsWith(suffix)) return undefined;
+  const packageName = decodeURIComponent(url.pathname.slice(1, -suffix.length));
+  return packageName.includes("/") || packageName.length > 0 ? packageName : undefined;
+}
+
+function apiListingPackage(url: URL): string | undefined {
+  const prefix = "/v1/package/npm/";
+  const suffix = "/flat";
+  if (!url.pathname.startsWith(prefix) || !url.pathname.endsWith(suffix)) return undefined;
+  const packageAndVersion = decodeURIComponent(url.pathname.slice(prefix.length, -suffix.length));
+  const versionMarker = packageAndVersion.lastIndexOf("@");
+  return versionMarker > 0 ? packageAndVersion.slice(0, versionMarker) : undefined;
+}
+
+function apiDtsRequest(url: URL): { packageName: string; path: string } | undefined {
+  const prefix = "/npm/";
+  if (!url.pathname.startsWith(prefix)) return undefined;
+  const packageVersionAndPath = decodeURIComponent(url.pathname.slice(prefix.length));
+  const versionMarker = packageVersionAndPath.lastIndexOf("@");
+  if (versionMarker <= 0) return undefined;
+  const pathMarker = packageVersionAndPath.indexOf("/", versionMarker);
+  if (pathMarker < 0) return undefined;
+  return {
+    packageName: packageVersionAndPath.slice(0, versionMarker),
+    path: packageVersionAndPath.slice(pathMarker + 1).replace(/^\.\//, ""),
+  };
 }
 
 interface FixtureProject {
@@ -87,6 +124,29 @@ export function createFixtureHttpClient(): HttpClient {
   return async (requestUrl, init) => {
     try {
       const url = new URL(requestUrl);
+      if (url.hostname === "registry.npmjs.org") {
+        const packageName = apiRegistryPackage(url);
+        if (packageName) return response(await loadApiRegistry(packageName));
+      }
+      if (url.hostname === "data.jsdelivr.com") {
+        const packageName = apiListingPackage(url);
+        if (packageName) return response(await loadApiListing(packageName));
+      }
+      if (url.hostname === "cdn.jsdelivr.net") {
+        const request = apiDtsRequest(url);
+        if (request) {
+          const dts = await loadApiDts(request.packageName);
+          if (dts.metadata.path?.replace(/^\.\//, "") === request.path) {
+            // The extractor intentionally receives the capture incompleteness
+            // marker as source text, matching production's text-only boundary.
+            const content = dts.metadata.truncated && !/\/\/\s*\[fixture truncated\]/i.test(dts.content)
+              ? `${dts.content}\n// [fixture truncated]\n`
+              : dts.content;
+            return response(content);
+          }
+          return response(await loadApiReexportDts(request.packageName, request.path));
+        }
+      }
       if (url.hostname === "registry.npmjs.org" && url.pathname === "/-/v1/search") {
         return response(await loadSearch(querySlug(url)));
       }

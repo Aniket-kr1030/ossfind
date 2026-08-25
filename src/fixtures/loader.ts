@@ -139,6 +139,32 @@ export interface HuggingFaceSearchFixture {
   length: number;
 }
 
+/** Minimal npm registry document used by the API-surface extractor. */
+export interface ApiRegistryFixture {
+  name: string;
+  version: string;
+  types?: string;
+  typings?: string;
+  [key: string]: unknown;
+}
+
+/** jsDelivr's flat package listing, reduced to the fields the extractor reads. */
+export interface ApiListingFixture {
+  files: Array<{ name: string; [key: string]: unknown }>;
+  [key: string]: unknown;
+}
+
+/** Capture metadata accompanying a declaration-file fixture. */
+export interface ApiDtsMetadataFixture {
+  package: string;
+  version: string;
+  path: string | null;
+  truncated?: boolean;
+  note?: string;
+  __error?: number;
+  [key: string]: unknown;
+}
+
 const rawFixturesDirectory = decodeURIComponent(
   new URL("../../fixtures/raw/", import.meta.url).pathname,
 );
@@ -166,6 +192,46 @@ function huggingFaceFixturePath(name: string): string {
 async function loadJson<T>(supplier: string, name: string, ecosystem: FixtureEcosystem = "npm"): Promise<T> {
   const path = `${fixtureDirectory(ecosystem)}${supplier}/${name}.json`;
   return JSON.parse(await readFile(path, "utf8")) as T;
+}
+
+function apiFixtureSlug(packageName: string): string {
+  if (!/^(?:@[a-z0-9][a-z0-9._-]*\/)?[a-z0-9][a-z0-9._-]*$/i.test(packageName)) {
+    throw new Error(`Invalid API fixture package name: ${packageName}`);
+  }
+  return packageName.replace("/", "__");
+}
+
+function apiFixturePath(kind: "registry" | "listing" | "dts", packageName: string, extension: ".json" | ".meta.json" | ".d.ts"): string {
+  return `${rawFixturesDirectory}api/${kind}/${apiFixtureSlug(packageName)}${extension}`;
+}
+
+/** Load the frozen npm registry latest-document used by API-surface tests. */
+export async function loadApiRegistry(packageName: string): Promise<ApiRegistryFixture> {
+  return JSON.parse(await readFile(apiFixturePath("registry", packageName, ".json"), "utf8")) as ApiRegistryFixture;
+}
+
+/** Load the frozen jsDelivr flat listing used by API-surface tests. */
+export async function loadApiListing(packageName: string): Promise<ApiListingFixture> {
+  return JSON.parse(await readFile(apiFixturePath("listing", packageName, ".json"), "utf8")) as ApiListingFixture;
+}
+
+/** Load declaration content and its capture metadata for a package. */
+export async function loadApiDts(packageName: string): Promise<{ content: string; metadata: ApiDtsMetadataFixture }> {
+  const [content, metadata] = await Promise.all([
+    readFile(apiFixturePath("dts", packageName, ".d.ts"), "utf8"),
+    readFile(apiFixturePath("dts", packageName, ".meta.json"), "utf8"),
+  ]);
+  return { content, metadata: JSON.parse(metadata) as ApiDtsMetadataFixture };
+}
+
+/** Load a captured declaration reached through a relative declaration re-export. */
+export async function loadApiReexportDts(packageName: string, path: string): Promise<string> {
+  const cleanPath = path.replace(/^\.\//, "");
+  if (!/^[a-z0-9@._/-]+$/i.test(cleanPath) || cleanPath.includes("..")) {
+    throw new Error(`Invalid API re-export declaration path: ${path}`);
+  }
+  const filename = `${apiFixtureSlug(packageName)}__${cleanPath.replace(/\//g, "__")}.d.ts`;
+  return readFile(`${rawFixturesDirectory}api/dts/${filename}`, "utf8");
 }
 
 /** Load an ecosyste.ms package response from the frozen local fixtures. */
