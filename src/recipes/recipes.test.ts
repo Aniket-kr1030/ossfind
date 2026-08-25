@@ -34,10 +34,14 @@ function mockComponent(
 }
 
 describe("Recipe Catalog & Index", () => {
-  it("contains 4-6 hand-written, valid composition recipes", () => {
+  it("contains hand-written, valid composition recipes across npm and PyPI", () => {
     const recipes = listRecipes();
-    expect(recipes.length).toBeGreaterThanOrEqual(4);
-    expect(recipes.length).toBeLessThanOrEqual(6);
+    expect(recipes.length).toBeGreaterThanOrEqual(8);
+    expect(recipes.length).toBeLessThanOrEqual(12);
+
+    const ecosystems = new Set(recipes.map((r) => r.ecosystem));
+    expect(ecosystems.has("npm")).toBe(true);
+    expect(ecosystems.has("pypi")).toBe(true);
 
     for (const recipe of recipes) {
       expect(RecipeSchema.parse(recipe)).toEqual(recipe);
@@ -55,6 +59,11 @@ describe("Recipe Catalog & Index", () => {
     const videoRecipe = getRecipe("node-video-transcode");
     expect(videoRecipe).toBeDefined();
     expect(videoRecipe?.id).toBe("node-video-transcode");
+
+    const pyVideoRecipe = getRecipe("python-video-processing");
+    expect(pyVideoRecipe).toBeDefined();
+    expect(pyVideoRecipe?.id).toBe("python-video-processing");
+    expect(pyVideoRecipe?.ecosystem).toBe("pypi");
 
     const nonExistent = getRecipe("non-existent-recipe");
     expect(nonExistent).toBeUndefined();
@@ -265,15 +274,76 @@ describe("resolveRecipe", () => {
   });
 
   it("successfully resolves all catalog recipes with a valid mock filler", async () => {
-    const fakeFill: RecipeFillFn = async (query: string) => [
-      mockComponent(`npm:${query}`, "ship", 90),
-    ];
-
     for (const recipe of RECIPE_CATALOG) {
+      const fakeFill: RecipeFillFn = async (query: string) => [
+        mockComponent(`${recipe.ecosystem}:${query}`, "ship", 90),
+      ];
       const resolved = await resolveRecipe(recipe, fakeFill);
       expect(resolved.status).toBe("ready");
       expect(resolved.filled.length).toBe(recipe.roles.length);
       expect(ResolvedRecipeSchema.parse(resolved)).toEqual(resolved);
     }
+  });
+
+  it("resolves PyPI recipes and correctly surfaces external prerequisites into warnings", async () => {
+    const videoRecipe = getRecipe("python-video-processing");
+    expect(videoRecipe).toBeDefined();
+
+    const fakeFill: RecipeFillFn = async (query: string) => {
+      if (query === "moviepy") return [mockComponent("pypi:moviepy", "ship", 95)];
+      if (query === "tqdm") return [mockComponent("pypi:tqdm", "ship", 90)];
+      return [];
+    };
+
+    const resolved = await resolveRecipe(videoRecipe!, fakeFill);
+
+    expect(resolved.status).toBe("ready");
+    expect(resolved.recipe.ecosystem).toBe("pypi");
+    expect(resolved.filled).toHaveLength(2);
+    expect(resolved.filled[0]?.component).toBe("pypi:moviepy");
+    expect(resolved.filled[1]?.component).toBe("pypi:tqdm");
+    expect(resolved.warnings).toContain("FFmpeg binary must be installed on the system PATH");
+    expect(ResolvedRecipeSchema.parse(resolved)).toEqual(resolved);
+  });
+
+  it("surfaces external prerequisites for python-image-processing", async () => {
+    const imageRecipe = getRecipe("python-image-processing");
+    expect(imageRecipe).toBeDefined();
+
+    const fakeFill: RecipeFillFn = async (query: string) => {
+      if (query === "pillow") return [mockComponent("pypi:pillow", "ship", 96)];
+      if (query === "piexif") return [mockComponent("pypi:piexif", "ship", 85)];
+      return [];
+    };
+
+    const resolved = await resolveRecipe(imageRecipe!, fakeFill);
+
+    expect(resolved.status).toBe("ready");
+    expect(resolved.warnings).toContain("libjpeg and zlib system development libraries");
+    expect(resolved.filled[0]?.component).toBe("pypi:pillow");
+  });
+
+  it("enforces fail-closed safety for PyPI recipes with unsafe candidates", async () => {
+    const httpRecipe = getRecipe("python-resilient-http");
+    expect(httpRecipe).toBeDefined();
+
+    const fakeFill: RecipeFillFn = async (query: string) => {
+      if (query === "httpx") {
+        return [mockComponent("pypi:vulnerable-httpx", "avoid", 20)];
+      }
+      if (query === "tenacity") {
+        return [mockComponent("pypi:tenacity", "ship", 90)];
+      }
+      return [];
+    };
+
+    const resolved = await resolveRecipe(httpRecipe!, fakeFill);
+
+    expect(resolved.status).toBe("blocked");
+    const requiredRole = resolved.filled.find((f) => f.role === "http-client");
+    expect(requiredRole?.component).toBeNull();
+    expect(requiredRole?.verdict).toBeNull();
+    expect(requiredRole?.reason).toContain("'avoid'");
+    expect(ResolvedRecipeSchema.parse(resolved)).toEqual(resolved);
   });
 });

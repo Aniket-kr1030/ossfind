@@ -333,3 +333,10 @@ export async function loadPyApiTypeshed(packageName: string): Promise<{ content?
   return { content, metadata: meta };
 }
 
+/** Load a frozen wheel used by the PyPI API-surface extractor. */
+export async function loadPyApiWheel(filename: string): Promise<Uint8Array> {
+  if (!/^[a-z0-9][a-z0-9._-]*\.whl$/i.test(filename)) {
+    throw new Error(`Invalid PyPI wheel fixture filename: ${filename}`);
+  }
+  return new Uint8Array(await readFile(`${rawFixturesDirectory}pyapi/wheels/${filename}`));
+}

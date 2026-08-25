@@ -13,12 +13,14 @@ import {
   loadOsv,
   loadPyApiPypi,
   loadPyApiTypeshed,
+  loadPyApiWheel,
   loadScorecard,
   loadSearch,
 } from "../fixtures/loader.js";
 import type { HttpClient, HttpResponse } from "./client.js";
 
 function response(body: unknown, status = 200): HttpResponse {
+  const bytes = body instanceof Uint8Array ? body : undefined;
   return {
     ok: status >= 200 && status < 300,
     status,
@@ -26,7 +28,10 @@ function response(body: unknown, status = 200): HttpResponse {
     // Declaration files are fetched as text by the API-surface extractor.
     // Keep JSON fixtures usable through the existing json() boundary too.
     text: async () => typeof body === "string" ? body : JSON.stringify(body),
-  };
+    // The fixture client mirrors fetch's binary response capability for wheel
+    // downloads without widening the shared JSON-oriented HttpResponse type.
+    arrayBuffer: bytes ? async () => Uint8Array.from(bytes).buffer : undefined,
+  } as HttpResponse;
 }
 
 function notFound(): HttpResponse {
@@ -144,6 +149,13 @@ export function createFixtureHttpClient(): HttpClient {
             return notFound();
           }
         }
+      }
+      if (url.hostname === "files.pythonhosted.org") {
+        const filename = url.pathname.split("/").at(-1);
+        if (filename === "attrs-26.1.0-py3-none-any.whl") {
+          return response(await loadPyApiWheel(filename));
+        }
+        return notFound();
       }
       if (url.hostname === "cdn.jsdelivr.net") {
         if (url.pathname.startsWith("/gh/python/typeshed@main/")) {

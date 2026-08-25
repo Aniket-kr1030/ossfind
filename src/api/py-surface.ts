@@ -2,6 +2,7 @@ import { posix as path } from "node:path";
 import { ApiSurfaceSchema, type ApiSurface } from "../contracts/api-surface.js";
 import { defaultHttpClient, type HttpClient } from "../http/client.js";
 import { parsePyStub, type ParsedPyStub, type PyExport, type PyReExport } from "./py-stub-parser.js";
+import { parseZip } from "./zip-reader.js";
 
 type ApiExport = ApiSurface["exports"][number];
 
@@ -11,6 +12,7 @@ interface PyPiDocument {
     version?: string;
     [key: string]: unknown;
   };
+  urls?: unknown;
   [key: string]: unknown;
 }
 
@@ -19,7 +21,23 @@ interface TypeshedStubLocation {
   content: string;
 }
 
+interface PyPiWheel {
+  filename: string;
+  url: string;
+  size: number;
+}
+
+interface OwnWheelSurface {
+  typesSource: string;
+  exports: ApiExport[];
+  truncated: boolean;
+}
+
 const MAX_REEXPORT_DEPTH = 3;
+// The metadata check happens before downloading the wheel. This is deliberately
+// well below the ZIP reader's defensive archive limit: wheel fallback is only
+// intended for small, inspectable API roots.
+const MAX_WHEEL_BYTES = 3 * 1024 * 1024;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -27,6 +45,28 @@ function isRecord(value: unknown): value is Record<string, unknown> {
 
 function stringValue(value: unknown): string | undefined {
   return typeof value === "string" && value.trim().length > 0 ? value.trim() : undefined;
+}
+
+function nonNegativeSafeInteger(value: unknown): number | undefined {
+  return typeof value === "number" && Number.isSafeInteger(value) && value >= 0 ? value : undefined;
+}
+
+function pyPiWheel(value: unknown): PyPiWheel | undefined {
+  if (!isRecord(value) || value.packagetype !== "bdist_wheel") return undefined;
+
+  const filename = stringValue(value.filename);
+  const url = stringValue(value.url);
+  const size = nonNegativeSafeInteger(value.size);
+  if (!filename || !filename.endsWith(".whl") || !url || size === undefined) return undefined;
+
+  try {
+    const location = new URL(url);
+    if (location.protocol !== "https:" || location.hostname !== "files.pythonhosted.org") return undefined;
+  } catch {
+    return undefined;
+  }
+
+  return { filename, url, size };
 }
 
 function apiFixtureTruncated(content: string): boolean {
@@ -76,7 +116,20 @@ export class PyApiSurfaceExtractor {
 
     if (!stubLocation) {
       notes.add(`No typeshed stubs found for ${packageName}.`);
-      return this.result(id, resolvedVersion, "none", null, [], false, notes);
+      const ownWheel = await this.extractOwnWheelSurface(packageName, distribution, pypiData.document, notes);
+      if (!ownWheel) {
+        return this.result(id, resolvedVersion, "none", null, [], false, notes);
+      }
+
+      return this.result(
+        id,
+        resolvedVersion,
+        "own",
+        ownWheel.typesSource,
+        ownWheel.exports,
+        ownWheel.truncated,
+        notes,
+      );
     }
 
     notes.add("Used typeshed stubs for Python type declarations.");
@@ -155,6 +208,32 @@ export class PyApiSurfaceExtractor {
     return Array.from(new Set(candidatePaths));
   }
 
+  private generateOwnImportCandidates(packageName: string, distribution: string): string[] {
+    const distNames = Array.from(new Set([
+      distribution,
+      packageName,
+      packageName.toLowerCase(),
+      distribution.toLowerCase(),
+      distribution.replace(/-/g, "_"),
+    ]));
+
+    const candidates: string[] = [];
+    for (const dist of distNames) {
+      const lower = dist.toLowerCase();
+      candidates.push(...[
+        lower.replace(/-/g, "_"),
+        lower.startsWith("py") ? lower.slice(2) : undefined,
+        lower.endsWith("-python") ? lower.replace(/-python$/, "") : undefined,
+        lower.endsWith("_python") ? lower.replace(/_python$/, "") : undefined,
+        lower.endsWith("s") && lower.length > 3 ? lower.slice(0, -1) : undefined,
+        dist,
+      ].filter((candidate): candidate is string => typeof candidate === "string" && candidate.length > 0));
+    }
+
+    return Array.from(new Set(candidates))
+      .filter((candidate) => /^[a-zA-Z_][a-zA-Z0-9_]*$/.test(candidate));
+  }
+
   private async findTypeshedStub(packageName: string, distribution: string, notes: Set<string>): Promise<TypeshedStubLocation | undefined> {
     const candidatePaths = this.generateCandidateLocations(packageName, distribution);
 
@@ -166,6 +245,117 @@ export class PyApiSurfaceExtractor {
     }
 
     return undefined;
+  }
+
+  private selectSmallWheel(document: PyPiDocument | undefined, packageName: string, notes: Set<string>): PyPiWheel | undefined {
+    const wheels = Array.isArray(document?.urls)
+      ? document.urls.map(pyPiWheel).filter((wheel): wheel is PyPiWheel => wheel !== undefined)
+      : [];
+
+    if (wheels.length === 0) {
+      notes.add(`No eligible wheel was listed in PyPI metadata for ${packageName}.`);
+      return undefined;
+    }
+
+    const wheel = wheels.find((candidate) => candidate.size <= MAX_WHEEL_BYTES);
+    if (!wheel) {
+      notes.add(`Skipped PyPI wheels for ${packageName}: all exceed the ${MAX_WHEEL_BYTES} byte safety limit.`);
+      return undefined;
+    }
+
+    return wheel;
+  }
+
+  private async extractOwnWheelSurface(
+    packageName: string,
+    distribution: string,
+    document: PyPiDocument | undefined,
+    notes: Set<string>,
+  ): Promise<OwnWheelSurface | undefined> {
+    const wheel = this.selectSmallWheel(document, packageName, notes);
+    if (!wheel) return undefined;
+
+    const bytes = await this.requestBytes(wheel.url);
+    if (!bytes) {
+      notes.add(`Could not fetch the selected PyPI wheel for ${packageName}.`);
+      return undefined;
+    }
+    if (bytes.byteLength > MAX_WHEEL_BYTES) {
+      notes.add(`Skipped PyPI wheel for ${packageName}: download exceeds the ${MAX_WHEEL_BYTES} byte safety limit.`);
+      return undefined;
+    }
+
+    const archive = parseZip(bytes);
+    if (!archive.ok) {
+      notes.add(`Could not parse the selected PyPI wheel for ${packageName}: ${archive.error}`);
+      return undefined;
+    }
+
+    const entryNames = new Set(archive.value.listEntryNames());
+    let bestSurface: (OwnWheelSurface & { fromSource: boolean; parserNotes?: string[] }) | undefined;
+    let foundOwnTypes = false;
+    for (const importPackage of this.generateOwnImportCandidates(packageName, distribution)) {
+      const basePath = importPackage.replace(/\./g, "/");
+      const prefix = `${basePath}/`;
+      const stubPath = `${basePath}/__init__.pyi`;
+      const sourcePath = `${basePath}/__init__.py`;
+      const hasOwnTypes = entryNames.has(`${basePath}/py.typed`)
+        || [...entryNames].some((entryName) => entryName.startsWith(prefix) && entryName.endsWith(".pyi"));
+
+      if (!hasOwnTypes) continue;
+      foundOwnTypes = true;
+
+      const entryPath = entryNames.has(stubPath) ? stubPath : entryNames.has(sourcePath) ? sourcePath : undefined;
+      if (!entryPath) {
+        notes.add(`PEP 561 type metadata was found in ${wheel.filename}, but no root module could be extracted for ${importPackage}.`);
+        continue;
+      }
+
+      const content = await archive.value.extractText(entryPath);
+      if (!content.ok) {
+        notes.add(`Could not extract ${entryPath} from ${wheel.filename}: ${content.error}`);
+        continue;
+      }
+
+      const fromSource = entryPath.endsWith(".py");
+      const parsed = parsePyStub(content.value);
+      const candidate: OwnWheelSurface & { fromSource: boolean; parserNotes?: string[] } = {
+        typesSource: `${wheel.filename}:${entryPath}`,
+        exports: parsed.exports,
+        // A .py parser intentionally recognizes only a conservative subset;
+        // make that limitation visible in the structured surface as well.
+        truncated: fromSource || apiFixtureTruncated(content.value),
+        fromSource,
+        parserNotes: parsed.notes,
+      };
+
+      // A distribution can expose both a compatibility import and its primary
+      // import package (attrs -> attr and attrs). Prefer stubs over source,
+      // then the richer parsed root, rather than treating an arbitrary alias
+      // as the whole package API.
+      if (!bestSurface
+        || (!candidate.fromSource && bestSurface.fromSource)
+        || (candidate.fromSource === bestSurface.fromSource && candidate.exports.length > bestSurface.exports.length)) {
+        bestSurface = candidate;
+      }
+    }
+
+    if (!bestSurface) {
+      if (!foundOwnTypes) {
+        notes.add(`The selected PyPI wheel for ${packageName} has no PEP 561 marker or package stubs.`);
+      }
+      return undefined;
+    }
+
+    if (bestSurface.parserNotes) {
+      for (const note of bestSurface.parserNotes) notes.add(note);
+    }
+    if (bestSurface.fromSource) {
+      notes.add("Surface was parsed from package source rather than stubs and may be incomplete.");
+    } else {
+      notes.add("Used PEP 561 type declarations bundled in the package wheel.");
+    }
+    return bestSurface;
   }
 
   private async extractDeclarations(rootLocation: TypeshedStubLocation, notes: Set<string>): Promise<{ exports: ApiExport[]; truncated: boolean }> {
@@ -318,6 +508,27 @@ export class PyApiSurfaceExtractor {
       if (response.text) return await response.text();
       const json = await response.json();
       return typeof json === "string" ? json : undefined;
+    } catch {
+      return undefined;
+    }
+  }
+
+  private async requestBytes(url: string): Promise<Uint8Array | undefined> {
+    try {
+      const response = await this.http(url);
+      if (!response.ok) return undefined;
+
+      // HttpClient intentionally exposes only the JSON/text contract used by
+      // the rest of the project. Native fetch responses (and our fixture
+      // client) additionally provide arrayBuffer; keep this narrow optional
+      // capability local to binary wheel retrieval rather than weakening that
+      // shared boundary for every caller.
+      const binaryResponse = response as typeof response & {
+        arrayBuffer?: () => Promise<ArrayBuffer>;
+      };
+      if (typeof binaryResponse.arrayBuffer !== "function") return undefined;
+
+      return new Uint8Array(await binaryResponse.arrayBuffer());
     } catch {
       return undefined;
     }

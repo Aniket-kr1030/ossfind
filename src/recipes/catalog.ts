@@ -104,4 +104,86 @@ export const RECIPE_CATALOG: readonly Recipe[] = [
     ],
     notes: ["Pino produces NDJSON output suitable for log collectors and stream rotation."],
   },
+  {
+    id: "python-video-processing",
+    goal: "Edit, composite, and transcode video files in Python",
+    ecosystem: "pypi",
+    roles: [
+      {
+        role: "video-editor",
+        purpose: "High-level video editing and composition library wrapping FFmpeg",
+        required: true,
+        candidateQuery: "moviepy",
+        externalPrerequisite: "FFmpeg binary must be installed on the system PATH",
+      },
+      {
+        role: "progress-reporter",
+        purpose: "Terminal progress bar for video rendering and processing tasks",
+        required: false,
+        candidateQuery: "tqdm",
+      },
+    ],
+    notes: ["MoviePy invokes FFmpeg under the hood for multimedia transcoding and frame manipulation."],
+  },
+  {
+    id: "python-resilient-http",
+    goal: "Execute HTTP requests with automated retries and exponential backoff",
+    ecosystem: "pypi",
+    roles: [
+      {
+        role: "http-client",
+        purpose: "Modern sync and async HTTP client for Python",
+        required: true,
+        candidateQuery: "httpx",
+      },
+      {
+        role: "retry-manager",
+        purpose: "General-purpose retrying library with exponential backoff and jitter",
+        required: true,
+        candidateQuery: "tenacity",
+      },
+    ],
+    notes: ["Pairs HTTPX request execution with Tenacity retry decorators for resilient IO operations."],
+  },
+  {
+    id: "python-data-validation",
+    goal: "Validate and parse structured payloads and configuration settings with type hints",
+    ecosystem: "pypi",
+    roles: [
+      {
+        role: "schema-validator",
+        purpose: "Data validation and settings management using Python type annotations",
+        required: true,
+        candidateQuery: "pydantic",
+      },
+      {
+        role: "settings-manager",
+        purpose: "Hierarchical settings management from environment variables and env files",
+        required: false,
+        candidateQuery: "pydantic-settings",
+      },
+    ],
+    notes: ["Combines core Pydantic data schemas with settings management for runtime configuration."],
+  },
+  {
+    id: "python-image-processing",
+    goal: "Load, manipulate, filter, and convert raster images in Python",
+    ecosystem: "pypi",
+    roles: [
+      {
+        role: "image-processor",
+        purpose: "Core image processing and manipulation library (Pillow)",
+        required: true,
+        candidateQuery: "pillow",
+        externalPrerequisite: "libjpeg and zlib system development libraries",
+      },
+      {
+        role: "exif-extractor",
+        purpose: "Read, modify, and strip EXIF metadata from image files",
+        required: false,
+        candidateQuery: "piexif",
+      },
+    ],
+    notes: ["Pillow uses native image format codecs for decompression and raster transformations."],
+  },
 ];

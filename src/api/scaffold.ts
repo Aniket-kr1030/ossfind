@@ -219,6 +219,155 @@ function extractPythonImportIdentifier(manifest: IntegrationManifest): string | 
 }
 
 /**
+ * Canonical list of high-value entry-point verbs across TypeScript and Python ecosystems.
+ * Ranked in priority order (exact match index used in ranking heuristic).
+ */
+const ENTRY_POINT_VERBS: readonly string[] = [
+  "safe_load",
+  "load",
+  "create",
+  "get",
+  "request",
+  "parse",
+  "run",
+  "open",
+  "connect",
+  "build",
+  "render",
+  "main",
+];
+
+interface VerbScore {
+  verbIndex: number;
+  isExact: boolean;
+}
+
+function scoreVerbMatch(name: string): VerbScore | null {
+  const lower = name.toLowerCase();
+  const normalized = lower.replace(/[-_]/g, "");
+
+  // 1. Exact match (e.g. "safe_load", "create", "get", "load")
+  for (let i = 0; i < ENTRY_POINT_VERBS.length; i++) {
+    const verb = ENTRY_POINT_VERBS[i]!;
+    const normVerb = verb.replace(/[-_]/g, "");
+    if (lower === verb || normalized === normVerb) {
+      return { verbIndex: i, isExact: true };
+    }
+  }
+
+  // 2. Prefix / compound match (e.g. "createClient", "parseDocument", "safe_load_all")
+  for (let i = 0; i < ENTRY_POINT_VERBS.length; i++) {
+    const verb = ENTRY_POINT_VERBS[i]!;
+    const normVerb = verb.replace(/[-_]/g, "");
+    if (lower.startsWith(verb) || normalized.startsWith(normVerb)) {
+      return { verbIndex: i, isExact: false };
+    }
+  }
+
+  return null;
+}
+
+/**
+ * Counts the number of required parameters declared in a verified signature.
+ * Optional parameters (with '?', default '=', or rest '...') are excluded.
+ */
+function countRequiredParameters(signature: string, isPython: boolean): number {
+  if (isPython) {
+    const source = signature.trim();
+    const asyncMatch = /^(async\s+)?def\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(/.exec(source);
+    const bareMatch = /^([A-Za-z_][A-Za-z0-9_]*)\s*\(/.exec(source);
+    const match = asyncMatch ?? bareMatch;
+    if (!match) return 99;
+
+    const parenStart = source.indexOf("(", match.index);
+    if (parenStart < 0) return 99;
+
+    let parenDepth = 0;
+    let parenEnd = -1;
+    for (let i = parenStart; i < source.length; i++) {
+      if (source[i] === "(") parenDepth++;
+      else if (source[i] === ")") {
+        parenDepth--;
+        if (parenDepth === 0) {
+          parenEnd = i;
+          break;
+        }
+      }
+    }
+    if (parenEnd < 0) return 99;
+
+    const paramsText = source.slice(parenStart + 1, parenEnd).trim();
+    if (!paramsText) return 0;
+
+    let requiredCount = 0;
+    for (const rawParam of splitTopLevelCommas(paramsText)) {
+      const param = rawParam.trim();
+      if (!param || param === "/" || param === "*") continue;
+      if (param.startsWith("*") || param.startsWith("**")) continue;
+      if (param === "self" || param === "cls") continue;
+      if (param.includes("=")) continue;
+      requiredCount++;
+    }
+    return requiredCount;
+  }
+
+  // TypeScript / JavaScript
+  let startIdx = 0;
+  while (startIdx < signature.length && /[a-zA-Z0-9_$]/.test(signature[startIdx] ?? "")) {
+    startIdx++;
+  }
+  while (startIdx < signature.length && /\s/.test(signature[startIdx] ?? "")) {
+    startIdx++;
+  }
+  if (signature[startIdx] === "<") {
+    let angleDepth = 0;
+    while (startIdx < signature.length) {
+      if (signature[startIdx] === "<") angleDepth++;
+      else if (signature[startIdx] === ">") {
+        angleDepth--;
+        if (angleDepth === 0) {
+          startIdx++;
+          break;
+        }
+      }
+      startIdx++;
+    }
+  }
+  while (startIdx < signature.length && /\s/.test(signature[startIdx] ?? "")) {
+    startIdx++;
+  }
+  if (signature[startIdx] !== "(") return 99;
+
+  let parenDepth = 0;
+  let parenEnd = -1;
+  for (let i = startIdx; i < signature.length; i++) {
+    if (signature[i] === "(") parenDepth++;
+    else if (signature[i] === ")") {
+      parenDepth--;
+      if (parenDepth === 0) {
+        parenEnd = i;
+        break;
+      }
+    }
+  }
+  if (parenEnd === -1) return 99;
+
+  const paramsText = signature.slice(startIdx + 1, parenEnd).trim();
+  if (!paramsText) return 0;
+
+  let requiredCount = 0;
+  for (const rawParam of splitTopLevelCommas(paramsText)) {
+    const param = rawParam.trim();
+    if (!param || param.startsWith("...")) continue;
+    const head = param.split(/[:=]/)[0]?.trim() || "";
+    if (head.endsWith("?")) continue;
+    if (param.includes("=")) continue;
+    requiredCount++;
+  }
+  return requiredCount;
+}
+
+/**
  * Determines whether an API export has a genuinely callable signature with a parameter list.
  */
 export function hasCallableSignature(exportItem: ApiExport): boolean {
@@ -227,8 +376,32 @@ export function hasCallableSignature(exportItem: ApiExport): boolean {
 }
 
 /**
- * Selects the first callable export walking preference order:
- * preferExport -> default -> package name match -> first function/class -> any callable.
+ * Selects the highest-ranking callable export using ordered, documented heuristics:
+ *
+ * 1. Explicit preference:
+ *    `opts.preferExport` always wins if it exists and has a verified callable signature.
+ *
+ * 2. Primary / Default / Package-name match:
+ *    - A callable `default` export is the canonical default entry point.
+ *    - An export matching the package name (e.g. `axios` or Python import name) is the primary entry point.
+ *
+ * 3. Idiomatic entry-point verbs:
+ *    Common action verbs (`safe_load`, `load`, `create`, `get`, `request`, `parse`, `run`, etc.)
+ *    are prioritized over obscure utility functions (e.g. `add_constructor`, `all`).
+ *    Exact verb matches take precedence over compound prefix matches.
+ *
+ * 4. Required parameter count:
+ *    Functions with fewer required parameters (e.g. 0 or 1 params) are preferred over functions
+ *    requiring many parameters, as agents can reliably invoke them without inventing arguments.
+ *
+ * 5. Kind preference:
+ *    Export declarations with `kind: "function"` or `kind: "class"` are preferred over generic callable symbols.
+ *
+ * 6. Deterministic tiebreak:
+ *    Stable alphabetical sorting (`a.name.localeCompare(b.name)`) ensures consistent, flicker-free output.
+ *
+ * Anti-Fabrication Guarantee:
+ * Selection is strictly restricted to exports present in `surface.exports` with verified signatures.
  */
 function selectCallableExport(
   surface: ApiSurface,
@@ -237,30 +410,67 @@ function selectCallableExport(
 ): ApiExport | undefined {
   if (surface.exports.length === 0) return undefined;
 
-  if (preferExport) {
-    const preferred = surface.exports.find((e) => e.name === preferExport && hasCallableSignature(e));
-    if (preferred) return preferred;
-  }
-
-  const defaultExport = surface.exports.find(
-    (e) => (e.name === "default" || e.kind === "default") && hasCallableSignature(e),
-  );
-  if (defaultExport) return defaultExport;
+  const isPython = isPythonComponent(surface, manifest);
+  const callableExports = surface.exports.filter(hasCallableSignature);
+  if (callableExports.length === 0) return undefined;
 
   const rawPkgName = extractPackageRawName(manifest.id || surface.id);
   const unScopedName = rawPkgName.replace(/^@[^\/]+\//, "");
-  const nameMatch = surface.exports.find((e) => {
+  const pythonImportId = isPython ? extractPythonImportIdentifier(manifest) : null;
+
+  const isExplicitPreferred = (e: ApiExport) => Boolean(preferExport && e.name === preferExport);
+  const isDefaultExport = (e: ApiExport) => e.name === "default" || e.kind === "default";
+  const isPackageNameMatch = (e: ApiExport) => {
     const lower = e.name.toLowerCase();
-    return (lower === rawPkgName.toLowerCase() || lower === unScopedName.toLowerCase()) && hasCallableSignature(e);
+    return (
+      lower === rawPkgName.toLowerCase() ||
+      lower === unScopedName.toLowerCase() ||
+      (pythonImportId !== null && lower === pythonImportId.toLowerCase())
+    );
+  };
+
+  const sorted = [...callableExports].sort((a, b) => {
+    // 1. Explicit preferExport
+    const prefA = isExplicitPreferred(a) ? 1 : 0;
+    const prefB = isExplicitPreferred(b) ? 1 : 0;
+    if (prefA !== prefB) return prefB - prefA;
+
+    // 2. Default export
+    const defA = isDefaultExport(a) ? 1 : 0;
+    const defB = isDefaultExport(b) ? 1 : 0;
+    if (defA !== defB) return defB - defA;
+
+    // 3. Package / module name match
+    const pkgA = isPackageNameMatch(a) ? 1 : 0;
+    const pkgB = isPackageNameMatch(b) ? 1 : 0;
+    if (pkgA !== pkgB) return pkgB - pkgA;
+
+    // 4. Idiomatic entry-point verbs
+    const verbA = scoreVerbMatch(a.name);
+    const verbB = scoreVerbMatch(b.name);
+    if (verbA && !verbB) return -1;
+    if (!verbA && verbB) return 1;
+    if (verbA && verbB) {
+      if (verbA.isExact && !verbB.isExact) return -1;
+      if (!verbA.isExact && verbB.isExact) return 1;
+      if (verbA.verbIndex !== verbB.verbIndex) return verbA.verbIndex - verbB.verbIndex;
+    }
+
+    // 5. Fewer required parameters
+    const reqA = countRequiredParameters(a.signature ?? "", isPython);
+    const reqB = countRequiredParameters(b.signature ?? "", isPython);
+    if (reqA !== reqB) return reqA - reqB;
+
+    // 6. Kind preference (function or class)
+    const kindScoreA = a.kind === "function" || a.kind === "class" ? 1 : 0;
+    const kindScoreB = b.kind === "function" || b.kind === "class" ? 1 : 0;
+    if (kindScoreA !== kindScoreB) return kindScoreB - kindScoreA;
+
+    // 7. Deterministic tiebreak (alphabetical)
+    return a.name.localeCompare(b.name);
   });
-  if (nameMatch) return nameMatch;
 
-  const fnOrClass = surface.exports.find(
-    (e) => (e.kind === "function" || e.kind === "class") && hasCallableSignature(e),
-  );
-  if (fnOrClass) return fnOrClass;
-
-  return surface.exports.find(hasCallableSignature);
+  return sorted[0];
 }
 
 /**

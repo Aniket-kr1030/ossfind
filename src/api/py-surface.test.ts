@@ -102,20 +102,28 @@ describe("PyApiSurfaceExtractor", () => {
     expect(surface.notes.join(" ")).toMatch(/no typeshed stubs found/i);
   });
 
-  it("fails closed for attrs, moviepy, and ffmpeg-python without throwing", async () => {
-    const extractor = fixtureExtractor();
-    const [attrs, moviepy, ffmpeg] = await Promise.all([
-      extractor.extract("attrs"),
-      extractor.extract("moviepy"),
-      extractor.extract("ffmpeg-python"),
-    ]);
+  it("extracts an own typed surface from the frozen attrs PEP 561 wheel", async () => {
+    const attrs = await fixtureExtractor().extract("attrs");
 
     expectValidSurface(attrs);
     expect(attrs).toMatchObject({
       id: "pypi:attrs",
-      typesAvailable: "none",
-      exports: [],
+      version: "26.1.0",
+      typesAvailable: "own",
+      truncated: false,
     });
+    expect(attrs.typesSource).toBe("attrs-26.1.0-py3-none-any.whl:attr/__init__.pyi");
+    expect(attrs.exports.length).toBeGreaterThan(0);
+    expect(attrs.exports).toContainEqual(expect.objectContaining({ name: "Attribute", kind: "class" }));
+    expect(attrs.exports).toContainEqual(expect.objectContaining({ name: "attrib", kind: "function" }));
+  });
+
+  it("fails closed when no own wheel can be extracted", async () => {
+    const extractor = fixtureExtractor();
+    const [moviepy, ffmpeg] = await Promise.all([
+      extractor.extract("moviepy"),
+      extractor.extract("ffmpeg-python"),
+    ]);
 
     expectValidSurface(moviepy);
     expect(moviepy).toMatchObject({
@@ -123,6 +131,7 @@ describe("PyApiSurfaceExtractor", () => {
       typesAvailable: "none",
       exports: [],
     });
+    expect(moviepy.notes.join(" ")).toMatch(/wheel/i);
 
     expectValidSurface(ffmpeg);
     expect(ffmpeg).toMatchObject({
@@ -278,13 +287,13 @@ describe("PyApiSurfaceExtractor", () => {
     expectValidSurface(secondReq);
     expect(secondReq).toEqual(firstReq);
 
-    const [firstYaml, secondYaml] = await Promise.all([
-      extractor.extract("pyyaml"),
-      extractor.extract("pyyaml"),
+    const [firstAttrs, secondAttrs] = await Promise.all([
+      extractor.extract("attrs"),
+      extractor.extract("attrs"),
     ]);
 
-    expectValidSurface(firstYaml);
-    expectValidSurface(secondYaml);
-    expect(secondYaml).toEqual(firstYaml);
+    expectValidSurface(firstAttrs);
+    expectValidSurface(secondAttrs);
+    expect(secondAttrs).toEqual(firstAttrs);
   });
 });

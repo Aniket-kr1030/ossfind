@@ -456,4 +456,181 @@ describe("buildScaffold", () => {
     ]);
     expect(ScaffoldSchema.parse(scaffold)).toEqual(scaffold);
   });
+
+  it("selects safe_load over alphabetically earlier callables (like add_constructor) on pyyaml-like surface", () => {
+    const pyyamlSurface = createPythonSurface({
+      exports: [
+        {
+          name: "add_constructor",
+          kind: "function",
+          signature: "add_constructor(tag: str, constructor: Any) -> None",
+        },
+        {
+          name: "add_representer",
+          kind: "function",
+          signature: "add_representer(data_type: Any, representer: Any) -> None",
+        },
+        {
+          name: "dump",
+          kind: "function",
+          signature: "dump(data: Any, stream: _WriteStream | None = None) -> Any",
+        },
+        {
+          name: "safe_load",
+          kind: "function",
+          signature: "safe_load(stream: _ReadStream) -> _YAMLObject",
+        },
+        {
+          name: "load",
+          kind: "function",
+          signature: "load(stream: _ReadStream, Loader: _Loader) -> _YAMLObject",
+        },
+      ],
+    });
+    const pyyamlManifest = createPythonManifest();
+
+    const scaffold = buildScaffold(pyyamlSurface, pyyamlManifest);
+
+    expect(scaffold.confidence).toBe("verified-signatures");
+    expect(scaffold.basedOn[0]?.name).toBe("safe_load");
+    expect(scaffold.snippet).toBe(
+      "# Verified signature: safe_load(stream: _ReadStream) -> _YAMLObject\nresult = yaml.safe_load(stream)",
+    );
+    expect(scaffold.snippet).not.toContain("add_constructor");
+    expect(ScaffoldSchema.parse(scaffold)).toEqual(scaffold);
+  });
+
+  it("selects create/get over alphabetically earlier callables (like all) on axios-like surface", () => {
+    const axiosSurface = createSurface({
+      exports: [
+        {
+          name: "all",
+          kind: "function",
+          signature: "all<T>(promises: Array<T | Promise<T>>): Promise<T[]>",
+        },
+        {
+          name: "create",
+          kind: "function",
+          signature: "create(config?: CreateAxiosDefaults): AxiosInstance",
+        },
+        {
+          name: "get",
+          kind: "function",
+          signature: "get<T = any>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>>",
+        },
+        {
+          name: "spread",
+          kind: "function",
+          signature: "spread<T, R>(callback: (...args: T[]) => R): (array: T[]) => R",
+        },
+      ],
+    });
+    const axiosManifest = createManifest();
+
+    const scaffold = buildScaffold(axiosSurface, axiosManifest);
+
+    expect(scaffold.confidence).toBe("verified-signatures");
+    expect(scaffold.basedOn[0]?.name).toBe("create");
+    expect(scaffold.snippet).toContain("axios.create(config)");
+    expect(scaffold.snippet).not.toContain("axios.all");
+    expect(ScaffoldSchema.parse(scaffold)).toEqual(scaffold);
+  });
+
+  it("selects get when create is absent over non-verb callables on axios-like surface", () => {
+    const axiosSurface = createSurface({
+      exports: [
+        {
+          name: "all",
+          kind: "function",
+          signature: "all<T>(promises: Array<T | Promise<T>>): Promise<T[]>",
+        },
+        {
+          name: "get",
+          kind: "function",
+          signature: "get<T = any>(url: string, config?: AxiosRequestConfig): Promise<AxiosResponse<T>>",
+        },
+        {
+          name: "spread",
+          kind: "function",
+          signature: "spread<T, R>(callback: (...args: T[]) => R): (array: T[]) => R",
+        },
+      ],
+    });
+    const axiosManifest = createManifest();
+
+    const scaffold = buildScaffold(axiosSurface, axiosManifest);
+
+    expect(scaffold.confidence).toBe("verified-signatures");
+    expect(scaffold.basedOn[0]?.name).toBe("get");
+    expect(scaffold.snippet).toContain("axios.get(url, config)");
+    expect(scaffold.snippet).not.toContain("axios.all");
+  });
+
+  it("ensures preferExport still overrides verb and parameter ranking heuristics", () => {
+    const surface = createSurface({
+      exports: [
+        {
+          name: "create",
+          kind: "function",
+          signature: "create(config?: CreateAxiosDefaults): AxiosInstance",
+        },
+        {
+          name: "all",
+          kind: "function",
+          signature: "all<T>(promises: Array<T | Promise<T>>): Promise<T[]>",
+        },
+      ],
+    });
+    const manifest = createManifest();
+
+    const scaffold = buildScaffold(surface, manifest, { preferExport: "all" });
+
+    expect(scaffold.basedOn[0]?.name).toBe("all");
+    expect(scaffold.snippet).toContain("axios.all(promises)");
+  });
+
+  it("returns a truthful call on a surface with only obscure callables rather than regressing to import-only", () => {
+    const surface = createSurface({
+      exports: [
+        {
+          name: "zebra_calculate",
+          kind: "function",
+          signature: "zebra_calculate(x: number, y: number, z: number): number",
+        },
+        {
+          name: "obscure_transform",
+          kind: "function",
+          signature: "obscure_transform(x: number): number",
+        },
+      ],
+    });
+    const manifest = createManifest();
+
+    const scaffold = buildScaffold(surface, manifest);
+
+    // Should NOT degrade to import-only
+    expect(scaffold.confidence).toBe("verified-signatures");
+    expect(scaffold.snippet).not.toBeNull();
+    // Prefers obscure_transform because it has fewer required params (1 vs 3)
+    expect(scaffold.basedOn[0]?.name).toBe("obscure_transform");
+    expect(scaffold.snippet).toContain("axios.obscure_transform(x)");
+    expect(ScaffoldSchema.parse(scaffold)).toEqual(scaffold);
+  });
+
+  it("preserves strict determinism across diverse candidate orderings", () => {
+    const surface = createSurface({
+      exports: [
+        { name: "delta", kind: "function", signature: "delta(a: string): void" },
+        { name: "alpha", kind: "function", signature: "alpha(a: string): void" },
+        { name: "beta", kind: "function", signature: "beta(a: string): void" },
+      ],
+    });
+    const manifest = createManifest();
+
+    const res1 = buildScaffold(surface, manifest);
+    const res2 = buildScaffold(surface, manifest);
+
+    expect(res1).toEqual(res2);
+    expect(res1.basedOn[0]?.name).toBe("alpha");
+  });
 });
