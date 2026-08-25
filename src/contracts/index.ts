@@ -17,4 +17,5 @@ export {
   type LicenseCompatResult,
 } from "./license-compat-result.js";
 export { ApiSurfaceSchema, type ApiSurface } from "./api-surface.js";
+export { IntegrationManifestSchema, type IntegrationManifest } from "./integration-manifest.js";
 export { validate } from "./validate.js";
