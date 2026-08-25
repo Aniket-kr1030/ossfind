@@ -49,6 +49,19 @@ function cacheDisabled(): boolean {
   return environment?.OSSFIND_NO_CACHE === "1";
 }
 
+/**
+ * Create the HTTP boundary shared by MCP search and inspection tools. Keeping
+ * fixture-mode selection here makes an MCP stdio server as deterministic as
+ * its direct handler tests when OSSFIND_FIXTURES=1 is set.
+ */
+export function createPipelineHttpClient(
+  options: Pick<BuildPipelineOptions, "fixtures"> = {},
+): HttpClient {
+  const fixtures = options.fixtures || fixtureModeRequested();
+  if (fixtures) return createFixtureHttpClient();
+  return cacheDisabled() ? defaultHttpClient : withCache(defaultHttpClient);
+}
+
 function requestedFitMode(): "tfidf" | "embeddings" | undefined {
   const environment = (globalThis as unknown as {
     process?: { env?: Record<string, string | undefined> };
@@ -141,11 +154,7 @@ export class FallbackFitScorer implements FitScorer {
 export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDependencies {
   const ecosystem = options.ecosystem ?? "npm";
   const fixtures = options.fixtures || fixtureModeRequested();
-  const http: HttpClient = fixtures
-    ? createFixtureHttpClient()
-    : cacheDisabled()
-      ? defaultHttpClient
-      : withCache(defaultHttpClient);
+  const http = createPipelineHttpClient(options);
   const fallbackFitScorer = new TfidfFitScorer();
   const fitMode = requestedFitMode();
   const fitScorer: FitScorer = fixtures || fitMode === "tfidf"
