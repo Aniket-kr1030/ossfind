@@ -20,4 +20,5 @@ export { ApiSurfaceSchema, type ApiSurface } from "./api-surface.js";
 export { IntegrationManifestSchema, type IntegrationManifest } from "./integration-manifest.js";
 export { CompatibilityReportSchema, type CompatibilityReport } from "./compatibility-report.js";
 export { ScaffoldSchema, type Scaffold } from "./scaffold.js";
+export { RecipeSchema, ResolvedRecipeSchema, type Recipe, type ResolvedRecipe } from "./recipe.js";
 export { validate } from "./validate.js";
