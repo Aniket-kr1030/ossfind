@@ -100,8 +100,12 @@ function parseSignatureParams(signature: string): { params: string[]; returnType
     }
   }
 
-  const parenStart = signature.indexOf("(", startIdx);
-  if (parenStart === -1) return null;
+  while (startIdx < signature.length && /\s/.test(signature[startIdx] ?? "")) {
+    startIdx++;
+  }
+
+  if (signature[startIdx] !== "(") return null;
+  const parenStart = startIdx;
 
   let parenDepth = 0;
   let parenEnd = -1;
@@ -133,7 +137,55 @@ function parseSignatureParams(signature: string): { params: string[]; returnType
   return { params, returnType };
 }
 
-function selectExport(
+/**
+ * Determines whether an API export has a genuinely callable signature with a parameter list.
+ */
+export function hasCallableSignature(exportItem: ApiExport): boolean {
+  if (!exportItem.signature) return false;
+  return parseSignatureParams(exportItem.signature) !== null;
+}
+
+/**
+ * Selects the first callable export walking preference order:
+ * preferExport -> default -> package name match -> first function/class -> any callable.
+ */
+function selectCallableExport(
+  surface: ApiSurface,
+  manifest: IntegrationManifest,
+  preferExport?: string,
+): ApiExport | undefined {
+  if (surface.exports.length === 0) return undefined;
+
+  if (preferExport) {
+    const preferred = surface.exports.find((e) => e.name === preferExport && hasCallableSignature(e));
+    if (preferred) return preferred;
+  }
+
+  const defaultExport = surface.exports.find(
+    (e) => (e.name === "default" || e.kind === "default") && hasCallableSignature(e),
+  );
+  if (defaultExport) return defaultExport;
+
+  const rawPkgName = extractPackageRawName(manifest.id || surface.id);
+  const unScopedName = rawPkgName.replace(/^@[^\/]+\//, "");
+  const nameMatch = surface.exports.find((e) => {
+    const lower = e.name.toLowerCase();
+    return (lower === rawPkgName.toLowerCase() || lower === unScopedName.toLowerCase()) && hasCallableSignature(e);
+  });
+  if (nameMatch) return nameMatch;
+
+  const fnOrClass = surface.exports.find(
+    (e) => (e.kind === "function" || e.kind === "class") && hasCallableSignature(e),
+  );
+  if (fnOrClass) return fnOrClass;
+
+  return surface.exports.find(hasCallableSignature);
+}
+
+/**
+ * Selects candidate export irrespective of callability for fallback reporting.
+ */
+function selectFallbackCandidate(
   surface: ApiSurface,
   manifest: IntegrationManifest,
   preferExport?: string,
@@ -256,24 +308,17 @@ export function buildScaffold(
     });
   }
 
-  const chosenExport = selectExport(surface, manifest, opts?.preferExport);
+  const chosenExport = selectCallableExport(surface, manifest, opts?.preferExport);
 
   if (!chosenExport) {
-    notes.push("No suitable export found in API surface; no usage code was generated.");
-    return ScaffoldSchema.parse({
-      component,
-      install,
-      imports,
-      snippet: null,
-      basedOn: [],
-      confidence: "import-only",
-      notes: notes.sort(),
-      warnings: warnings.sort(),
-    });
-  }
-
-  if (!chosenExport.signature) {
-    notes.push(`Selected export '${chosenExport.name}' has no verifiable signature; no usage code was generated.`);
+    const fallbackCandidate = selectFallbackCandidate(surface, manifest, opts?.preferExport);
+    if (!fallbackCandidate) {
+      notes.push("No suitable export found in API surface; no usage code was generated.");
+    } else if (!fallbackCandidate.signature) {
+      notes.push(`Selected export '${fallbackCandidate.name}' has no verifiable signature; no usage code was generated.`);
+    } else {
+      notes.push(`Selected export '${fallbackCandidate.name}' signature is not callable; no usage code was generated.`);
+    }
     return ScaffoldSchema.parse({
       component,
       install,
@@ -300,6 +345,12 @@ export function buildScaffold(
       notes: notes.sort(),
       warnings: warnings.sort(),
     });
+  }
+
+  const defaultExport = surface.exports.find((e) => e.name === "default" || e.kind === "default");
+  if (defaultExport && !hasCallableSignature(defaultExport) && chosenExport.name !== "default" && chosenExport.kind !== "default") {
+    const importId = extractImportIdentifier(manifest);
+    notes.push(`The 'default' export is not callable; selected callable export '${chosenExport.name}' accessed via default import '${importId}'.`);
   }
 
   return ScaffoldSchema.parse({

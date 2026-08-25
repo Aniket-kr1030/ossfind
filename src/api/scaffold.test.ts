@@ -247,4 +247,97 @@ describe("buildScaffold", () => {
 
     expect(run1).toEqual(run2);
   });
+
+  it("falls through from non-callable default export to callable named export (axios-like)", () => {
+    const surface = createSurface({
+      exports: [
+        {
+          name: "default",
+          kind: "default",
+          signature: "default: AxiosStatic",
+        },
+        {
+          name: "create",
+          kind: "function",
+          signature: "create(config?: CreateAxiosDefaults): AxiosInstance",
+        },
+      ],
+    });
+    const manifest = createManifest();
+
+    const scaffold = buildScaffold(surface, manifest);
+
+    expect(scaffold.confidence).toBe("verified-signatures");
+    expect(scaffold.snippet).not.toBeNull();
+    expect(scaffold.snippet).toContain("create(config)");
+    expect(scaffold.snippet).toContain("axios.create(config)");
+    expect(scaffold.basedOn).toEqual([
+      {
+        name: "create",
+        signature: "create(config?: CreateAxiosDefaults): AxiosInstance",
+      },
+    ]);
+    expect(scaffold.notes).toContain(
+      "The 'default' export is not callable; selected callable export 'create' accessed via default import 'axios'.",
+    );
+    expect(ScaffoldSchema.parse(scaffold)).toEqual(scaffold);
+  });
+
+  it("falls back to import-only when surface has non-callable default and no callable exports", () => {
+    const surface = createSurface({
+      exports: [
+        {
+          name: "default",
+          kind: "default",
+          signature: "default: AxiosStatic",
+        },
+        {
+          name: "Axios",
+          kind: "class",
+          signature: null,
+        },
+      ],
+    });
+    const manifest = createManifest();
+
+    const scaffold = buildScaffold(surface, manifest);
+
+    expect(scaffold.confidence).toBe("import-only");
+    expect(scaffold.snippet).toBeNull();
+    expect(scaffold.basedOn).toEqual([]);
+    expect(scaffold.notes).toContain(
+      "Selected export 'default' signature is not callable; no usage code was generated.",
+    );
+    expect(ScaffoldSchema.parse(scaffold)).toEqual(scaffold);
+  });
+
+  it("falls through when preferExport is not callable to next callable export", () => {
+    const surface = createSurface({
+      exports: [
+        {
+          name: "typesOnly",
+          kind: "type",
+          signature: "typesOnly: SomeType",
+        },
+        {
+          name: "create",
+          kind: "function",
+          signature: "create(config?: CreateAxiosDefaults): AxiosInstance",
+        },
+      ],
+    });
+    const manifest = createManifest();
+
+    const scaffold = buildScaffold(surface, manifest, { preferExport: "typesOnly" });
+
+    expect(scaffold.confidence).toBe("verified-signatures");
+    expect(scaffold.snippet).toContain("axios.create(config)");
+    expect(scaffold.basedOn).toEqual([
+      {
+        name: "create",
+        signature: "create(config?: CreateAxiosDefaults): AxiosInstance",
+      },
+    ]);
+    expect(ScaffoldSchema.parse(scaffold)).toEqual(scaffold);
+  });
 });
