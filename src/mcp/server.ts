@@ -4,6 +4,10 @@ import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 import { z } from "zod";
+import { checkPyCompatibility } from "../api/py-compat.js";
+import { PyIntegrationManifestBuilder } from "../api/py-manifest.js";
+import type { PyProjectContext } from "../api/py-project.js";
+import { PyApiSurfaceExtractor } from "../api/py-surface.js";
 import { ApiSurfaceExtractor } from "../api/surface.js";
 import { IntegrationManifestBuilder } from "../api/manifest.js";
 import { checkCompatibility, type ProjectContext } from "../api/compat.js";
@@ -50,26 +54,32 @@ const ProjectContextInputSchema = z.object({
   dependencies: z.record(z.string(), z.string()).optional(),
   devDependencies: z.record(z.string(), z.string()).optional(),
   engines: z.record(z.string(), z.string()).optional(),
+  requiresPython: z.string().trim().min(1).optional(),
   license: z.string().trim().min(1).optional(),
 }).strict();
 
-const NpmComponentInputFields = {
+const ApiComponentEcosystemSchema = z.enum(["npm", "pypi", "github", "huggingface"]);
+type ApiComponentEcosystem = z.infer<typeof ApiComponentEcosystemSchema>;
+type SupportedApiComponentEcosystem = Extract<ApiComponentEcosystem, "npm" | "pypi">;
+type ApiProjectContext = ProjectContext & PyProjectContext;
+
+const ApiComponentInputFields = {
   component: z.string().trim().min(1, "component must not be empty"),
-  ecosystem: z.literal("npm").default("npm"),
+  ecosystem: ApiComponentEcosystemSchema.default("npm"),
 };
 
 export const InspectComponentInputSchema = z.object({
-  ...NpmComponentInputFields,
+  ...ApiComponentInputFields,
   limit: z.number().int().nonnegative().max(500).default(40),
 });
 
 export const CheckCompatibilityInputSchema = z.object({
-  ...NpmComponentInputFields,
+  ...ApiComponentInputFields,
   project: ProjectContextInputSchema,
 });
 
 export const PlanIntegrationInputSchema = z.object({
-  ...NpmComponentInputFields,
+  ...ApiComponentInputFields,
   project: ProjectContextInputSchema.optional(),
   preferExport: z.string().trim().min(1).optional(),
 });
@@ -122,42 +132,68 @@ function compactResult(component: ScoredComponent): z.infer<typeof CompactScored
   };
 }
 
-/** Search-result IDs are accepted directly so agents can chain tools without rewriting them. */
-function npmPackageName(component: string): string {
+/** Resolve the registry package name while rejecting ecosystems without API-surface support. */
+function apiComponent(component: string, ecosystem: ApiComponentEcosystem): {
+  ecosystem: SupportedApiComponentEcosystem;
+  packageName: string;
+} {
   const prefix = /^([a-z]+):(.*)$/i.exec(component);
-  if (!prefix) return component;
-  if (prefix[1]?.toLowerCase() !== "npm") {
-    throw new Error(`Only npm components are supported; received ${prefix[1]}.`);
+  const idEcosystem = prefix?.[1]?.toLowerCase();
+  const requestedEcosystem = idEcosystem ?? ecosystem;
+
+  if (requestedEcosystem === "github" || requestedEcosystem === "huggingface") {
+    throw new Error(`${requestedEcosystem} components do not have a package API surface; only npm and pypi components are supported.`);
   }
-  const packageName = prefix[2]?.trim();
-  if (!packageName) throw new Error("component must name an npm package after the npm: prefix");
-  return packageName;
+
+  if (requestedEcosystem !== "npm" && requestedEcosystem !== "pypi") {
+    throw new Error(`Unsupported component ecosystem ${requestedEcosystem}; only npm and pypi components are supported.`);
+  }
+
+  if (idEcosystem && idEcosystem !== ecosystem) {
+    throw new Error(`component prefix ${idEcosystem}: does not match ecosystem ${ecosystem}.`);
+  }
+
+  const packageName = prefix ? prefix[2]?.trim() : component;
+  if (!packageName) {
+    throw new Error(`component must name a ${requestedEcosystem} package after the ${requestedEcosystem}: prefix`);
+  }
+  return { ecosystem: requestedEcosystem, packageName };
 }
 
 function apiTools(options: BuildPipelineOptions) {
   const http = createPipelineHttpClient(options);
   return {
-    extractor: new ApiSurfaceExtractor(http),
-    manifestBuilder: new IntegrationManifestBuilder(http),
+    npm: {
+      extractor: new ApiSurfaceExtractor(http),
+      manifestBuilder: new IntegrationManifestBuilder(http),
+    },
+    pypi: {
+      extractor: new PyApiSurfaceExtractor(http),
+      manifestBuilder: new PyIntegrationManifestBuilder(http),
+    },
   };
 }
 
 async function compatibilityFor(
   component: string,
   manifest: IntegrationManifest,
-  project: ProjectContext,
+  project: ApiProjectContext,
+  ecosystem: SupportedApiComponentEcosystem,
   options: BuildPipelineOptions,
 ): Promise<CompatibilityReport> {
   // The A3 API accepts a component SPDX string separately from A2's manifest.
   // Obtain it from the existing enricher rather than asserting a license from
   // registry prose or leaving a readily-verifiable check undone.
-  const pipeline = buildPipeline({ fixtures: options.fixtures, ecosystem: "npm" });
+  const pipeline = buildPipeline({ fixtures: options.fixtures, ecosystem });
   const enrichment = await pipeline.enricher.enrich({
-    id: `npm:${component}`,
+    id: `${ecosystem}:${component}`,
     name: component,
-    ecosystem: "npm",
+    ecosystem,
     description: "",
   });
+  if (ecosystem === "pypi") {
+    return checkPyCompatibility(manifest, project, enrichment.license.spdxId ?? undefined);
+  }
   return checkCompatibility(manifest, project, enrichment.license.spdxId ?? undefined);
 }
 
@@ -189,18 +225,19 @@ export function createSearchComponentsHandler(
   };
 }
 
-/** Extract a verified API surface and installation manifest for one npm package. */
+/** Extract a verified npm or PyPI API surface and installation manifest. */
 export function createInspectComponentHandler(
   pipelineOptions: BuildPipelineOptions = {},
 ): (input: unknown) => Promise<CallToolResult> {
-  const { extractor, manifestBuilder } = apiTools(pipelineOptions);
+  const tools = apiTools(pipelineOptions);
   return async (input: unknown): Promise<CallToolResult> => {
     try {
       const parsed = InspectComponentInputSchema.parse(input);
-      const component = npmPackageName(parsed.component);
+      const target = apiComponent(parsed.component, parsed.ecosystem);
+      const { extractor, manifestBuilder } = tools[target.ecosystem];
       const [surface, manifest] = await Promise.all([
-        extractor.extract(component),
-        manifestBuilder.build(component),
+        extractor.extract(target.packageName),
+        manifestBuilder.build(target.packageName),
       ]);
       const totalExports = surface.exports.length;
       const exportsTruncated = totalExports > parsed.limit;
@@ -212,7 +249,7 @@ export function createInspectComponentHandler(
       return {
         content: [{
           type: "text",
-          text: `${surface.id} — ${surface.typesAvailable} TypeScript surface.${disclosure}\n${manifest.install.command}`,
+          text: `${surface.id} — ${surface.typesAvailable} ${target.ecosystem === "pypi" ? "Python" : "TypeScript"} surface.${disclosure}\n${manifest.install.command}`,
         }],
         structuredContent: {
           surface: limitedSurface,
@@ -227,17 +264,23 @@ export function createInspectComponentHandler(
   };
 }
 
-/** Compare an npm component's verified integration facts with a project context. */
+/** Compare an npm or PyPI component's verified integration facts with a project context. */
 export function createCheckCompatibilityHandler(
   pipelineOptions: BuildPipelineOptions = {},
 ): (input: unknown) => Promise<CallToolResult> {
-  const { manifestBuilder } = apiTools(pipelineOptions);
+  const tools = apiTools(pipelineOptions);
   return async (input: unknown): Promise<CallToolResult> => {
     try {
       const parsed = CheckCompatibilityInputSchema.parse(input);
-      const component = npmPackageName(parsed.component);
-      const manifest = await manifestBuilder.build(component);
-      const compatibility = await compatibilityFor(component, manifest, parsed.project, pipelineOptions);
+      const target = apiComponent(parsed.component, parsed.ecosystem);
+      const manifest = await tools[target.ecosystem].manifestBuilder.build(target.packageName);
+      const compatibility = await compatibilityFor(
+        target.packageName,
+        manifest,
+        parsed.project,
+        target.ecosystem,
+        pipelineOptions,
+      );
 
       return {
         content: [{
@@ -256,18 +299,19 @@ export function createCheckCompatibilityHandler(
 export function createPlanIntegrationHandler(
   pipelineOptions: BuildPipelineOptions = {},
 ): (input: unknown) => Promise<CallToolResult> {
-  const { extractor, manifestBuilder } = apiTools(pipelineOptions);
+  const tools = apiTools(pipelineOptions);
   return async (input: unknown): Promise<CallToolResult> => {
     try {
       const parsed = PlanIntegrationInputSchema.parse(input);
-      const component = npmPackageName(parsed.component);
+      const target = apiComponent(parsed.component, parsed.ecosystem);
+      const { extractor, manifestBuilder } = tools[target.ecosystem];
       const [surface, manifest] = await Promise.all([
-        extractor.extract(component),
-        manifestBuilder.build(component),
+        extractor.extract(target.packageName),
+        manifestBuilder.build(target.packageName),
       ]);
       const scaffold = buildScaffold(surface, manifest, { preferExport: parsed.preferExport });
       const compatibility = parsed.project
-        ? await compatibilityFor(component, manifest, parsed.project, pipelineOptions)
+        ? await compatibilityFor(target.packageName, manifest, parsed.project, target.ecosystem, pipelineOptions)
         : undefined;
       const compatibilitySummary = compatibility ? ` Compatibility: ${compatibility.verdict}.` : "";
 
@@ -307,7 +351,7 @@ export function createMcpServer(pipelineOptions: BuildPipelineOptions = {}): Mcp
     "inspect_component",
     {
       title: "Inspect a component API",
-      description: "Return a verified npm TypeScript API surface and integration manifest. Accepts a package name or an npm:<name> search ID; exported symbols are capped and disclosure is explicit.",
+      description: "Return a verified npm TypeScript or PyPI Python API surface and integration manifest. Accepts a package name or matching npm:<name>/pypi:<name> search ID; exported symbols are capped and disclosure is explicit.",
       inputSchema: InspectComponentInputSchema,
       outputSchema: InspectComponentOutputSchema,
     },
@@ -317,7 +361,7 @@ export function createMcpServer(pipelineOptions: BuildPipelineOptions = {}): Mcp
     "check_compatibility",
     {
       title: "Check component compatibility",
-      description: "Compare a verified npm component manifest and SPDX license with package.json project facts. Unknown facts remain explicit in the A3 report.",
+      description: "Compare a verified npm package manifest with package.json facts or a PyPI manifest with Python project facts. Both use verified SPDX license data; unknown facts remain explicit in the A3 report.",
       inputSchema: CheckCompatibilityInputSchema,
       outputSchema: CompatibilityReportSchema,
     },
@@ -327,7 +371,7 @@ export function createMcpServer(pipelineOptions: BuildPipelineOptions = {}): Mcp
     "plan_integration",
     {
       title: "Plan a minimal integration",
-      description: "Return install commands, imports, and a signature-verified usage scaffold for an npm component. Include project facts to attach an A3 compatibility report.",
+      description: "Return install commands, imports, and a signature-verified usage scaffold for an npm or PyPI component. Include matching project facts to attach an A3 compatibility report.",
       inputSchema: PlanIntegrationInputSchema,
       outputSchema: PlanIntegrationOutputSchema,
     },

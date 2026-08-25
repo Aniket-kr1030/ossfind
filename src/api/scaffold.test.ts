@@ -43,6 +43,51 @@ function createSurface(overrides?: Partial<ApiSurface>): ApiSurface {
   };
 }
 
+function createPythonManifest(overrides?: Partial<IntegrationManifest>): IntegrationManifest {
+  return {
+    id: "pypi:pyyaml",
+    version: "6.0.3",
+    install: { command: "pip install pyyaml" },
+    importForm: {
+      moduleType: "unknown",
+      esm: null,
+      cjs: null,
+      typesPackage: null,
+      python: {
+        importName: "yaml",
+        statements: ["import yaml"],
+        confidence: "verified",
+        evidence: "Verified import-name mapping: PyYAML -> yaml.",
+      },
+    },
+    runtime: { engines: { python: ">=3.8" }, os: null, cpu: null },
+    peerDependencies: {},
+    prerequisites: [],
+    hasInstallScript: false,
+    notes: [],
+    ...overrides,
+  };
+}
+
+function createPythonSurface(overrides?: Partial<ApiSurface>): ApiSurface {
+  return {
+    id: "pypi:pyyaml",
+    version: "6.0.3",
+    typesAvailable: "definitely-typed",
+    typesSource: "stubs/PyYAML/yaml/__init__.pyi",
+    exports: [
+      {
+        name: "safe_load",
+        kind: "function",
+        signature: "safe_load(stream: _ReadStream) -> _YAMLObject",
+      },
+    ],
+    truncated: false,
+    notes: [],
+    ...overrides,
+  };
+}
+
 describe("buildScaffold", () => {
   it("builds a scaffold with verified function signature", () => {
     const surface = createSurface();
@@ -60,6 +105,77 @@ describe("buildScaffold", () => {
       },
     ]);
     expect(ScaffoldSchema.parse(scaffold)).toEqual(scaffold);
+  });
+
+  it("builds a Python scaffold from PyYAML's verified import and signature", () => {
+    const scaffold = buildScaffold(createPythonSurface(), createPythonManifest());
+
+    expect(scaffold.install).toBe("pip install pyyaml");
+    expect(scaffold.imports).toEqual(["import yaml"]);
+    expect(scaffold.snippet).toBe(
+      "# Verified signature: safe_load(stream: _ReadStream) -> _YAMLObject\nresult = yaml.safe_load(stream)",
+    );
+    expect(scaffold.snippet).not.toContain("const ");
+    expect(scaffold.snippet).not.toContain(";");
+    expect(scaffold.snippet).not.toContain("await ");
+    expect(ScaffoldSchema.parse(scaffold)).toEqual(scaffold);
+  });
+
+  it("Python anti-fabrication test: calls only an export verified by surface.exports", () => {
+    const surface = createPythonSurface({
+      id: "pypi:verified-parser",
+      exports: [
+        { name: "parse_verified", kind: "function", signature: "parse_verified(payload: str) -> str" },
+      ],
+    });
+    const manifest = createPythonManifest({
+      id: "pypi:verified-parser",
+      install: { command: "pip install verified-parser" },
+      importForm: {
+        moduleType: "unknown",
+        esm: null,
+        cjs: null,
+        typesPackage: null,
+        python: {
+          importName: "verified_parser",
+          statements: ["import verified_parser"],
+          confidence: "verified",
+          evidence: "Verified import-name mapping: verified-parser -> verified_parser.",
+        },
+      },
+    });
+
+    const scaffold = buildScaffold(surface, manifest);
+
+    expect(scaffold.snippet).toContain("verified_parser.parse_verified(payload)");
+    expect(scaffold.snippet).not.toContain("generate_video");
+    expect(scaffold.snippet).not.toContain("create_client");
+    const calledExport = /\.([A-Za-z_][A-Za-z0-9_]*)\(/.exec(scaffold.snippet ?? "")?.[1];
+    expect(surface.exports.map((entry) => entry.name)).toContain(calledExport);
+  });
+
+  it("awaits a Python call only when its verified signature declares async def", () => {
+    const surface = createPythonSurface({
+      exports: [{ name: "fetch", kind: "function", signature: "async def fetch(url: str) -> str" }],
+    });
+    const manifest = createPythonManifest({
+      importForm: {
+        moduleType: "unknown",
+        esm: null,
+        cjs: null,
+        typesPackage: null,
+        python: {
+          importName: "client",
+          statements: ["import client"],
+          confidence: "verified",
+          evidence: "Verified import-name mapping: client -> client.",
+        },
+      },
+    });
+
+    expect(buildScaffold(surface, manifest).snippet).toBe(
+      "# Verified signature: async def fetch(url: str) -> str\nresult = await client.fetch(url)",
+    );
   });
 
   it("degrades to import-only when typesAvailable is none", () => {

@@ -147,6 +147,30 @@ describe("agent-ergonomic MCP integration tools", () => {
     if (summary?.type === "text") expect(summary.text).toContain("Showing 40 of 63 exports");
   });
 
+  it("inspects a PyPI fixture package with its verified Python surface and manifest", async () => {
+    const handler = createInspectComponentHandler({ fixtures: true });
+    const result = await handler({ component: "pypi:pyyaml", ecosystem: "pypi" });
+    const output = InspectComponentOutputSchema.parse(result.structuredContent);
+
+    expect(result.isError).not.toBe(true);
+    expect(ApiSurfaceSchema.parse(output.surface)).toEqual(output.surface);
+    expect(IntegrationManifestSchema.parse(output.manifest)).toEqual(output.manifest);
+    expect(output).toMatchObject({
+      totalExports: 31,
+      exportsTruncated: false,
+      surface: { id: "pypi:pyyaml" },
+      manifest: {
+        id: "pypi:pyyaml",
+        install: { command: "pip install pyyaml" },
+        importForm: { python: { statements: ["import yaml"] } },
+      },
+    });
+    expect(output.surface.exports).toContainEqual(expect.objectContaining({
+      name: "safe_load",
+      signature: "safe_load(stream: _ReadStream) -> _YAMLObject",
+    }));
+  });
+
   it("returns a schema-valid A3 compatibility report with verified component license data", async () => {
     const handler = createCheckCompatibilityHandler({ fixtures: true });
     const result = await handler({
@@ -157,6 +181,20 @@ describe("agent-ergonomic MCP integration tools", () => {
 
     expect(result.isError).not.toBe(true);
     expect(report.component).toBe("npm:axios");
+    expect(result.content).toContainEqual(expect.objectContaining({ type: "text", text: expect.stringContaining(report.verdict) }));
+  });
+
+  it("returns a schema-valid PyPI compatibility report", async () => {
+    const handler = createCheckCompatibilityHandler({ fixtures: true });
+    const result = await handler({
+      component: "pypi:pyyaml",
+      ecosystem: "pypi",
+      project: { requiresPython: ">=3.10", license: "MIT" },
+    });
+    const report = CompatibilityReportSchema.parse(result.structuredContent);
+
+    expect(result.isError).not.toBe(true);
+    expect(report.component).toBe("pypi:pyyaml");
     expect(result.content).toContainEqual(expect.objectContaining({ type: "text", text: expect.stringContaining(report.verdict) }));
   });
 
@@ -175,10 +213,31 @@ describe("agent-ergonomic MCP integration tools", () => {
     expect(output.scaffold.basedOn).toContainEqual(expect.objectContaining({ name: "formToJSON" }));
   });
 
+  it("plans a Python integration from verified PyPI surface facts", async () => {
+    const handler = createPlanIntegrationHandler({ fixtures: true });
+    const result = await handler({
+      component: "pypi:pyyaml",
+      ecosystem: "pypi",
+      preferExport: "safe_load",
+    });
+    const output = PlanIntegrationOutputSchema.parse(result.structuredContent);
+
+    expect(result.isError).not.toBe(true);
+    expect(output.scaffold).toMatchObject({
+      component: "pypi:pyyaml",
+      install: "pip install pyyaml",
+      imports: ["import yaml"],
+      snippet: "# Verified signature: safe_load(stream: _ReadStream) -> _YAMLObject\nresult = yaml.safe_load(stream)",
+    });
+    expect(output.scaffold.basedOn).toContainEqual(expect.objectContaining({
+      name: "safe_load",
+      signature: "safe_load(stream: _ReadStream) -> _YAMLObject",
+    }));
+  });
+
   it("returns structured errors rather than throwing for invalid new-tool inputs", async () => {
     const cases = [
       createInspectComponentHandler({ fixtures: true })({ component: "" }),
-      createInspectComponentHandler({ fixtures: true })({ component: "pypi:moviepy" }),
       createCheckCompatibilityHandler({ fixtures: true })({ component: "", project: {} }),
       createPlanIntegrationHandler({ fixtures: true })({ component: "" }),
     ];
@@ -188,6 +247,22 @@ describe("agent-ergonomic MCP integration tools", () => {
         isError: true,
         content: [{ type: "text" }],
         structuredContent: { error: { message: expect.any(String) } },
+      });
+    }
+  });
+
+  it("returns a clear structured error for ecosystems without package API surfaces", async () => {
+    const cases = [
+      createInspectComponentHandler({ fixtures: true })({ component: "github:owner/repo", ecosystem: "github" }),
+      createCheckCompatibilityHandler({ fixtures: true })({ component: "huggingface:owner/model", ecosystem: "huggingface", project: {} }),
+      createPlanIntegrationHandler({ fixtures: true })({ component: "github:owner/repo", ecosystem: "github" }),
+    ];
+
+    for (const result of await Promise.all(cases)) {
+      expect(result).toMatchObject({
+        isError: true,
+        content: [{ type: "text", text: expect.stringMatching(/only npm and pypi components are supported/i) }],
+        structuredContent: { error: { message: expect.stringMatching(/package API surface/i) } },
       });
     }
   });

@@ -137,12 +137,93 @@ function parseSignatureParams(signature: string): { params: string[]; returnType
   return { params, returnType };
 }
 
+interface ParsedPythonSignature {
+  args: string[];
+  returnType: string | null;
+  isAsync: boolean;
+}
+
+/**
+ * Parses a Python declaration sufficiently to emit a call whose placeholders
+ * are all taken from its verified parameter list. This deliberately does not
+ * synthesize names for unparseable Python parameters.
+ */
+function parsePythonSignature(signature: string): ParsedPythonSignature | null {
+  const source = signature.trim();
+  const asyncMatch = /^(async\s+)?def\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(/.exec(source);
+  const bareMatch = /^([A-Za-z_][A-Za-z0-9_]*)\s*\(/.exec(source);
+  const match = asyncMatch ?? bareMatch;
+  if (!match) return null;
+
+  const parenStart = source.indexOf("(", match.index);
+  if (parenStart < 0) return null;
+
+  let parenDepth = 0;
+  let parenEnd = -1;
+  for (let index = parenStart; index < source.length; index++) {
+    if (source[index] === "(") parenDepth++;
+    else if (source[index] === ")") {
+      parenDepth--;
+      if (parenDepth === 0) {
+        parenEnd = index;
+        break;
+      }
+    }
+  }
+  if (parenEnd < 0) return null;
+
+  let keywordOnly = false;
+  const args: string[] = [];
+  const paramsText = source.slice(parenStart + 1, parenEnd).trim();
+  for (const rawParam of paramsText ? splitTopLevelCommas(paramsText) : []) {
+    const param = rawParam.trim();
+    if (param === "/") continue;
+    if (param === "*") {
+      keywordOnly = true;
+      continue;
+    }
+
+    const prefix = param.startsWith("**") ? "**" : param.startsWith("*") ? "*" : "";
+    const name = param.slice(prefix.length).split(/[:=]/)[0]?.trim();
+    if (!name || !/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)) return null;
+
+    if (prefix) {
+      args.push(`${prefix}${name}`);
+    } else {
+      args.push(keywordOnly ? `${name}=${name}` : name);
+    }
+  }
+
+  const remainder = source.slice(parenEnd + 1).trim();
+  const returnType = remainder.startsWith("->") ? remainder.slice(2).trim() || null : null;
+  return { args, returnType, isAsync: Boolean(asyncMatch?.[1]) };
+}
+
+function isPythonComponent(surface: ApiSurface, manifest: IntegrationManifest): boolean {
+  return (manifest.id || surface.id).startsWith("pypi:");
+}
+
+/**
+ * Returns a callable Python module name only when its exact import statement
+ * was verified by the Python manifest. There is intentionally no package-name
+ * fallback: inventing one could emit a broken or fabricated API call.
+ */
+function extractPythonImportIdentifier(manifest: IntegrationManifest): string | null {
+  const python = manifest.importForm.python;
+  if (!python?.importName) return null;
+  const escaped = python.importName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const directImport = new RegExp(`^import\\s+${escaped}\\s*$`);
+  return python.statements.some((statement) => directImport.test(statement.trim()))
+    ? python.importName
+    : null;
+}
+
 /**
  * Determines whether an API export has a genuinely callable signature with a parameter list.
  */
 export function hasCallableSignature(exportItem: ApiExport): boolean {
   if (!exportItem.signature) return false;
-  return parseSignatureParams(exportItem.signature) !== null;
+  return parseSignatureParams(exportItem.signature) !== null || parsePythonSignature(exportItem.signature) !== null;
 }
 
 /**
@@ -255,6 +336,26 @@ function generateSnippet(
   return `// Verified signature: ${exportItem.signature}\n${statement}`;
 }
 
+function generatePythonSnippet(
+  exportItem: ApiExport,
+  manifest: IntegrationManifest,
+): string | null {
+  if (!exportItem.signature) return null;
+
+  const parsed = parsePythonSignature(exportItem.signature);
+  const importId = extractPythonImportIdentifier(manifest);
+  if (!parsed || !importId) return null;
+
+  // exportItem is selected exclusively from surface.exports. The module name
+  // comes exclusively from importForm.python's verified import statement.
+  const callExpr = `${importId}.${exportItem.name}(${parsed.args.join(", ")})`;
+  const awaitedCall = parsed.isAsync ? `await ${callExpr}` : callExpr;
+  const isNone = parsed.returnType === "None" || parsed.returnType === "NoReturn" || parsed.returnType === "Never";
+  const statement = isNone ? awaitedCall : `result = ${awaitedCall}`;
+
+  return `# Verified signature: ${exportItem.signature}\n${statement}`;
+}
+
 /**
  * Builds a ready-to-apply integration scaffold for an AI agent.
  * Pure function with zero I/O.
@@ -265,24 +366,31 @@ export function buildScaffold(
   opts?: { preferExport?: string },
 ): Scaffold {
   const component = manifest.id || surface.id;
+  const python = isPythonComponent(surface, manifest);
 
   let install = manifest.install.command;
   if (manifest.importForm.typesPackage) {
-    install += `\nnpm install -D ${manifest.importForm.typesPackage}`;
+    install += python
+      ? `\npip install ${manifest.importForm.typesPackage}`
+      : `\nnpm install -D ${manifest.importForm.typesPackage}`;
   }
 
   const imports: string[] = [];
-  const { moduleType, esm, cjs } = manifest.importForm;
-  if (moduleType === "esm") {
-    if (esm) imports.push(esm);
-  } else if (moduleType === "cjs") {
-    if (cjs) imports.push(cjs);
-  } else if (moduleType === "dual") {
-    if (esm) imports.push(esm);
-    if (cjs) imports.push(cjs);
+  if (python) {
+    imports.push(...(manifest.importForm.python?.statements ?? []));
   } else {
-    if (esm) imports.push(esm);
-    if (cjs) imports.push(cjs);
+    const { moduleType, esm, cjs } = manifest.importForm;
+    if (moduleType === "esm") {
+      if (esm) imports.push(esm);
+    } else if (moduleType === "cjs") {
+      if (cjs) imports.push(cjs);
+    } else if (moduleType === "dual") {
+      if (esm) imports.push(esm);
+      if (cjs) imports.push(cjs);
+    } else {
+      if (esm) imports.push(esm);
+      if (cjs) imports.push(cjs);
+    }
   }
 
   const warnings: string[] = [];
@@ -331,10 +439,16 @@ export function buildScaffold(
     });
   }
 
-  const snippet = generateSnippet(chosenExport, manifest);
+  const snippet = python
+    ? generatePythonSnippet(chosenExport, manifest)
+    : generateSnippet(chosenExport, manifest);
 
   if (!snippet) {
-    notes.push(`Selected export '${chosenExport.name}' signature is not callable; no usage code was generated.`);
+    if (python && !extractPythonImportIdentifier(manifest)) {
+      notes.push(`Selected export '${chosenExport.name}' has no verified Python import name; no usage code was generated.`);
+    } else {
+      notes.push(`Selected export '${chosenExport.name}' signature is not callable; no usage code was generated.`);
+    }
     return ScaffoldSchema.parse({
       component,
       install,
@@ -348,7 +462,7 @@ export function buildScaffold(
   }
 
   const defaultExport = surface.exports.find((e) => e.name === "default" || e.kind === "default");
-  if (defaultExport && !hasCallableSignature(defaultExport) && chosenExport.name !== "default" && chosenExport.kind !== "default") {
+  if (!python && defaultExport && !hasCallableSignature(defaultExport) && chosenExport.name !== "default" && chosenExport.kind !== "default") {
     const importId = extractImportIdentifier(manifest);
     notes.push(`The 'default' export is not callable; selected callable export '${chosenExport.name}' accessed via default import '${importId}'.`);
   }
