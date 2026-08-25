@@ -1,0 +1,7 @@
+{
+  "package": "attrs",
+  "distribution": "attrs",
+  "importPackage": "attr",
+  "__error": 404,
+  "note": "no typeshed stub for this distribution"
+}

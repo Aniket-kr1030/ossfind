@@ -1,0 +1,7 @@
+{
+  "package": "pyyaml",
+  "distribution": "PyYAML",
+  "importPackage": "yaml",
+  "path": "stubs/PyYAML/yaml/__init__.pyi",
+  "bytes": 13963
+}

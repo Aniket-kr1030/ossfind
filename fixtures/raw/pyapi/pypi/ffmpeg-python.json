@@ -1,0 +1,111 @@
+{
+  "info": {
+    "author": "Karl Kroening",
+    "author_email": "karlk@kralnet.us",
+    "bugtrack_url": null,
+    "classifiers": [
+      "Intended Audience :: Developers",
+      "License :: OSI Approved :: Apache Software License",
+      "Natural Language :: English",
+      "Operating System :: OS Independent",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 2",
+      "Programming Language :: Python :: 2.7",
+      "Programming Language :: Python :: 3",
+      "Programming Language :: Python :: 3.3",
+      "Programming Language :: Python :: 3.4",
+      "Programming Language :: Python :: 3.5",
+      "Programming Language :: Python :: 3.6"
+    ],
+    "description": "ffmpeg-python: Python bindings for FFmpeg\n=========================================\n\n:Github: https://github.com/kkroening/ffmpeg-python\n:API Reference: https://kkroening.github.io/ffmpeg-python/\n\n\n",
+    "description_content_type": "",
+    "docs_url": null,
+    "download_url": "https://github.com/kkroening/ffmpeg-python/archive/v0.2.0.zip",
+    "downloads": {
+      "last_day": -1,
+      "last_month": -1,
+      "last_week": -1
+    },
+    "dynamic": null,
+    "home_page": "https://github.com/kkroening/ffmpeg-python",
+    "keywords": "-vf,a/v,audio,dsp,FFmpeg,ffmpeg,ffprobe,filtering,filter_complex,movie,render,signals,sound,streaming,streams,vf,video,wrapper,aac,ac3,avi,bmp,flac,gif,mov,mp3,mp4,png,raw,rawvideo,wav,.aac,.ac3,.avi,.bmp,.flac,.gif,.mov,.mp3,.mp4,.png,.raw,.rawvideo,.wav",
+    "license": "",
+    "license_expression": null,
+    "license_files": null,
+    "maintainer": "",
+    "maintainer_email": "",
+    "name": "ffmpeg-python",
+    "package_url": "https://pypi.org/project/ffmpeg-python/",
+    "platform": "",
+    "project_url": "https://pypi.org/project/ffmpeg-python/",
+    "project_urls": {
+      "Download": "https://github.com/kkroening/ffmpeg-python/archive/v0.2.0.zip",
+      "Homepage": "https://github.com/kkroening/ffmpeg-python"
+    },
+    "provides_extra": null,
+    "release_url": "https://pypi.org/project/ffmpeg-python/0.2.0/",
+    "requires_dist": [
+      "future",
+      "future (==0.17.1) ; extra == 'dev'",
+      "numpy (==1.16.4) ; extra == 'dev'",
+      "pytest-mock (==1.10.4) ; extra == 'dev'",
+      "pytest (==4.6.1) ; extra == 'dev'",
+      "Sphinx (==2.1.0) ; extra == 'dev'",
+      "tox (==3.12.1) ; extra == 'dev'"
+    ],
+    "requires_python": "",
+    "summary": "Python bindings for FFmpeg - with complex filtering support",
+    "version": "0.2.0",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "urls": [
+    {
+      "comment_text": "",
+      "core-metadata": {
+        "sha256": "51bcd63570093fa6d1c45413c3839fc413c85f182628a5170d76ed21d68be294"
+      },
+      "digests": {
+        "blake2b_256": "d70c56be52741f75bad4dc6555991fabd2e07b432d333da82c11ad701123888a",
+        "md5": "186b8544ecbdf66ae7292d47a0acc8ca",
+        "sha256": "ac441a0404e053f8b6a1113a77c0f452f1cfc62f6344a769475ffdc0f56c23c5"
+      },
+      "downloads": -1,
+      "filename": "ffmpeg_python-0.2.0-py3-none-any.whl",
+      "has_sig": false,
+      "md5_digest": "186b8544ecbdf66ae7292d47a0acc8ca",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": null,
+      "size": 25024,
+      "upload_time": "2019-07-06T00:19:07",
+      "upload_time_iso_8601": "2019-07-06T00:19:07.215917Z",
+      "url": "https://files.pythonhosted.org/packages/d7/0c/56be52741f75bad4dc6555991fabd2e07b432d333da82c11ad701123888a/ffmpeg_python-0.2.0-py3-none-any.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": "",
+      "core-metadata": false,
+      "digests": {
+        "blake2b_256": "dd5ed5f9105d59c1325759d838af4e973695081fbbc97182baf73afc78dec266",
+        "md5": "1aa943ce1b4e720eec77d3ec9a225724",
+        "sha256": "65225db34627c578ef0e11c8b1eb528bb35e024752f6f10b78c011f6f64c4127"
+      },
+      "downloads": -1,
+      "filename": "ffmpeg-python-0.2.0.tar.gz",
+      "has_sig": false,
+      "md5_digest": "1aa943ce1b4e720eec77d3ec9a225724",
+      "packagetype": "sdist",
+      "python_version": "source",
+      "requires_python": null,
+      "size": 21543,
+      "upload_time": "2019-07-06T00:19:08",
+      "upload_time_iso_8601": "2019-07-06T00:19:08.989435Z",
+      "url": "https://files.pythonhosted.org/packages/dd/5e/d5f9105d59c1325759d838af4e973695081fbbc97182baf73afc78dec266/ffmpeg-python-0.2.0.tar.gz",
+      "yanked": false,
+      "yanked_reason": null
+    }
+  ],
+  "last_serial": 5493564
+}

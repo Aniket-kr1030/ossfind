@@ -1,0 +1,7 @@
+{
+  "package": "moviepy",
+  "distribution": "moviepy",
+  "importPackage": "moviepy",
+  "__error": 404,
+  "note": "no typeshed stub for this distribution"
+}

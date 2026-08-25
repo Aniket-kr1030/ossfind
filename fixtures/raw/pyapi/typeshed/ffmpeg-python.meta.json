@@ -1,0 +1,7 @@
+{
+  "package": "ffmpeg-python",
+  "distribution": "ffmpeg-python",
+  "importPackage": "ffmpeg",
+  "__error": 404,
+  "note": "no typeshed stub for this distribution"
+}

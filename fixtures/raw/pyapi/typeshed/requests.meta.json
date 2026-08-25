@@ -1,0 +1,7 @@
+{
+  "package": "requests",
+  "distribution": "requests",
+  "importPackage": "requests",
+  "path": "stubs/requests/requests/__init__.pyi",
+  "bytes": 1351
+}

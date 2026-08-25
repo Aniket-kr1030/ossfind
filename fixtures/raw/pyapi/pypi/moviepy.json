@@ -1,0 +1,133 @@
+{
+  "info": {
+    "author": "Zulko 2024",
+    "author_email": null,
+    "bugtrack_url": null,
+    "classifiers": [
+      "Development Status :: 5 - Production/Stable",
+      "Intended Audience :: Developers",
+      "License :: OSI Approved :: MIT License",
+      "Natural Language :: English",
+      "Programming Language :: Python",
+      "Programming Language :: Python :: 3.10",
+      "Programming Language :: Python :: 3.11",
+      "Programming Language :: Python :: 3.9",
+      "Topic :: Multimedia",
+      "Topic :: Multimedia :: Sound/Audio",
+      "Topic :: Multimedia :: Sound/Audio :: Analysis",
+      "Topic :: Multimedia :: Video",
+      "Topic :: Multimedia :: Video :: Capture",
+      "Topic :: Multimedia :: Video :: Conversion"
+    ],
+    "description": "# MoviePy\n\n\n[![MoviePy page on the Python Package Index](https://badge.fury.io/py/moviepy.svg)](https://pypi.org/project/moviepy/) [![Discuss MoviePy on Gitter](https://img.shields.io/gitter/room/movie-py/gitter?color=46BC99&logo=gitter)](Gitter_) [![Build status on gh-actions](https://img.shields.io/github/actions/workflow/status/Zulko/moviepy/test_suite.yml?logo=github)](https://github.com/Zulko/moviepy/actions/workflows/test_suite.yml) [![Code coverage from coveralls.io](https://img.shields.io/coveralls/github/Zulko/moviepy/master?logo=coveralls)](https://coveralls.io/github/Zulko/moviepy?branch=master)\n\n> [!NOTE]\n> MoviePy recently upgraded to v2.0, introducing major breaking changes. You can consult the last v1 docs [here](https://zulko.github.io/moviepy/v1.0.3/) but beware that v1 is no longer maintained. For more info on how to update your code from v1 to v2, see [this guide](https://zulko.github.io/moviepy/getting_started/updating_to_v2.html).\n\nMoviePy (online documentation [here](https://zulko.github.io/moviepy/)) is a Python library for video editing: cuts, concatenations, title insertions, video compositing (a.k.a. non-linear editing), video processing, and creation of custom effects.\n\nMoviePy can read and write all the most common audio and video formats, including GIF, and runs on Windows/Mac/Linux, with Python 3.9+.\n\n# Example\n\nIn this example we open a video file, select the subclip between 10 and\n20 seconds, add a title at the center of the screen, and write the\nresult to a new file:\n\n``` python\nfrom moviepy import VideoFileClip, TextClip, CompositeVideoClip\n\n# Load file example.mp4 and keep only the subclip from 00:00:10 to 00:00:20\n# Reduce the audio volume to 80% of its original volume\n\nclip = (\n    VideoFileClip(\"long_examples/example2.mp4\")\n    .subclipped(10, 20)\n    .with_volume_scaled(0.8)\n)\n\n# Generate a text clip. You can customize the font, color, etc.\ntxt_clip = TextClip(\n    font=\"Arial.ttf\",\n    text=\"Hello there!\",\n    font_size=70,\n    color='white'\n).with_duration(10).with_position('center')\n\n# Overlay the text clip on the first video clip\nfinal_video = CompositeVideoClip([clip, txt_clip])\nfinal_video.write_videofile(\"result.mp4\")\n```\n\n# How MoviePy works\n\nUnder the hood, MoviePy imports media (video frames, images, sounds) and converts them into Python objects (numpy arrays) so that every pixel becomes accessible, and video or audio effects can be defined in just a few lines of code (see the [built-in effects]() for examples).\n\nThe library also provides ways to mix clips together (concatenations, playing clips side by side or on top of each other with transparency, etc.). The final clip is then encoded back into mp4/webm/gif/etc.\n\nThis makes MoviePy very flexible and approachable, albeit slower than using ffmpeg directly due to heavier data import/export operations.  \n\n\n# Installation\n\nIntall moviepy with `pip install moviepy`. For additional installation options, such as a custom FFMPEG or for previewing, see [this section](https://zulko.github.io/moviepy/getting_started/install.html). For development, clone that repo locally and install with `pip install -e .`\n\n# Documentation\n\nThe online documentation ([here](https://zulko.github.io/moviepy/)) is automatically built at every push to the master branch. To build the documentation locally, install the extra dependencies via `pip install moviepy[doc]`, then go to the `docs` folder and run `make html`.\n\n# Contribute\n\nMoviePy is open-source software originally written by\n[Zulko](https://github.com/Zulko) and released under the MIT licence.\nThe project is hosted on [GitHub](https://github.com/Zulko/moviepy),\nwhere everyone is welcome to contribute and open issues or give feedback Please read our [Contributing\nGuidelines](https://github.com/Zulko/moviepy/blob/master/CONTRIBUTING.md).\nTo ask for help or simply discuss usage and examples, use [our Reddit channel](https://www.reddit.com/r/moviepy/).\n\n# Maintainers\n\n## Active maintainers\n-   [Zulko](https://github.com/Zulko) (owner)\n-   [@osaajani](https://github.com/OsaAjani) led the development of v2 ([MR](https://github.com/Zulko/moviepy/pull/2024))\n-   [@tburrows13](https://github.com/tburrows13)\n-   [@keikoro](https://github.com/keikoro)\n\n## Past maintainers and thanks\n-   [@mgaitan](https://github.com/mgaitan)\n-   [@earney](https://github.com/earney)\n-   [@mbeacom](https://github.com/mbeacom)\n-   [@overdrivr](https://github.com/overdrivr)\n-   [@ryanfox](https://github.com/ryanfox)\n-   [@mondeja](https://github.com/mondeja)\n\n**Maintainers wanted!** this library has only been kept afloat by the involvement of its maintainers, and there are times where none of us have enough bandwidth. We'd love to hear about developers interested in giving a hand and solving some of the issues (especially the ones that affect you) or reviewing pull requests. Open\nan issue or contact us directly if you are interested. Thanks!\n",
+    "description_content_type": "text/markdown",
+    "docs_url": null,
+    "download_url": null,
+    "downloads": {
+      "last_day": -1,
+      "last_month": -1,
+      "last_week": -1
+    },
+    "dynamic": [
+      "License-File"
+    ],
+    "home_page": null,
+    "keywords": "video, editing, audio, compositing, ffmpeg",
+    "license": "MIT License",
+    "license_expression": null,
+    "license_files": [
+      "LICENCE.txt"
+    ],
+    "maintainer": null,
+    "maintainer_email": null,
+    "name": "moviepy",
+    "package_url": "https://pypi.org/project/moviepy/",
+    "platform": null,
+    "project_url": "https://pypi.org/project/moviepy/",
+    "project_urls": null,
+    "provides_extra": [
+      "doc",
+      "test",
+      "lint"
+    ],
+    "release_url": "https://pypi.org/project/moviepy/2.2.1/",
+    "requires_dist": [
+      "decorator<6.0,>=4.0.2",
+      "imageio<3.0,>=2.5",
+      "imageio_ffmpeg>=0.2.0",
+      "numpy>=1.25.0",
+      "proglog<=1.0.0",
+      "python-dotenv>=0.10",
+      "pillow<12.0,>=9.2.0",
+      "numpydoc<2.0; extra == \"doc\"",
+      "Sphinx==6.*; extra == \"doc\"",
+      "pydata-sphinx-theme==0.13; extra == \"doc\"",
+      "sphinx_design; extra == \"doc\"",
+      "coveralls<4.0,>=3.0; extra == \"test\"",
+      "pytest-cov<3.0,>=2.5.1; extra == \"test\"",
+      "pytest<7.0.0,>=3.0.0; extra == \"test\"",
+      "black>=23.7.0; extra == \"lint\"",
+      "flake8>=6.0.0; extra == \"lint\"",
+      "flake8-absolute-import>=1.0; extra == \"lint\"",
+      "flake8-docstrings>=1.7.0; extra == \"lint\"",
+      "flake8-rst-docstrings>=0.3; extra == \"lint\"",
+      "flake8-implicit-str-concat==0.4.0; extra == \"lint\"",
+      "isort>=5.12; extra == \"lint\"",
+      "pre-commit>=3.3; extra == \"lint\""
+    ],
+    "requires_python": null,
+    "summary": "Video editing with Python",
+    "version": "2.2.1",
+    "yanked": false,
+    "yanked_reason": null
+  },
+  "urls": [
+    {
+      "comment_text": null,
+      "core-metadata": {
+        "sha256": "ba08814030a33c196589cb232d87518b2be874b342e8e5f6dfefb464e52e5569"
+      },
+      "digests": {
+        "blake2b_256": "9a737d3b2010baa0b5eb1e4dfa9e4385e89b6716be76f2fa21a6c0fe34b68e5a",
+        "md5": "61403bb76d6583b045ac208593616887",
+        "sha256": "6b56803fec2ac54b557404126ac1160e65448e03798fa282bd23e8fab3795060"
+      },
+      "downloads": -1,
+      "filename": "moviepy-2.2.1-py3-none-any.whl",
+      "has_sig": false,
+      "md5_digest": "61403bb76d6583b045ac208593616887",
+      "packagetype": "bdist_wheel",
+      "python_version": "py3",
+      "requires_python": null,
+      "size": 129871,
+      "upload_time": "2025-05-21T19:31:50",
+      "upload_time_iso_8601": "2025-05-21T19:31:50.110874Z",
+      "url": "https://files.pythonhosted.org/packages/9a/73/7d3b2010baa0b5eb1e4dfa9e4385e89b6716be76f2fa21a6c0fe34b68e5a/moviepy-2.2.1-py3-none-any.whl",
+      "yanked": false,
+      "yanked_reason": null
+    },
+    {
+      "comment_text": null,
+      "core-metadata": false,
+      "digests": {
+        "blake2b_256": "de6115f9476e270f64c78a834e7459ca045d669f869cec24eed26807b8cd479d",
+        "md5": "82dee080b2c0df5afdf34a99b65cafb8",
+        "sha256": "c80cb56815ece94e5e3e2d361aa40070eeb30a09d23a24c4e684d03e16deacb1"
+      },
+      "downloads": -1,
+      "filename": "moviepy-2.2.1.tar.gz",
+      "has_sig": false,
+      "md5_digest": "82dee080b2c0df5afdf34a99b65cafb8",
+      "packagetype": "sdist",
+      "python_version": "source",
+      "requires_python": null,
+      "size": 58431438,
+      "upload_time": "2025-05-21T19:31:52",
+      "upload_time_iso_8601": "2025-05-21T19:31:52.601952Z",
+      "url": "https://files.pythonhosted.org/packages/de/61/15f9476e270f64c78a834e7459ca045d669f869cec24eed26807b8cd479d/moviepy-2.2.1.tar.gz",
+      "yanked": false,
+      "yanked_reason": null
+    }
+  ],
+  "last_serial": 29189742
+}
