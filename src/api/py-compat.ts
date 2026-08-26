@@ -62,12 +62,12 @@ export function parsePep440Version(raw: string): ParsedVersion | null {
   const release = releaseMatch[1].split(".").map((seg) => parseInt(seg, 10));
   if (release.some((n) => Number.isNaN(n))) return null;
 
-  const remainder = versionPart.slice(releaseMatch[0].length);
+  let remainder = versionPart.slice(releaseMatch[0].length);
   let prerelease: ParsedVersion["prerelease"];
   let post: number | undefined;
 
   if (remainder) {
-    const preMatch = /^[.-]?(a|alpha|b|beta|rc|c|preview|pre|dev)\.?(\d+)?/i.exec(remainder);
+    const preMatch = /^[._-]?(a|alpha|b|beta|rc|c|preview|pre|dev)[._-]?(\d+)?/i.exec(remainder);
     if (preMatch) {
       let phase: "a" | "b" | "rc" | "dev" = "rc";
       const tag = preMatch[1].toLowerCase();
@@ -75,11 +75,14 @@ export function parsePep440Version(raw: string): ParsedVersion | null {
       else if (tag.startsWith("b")) phase = "b";
       else if (tag === "dev") phase = "dev";
       prerelease = { phase, num: preMatch[2] ? parseInt(preMatch[2], 10) : 0 };
+      remainder = remainder.slice(preMatch[0].length);
     }
 
-    const postMatch = /[.-]?(?:post|r|rev)\.?(\d+)?/i.exec(remainder);
-    if (postMatch) {
-      post = postMatch[1] ? parseInt(postMatch[1], 10) : 0;
+    if (remainder) {
+      const postMatch = /^[._-]?(?:post|rev|r)[._-]?(\d+)?/i.exec(remainder);
+      if (postMatch) {
+        post = postMatch[1] ? parseInt(postMatch[1], 10) : 0;
+      }
     }
   }
 
@@ -336,6 +339,28 @@ export function specifiersIntersect(spec1: string, spec2: string): { intersect: 
     if (cmp > 0) return { intersect: false };
     if (cmp === 0) {
       if (!maxLower.inclusive || !minUpper.inclusive) return { intersect: false };
+      // Degenerate closed single-point interval: maxLower.version == minUpper.version and both inclusive!
+      // Test if this single point satisfies all != clauses in allClauses
+      const singlePoint = maxLower.version;
+      const notEqualClauses = allClauses.filter((c) => c.op === "!=");
+      for (const ne of notEqualClauses) {
+        if (ne.wildcardPrefix) {
+          let matchesPrefix = true;
+          for (let i = 0; i < ne.wildcardPrefix.length; i++) {
+            if ((singlePoint.release[i] ?? 0) !== ne.wildcardPrefix[i]) {
+              matchesPrefix = false;
+              break;
+            }
+          }
+          if (matchesPrefix) {
+            return { intersect: false };
+          }
+        } else {
+          if (compareParsedVersions(singlePoint, ne.parsed) === 0) {
+            return { intersect: false };
+          }
+        }
+      }
     }
   }
 
@@ -411,6 +436,9 @@ export function checkPyCompatibility(
   }
   if (project.uncertain) {
     uncertain = true;
+    if (notes.size === 0) {
+      notes.add("Project context is uncertain or unparseable.");
+    }
   }
 
   const componentName = manifest.id.startsWith("pypi:")

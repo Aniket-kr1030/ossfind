@@ -211,5 +211,47 @@ dependencies = ["requests>=2.0"]
       expect(context.uncertain).toBe(true);
       expect(context.notes).toContainEqual(expect.stringContaining("License file reference \"LICENSE\" cannot be resolved statically."));
     });
+
+    it("fails closed on unclosed dependencies array at end of file (Reproduction Test)", () => {
+      const unclosedToml = `[project]
+requires-python = ">=3.10"
+dependencies = [
+  "requests>=2.0",
+  "numpy<2"
+`;
+      const context = parsePyprojectToml(unclosedToml);
+      expect(context.uncertain).toBe(true);
+      expect(context.notes).toContainEqual(expect.stringContaining("Unclosed dependencies array at end of file"));
+      expect(context.requiresPython).toBe(">=3.10");
+    });
+
+    it("fails closed on unclosed dependencies array before a new section header", () => {
+      const unclosedToml = `
+[project]
+requires-python = ">=3.10"
+dependencies = [
+  "requests>=2.0"
+
+[project.optional-dependencies]
+dev = ["pytest>=7.0"]
+      `;
+      const context = parsePyprojectToml(unclosedToml);
+      expect(context.uncertain).toBe(true);
+      expect(context.notes).toContainEqual(expect.stringContaining("Unclosed dependencies array before section [project.optional-dependencies]"));
+    });
+
+    it("fails closed on malformed fields in pyproject.toml", () => {
+      const malformedToml = `
+[project]
+requires-python = >=3.10
+dependencies = "not-an-array"
+license = 123
+      `;
+      const context = parsePyprojectToml(malformedToml);
+      expect(context.uncertain).toBe(true);
+      expect(context.notes).toContainEqual(expect.stringContaining("Malformed requires-python declaration"));
+      expect(context.notes).toContainEqual(expect.stringContaining("Malformed dependencies declaration"));
+      expect(context.notes).toContainEqual(expect.stringContaining("Malformed license declaration"));
+    });
   });
 });

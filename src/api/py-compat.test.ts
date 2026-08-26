@@ -69,6 +69,25 @@ describe("PEP 440 utilities", () => {
     expect(compareParsedVersions(v1!, v2!)).toBeGreaterThan(0);
     expect(compareParsedVersions(v2!, v3!)).toBeLessThan(0);
     expect(compareParsedVersions(vPre!, v1!)).toBeLessThan(0);
+
+    // Release candidate vs post-release check (Finding 3)
+    const vRc = parsePep440Version("2.0.0rc1");
+    const vRcPost = parsePep440Version("2.0.0rc1.post0");
+    const vFinal = parsePep440Version("2.0.0");
+    expect(vRc).toEqual({
+      epoch: 0,
+      release: [2, 0, 0],
+      prerelease: { phase: "rc", num: 1 },
+      post: undefined,
+    });
+    expect(vRcPost).toEqual({
+      epoch: 0,
+      release: [2, 0, 0],
+      prerelease: { phase: "rc", num: 1 },
+      post: 0,
+    });
+    expect(compareParsedVersions(vRc!, vRcPost!)).toBeLessThan(0);
+    expect(compareParsedVersions(vRc!, vFinal!)).toBeLessThan(0);
   });
 
   it("checks versionSatisfiesSpecifier with various PEP 440 operators", () => {
@@ -88,6 +107,12 @@ describe("PEP 440 utilities", () => {
     expect(specifiersIntersect(">=3.8", ">=3.10")?.intersect).toBe(true);
     expect(specifiersIntersect(">=3.10", "<3.9")?.intersect).toBe(false);
     expect(specifiersIntersect(">=3.9", "==3.8.*")?.intersect).toBe(false);
+
+    // Degenerate interval with != exclusion (Finding 2)
+    expect(specifiersIntersect(">=2.0,<=2.0", "!=2.0")?.intersect).toBe(false);
+    expect(specifiersIntersect(">=2.0,<=2.0", "!=2.0.0")?.intersect).toBe(false);
+    expect(specifiersIntersect(">=2.0,<=2.0", "!=2.1")?.intersect).toBe(true);
+    expect(specifiersIntersect(">=2.0,<=3.0", "!=2.0")?.intersect).toBe(true);
   });
 });
 
@@ -184,6 +209,23 @@ requests = "^2.28.0"
     checked(report);
     expect(report.verdict).toBe("unknown");
     expect(report.notes).toContainEqual(expect.stringContaining("No [project] table found in pyproject.toml"));
+  });
+
+  it("fails closed with unknown for unclosed dependency arrays in pyproject.toml (Reproduction Test)", () => {
+    const unclosedToml = `[project]
+requires-python = ">=3.10"
+dependencies = [
+  "requests>=2.0",
+  "numpy<2"
+`;
+    const project = parsePyprojectToml(unclosedToml);
+    project.license = "MIT";
+
+    const report = checkPyCompatibility(pyManifest(), project, "MIT");
+
+    checked(report);
+    expect(report.verdict).toBe("unknown");
+    expect(report.notes).toContainEqual(expect.stringContaining("Unclosed dependencies array at end of file"));
   });
 
   it("handles extras and environment markers from parsed requirements.txt", () => {

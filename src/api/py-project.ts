@@ -191,12 +191,45 @@ export function parsePyprojectToml(text: string): PyProjectContext {
     // Table headers e.g. [project], [project.optional-dependencies], [tool.poetry]
     const sectionMatch = /^\[([A-Za-z0-9_.-]+)\]$/.exec(line);
     if (sectionMatch) {
+      if (inDependenciesArray) {
+        notes.add(`Unclosed dependencies array before section [${sectionMatch[1]}].`);
+        uncertain = true;
+      }
+      if (inDevDependenciesArray) {
+        notes.add(`Unclosed optional-dependencies array before section [${sectionMatch[1]}].`);
+        uncertain = true;
+      }
       currentSection = sectionMatch[1].trim();
       if (currentSection === "project") {
         hasProjectSection = true;
       }
       inDependenciesArray = false;
       inDevDependenciesArray = false;
+      dependenciesBuffer = "";
+      continue;
+    }
+
+    if (inDependenciesArray) {
+      if (line.includes("]")) {
+        dependenciesBuffer += " " + line.slice(0, line.indexOf("]"));
+        parseTomlStringArray(dependenciesBuffer, dependencies, notes, () => { uncertain = true; });
+        inDependenciesArray = false;
+        dependenciesBuffer = "";
+      } else {
+        dependenciesBuffer += " " + line;
+      }
+      continue;
+    }
+
+    if (inDevDependenciesArray) {
+      if (line.includes("]")) {
+        dependenciesBuffer += " " + line.slice(0, line.indexOf("]"));
+        parseTomlStringArray(dependenciesBuffer, devDependencies, notes, () => { uncertain = true; });
+        inDevDependenciesArray = false;
+        dependenciesBuffer = "";
+      } else {
+        dependenciesBuffer += " " + line;
+      }
       continue;
     }
 
@@ -211,11 +244,21 @@ export function parsePyprojectToml(text: string): PyProjectContext {
         }
         continue;
       }
+      if (/^dynamic\s*=/.test(line)) {
+        notes.add(`Malformed dynamic declaration in pyproject.toml: "${line}".`);
+        uncertain = true;
+        continue;
+      }
 
       // requires-python = ">=3.10"
       const pythonMatch = /^requires-python\s*=\s*["']([^"']+)["']/.exec(line);
       if (pythonMatch) {
         requiresPython = pythonMatch[1].trim();
+        continue;
+      }
+      if (/^requires-python\s*=/.test(line)) {
+        notes.add(`Malformed requires-python declaration in pyproject.toml: "${line}".`);
+        uncertain = true;
         continue;
       }
 
@@ -233,6 +276,11 @@ export function parsePyprojectToml(text: string): PyProjectContext {
       const licenseFileMatch = /^license\s*=\s*\{\s*file\s*=\s*["']([^"']+)["']\s*\}/.exec(line);
       if (licenseFileMatch) {
         notes.add(`License file reference "${licenseFileMatch[1]}" cannot be resolved statically.`);
+        uncertain = true;
+        continue;
+      }
+      if (/^license\s*=/.test(line)) {
+        notes.add(`Malformed license declaration in pyproject.toml: "${line}".`);
         uncertain = true;
         continue;
       }
@@ -256,18 +304,12 @@ export function parsePyprojectToml(text: string): PyProjectContext {
         }
         continue;
       }
-    }
 
-    if (inDependenciesArray) {
-      if (line.includes("]")) {
-        dependenciesBuffer += " " + line.slice(0, line.indexOf("]"));
-        parseTomlStringArray(dependenciesBuffer, dependencies, notes, () => { uncertain = true; });
-        inDependenciesArray = false;
-        dependenciesBuffer = "";
-      } else {
-        dependenciesBuffer += " " + line;
+      if (/^dependencies\s*=/.test(line)) {
+        notes.add(`Malformed dependencies declaration in pyproject.toml: "${line}".`);
+        uncertain = true;
+        continue;
       }
-      continue;
     }
 
     if (currentSection === "project.optional-dependencies" || currentSection.startsWith("project.optional-dependencies.")) {
@@ -289,19 +331,22 @@ export function parsePyprojectToml(text: string): PyProjectContext {
         }
         continue;
       }
-    }
 
-    if (inDevDependenciesArray) {
-      if (line.includes("]")) {
-        dependenciesBuffer += " " + line.slice(0, line.indexOf("]"));
-        parseTomlStringArray(dependenciesBuffer, devDependencies, notes, () => { uncertain = true; });
-        inDevDependenciesArray = false;
-        dependenciesBuffer = "";
-      } else {
-        dependenciesBuffer += " " + line;
+      if (/^[A-Za-z0-9_.-]+\s*=/.test(line)) {
+        notes.add(`Malformed optional-dependencies declaration in pyproject.toml: "${line}".`);
+        uncertain = true;
+        continue;
       }
-      continue;
     }
+  }
+
+  if (inDependenciesArray) {
+    notes.add("Unclosed dependencies array at end of file in pyproject.toml.");
+    uncertain = true;
+  }
+  if (inDevDependenciesArray) {
+    notes.add("Unclosed optional-dependencies array at end of file in pyproject.toml.");
+    uncertain = true;
   }
 
   if (!hasProjectSection) {
