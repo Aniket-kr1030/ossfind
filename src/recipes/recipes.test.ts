@@ -256,9 +256,10 @@ describe("resolveRecipe", () => {
 
     const resolved = await resolveRecipe(singleRoleRecipe, fakeFill);
 
-    expect(resolved.status).toBe("ready");
+    expect(resolved.status).toBe("partial");
     expect(resolved.filled[0]?.component).toBe("npm:caution-only-pkg");
     expect(resolved.notes.some((n) => n.includes("Role 'worker' is filled with caution-grade component"))).toBe(true);
+    expect(resolved.notes.some((n) => n.includes("All filled components are caution-grade"))).toBe(true);
   });
 
   it("is strictly deterministic (same inputs twice -> deep-equal output)", async () => {
@@ -271,6 +272,104 @@ describe("resolveRecipe", () => {
     const run2 = await resolveRecipe(testRecipe, fakeFill);
 
     expect(run1).toEqual(run2);
+  });
+
+  it("breaks candidate score ties deterministically using ASCII code-unit order", async () => {
+    const singleRoleRecipe: Recipe = {
+      id: "tiebreak-recipe",
+      goal: "Test code-unit tiebreak",
+      ecosystem: "npm",
+      roles: [
+        {
+          role: "client",
+          purpose: "HTTP client",
+          required: true,
+          candidateQuery: "client-pkg",
+        },
+      ],
+      notes: [],
+    };
+
+    const fakeFill: RecipeFillFn = async () => [
+      mockComponent("npm:b-pkg", "ship", 90),
+      mockComponent("npm:a-pkg", "ship", 90),
+    ];
+
+    const resolved = await resolveRecipe(singleRoleRecipe, fakeFill);
+    expect(resolved.filled[0]?.component).toBe("npm:a-pkg");
+  });
+
+  it("handles throwing fill function by failing closed with 'blocked' status and honest note", async () => {
+    const throwingFill: RecipeFillFn = async () => {
+      throw new Error("network down: connection timed out");
+    };
+
+    const resolved = await resolveRecipe(testRecipe, throwingFill);
+
+    expect(resolved.status).toBe("blocked");
+    expect(resolved.filled[0]?.component).toBeNull();
+    expect(resolved.filled[0]?.verdict).toBeNull();
+    expect(resolved.filled[0]?.reason).toContain("network down");
+    expect(resolved.notes.some((n) => n.includes("network down"))).toBe(true);
+    expect(ResolvedRecipeSchema.parse(resolved)).toEqual(resolved);
+  });
+
+  it("handles null or non-array fill return by failing closed with 'blocked' status", async () => {
+    const nullFill: RecipeFillFn = async () => null as any;
+
+    const resolved = await resolveRecipe(testRecipe, nullFill);
+
+    expect(resolved.status).toBe("blocked");
+    expect(resolved.filled[0]?.component).toBeNull();
+    expect(resolved.filled[0]?.verdict).toBeNull();
+    expect(resolved.filled[0]?.reason).toContain("returned non-array result");
+    expect(ResolvedRecipeSchema.parse(resolved)).toEqual(resolved);
+  });
+
+  it("skips malformed candidates safely without throwing", async () => {
+    const malformedFill: RecipeFillFn = async () => [
+      { id: "npm:malformed-1" } as any,
+      null as any,
+      { id: "npm:valid-ship", verdict: "ship", overall: 85 } as any,
+    ];
+
+    const singleRoleRecipe: Recipe = {
+      id: "malformed-test",
+      goal: "Test malformed candidate handling",
+      ecosystem: "npm",
+      roles: [
+        {
+          role: "worker",
+          purpose: "Worker role",
+          required: true,
+          candidateQuery: "worker-pkg",
+        },
+      ],
+      notes: [],
+    };
+
+    const resolved = await resolveRecipe(singleRoleRecipe, malformedFill);
+
+    expect(resolved.status).toBe("ready");
+    expect(resolved.filled[0]?.component).toBe("npm:valid-ship");
+    expect(ResolvedRecipeSchema.parse(resolved)).toEqual(resolved);
+  });
+
+  it("handles empty-role recipe by adding an honest note", async () => {
+    const emptyRecipe: Recipe = {
+      id: "empty-recipe",
+      goal: "No-op recipe",
+      ecosystem: "npm",
+      roles: [],
+      notes: [],
+    };
+
+    const fakeFill: RecipeFillFn = async () => [];
+    const resolved = await resolveRecipe(emptyRecipe, fakeFill);
+
+    expect(resolved.status).toBe("ready");
+    expect(resolved.notes).toContain("Recipe contains no roles to resolve.");
+    expect(ResolvedRecipeSchema.parse(resolved)).toEqual(resolved);
   });
 
   it("successfully resolves all catalog recipes with a valid mock filler", async () => {
