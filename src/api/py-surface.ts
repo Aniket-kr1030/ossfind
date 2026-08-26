@@ -39,10 +39,39 @@ interface WheelArchive {
 }
 
 const MAX_REEXPORT_DEPTH = 3;
+// These limits apply only to resolving public re-exports from a package's own
+// wheel. They keep the normal root declaration lookup cheap even for packages
+// such as NumPy that fan out across many private implementation modules.
+const MAX_WHEEL_REEXPORT_SUBMODULES = 15;
+const MAX_WHEEL_REEXPORT_DEPTH = 2;
+const MAX_WHEEL_REMOTE_FETCH_BYTES = 4 * 1024 * 1024;
 // Range extraction does not download the whole wheel. This cap is deliberately
 // reserved for the exceptional non-Range fallback, where parseZip still needs
 // one bounded in-memory archive.
 const MAX_NON_RANGE_WHEEL_BYTES = 16 * 1024 * 1024;
+
+interface WheelImportedSymbol {
+  module: string;
+  originalName: string;
+}
+
+interface WheelPendingSignature {
+  rootName: string;
+  name: string;
+  module: string;
+  depth: number;
+}
+
+interface LoadedWheelModule {
+  parsed: ParsedPyStub;
+  imports: ReadonlyMap<string, WheelImportedSymbol>;
+}
+
+interface WheelSignatureResolution {
+  exports: ApiExport[];
+  parserNotes?: string[];
+  note?: string;
+}
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -99,6 +128,110 @@ function dedupeAndSort(exports: ApiExport[]): ApiExport[] {
   }
   return [...byKey.values()].sort((left, right) =>
     left.name.localeCompare(right.name) || left.kind.localeCompare(right.kind) || (left.signature ?? "").localeCompare(right.signature ?? ""));
+}
+
+function isWheelImportModule(module: string): boolean {
+  return /^[A-Za-z_][A-Za-z0-9_]*(?:\.[A-Za-z_][A-Za-z0-9_]*)*$/.test(module);
+}
+
+function countParentheses(text: string): number {
+  let depth = 0;
+  for (const character of text) {
+    if (character === "(") depth++;
+    else if (character === ")") depth--;
+  }
+  return depth;
+}
+
+/**
+ * `parsePyStub` deliberately keeps its import bookkeeping private. The wheel
+ * resolver needs only module-level `from ... import ...` bindings, so retain a
+ * small local scanner instead of widening the shared parser's API.
+ */
+function collectWheelImports(content: string, sourcePackage: string): ReadonlyMap<string, WheelImportedSymbol> {
+  const imports = new Map<string, WheelImportedSymbol>();
+  const lines = content.split(/\r?\n/);
+
+  for (let index = 0; index < lines.length; index++) {
+    const line = lines[index] ?? "";
+    if (line.length !== line.trimStart().length || !line.trimStart().startsWith("from ")) continue;
+
+    let statement = line.replace(/#.*/, "").trim();
+    let parentheses = countParentheses(statement);
+    while ((parentheses > 0 || statement.endsWith("\\")) && index + 1 < lines.length) {
+      index++;
+      const next = (lines[index] ?? "").replace(/#.*/, "").trim();
+      statement = `${statement.replace(/\\$/, "")} ${next}`;
+      parentheses += countParentheses(next);
+    }
+
+    const match = /^from\s+([.A-Za-z0-9_]+)\s+import\s+(.+)$/s.exec(statement);
+    if (!match?.[1] || !match[2]) continue;
+
+    const module = resolveWheelImportModule(match[1], sourcePackage);
+    if (!module) continue;
+
+    const rawNames = match[2].trim().replace(/^\(\s*/, "").replace(/\s*\)$/, "");
+    if (rawNames === "*") continue;
+    for (const item of rawNames.split(",")) {
+      const nameMatch = /^([A-Za-z_][A-Za-z0-9_]*)(?:\s+as\s+([A-Za-z_][A-Za-z0-9_]*))?$/.exec(item.trim());
+      if (!nameMatch?.[1]) continue;
+      imports.set(nameMatch[2] ?? nameMatch[1], { module, originalName: nameMatch[1] });
+    }
+  }
+
+  return imports;
+}
+
+function resolveWheelImportModule(specifier: string, sourcePackage: string): string | undefined {
+  if (!specifier.startsWith(".")) return isWheelImportModule(specifier) ? specifier : undefined;
+
+  const dots = /^\.+/.exec(specifier)?.[0].length ?? 0;
+  const suffix = specifier.slice(dots);
+  const parts = sourcePackage.split(".");
+  for (let level = 1; level < dots; level++) parts.pop();
+  if (parts.length === 0) return undefined;
+
+  const module = suffix ? `${parts.join(".")}.${suffix}` : parts.join(".");
+  return isWheelImportModule(module) ? module : undefined;
+}
+
+function wheelEntryPackage(entryPath: string): string | undefined {
+  const parts = entryPath.replace(/\.(?:pyi|py)$/, "").split("/");
+  if (parts.length === 0 || parts.some((part) => !/^[A-Za-z_][A-Za-z0-9_]*$/.test(part))) return undefined;
+  const packageParts = parts.at(-1) === "__init__" ? parts.slice(0, -1) : parts.slice(0, -1);
+  return packageParts.length > 0 ? packageParts.join(".") : undefined;
+}
+
+function wheelModuleEntryPath(module: string, entryNames: ReadonlySet<string>): string | undefined {
+  const basePath = module.replace(/\./g, "/");
+  return [
+    `${basePath}.pyi`,
+    `${basePath}/__init__.pyi`,
+    `${basePath}.py`,
+    `${basePath}/__init__.py`,
+  ].find((entryPath) => entryNames.has(entryPath));
+}
+
+function isWithinWheelPackage(module: string, importPackage: string): boolean {
+  return module === importPackage || module.startsWith(`${importPackage}.`);
+}
+
+function isUnresolvedWheelImportNote(note: string): boolean {
+  return /^Exported symbol ".+" imported from .+ is declared in __all__; signature unresolvable from this stub\.$/.test(note);
+}
+
+function withPublicReExports(parsed: ParsedPyStub): ApiExport[] {
+  const exports = [...parsed.exports];
+  const names = new Set(exports.map((entry) => entry.name));
+  for (const reExport of parsed.reExports) {
+    for (const name of reExport.names ?? []) {
+      if (names.has(name.as)) continue;
+      names.add(name.as);
+      exports.push({ name: name.as, kind: inferKind(name.as), signature: null });
+    }
+  }
+  return exports;
 }
 
 export class PyApiSurfaceExtractor {
@@ -275,7 +408,11 @@ export class PyApiSurfaceExtractor {
     const wheel = this.selectSmallWheel(document, packageName, notes);
     if (!wheel) return undefined;
 
-    const remote = await openRemoteZip({ http: this.http, url: wheel.url });
+    const remote = await openRemoteZip({
+      http: this.http,
+      url: wheel.url,
+      maxTotalBytes: MAX_WHEEL_REMOTE_FETCH_BYTES,
+    });
     if (remote.ok) {
       const surface = await this.extractOwnWheelArchiveSurface(packageName, distribution, wheel, remote.value, notes);
       notes.add(`Used HTTP byte ranges to inspect ${wheel.filename} (${remote.value.bytesFetched} bytes fetched).`);
@@ -310,6 +447,122 @@ export class PyApiSurfaceExtractor {
 
     notes.add(`Used bounded full-download fallback for ${wheel.filename} because the server did not honour HTTP Range requests.`);
     return this.extractOwnWheelArchiveSurface(packageName, distribution, wheel, archive.value, notes);
+  }
+
+  private async resolveOwnWheelReExportSignatures(
+    rootContent: string,
+    rootParsed: ParsedPyStub,
+    importPackage: string,
+    entryNames: ReadonlySet<string>,
+    archive: WheelArchive,
+  ): Promise<WheelSignatureResolution> {
+    const exports = withPublicReExports(rootParsed);
+    const rootImports = collectWheelImports(rootContent, importPackage);
+    const unresolvedPublicNames = new Set(
+      exports
+        .filter((entry) => entry.signature === null && rootImports.has(entry.name))
+        .map((entry) => entry.name),
+    );
+
+    const parserNotes = rootParsed.notes?.filter((note) => !isUnresolvedWheelImportNote(note));
+    if (unresolvedPublicNames.size === 0) return { exports, parserNotes };
+
+    const pending: WheelPendingSignature[] = [];
+    for (const rootName of [...unresolvedPublicNames].sort((left, right) => left.localeCompare(right))) {
+      const imported = rootImports.get(rootName);
+      if (!imported || !isWithinWheelPackage(imported.module, importPackage)) continue;
+      pending.push({ rootName, name: imported.originalName, module: imported.module, depth: 0 });
+    }
+    if (pending.length === 0) return { exports, parserNotes };
+
+    const resolved = new Map<string, ApiExport>();
+    const modules = new Map<string, LoadedWheelModule | undefined>();
+    const seenBindings = new Set<string>();
+    let moduleAttempts = 0;
+    let fetchedModules = 0;
+
+    while (pending.length > 0) {
+      const grouped = new Map<string, WheelPendingSignature[]>();
+      for (const binding of pending) {
+        if (binding.depth > MAX_WHEEL_REEXPORT_DEPTH || resolved.has(binding.rootName)) continue;
+        const bindingKey = `${binding.rootName}\u0000${binding.name}\u0000${binding.module}`;
+        if (seenBindings.has(bindingKey)) continue;
+        const group = grouped.get(binding.module);
+        if (group) group.push(binding);
+        else grouped.set(binding.module, [binding]);
+      }
+      pending.length = 0;
+      if (grouped.size === 0) break;
+
+      const [module, bindings] = [...grouped.entries()].sort((left, right) => {
+        const leftRoots = new Set(left[1].map((binding) => binding.rootName)).size;
+        const rightRoots = new Set(right[1].map((binding) => binding.rootName)).size;
+        return rightRoots - leftRoots || left[0].localeCompare(right[0]);
+      })[0]!;
+
+      for (const binding of bindings) {
+        seenBindings.add(`${binding.rootName}\u0000${binding.name}\u0000${binding.module}`);
+      }
+      for (const [otherModule, otherBindings] of grouped) {
+        if (otherModule !== module) pending.push(...otherBindings);
+      }
+
+      let loaded: LoadedWheelModule | undefined;
+      if (modules.has(module)) {
+        loaded = modules.get(module);
+      } else if (moduleAttempts < MAX_WHEEL_REEXPORT_SUBMODULES) {
+        moduleAttempts++;
+        const entryPath = wheelModuleEntryPath(module, entryNames);
+        if (entryPath) {
+          try {
+            const content = await archive.extractText(entryPath);
+            if (content.ok) {
+              const sourcePackage = wheelEntryPackage(entryPath);
+              if (sourcePackage) {
+                loaded = {
+                  parsed: parsePyStub(content.value),
+                  imports: collectWheelImports(content.value, sourcePackage),
+                };
+                fetchedModules++;
+              }
+            }
+          } catch {
+            // Extraction failures leave the root's verified public name intact
+            // with its existing null signature.
+          }
+        }
+        modules.set(module, loaded);
+      }
+
+      if (!loaded) continue;
+      for (const binding of bindings) {
+        const matched = loaded.parsed.exports.find((entry) => entry.name === binding.name && entry.signature !== null);
+        if (matched?.signature) {
+          resolved.set(binding.rootName, matched);
+          continue;
+        }
+
+        if (binding.depth >= MAX_WHEEL_REEXPORT_DEPTH) continue;
+        const next = loaded.imports.get(binding.name);
+        if (!next || !isWithinWheelPackage(next.module, importPackage)) continue;
+        pending.push({
+          rootName: binding.rootName,
+          name: next.originalName,
+          module: next.module,
+          depth: binding.depth + 1,
+        });
+      }
+    }
+
+    const resolvedNames = new Set(resolved.keys());
+    return {
+      exports: exports.map((entry) => {
+        const matched = entry.signature === null ? resolved.get(entry.name) : undefined;
+        return matched?.signature ? { ...entry, signature: matched.signature } : entry;
+      }),
+      parserNotes,
+      note: `Resolved ${resolvedNames.size} public re-export signatures from ${fetchedModules} wheel submodules; ${unresolvedPublicNames.size - resolvedNames.size} remained unresolved (limits: ${MAX_WHEEL_REEXPORT_SUBMODULES} submodules, ${MAX_WHEEL_REMOTE_FETCH_BYTES} range bytes, depth ${MAX_WHEEL_REEXPORT_DEPTH}).`,
+    };
   }
 
   private async extractOwnWheelArchiveSurface(
@@ -347,15 +600,23 @@ export class PyApiSurfaceExtractor {
 
       const fromSource = entryPath.endsWith(".py");
       const parsed = parsePyStub(content.value);
+      const resolution = await this.resolveOwnWheelReExportSignatures(
+        content.value,
+        parsed,
+        importPackage,
+        entryNames,
+        archive,
+      );
       const candidate: OwnWheelSurface & { fromSource: boolean; parserNotes?: string[] } = {
         typesSource: `${wheel.filename}:${entryPath}`,
-        exports: parsed.exports,
+        exports: resolution.exports,
         // A .py parser intentionally recognizes only a conservative subset;
         // make that limitation visible in the structured surface as well.
         truncated: fromSource || apiFixtureTruncated(content.value),
         fromSource,
-        parserNotes: parsed.notes,
+        parserNotes: resolution.parserNotes,
       };
+      if (resolution.note) notes.add(resolution.note);
 
       // A distribution can expose both a compatibility import and its primary
       // import package (attrs -> attr and attrs). Prefer stubs over source,

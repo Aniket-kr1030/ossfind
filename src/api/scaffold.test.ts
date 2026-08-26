@@ -655,6 +655,11 @@ describe("buildScaffold", () => {
           signature: "array(object: object, dtype: DTypeLike = None) -> ndarray",
         },
         {
+          name: "load",
+          kind: "function",
+          signature: "load(file: str) -> ndarray",
+        },
+        {
           name: "zeros",
           kind: "function",
           signature: "zeros(shape: _ShapeLike, dtype: DTypeLike = None) -> ndarray",

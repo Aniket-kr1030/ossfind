@@ -328,11 +328,13 @@ function extractPythonImportIdentifier(manifest: IntegrationManifest): string | 
 }
 
 /**
- * Canonical list of high-value entry-point verbs across TypeScript and Python ecosystems.
+ * Canonical list of high-value entry points across TypeScript and Python ecosystems,
+ * including constructors such as `array`.
  * Ranked in priority order (exact match index used in ranking heuristic).
  */
 const ENTRY_POINT_VERBS: readonly string[] = [
   "safe_load",
+  "array",
   "load",
   "create",
   "get",
