@@ -633,4 +633,154 @@ describe("buildScaffold", () => {
     expect(res1).toEqual(res2);
     expect(res1.basedOn[0]?.name).toBe("alpha");
   });
+
+  it("selects public non-self callable on numpy-like surface and excludes dunder/methods", () => {
+    const numpySurface = createPythonSurface({
+      id: "pypi:numpy",
+      version: "2.5.2",
+      exports: [
+        {
+          name: "__array_interface__",
+          kind: "function",
+          signature: "__array_interface__(self) -> dict[str, Any]",
+        },
+        {
+          name: "_internal_setup",
+          kind: "function",
+          signature: "_internal_setup() -> None",
+        },
+        {
+          name: "array",
+          kind: "function",
+          signature: "array(object: object, dtype: DTypeLike = None) -> ndarray",
+        },
+        {
+          name: "zeros",
+          kind: "function",
+          signature: "zeros(shape: _ShapeLike, dtype: DTypeLike = None) -> ndarray",
+        },
+      ],
+    });
+    const numpyManifest = createPythonManifest({
+      id: "pypi:numpy",
+      install: { command: "pip install numpy" },
+      importForm: {
+        moduleType: "unknown",
+        esm: null,
+        cjs: null,
+        typesPackage: null,
+        python: {
+          importName: "numpy",
+          statements: ["import numpy"],
+          confidence: "verified",
+          evidence: "Verified import-name mapping: numpy -> numpy.",
+        },
+      },
+    });
+
+    const scaffold = buildScaffold(numpySurface, numpyManifest);
+
+    expect(scaffold.confidence).toBe("verified-signatures");
+    expect(scaffold.snippet).not.toBeNull();
+    expect(scaffold.snippet).not.toContain("__array_interface__");
+    expect(scaffold.snippet).not.toContain("self");
+    expect(scaffold.snippet).not.toContain("_internal_setup");
+    expect(scaffold.basedOn[0]?.name).toBe("array");
+    expect(scaffold.snippet).toBe(
+      "# Verified signature: array(object: object, dtype: DTypeLike = None) -> ndarray\nresult = numpy.array(object, dtype)",
+    );
+    expect(ScaffoldSchema.parse(scaffold)).toEqual(scaffold);
+  });
+
+  it("degrades to import-only when surface exports only method signatures (self/cls/this-first)", () => {
+    const surface = createPythonSurface({
+      exports: [
+        {
+          name: "__array_interface__",
+          kind: "function",
+          signature: "__array_interface__(self) -> dict[str, Any]",
+        },
+        {
+          name: "method_two",
+          kind: "function",
+          signature: "method_two(cls, x: int) -> None",
+        },
+      ],
+    });
+    const manifest = createPythonManifest();
+
+    const scaffold = buildScaffold(surface, manifest);
+
+    expect(scaffold.confidence).toBe("import-only");
+    expect(scaffold.snippet).toBeNull();
+    expect(scaffold.basedOn).toEqual([]);
+    expect(ScaffoldSchema.parse(scaffold)).toEqual(scaffold);
+  });
+
+  it("deprioritises underscore-prefixed names in favor of public callables", () => {
+    const surface = createPythonSurface({
+      exports: [
+        {
+          name: "_create_internal",
+          kind: "function",
+          signature: "_create_internal() -> None",
+        },
+        {
+          name: "calculate",
+          kind: "function",
+          signature: "calculate(data: Any) -> Any",
+        },
+      ],
+    });
+    const manifest = createPythonManifest();
+
+    const scaffold = buildScaffold(surface, manifest);
+
+    expect(scaffold.basedOn[0]?.name).toBe("calculate");
+    expect(scaffold.snippet).toContain("yaml.calculate(data)");
+  });
+
+  it("selects underscore-prefixed callable if literally no public callable exists", () => {
+    const surface = createPythonSurface({
+      exports: [
+        {
+          name: "_internal_load",
+          kind: "function",
+          signature: "_internal_load(stream: Any) -> Any",
+        },
+      ],
+    });
+    const manifest = createPythonManifest();
+
+    const scaffold = buildScaffold(surface, manifest);
+
+    expect(scaffold.confidence).toBe("verified-signatures");
+    expect(scaffold.basedOn[0]?.name).toBe("_internal_load");
+    expect(scaffold.snippet).toContain("yaml._internal_load(stream)");
+  });
+
+  it("excludes TypeScript this-first methods from entry-point selection", () => {
+    const surface = createSurface({
+      exports: [
+        {
+          name: "methodWithThis",
+          kind: "function",
+          signature: "methodWithThis(this: void, opt: boolean): void",
+        },
+        {
+          name: "publicFn",
+          kind: "function",
+          signature: "publicFn(url: string): void",
+        },
+      ],
+    });
+    const manifest = createManifest();
+
+    const scaffold = buildScaffold(surface, manifest);
+
+    expect(scaffold.basedOn[0]?.name).toBe("publicFn");
+    expect(scaffold.snippet).toContain("axios.publicFn(url)");
+    expect(scaffold.snippet).not.toContain("thisParam");
+    expect(scaffold.snippet).not.toContain("methodWithThis");
+  });
 });

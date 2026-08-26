@@ -75,6 +75,60 @@ function sanitizeParamName(paramStr: string, index: number): string {
   return head;
 }
 
+function isTypeScriptMethodSignature(signature: string): boolean {
+  let startIdx = 0;
+  while (startIdx < signature.length && /[a-zA-Z0-9_$]/.test(signature[startIdx] ?? "")) {
+    startIdx++;
+  }
+  while (startIdx < signature.length && /\s/.test(signature[startIdx] ?? "")) {
+    startIdx++;
+  }
+  if (signature[startIdx] === "<") {
+    let angleDepth = 0;
+    while (startIdx < signature.length) {
+      if (signature[startIdx] === "<") angleDepth++;
+      else if (signature[startIdx] === ">") {
+        angleDepth--;
+        if (angleDepth === 0) {
+          startIdx++;
+          break;
+        }
+      }
+      startIdx++;
+    }
+  }
+  while (startIdx < signature.length && /\s/.test(signature[startIdx] ?? "")) {
+    startIdx++;
+  }
+  if (signature[startIdx] !== "(") return false;
+
+  let parenDepth = 0;
+  let parenEnd = -1;
+  for (let i = startIdx; i < signature.length; i++) {
+    if (signature[i] === "(") parenDepth++;
+    else if (signature[i] === ")") {
+      parenDepth--;
+      if (parenDepth === 0) {
+        parenEnd = i;
+        break;
+      }
+    }
+  }
+  if (parenEnd === -1) return false;
+
+  const paramsText = signature.slice(startIdx + 1, parenEnd).trim();
+  if (!paramsText) return false;
+
+  for (const rawParam of splitTopLevelCommas(paramsText)) {
+    const param = rawParam.trim();
+    if (!param) continue;
+    let head = param.split(/[:=]/)[0]?.trim() || "";
+    head = head.replace(/^\.\.\./, "").replace(/\?$/, "").trim();
+    return head === "this";
+  }
+  return false;
+}
+
 function parseSignatureParams(signature: string): { params: string[]; returnType: string | null } | null {
   let startIdx = 0;
 
@@ -124,7 +178,16 @@ function parseSignatureParams(signature: string): { params: string[]; returnType
 
   const paramsText = signature.slice(parenStart + 1, parenEnd).trim();
   const rawParams = paramsText ? splitTopLevelCommas(paramsText) : [];
-  const params = rawParams.map((p, idx) => sanitizeParamName(p, idx));
+  const params: string[] = [];
+  for (let idx = 0; idx < rawParams.length; idx++) {
+    const rawParam = rawParams[idx]!;
+    let head = rawParam.split(/[:=]/)[0]?.trim() || "";
+    head = head.replace(/^\.\.\./, "").replace(/\?$/, "").trim();
+    if (idx === 0 && head === "this") {
+      continue;
+    }
+    params.push(sanitizeParamName(rawParam, idx));
+  }
 
   const remainder = signature.slice(parenEnd + 1).trim();
   let returnType: string | null = null;
@@ -141,6 +204,48 @@ interface ParsedPythonSignature {
   args: string[];
   returnType: string | null;
   isAsync: boolean;
+}
+
+function isPythonMethodSignature(signature: string): boolean {
+  const source = signature.trim();
+  const asyncMatch = /^(async\s+)?def\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(/.exec(source);
+  const bareMatch = /^([A-Za-z_][A-Za-z0-9_]*)\s*\(/.exec(source);
+  const match = asyncMatch ?? bareMatch;
+  if (!match) return false;
+
+  const parenStart = source.indexOf("(", match.index);
+  if (parenStart < 0) return false;
+
+  let parenDepth = 0;
+  let parenEnd = -1;
+  for (let index = parenStart; index < source.length; index++) {
+    if (source[index] === "(") parenDepth++;
+    else if (source[index] === ")") {
+      parenDepth--;
+      if (parenDepth === 0) {
+        parenEnd = index;
+        break;
+      }
+    }
+  }
+  if (parenEnd < 0) return false;
+
+  const paramsText = source.slice(parenStart + 1, parenEnd).trim();
+  if (!paramsText) return false;
+
+  for (const rawParam of splitTopLevelCommas(paramsText)) {
+    const param = rawParam.trim();
+    if (!param || param === "/" || param === "*") continue;
+    const prefix = param.startsWith("**") ? "**" : param.startsWith("*") ? "*" : "";
+    if (prefix) return false;
+    const name = param.slice(prefix.length).split(/[:=]/)[0]?.trim();
+    return name === "self" || name === "cls";
+  }
+  return false;
+}
+
+function isMethodSignature(signature: string, isPython: boolean): boolean {
+  return isPython ? isPythonMethodSignature(signature) : isTypeScriptMethodSignature(signature);
 }
 
 /**
@@ -186,6 +291,10 @@ function parsePythonSignature(signature: string): ParsedPythonSignature | null {
     const prefix = param.startsWith("**") ? "**" : param.startsWith("*") ? "*" : "";
     const name = param.slice(prefix.length).split(/[:=]/)[0]?.trim();
     if (!name || !/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)) return null;
+
+    if (name === "self" || name === "cls") {
+      continue;
+    }
 
     if (prefix) {
       args.push(`${prefix}${name}`);
@@ -304,7 +413,8 @@ function countRequiredParameters(signature: string, isPython: boolean): number {
       const param = rawParam.trim();
       if (!param || param === "/" || param === "*") continue;
       if (param.startsWith("*") || param.startsWith("**")) continue;
-      if (param === "self" || param === "cls") continue;
+      const name = param.split(/[:=]/)[0]?.trim();
+      if (name === "self" || name === "cls") continue;
       if (param.includes("=")) continue;
       requiredCount++;
     }
@@ -356,10 +466,12 @@ function countRequiredParameters(signature: string, isPython: boolean): number {
   if (!paramsText) return 0;
 
   let requiredCount = 0;
-  for (const rawParam of splitTopLevelCommas(paramsText)) {
-    const param = rawParam.trim();
+  const rawParams = splitTopLevelCommas(paramsText);
+  for (let idx = 0; idx < rawParams.length; idx++) {
+    const param = rawParams[idx]!.trim();
     if (!param || param.startsWith("...")) continue;
     const head = param.split(/[:=]/)[0]?.trim() || "";
+    if (idx === 0 && head === "this") continue;
     if (head.endsWith("?")) continue;
     if (param.includes("=")) continue;
     requiredCount++;
@@ -381,24 +493,31 @@ export function hasCallableSignature(exportItem: ApiExport): boolean {
  * 1. Explicit preference:
  *    `opts.preferExport` always wins if it exists and has a verified callable signature.
  *
- * 2. Primary / Default / Package-name match:
+ * 2. Public exports preference:
+ *    Public exports (not starting with '_') are strongly preferred over internal/dunder exports ('_x', '__x__').
+ *    Internal exports are only considered if no public callable export exists.
+ *
+ * 3. Primary / Default / Package-name match:
  *    - A callable `default` export is the canonical default entry point.
  *    - An export matching the package name (e.g. `axios` or Python import name) is the primary entry point.
  *
- * 3. Idiomatic entry-point verbs:
+ * 4. Idiomatic entry-point verbs:
  *    Common action verbs (`safe_load`, `load`, `create`, `get`, `request`, `parse`, `run`, etc.)
  *    are prioritized over obscure utility functions (e.g. `add_constructor`, `all`).
  *    Exact verb matches take precedence over compound prefix matches.
  *
- * 4. Required parameter count:
+ * 5. Required parameter count:
  *    Functions with fewer required parameters (e.g. 0 or 1 params) are preferred over functions
  *    requiring many parameters, as agents can reliably invoke them without inventing arguments.
  *
- * 5. Kind preference:
+ * 6. Kind preference:
  *    Export declarations with `kind: "function"` or `kind: "class"` are preferred over generic callable symbols.
  *
- * 6. Deterministic tiebreak:
+ * 7. Deterministic tiebreak:
  *    Stable alphabetical sorting (`a.name.localeCompare(b.name)`) ensures consistent, flicker-free output.
+ *
+ * Non-Module-Level Signature Exclusion:
+ * Methods with `self`/`cls` (Python) or `this` (TypeScript) as their first parameter are excluded.
  *
  * Anti-Fabrication Guarantee:
  * Selection is strictly restricted to exports present in `surface.exports` with verified signatures.
@@ -411,7 +530,9 @@ function selectCallableExport(
   if (surface.exports.length === 0) return undefined;
 
   const isPython = isPythonComponent(surface, manifest);
-  const callableExports = surface.exports.filter(hasCallableSignature);
+  const callableExports = surface.exports.filter(
+    (e) => hasCallableSignature(e) && (!e.signature || !isMethodSignature(e.signature, isPython)),
+  );
   if (callableExports.length === 0) return undefined;
 
   const rawPkgName = extractPackageRawName(manifest.id || surface.id);
@@ -419,6 +540,7 @@ function selectCallableExport(
   const pythonImportId = isPython ? extractPythonImportIdentifier(manifest) : null;
 
   const isExplicitPreferred = (e: ApiExport) => Boolean(preferExport && e.name === preferExport);
+  const isPublicExport = (e: ApiExport) => !e.name.startsWith("_");
   const isDefaultExport = (e: ApiExport) => e.name === "default" || e.kind === "default";
   const isPackageNameMatch = (e: ApiExport) => {
     const lower = e.name.toLowerCase();
@@ -435,17 +557,22 @@ function selectCallableExport(
     const prefB = isExplicitPreferred(b) ? 1 : 0;
     if (prefA !== prefB) return prefB - prefA;
 
-    // 2. Default export
+    // 2. Public exports over underscore-prefixed (_x, __x__) exports
+    const pubA = isPublicExport(a) ? 1 : 0;
+    const pubB = isPublicExport(b) ? 1 : 0;
+    if (pubA !== pubB) return pubB - pubA;
+
+    // 3. Default export
     const defA = isDefaultExport(a) ? 1 : 0;
     const defB = isDefaultExport(b) ? 1 : 0;
     if (defA !== defB) return defB - defA;
 
-    // 3. Package / module name match
+    // 4. Package / module name match
     const pkgA = isPackageNameMatch(a) ? 1 : 0;
     const pkgB = isPackageNameMatch(b) ? 1 : 0;
     if (pkgA !== pkgB) return pkgB - pkgA;
 
-    // 4. Idiomatic entry-point verbs
+    // 5. Idiomatic entry-point verbs
     const verbA = scoreVerbMatch(a.name);
     const verbB = scoreVerbMatch(b.name);
     if (verbA && !verbB) return -1;
@@ -456,17 +583,17 @@ function selectCallableExport(
       if (verbA.verbIndex !== verbB.verbIndex) return verbA.verbIndex - verbB.verbIndex;
     }
 
-    // 5. Fewer required parameters
+    // 6. Fewer required parameters
     const reqA = countRequiredParameters(a.signature ?? "", isPython);
     const reqB = countRequiredParameters(b.signature ?? "", isPython);
     if (reqA !== reqB) return reqA - reqB;
 
-    // 6. Kind preference (function or class)
+    // 7. Kind preference (function or class)
     const kindScoreA = a.kind === "function" || a.kind === "class" ? 1 : 0;
     const kindScoreB = b.kind === "function" || b.kind === "class" ? 1 : 0;
     if (kindScoreA !== kindScoreB) return kindScoreB - kindScoreA;
 
-    // 7. Deterministic tiebreak (alphabetical)
+    // 8. Deterministic tiebreak (alphabetical)
     return a.name.localeCompare(b.name);
   });
 
@@ -499,8 +626,14 @@ function selectFallbackCandidate(
   });
   if (nameMatch) return nameMatch;
 
-  const fnOrClass = surface.exports.find((e) => e.kind === "function" || e.kind === "class");
+  const fnOrClass = surface.exports.find((e) => !e.name.startsWith("_") && (e.kind === "function" || e.kind === "class"));
   if (fnOrClass) return fnOrClass;
+
+  const anyPublic = surface.exports.find((e) => !e.name.startsWith("_"));
+  if (anyPublic) return anyPublic;
+
+  const anyFnOrClass = surface.exports.find((e) => e.kind === "function" || e.kind === "class");
+  if (anyFnOrClass) return anyFnOrClass;
 
   return surface.exports[0];
 }
