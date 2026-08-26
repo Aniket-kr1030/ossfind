@@ -343,5 +343,156 @@ from .helpers import first_fn, SecondClass, third_fn, fourth_fn
     expect(result.exports).toContainEqual({ name: "third_fn", kind: "function", signature: null });
     expect(result.exports).toContainEqual({ name: "fourth_fn", kind: "function", signature: null });
   });
+
+  it("does not extract declarations from string literals or docstrings", () => {
+    const stub = `
+x = "def ghost(): pass"
+y = 'class GhostClass: pass'
+"""
+def docstring_fn() -> str: ...
+class DocstringClass: ...
+"""
+'''
+def single_doc_fn(): ...
+'''
+"""def inline_doc(): ..."""
+`;
+    const result = parsePyStub(stub);
+
+    expect(result.exports.find((e) => e.name === "ghost")).toBeUndefined();
+    expect(result.exports.find((e) => e.name === "GhostClass")).toBeUndefined();
+    expect(result.exports.find((e) => e.name === "docstring_fn")).toBeUndefined();
+    expect(result.exports.find((e) => e.name === "DocstringClass")).toBeUndefined();
+    expect(result.exports.find((e) => e.name === "single_doc_fn")).toBeUndefined();
+    expect(result.exports.find((e) => e.name === "inline_doc")).toBeUndefined();
+
+    expect(result.exports).toEqual([
+      { name: "x", kind: "const", signature: 'x = "def ghost(): pass"' },
+      { name: "y", kind: "const", signature: "y = 'class GhostClass: pass'" },
+    ]);
+  });
+
+  it("does not emit declarations in nested functions, class methods, or control suites as module exports", () => {
+    const stub = `
+def outer_fn() -> int:
+    def inner_fn() -> str: ...
+    return 1
+
+class Container:
+    def instance_method(self) -> None: ...
+    class InnerClass: ...
+
+if TYPE_CHECKING:
+    def type_checking_ghost() -> None: ...
+
+try:
+    from fast import fast_fn as fast_fn
+except ImportError:
+    def fast_fn() -> None: ...
+`;
+    const result = parsePyStub(stub);
+
+    expect(result.exports).toEqual([
+      { name: "outer_fn", kind: "function", signature: "outer_fn() -> int" },
+      { name: "Container", kind: "class", signature: null },
+    ]);
+    expect(result.exports.find((e) => e.name === "inner_fn")).toBeUndefined();
+    expect(result.exports.find((e) => e.name === "instance_method")).toBeUndefined();
+    expect(result.exports.find((e) => e.name === "InnerClass")).toBeUndefined();
+    expect(result.exports.find((e) => e.name === "type_checking_ghost")).toBeUndefined();
+    expect(result.exports.find((e) => e.name === "fast_fn")).toBeUndefined();
+  });
+
+  it("preserves __all__ honesty even when fabricated declarations appear in strings or nested blocks", () => {
+    const stub = `
+__all__ = ["ghost", "real_fn"]
+
+x = "def ghost(a):"
+"""
+def ghost(): ...
+"""
+
+if True:
+    def ghost(): ...
+
+def real_fn(x: int) -> str: ...
+`;
+    const result = parsePyStub(stub);
+
+    expect(result.exports).toEqual([
+      { name: "ghost", kind: "function", signature: null },
+      { name: "real_fn", kind: "function", signature: "real_fn(x: int) -> str" },
+    ]);
+    expect(result.notes).toBeDefined();
+    expect(result.notes?.some((n) => n.includes("ghost") && n.includes("declared in __all__ but not defined or imported"))).toBe(true);
+  });
+
+  it("falls back to declared surface and emits an honest note when __all__ is non-literal or dynamic", () => {
+    const stubDynamicVar = `
+__all__ = a + b
+
+def declared_fn() -> int: ...
+class DeclaredClass: ...
+`;
+    const resultDynamic = parsePyStub(stubDynamicVar);
+
+    expect(resultDynamic.exports).toEqual([
+      { name: "declared_fn", kind: "function", signature: "declared_fn() -> int" },
+      { name: "DeclaredClass", kind: "class", signature: null },
+    ]);
+    expect(resultDynamic.notes?.some((n) => n.includes("could not be evaluated statically"))).toBe(true);
+
+    const stubDynamicConcat = `
+__all__ = a + ["ghost"]
+
+def another_fn() -> str: ...
+`;
+    const resultConcat = parsePyStub(stubDynamicConcat);
+
+    expect(resultConcat.exports).toEqual([
+      { name: "another_fn", kind: "function", signature: "another_fn() -> str" },
+    ]);
+    expect(resultConcat.exports.find((e) => e.name === "ghost")).toBeUndefined();
+    expect(resultConcat.notes?.some((n) => n.includes("could not be evaluated statically"))).toBe(true);
+  });
+
+  it("supports unicode identifiers and deduplicates duplicate declarations while keeping stable ordering", () => {
+    const stub = `
+@overload
+def café(x: int) -> str: ...
+@overload
+def café(x: str) -> str: ...
+
+class naïve: ...
+class naïve: ...
+
+def normal() -> None: ...
+`;
+    const result = parsePyStub(stub);
+
+    expect(result.exports).toEqual([
+      { name: "café", kind: "function", signature: "café(x: int) -> str" },
+      { name: "naïve", kind: "class", signature: null },
+      { name: "normal", kind: "function", signature: "normal() -> None" },
+    ]);
+  });
+
+  it("processes large inputs and deeply nested parentheses efficiently without hanging", () => {
+    const nestedParens = "def deep" + "(".repeat(50000) + ")".repeat(50000) + ": ...";
+    const startParens = performance.now();
+    const resultParens = parsePyStub(nestedParens);
+    const endParens = performance.now();
+    expect(endParens - startParens).toBeLessThan(100);
+    expect(resultParens.exports.length).toBe(1);
+
+    const longLine = "x: Final[str] = " + '"' + "a".repeat(1_000_000) + '"';
+    const startLine = performance.now();
+    const resultLine = parsePyStub(longLine);
+    const endLine = performance.now();
+    expect(endLine - startLine).toBeLessThan(200);
+    expect(resultLine.exports.length).toBe(1);
+    expect(resultLine.exports[0]?.name).toBe("x");
+  });
 });
+
 

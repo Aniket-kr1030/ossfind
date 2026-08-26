@@ -266,7 +266,8 @@ describe("buildScaffold", () => {
     expect(cjsResult.imports).toEqual(['const foo = require("foo");']);
 
     const dualResult = buildScaffold(surface, dualManifest);
-    expect(dualResult.imports).toEqual(['import foo from "foo";', 'const foo = require("foo");']);
+    expect(dualResult.imports).toEqual(['import foo from "foo";']);
+    expect(dualResult.notes).toContain("Dual module: ESM import emitted; CommonJS require is also supported ('const foo = require(\"foo\");').");
   });
 
   it("surfaces external-binary prerequisites in warnings", () => {
@@ -787,5 +788,288 @@ describe("buildScaffold", () => {
     expect(scaffold.snippet).toContain("axios.publicFn(url)");
     expect(scaffold.snippet).not.toContain("thisParam");
     expect(scaffold.snippet).not.toContain("methodWithThis");
+  });
+
+  describe("Audit regression tests (Agent Layer B)", () => {
+    it("rejects code injection via export name (semicolons, newlines, template syntax, quotes)", () => {
+      const surface = createSurface({
+        exports: [
+          { name: "safe_load; process.exit()", kind: "function", signature: "safe_load()" },
+          { name: "foo; globalThis.pwn = 1; //", kind: "function", signature: "foo()" },
+          { name: "safe_load\nprocess.exit()", kind: "function", signature: "safe_load()" },
+          { name: "safe_load${process.env.SECRET}", kind: "function", signature: "safe_load()" },
+          { name: "safe_load'", kind: "function", signature: "safe_load()" },
+          { name: "safe_load`", kind: "function", signature: "safe_load()" },
+          { name: "foo bar", kind: "function", signature: "foo()" },
+          { name: "class", kind: "function", signature: "class()" },
+        ],
+      });
+      const manifest = createManifest();
+      const scaffold = buildScaffold(surface, manifest);
+
+      expect(scaffold.confidence).toBe("import-only");
+      expect(scaffold.snippet).toBeNull();
+      expect(scaffold.basedOn).toEqual([]);
+    });
+
+    it("rejects code injection via signature newline escaping comment", () => {
+      const surface = createSurface({
+        exports: [
+          { name: "run", kind: "function", signature: "run(): void\nprocess.exit()" },
+        ],
+      });
+      const manifest = createManifest();
+      const scaffold = buildScaffold(surface, manifest);
+
+      expect(scaffold.confidence).toBe("import-only");
+      expect(scaffold.snippet).toBeNull();
+      expect(scaffold.basedOn).toEqual([]);
+    });
+
+    it("rejects signatures that are not grounded declarations or have mismatched names", () => {
+      const cases = [
+        { name: "run", kind: "function" as const, signature: "() => void" },
+        { name: "run", kind: "function" as const, signature: "not_run() => void" },
+        { name: "run", kind: "function" as const, signature: "(garbage)" },
+        { name: "run", kind: "function" as const, signature: "run(): Promise<" },
+        { name: "run", kind: "function" as const, signature: "run(): Promise>" },
+      ];
+
+      for (const item of cases) {
+        const surface = createSurface({ exports: [item] });
+        const manifest = createManifest();
+        const scaffold = buildScaffold(surface, manifest);
+
+        expect(scaffold.confidence).toBe("import-only");
+        expect(scaffold.snippet).toBeNull();
+        expect(scaffold.basedOn).toEqual([]);
+      }
+    });
+
+    it("derives call binding accurately for named ESM import", () => {
+      const surface = createSurface({
+        exports: [{ name: "run", kind: "function", signature: "run(): void" }],
+      });
+      const manifest = createManifest({
+        importForm: {
+          moduleType: "esm",
+          esm: 'import { run } from "my-api";',
+          cjs: null,
+          typesPackage: null,
+        },
+      });
+
+      const scaffold = buildScaffold(surface, manifest);
+      expect(scaffold.confidence).toBe("verified-signatures");
+      expect(scaffold.snippet).toBe("// Verified signature: run(): void\nrun();");
+      expect(scaffold.snippet).not.toContain("myApi");
+    });
+
+    it("derives call binding accurately for aliased named ESM import", () => {
+      const surface = createSurface({
+        exports: [{ name: "run", kind: "function", signature: "run(): void" }],
+      });
+      const manifest = createManifest({
+        importForm: {
+          moduleType: "esm",
+          esm: 'import { run as customRun } from "my-api";',
+          cjs: null,
+          typesPackage: null,
+        },
+      });
+
+      const scaffold = buildScaffold(surface, manifest);
+      expect(scaffold.confidence).toBe("verified-signatures");
+      expect(scaffold.snippet).toBe("// Verified signature: run(): void\ncustomRun();");
+    });
+
+    it("derives call binding accurately for namespace ESM import", () => {
+      const surface = createSurface({
+        exports: [{ name: "run", kind: "function", signature: "run(): void" }],
+      });
+      const manifest = createManifest({
+        importForm: {
+          moduleType: "esm",
+          esm: 'import * as api from "my-api";',
+          cjs: null,
+          typesPackage: null,
+        },
+      });
+
+      const scaffold = buildScaffold(surface, manifest);
+      expect(scaffold.confidence).toBe("verified-signatures");
+      expect(scaffold.snippet).toBe("// Verified signature: run(): void\napi.run();");
+    });
+
+    it("derives call binding accurately for destructured CommonJS require", () => {
+      const surface = createSurface({
+        exports: [{ name: "run", kind: "function", signature: "run(): void" }],
+      });
+      const manifest = createManifest({
+        importForm: {
+          moduleType: "cjs",
+          esm: null,
+          cjs: 'const { run } = require("my-api");',
+          typesPackage: null,
+        },
+      });
+
+      const scaffold = buildScaffold(surface, manifest);
+      expect(scaffold.confidence).toBe("verified-signatures");
+      expect(scaffold.snippet).toBe("// Verified signature: run(): void\nrun();");
+    });
+
+    it("derives call binding accurately for aliased destructured CommonJS require", () => {
+      const surface = createSurface({
+        exports: [{ name: "run", kind: "function", signature: "run(): void" }],
+      });
+      const manifest = createManifest({
+        importForm: {
+          moduleType: "cjs",
+          esm: null,
+          cjs: 'const { run: customRun } = require("my-api");',
+          typesPackage: null,
+        },
+      });
+
+      const scaffold = buildScaffold(surface, manifest);
+      expect(scaffold.confidence).toBe("verified-signatures");
+      expect(scaffold.snippet).toBe("// Verified signature: run(): void\ncustomRun();");
+    });
+
+    it("degrades to import-only when export is not bound by the emitted import statement", () => {
+      const surface = createSurface({
+        exports: [{ name: "run", kind: "function", signature: "run(): void" }],
+      });
+      const manifest = createManifest({
+        importForm: {
+          moduleType: "esm",
+          esm: 'import { other } from "my-api";',
+          cjs: null,
+          typesPackage: null,
+        },
+      });
+
+      const scaffold = buildScaffold(surface, manifest);
+      expect(scaffold.confidence).toBe("import-only");
+      expect(scaffold.snippet).toBeNull();
+      expect(scaffold.notes).toContain("Selected export 'run' is not bound by the emitted import statement; no usage code was generated.");
+    });
+
+    it("excludes self, cls, and variadic rest parameters from emitted JS calls", () => {
+      const surface = createSurface({
+        exports: [
+          {
+            name: "run",
+            kind: "function",
+            signature: "run(self: Thing, cls: Other, ...args: any[]): void",
+          },
+        ],
+      });
+      const manifest = createManifest({
+        importForm: {
+          moduleType: "esm",
+          esm: 'import { run } from "my-api";',
+          cjs: null,
+          typesPackage: null,
+        },
+      });
+
+      const scaffold = buildScaffold(surface, manifest);
+      expect(scaffold.confidence).toBe("verified-signatures");
+      expect(scaffold.snippet).toBe("// Verified signature: run(self: Thing, cls: Other, ...args: any[]): void\nrun();");
+      const callLine = scaffold.snippet?.split("\n").slice(1).join("\n");
+      expect(callLine).not.toContain("self");
+      expect(callLine).not.toContain("cls");
+      expect(callLine).not.toContain("args");
+    });
+
+    it("excludes variadic *args and **kwargs from emitted Python calls", () => {
+      const surface = createPythonSurface({
+        exports: [
+          {
+            name: "run",
+            kind: "function",
+            signature: "def run(x: int, *args: Any, **kwargs: Any) -> None: ...",
+          },
+        ],
+      });
+      const manifest = createPythonManifest({
+        importForm: {
+          moduleType: "unknown",
+          esm: null,
+          cjs: null,
+          typesPackage: null,
+          python: {
+            importName: "my_pkg",
+            statements: ["import my_pkg"],
+            confidence: "verified",
+            evidence: "verified",
+          },
+        },
+      });
+
+      const scaffold = buildScaffold(surface, manifest);
+      expect(scaffold.confidence).toBe("verified-signatures");
+      expect(scaffold.snippet).toBe("# Verified signature: def run(x: int, *args: Any, **kwargs: Any) -> None: ...\nmy_pkg.run(x)");
+      const callLine = scaffold.snippet?.split("\n").slice(1).join("\n");
+      expect(callLine).not.toContain("args");
+      expect(callLine).not.toContain("kwargs");
+    });
+
+    it("rejects non-callable kinds (interface, type, namespace, enum)", () => {
+      const kinds = ["interface", "type", "namespace", "enum"] as const;
+      for (const kind of kinds) {
+        const surface = createSurface({
+          exports: [{ name: "Ghost", kind, signature: "Ghost(x: string): void" }],
+        });
+        const manifest = createManifest();
+        const scaffold = buildScaffold(surface, manifest);
+
+        expect(scaffold.confidence).toBe("import-only");
+        expect(scaffold.snippet).toBeNull();
+        expect(scaffold.basedOn).toEqual([]);
+      }
+    });
+
+    it("formats async CommonJS calls with an async IIFE without top-level await", () => {
+      const surface = createSurface({
+        exports: [
+          {
+            name: "get",
+            kind: "function",
+            signature: "get(url: string): Promise<string>",
+          },
+        ],
+      });
+      const manifest = createManifest({
+        importForm: {
+          moduleType: "cjs",
+          esm: null,
+          cjs: 'const axios = require("axios");',
+          typesPackage: null,
+        },
+      });
+
+      const scaffold = buildScaffold(surface, manifest);
+      expect(scaffold.confidence).toBe("verified-signatures");
+      expect(scaffold.snippet).toBe(
+        "// Verified signature: get(url: string): Promise<string>\n(async () => {\n  const response = await axios.get(url);\n})();",
+      );
+      expect(scaffold.snippet).not.toMatch(/^const response = await/m);
+    });
+
+    it("handles empty export name safely without throwing ZodError", () => {
+      const surface = {
+        ...createSurface(),
+        exports: [{ name: "", kind: "function" as const, signature: "run(): void" }],
+      };
+      const manifest = createManifest();
+
+      const scaffold = buildScaffold(surface as any, manifest);
+      expect(scaffold.confidence).toBe("import-only");
+      expect(scaffold.snippet).toBeNull();
+      expect(scaffold.basedOn).toEqual([]);
+    });
   });
 });

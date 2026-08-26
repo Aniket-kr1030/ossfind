@@ -15,6 +15,14 @@ export interface ParsedPyStub {
   notes?: string[];
 }
 
+const PYTHON_KEYWORDS = new Set([
+  "False", "None", "True", "and", "as", "assert", "async", "await",
+  "break", "class", "continue", "def", "del", "elif", "else", "except",
+  "finally", "for", "from", "global", "if", "import", "in", "is",
+  "lambda", "nonlocal", "not", "or", "pass", "raise", "return", "try",
+  "while", "with", "yield", "match", "case", "type",
+]);
+
 function isDunderName(name: string): boolean {
   return name.startsWith("__") && name.endsWith("__") && name.length > 4;
 }
@@ -24,10 +32,10 @@ function isPrivateName(name: string): boolean {
 }
 
 function inferKind(name: string): PyExport["kind"] {
-  if (/^[A-Z][a-zA-Z0-9]*$/.test(name) && /[a-z]/.test(name)) {
+  if (/^[A-Z\p{Lu}][\p{L}\p{N}]*$/u.test(name) && /[\p{Ll}]/u.test(name)) {
     return "class";
   }
-  if (/^[A-Z0-9_]+$/.test(name) && !/[a-z]/.test(name)) {
+  if (/^[A-Z0-9_\p{Lu}\p{N}]+$/u.test(name) && !/[\p{Ll}]/u.test(name)) {
     return "const";
   }
   return "function";
@@ -35,80 +43,6 @@ function inferKind(name: string): PyExport["kind"] {
 
 function compact(text: string): string {
   return text.replace(/\s+/g, " ").trim();
-}
-
-function stripComment(line: string): string {
-  let inSingle = false;
-  let inDouble = false;
-  let inTripleSingle = false;
-  let inTripleDouble = false;
-
-  for (let i = 0; i < line.length; i++) {
-    const char = line[i];
-    const prev = i > 0 ? line[i - 1] : "";
-    if (prev === "\\") continue;
-
-    if (!inSingle && !inDouble && !inTripleSingle && !inTripleDouble) {
-      if (char === "#") {
-        return line.slice(0, i);
-      }
-      if (line.startsWith('"""', i)) {
-        inTripleDouble = true;
-        i += 2;
-        continue;
-      }
-      if (line.startsWith("'''", i)) {
-        inTripleSingle = true;
-        i += 2;
-        continue;
-      }
-      if (char === '"') {
-        inDouble = true;
-        continue;
-      }
-      if (char === "'") {
-        inSingle = true;
-        continue;
-      }
-    } else if (inTripleDouble && line.startsWith('"""', i)) {
-      inTripleDouble = false;
-      i += 2;
-    } else if (inTripleSingle && line.startsWith("'''", i)) {
-      inTripleSingle = false;
-      i += 2;
-    } else if (inDouble && char === '"') {
-      inDouble = false;
-    } else if (inSingle && char === "'") {
-      inSingle = false;
-    }
-  }
-  return line;
-}
-
-function countBracketDelta(text: string): number {
-  let delta = 0;
-  let inSingle = false;
-  let inDouble = false;
-  for (let i = 0; i < text.length; i++) {
-    const char = text[i];
-    const prev = i > 0 ? text[i - 1] : "";
-    if (prev === "\\") continue;
-    if (!inSingle && !inDouble) {
-      if (char === "'" || char === '"') {
-        if (char === "'") inSingle = true;
-        else inDouble = true;
-      } else if (char === "(" || char === "[" || char === "{") {
-        delta++;
-      } else if (char === ")" || char === "]" || char === "}") {
-        delta--;
-      }
-    } else if (inSingle && char === "'") {
-      inSingle = false;
-    } else if (inDouble && char === '"') {
-      inDouble = false;
-    }
-  }
-  return delta;
 }
 
 interface RawStatement {
@@ -120,26 +54,165 @@ function extractStatements(sourceText: string): RawStatement[] {
   const rawLines = sourceText.split(/\r?\n/);
   const statements: RawStatement[] = [];
 
+  let inTripleDouble = false;
+  let inTripleSingle = false;
+  let bracketDepth = 0;
   let currentIndent = 0;
   let currentParts: string[] = [];
-  let bracketDepth = 0;
 
   for (const rawLine of rawLines) {
-    const withoutComment = stripComment(rawLine);
-    const trimmed = withoutComment.trim();
-    if (trimmed.length === 0) continue;
+    let commentStart = -1;
+    let inSingle = false;
+    let inDouble = false;
+    let bracketDelta = 0;
+    let startIdx = 0;
 
-    const leadingSpaces = withoutComment.search(/\S/);
+    if (inTripleDouble) {
+      let closed = false;
+      for (let i = 0; i < rawLine.length; i++) {
+        if (rawLine[i] === "\\") {
+          i++;
+          continue;
+        }
+        if (rawLine.startsWith('"""', i)) {
+          inTripleDouble = false;
+          startIdx = i + 3;
+          closed = true;
+          break;
+        }
+      }
+      if (!closed) {
+        if (currentParts.length === 0) {
+          const leading = rawLine.search(/\S/);
+          currentIndent = leading >= 0 ? leading : 0;
+        }
+        currentParts.push(rawLine.trim());
+        continue;
+      }
+    } else if (inTripleSingle) {
+      let closed = false;
+      for (let i = 0; i < rawLine.length; i++) {
+        if (rawLine[i] === "\\") {
+          i++;
+          continue;
+        }
+        if (rawLine.startsWith("'''", i)) {
+          inTripleSingle = false;
+          startIdx = i + 3;
+          closed = true;
+          break;
+        }
+      }
+      if (!closed) {
+        if (currentParts.length === 0) {
+          const leading = rawLine.search(/\S/);
+          currentIndent = leading >= 0 ? leading : 0;
+        }
+        currentParts.push(rawLine.trim());
+        continue;
+      }
+    }
 
+    for (let i = startIdx; i < rawLine.length; i++) {
+      const char = rawLine[i];
+      if (char === "\\") {
+        i++;
+        continue;
+      }
+
+      if (inSingle) {
+        if (char === "'") {
+          inSingle = false;
+        }
+        continue;
+      }
+
+      if (inDouble) {
+        if (char === '"') {
+          inDouble = false;
+        }
+        continue;
+      }
+
+      if (char === "#") {
+        commentStart = i;
+        break;
+      }
+
+      if (rawLine.startsWith('"""', i)) {
+        let closed = false;
+        for (let j = i + 3; j < rawLine.length; j++) {
+          if (rawLine[j] === "\\") {
+            j++;
+            continue;
+          }
+          if (rawLine.startsWith('"""', j)) {
+            i = j + 2;
+            closed = true;
+            break;
+          }
+        }
+        if (!closed) {
+          inTripleDouble = true;
+          break;
+        }
+        continue;
+      }
+
+      if (rawLine.startsWith("'''", i)) {
+        let closed = false;
+        for (let j = i + 3; j < rawLine.length; j++) {
+          if (rawLine[j] === "\\") {
+            j++;
+            continue;
+          }
+          if (rawLine.startsWith("'''", j)) {
+            i = j + 2;
+            closed = true;
+            break;
+          }
+        }
+        if (!closed) {
+          inTripleSingle = true;
+          break;
+        }
+        continue;
+      }
+
+      if (char === '"') {
+        inDouble = true;
+        continue;
+      }
+
+      if (char === "'") {
+        inSingle = true;
+        continue;
+      }
+
+      if (char === "(" || char === "[" || char === "{") {
+        bracketDelta++;
+      } else if (char === ")" || char === "]" || char === "}") {
+        bracketDelta--;
+      }
+    }
+
+    const unCommented = commentStart >= 0 ? rawLine.slice(0, commentStart) : rawLine;
+    const trimmed = unCommented.trim();
+    if (trimmed.length === 0 && !inTripleDouble && !inTripleSingle) {
+      continue;
+    }
+
+    const leadingSpaces = unCommented.search(/\S/);
     if (currentParts.length === 0) {
       currentIndent = leadingSpaces >= 0 ? leadingSpaces : 0;
     }
 
     currentParts.push(trimmed);
-    bracketDepth += countBracketDelta(withoutComment);
+    bracketDepth += bracketDelta;
+    if (bracketDepth < 0) bracketDepth = 0;
 
-    if (bracketDepth <= 0 && !trimmed.endsWith("\\")) {
-      bracketDepth = 0;
+    const isBackslashContinued = trimmed.endsWith("\\");
+    if (!inTripleDouble && !inTripleSingle && bracketDepth === 0 && !isBackslashContinued) {
       const combined = currentParts.join(" ").replace(/\\\s*/g, " ").trim();
       if (combined.length > 0) {
         statements.push({ indent: currentIndent, text: combined });
@@ -158,64 +231,218 @@ function extractStatements(sourceText: string): RawStatement[] {
   return statements;
 }
 
-function extractStringLiterals(raw: string): string[] {
-  const strings: string[] = [];
-  const strRegex = /(?:[rRuUbB]?)(?:"([^"\\]*(?:\\.[^"\\]*)*)"|'([^'\\]*(?:\\.[^'\\]*)*)')/g;
-  let match: RegExpExecArray | null;
-  while ((match = strRegex.exec(raw)) !== null) {
-    const rawVal = match[1] ?? match[2] ?? "";
-    const unescaped = rawVal.replace(/\\(.)/g, "$1");
-    if (unescaped.length > 0) {
-      strings.push(unescaped);
-    }
-  }
-  return strings;
+interface AllParseResult {
+  isStatic: boolean;
+  names: string[];
 }
 
-function parseAllStatement(text: string): string[] | undefined {
-  const assignMatch = /^__all__\s*(?::\s*[^=]+)?\s*(?:\+=|=)\s*(.+)$/s.exec(text);
+function parseStringLiteral(token: string): string | null {
+  const trimmed = token.trim();
+  const match = /^(?:[rRuUbB]?)(?:"([^"\\]*(?:\\.[^"\\]*)*)"|'([^'\\]*(?:\\.[^'\\]*)*)')$/s.exec(trimmed);
+  if (!match) return null;
+  const raw = match[1] ?? match[2] ?? "";
+  return raw.replace(/\\(.)/gs, "$1");
+}
+
+function splitByTopLevelChar(text: string, separator: string): string[] {
+  const parts: string[] = [];
+  let depth = 0;
+  let inSingle = false;
+  let inDouble = false;
+  let inTripleSingle = false;
+  let inTripleDouble = false;
+  let lastIdx = 0;
+
+  for (let i = 0; i < text.length; i++) {
+    const char = text[i];
+    if (char === "\\") {
+      i++;
+      continue;
+    }
+    if (!inSingle && !inDouble && !inTripleSingle && !inTripleDouble) {
+      if (text.startsWith('"""', i)) {
+        inTripleDouble = true;
+        i += 2;
+        continue;
+      }
+      if (text.startsWith("'''", i)) {
+        inTripleSingle = true;
+        i += 2;
+        continue;
+      }
+      if (char === '"') {
+        inDouble = true;
+        continue;
+      }
+      if (char === "'") {
+        inSingle = true;
+        continue;
+      }
+      if (char === "(" || char === "[" || char === "{") {
+        depth++;
+      } else if (char === ")" || char === "]" || char === "}") {
+        if (depth > 0) depth--;
+      } else if (char === separator && depth === 0) {
+        parts.push(text.slice(lastIdx, i));
+        lastIdx = i + 1;
+      }
+    } else if (inTripleDouble && text.startsWith('"""', i)) {
+      inTripleDouble = false;
+      i += 2;
+    } else if (inTripleSingle && text.startsWith("'''", i)) {
+      inTripleSingle = false;
+      i += 2;
+    } else if (inDouble && char === '"') {
+      inDouble = false;
+    } else if (inSingle && char === "'") {
+      inSingle = false;
+    }
+  }
+
+  parts.push(text.slice(lastIdx));
+  return parts;
+}
+
+function parseSequenceLiteral(text: string): AllParseResult {
+  const trimmed = text.trim();
+  if (!((trimmed.startsWith("[") && trimmed.endsWith("]")) || (trimmed.startsWith("(") && trimmed.endsWith(")")))) {
+    return { isStatic: false, names: [] };
+  }
+
+  const inner = trimmed.slice(1, -1).trim();
+  if (inner.length === 0) {
+    return { isStatic: true, names: [] };
+  }
+
+  const items = splitByTopLevelChar(inner, ",");
+  const names: string[] = [];
+
+  for (const item of items) {
+    const itemTrimmed = item.trim();
+    if (itemTrimmed.length === 0) continue;
+    const str = parseStringLiteral(itemTrimmed);
+    if (str === null) {
+      return { isStatic: false, names: [] };
+    }
+    if (str.length > 0) {
+      names.push(str);
+    }
+  }
+
+  return { isStatic: true, names };
+}
+
+function parseAllExpression(exprText: string): AllParseResult {
+  const trimmed = exprText.trim();
+  const plusParts = splitByTopLevelChar(trimmed, "+");
+  if (plusParts.length > 1) {
+    const allNames: string[] = [];
+    for (const part of plusParts) {
+      const partRes = parseAllExpression(part.trim());
+      if (!partRes.isStatic) {
+        return { isStatic: false, names: [] };
+      }
+      allNames.push(...partRes.names);
+    }
+    return { isStatic: true, names: allNames };
+  }
+
+  return parseSequenceLiteral(trimmed);
+}
+
+function parseAllStatement(text: string): { isAllStatement: boolean; isStatic: boolean; names: string[] } {
+  const assignMatch = /^__all__\s*(?::\s*[^=]+)?\s*(=|\+=)\s*(.+)$/s.exec(text);
   if (assignMatch) {
-    return extractStringLiterals(assignMatch[1]);
+    const rhs = assignMatch[2];
+    const res = parseAllExpression(rhs);
+    return { isAllStatement: true, isStatic: res.isStatic, names: res.names };
   }
 
   const extendMatch = /^__all__\.extend\s*\(\s*(.+)\s*\)$/s.exec(text);
   if (extendMatch) {
-    return extractStringLiterals(extendMatch[1]);
+    const arg = extendMatch[1];
+    const res = parseAllExpression(arg);
+    return { isAllStatement: true, isStatic: res.isStatic, names: res.names };
   }
 
   const appendMatch = /^__all__\.append\s*\(\s*(.+)\s*\)$/s.exec(text);
   if (appendMatch) {
-    return extractStringLiterals(appendMatch[1]);
+    const arg = appendMatch[1];
+    const str = parseStringLiteral(arg);
+    if (str !== null) {
+      return { isAllStatement: true, isStatic: true, names: [str] };
+    }
+    return { isAllStatement: true, isStatic: false, names: [] };
   }
 
   if (/^__all__\s*:\s*[^=]+$/.test(text)) {
-    return [];
+    return { isAllStatement: true, isStatic: true, names: [] };
   }
 
-  return undefined;
+  return { isAllStatement: false, isStatic: false, names: [] };
 }
 
 function parseFunction(text: string): PyExport | undefined {
-  const defMatch = /(?:async\s+)?def\s+([a-zA-Z0-9_]+)\s*\(/s.exec(text);
+  const defMatch = /^(?:async\s+)?def\s+([\p{ID_Start}_][\p{ID_Continue}]*)(?:\[[^\]]*\])?\s*\(/u.exec(text);
   if (!defMatch) return undefined;
 
   const name = defMatch[1];
-  if (!name || isPrivateName(name)) return undefined;
+  if (!name || isPrivateName(name) || PYTHON_KEYWORDS.has(name)) return undefined;
 
-  const parenStart = text.indexOf("(", defMatch.index);
+  const parenStart = text.indexOf("(", defMatch.index + defMatch[0].length - 1);
   if (parenStart < 0) return undefined;
 
   let parenDepth = 0;
   let parenEnd = -1;
+  let inSingle = false;
+  let inDouble = false;
+  let inTripleSingle = false;
+  let inTripleDouble = false;
+
   for (let i = parenStart; i < text.length; i++) {
     const char = text[i];
-    if (char === "(") parenDepth++;
-    else if (char === ")") {
-      parenDepth--;
-      if (parenDepth === 0) {
-        parenEnd = i;
-        break;
+    if (char === "\\") {
+      i++;
+      continue;
+    }
+    if (!inSingle && !inDouble && !inTripleSingle && !inTripleDouble) {
+      if (text.startsWith('"""', i)) {
+        inTripleDouble = true;
+        i += 2;
+        continue;
       }
+      if (text.startsWith("'''", i)) {
+        inTripleSingle = true;
+        i += 2;
+        continue;
+      }
+      if (char === '"') {
+        inDouble = true;
+        continue;
+      }
+      if (char === "'") {
+        inSingle = true;
+        continue;
+      }
+      if (char === "(") {
+        parenDepth++;
+      } else if (char === ")") {
+        parenDepth--;
+        if (parenDepth === 0) {
+          parenEnd = i;
+          break;
+        }
+      }
+    } else if (inTripleDouble && text.startsWith('"""', i)) {
+      inTripleDouble = false;
+      i += 2;
+    } else if (inTripleSingle && text.startsWith("'''", i)) {
+      inTripleSingle = false;
+      i += 2;
+    } else if (inDouble && char === '"') {
+      inDouble = false;
+    } else if (inSingle && char === "'") {
+      inSingle = false;
     }
   }
 
@@ -242,15 +469,15 @@ function parseFunction(text: string): PyExport | undefined {
 }
 
 function parseClass(text: string): PyExport | undefined {
-  const classMatch = /^class\s+([a-zA-Z0-9_]+)(?:\[[^\]]*\])?(?:\([^)]*\))?\s*:/s.exec(text);
+  const classMatch = /^class\s+([\p{ID_Start}_][\p{ID_Continue}]*)(?:\[[^\]]*\])?(?:\([^)]*\))?\s*:/u.exec(text);
   if (!classMatch) return undefined;
   const name = classMatch[1];
-  if (!name || isPrivateName(name)) return undefined;
+  if (!name || isPrivateName(name) || PYTHON_KEYWORDS.has(name)) return undefined;
   return { name, kind: "class", signature: null };
 }
 
 function parseReExport(text: string): PyReExport | undefined {
-  const fromMatch = /^from\s+([a-zA-Z0-9_.]*)\s+import\s+(.+)$/s.exec(text);
+  const fromMatch = /^from\s+([.\p{ID_Start}_\p{ID_Continue}]*)\s+import\s+(.+)$/u.exec(text);
   if (fromMatch) {
     const rawModule = fromMatch[1].trim();
     const rawImports = fromMatch[2].trim().replace(/^\s*\(/, "").replace(/\)\s*$/, "").trim();
@@ -291,7 +518,7 @@ function parseImports(text: string): Map<string, ImportedSymbol> {
   const result = new Map<string, ImportedSymbol>();
 
   // from <module> import <items>
-  const fromMatch = /^from\s+([a-zA-Z0-9_.]*)\s+import\s+(.+)$/s.exec(text);
+  const fromMatch = /^from\s+([.\p{ID_Start}_\p{ID_Continue}]*)\s+import\s+(.+)$/u.exec(text);
   if (fromMatch) {
     const rawModule = fromMatch[1].trim();
     const rawImports = fromMatch[2].trim().replace(/^\s*\(/, "").replace(/\)\s*$/, "").trim();
@@ -318,7 +545,7 @@ function parseImports(text: string): Map<string, ImportedSymbol> {
   }
 
   // import <items>
-  const importMatch = /^import\s+([^#]+)$/s.exec(text);
+  const importMatch = /^import\s+([^#]+)$/u.exec(text);
   if (importMatch) {
     const items = importMatch[1].trim().split(",").map((s) => s.trim()).filter((s) => s.length > 0);
     for (const item of items) {
@@ -342,22 +569,26 @@ function parseImports(text: string): Map<string, ImportedSymbol> {
 
 function parseAssignmentOrConst(text: string): PyExport | undefined {
   // PEP 695: type Alias = ...
-  const typeStmtMatch = /^type\s+([a-zA-Z0-9_]+)(?:\[[^\]]*\])?\s*=\s*(.+)$/s.exec(text);
+  const typeStmtMatch = /^type\s+([\p{ID_Start}_][\p{ID_Continue}]*)(?:\[[^\]]*\])?\s*=\s*(.+)$/u.exec(text);
   if (typeStmtMatch && typeStmtMatch[1]) {
     const name = typeStmtMatch[1];
-    if (isPrivateName(name)) return undefined;
+    if (isPrivateName(name) || PYTHON_KEYWORDS.has(name)) return undefined;
     return { name, kind: "type", signature: null };
   }
 
   // NAME: Type = val or NAME: Type or NAME = val
-  const assignMatch = /^([a-zA-Z0-9_]+)\s*(?::\s*([^=]+?))?(?:\s*=\s*(.+))?$/.exec(text);
+  const assignMatch = /^([\p{ID_Start}_][\p{ID_Continue}]*)\s*(?::\s*([^=]+?))?(?:\s*=\s*(.+))?$/u.exec(text);
   if (!assignMatch) return undefined;
 
   const name = assignMatch[1];
-  if (!name || isPrivateName(name) || name === "__all__") return undefined;
+  if (!name || isPrivateName(name) || name === "__all__" || PYTHON_KEYWORDS.has(name)) return undefined;
 
   const typeAnnotation = assignMatch[2]?.trim();
   const value = assignMatch[3]?.trim();
+
+  if (!typeAnnotation && value === undefined) {
+    return undefined;
+  }
 
   // If it is a TypeAlias or TypeVar
   if (typeAnnotation && /\bTypeAlias\b/.test(typeAnnotation)) {
@@ -373,6 +604,48 @@ function parseAssignmentOrConst(text: string): PyExport | undefined {
   return { name, kind: "const", signature: signature || null };
 }
 
+function dedupeExports(exports: PyExport[]): PyExport[] {
+  const seen = new Map<string, PyExport>();
+  const order: string[] = [];
+
+  for (const entry of exports) {
+    const key = `${entry.name}\u0000${entry.kind}`;
+    const existing = seen.get(key);
+    if (!existing) {
+      seen.set(key, entry);
+      order.push(key);
+    } else if (existing.signature === null && entry.signature !== null) {
+      seen.set(key, entry);
+    }
+  }
+
+  return order.map((key) => seen.get(key)!);
+}
+
+function dedupeReExports(reExports: PyReExport[]): PyReExport[] {
+  const seenModules = new Map<string, PyReExport>();
+  for (const reExp of reExports) {
+    const existing = seenModules.get(reExp.module);
+    if (!existing) {
+      seenModules.set(reExp.module, {
+        module: reExp.module,
+        names: reExp.names ? [...reExp.names] : undefined,
+      });
+    } else {
+      if (!reExp.names) {
+        existing.names = undefined;
+      } else if (existing.names) {
+        for (const n of reExp.names) {
+          if (!existing.names.some((en) => en.from === n.from && en.as === n.as)) {
+            existing.names.push(n);
+          }
+        }
+      }
+    }
+  }
+  return [...seenModules.values()];
+}
+
 export function parsePyStub(content: string): ParsedPyStub {
   const statements = extractStatements(content);
   const directExports: PyExport[] = [];
@@ -380,60 +653,61 @@ export function parsePyStub(content: string): ParsedPyStub {
   const notes: string[] = [];
   const importedSymbols = new Map<string, ImportedSymbol>();
 
-  let allDeclaredNames: string[] | null = null;
-  let currentClassIndent: number | null = null;
+  let hasAllDeclaration = false;
+  let isAllStatic = true;
+  const allDeclaredNames: string[] = [];
 
   for (let i = 0; i < statements.length; i++) {
     const stmt = statements[i];
+
+    if (stmt.indent !== 0) {
+      continue;
+    }
+
     let text = stmt.text;
 
-    // Skip decorators or attach them to the next declaration
-    while (text.startsWith("@") && i + 1 < statements.length) {
-      i++;
-      text = statements[i].text;
-    }
-
-    // Check if we are inside a class body
-    if (currentClassIndent !== null) {
-      if (stmt.indent > currentClassIndent) {
-        continue;
+    if (text.startsWith("@")) {
+      while (text.startsWith("@") && i + 1 < statements.length && statements[i + 1].indent === 0) {
+        i++;
+        text = statements[i].text;
       }
-      currentClassIndent = null;
-    }
-
-    // Check for module-level __all__ declaration
-    if (stmt.indent === 0) {
-      const allNames = parseAllStatement(text);
-      if (allNames !== undefined) {
-        if (allDeclaredNames === null) {
-          allDeclaredNames = [];
-        }
-        allDeclaredNames.push(...allNames);
+      if (text.startsWith("@")) {
         continue;
       }
     }
 
-    // Check for class declaration
-    if (/^class\s+/.test(text)) {
+    const allRes = parseAllStatement(text);
+    if (allRes.isAllStatement) {
+      hasAllDeclaration = true;
+      if (!allRes.isStatic) {
+        isAllStatic = false;
+      } else {
+        allDeclaredNames.push(...allRes.names);
+      }
+      continue;
+    }
+
+    if (/^class\s+/u.test(text)) {
       const cls = parseClass(text);
       if (cls) {
         directExports.push(cls);
-        currentClassIndent = stmt.indent;
       }
       continue;
     }
 
-    // Check for function declaration
-    if (/(?:async\s+)?def\s+/.test(text)) {
+    if (/^(?:async\s+)?def\s+/u.test(text)) {
       const fn = parseFunction(text);
-      if (fn) directExports.push(fn);
+      if (fn) {
+        directExports.push(fn);
+      }
       continue;
     }
 
-    // Check for re-export or plain import (from ... import ...)
-    if (/^from\s+/.test(text)) {
+    if (/^from\s+/u.test(text)) {
       const reExport = parseReExport(text);
-      if (reExport) reExports.push(reExport);
+      if (reExport) {
+        reExports.push(reExport);
+      }
 
       const imports = parseImports(text);
       for (const [name, sym] of imports) {
@@ -442,8 +716,7 @@ export function parsePyStub(content: string): ParsedPyStub {
       continue;
     }
 
-    // Check for import statement (import ...)
-    if (/^import\s+/.test(text)) {
+    if (/^import\s+/u.test(text)) {
       const imports = parseImports(text);
       for (const [name, sym] of imports) {
         importedSymbols.set(name, sym);
@@ -451,51 +724,72 @@ export function parsePyStub(content: string): ParsedPyStub {
       continue;
     }
 
-    // Check for constant / variable / type assignment
-    if (/^[a-zA-Z0-9_]+\s*[:=]/.test(text) || /^type\s+/.test(text)) {
+    if (/^type\s+/u.test(text) || /^[\p{ID_Start}_][\p{ID_Continue}]*\s*[:=]/u.test(text)) {
       const entry = parseAssignmentOrConst(text);
-      if (entry) directExports.push(entry);
+      if (entry) {
+        directExports.push(entry);
+      }
       continue;
     }
   }
 
-  // If __all__ is not defined, keep existing behavior (direct exports only, no plain-import emission)
-  if (allDeclaredNames === null) {
+  const dedupedReExports = dedupeReExports(reExports);
+
+  if (!hasAllDeclaration) {
     return {
-      exports: directExports,
-      reExports,
+      exports: dedupeExports(directExports),
+      reExports: dedupedReExports,
       notes: notes.length > 0 ? notes : undefined,
     };
   }
 
-  // When __all__ is present, it is the authoritative public surface
-  const exports: PyExport[] = [...directExports];
-  const directExportNames = new Set(directExports.map((e) => e.name));
+  if (!isAllStatic) {
+    notes.push("__all__ could not be evaluated statically; public surface fell back to module-level declarations.");
+    return {
+      exports: dedupeExports(directExports),
+      reExports: dedupedReExports,
+      notes: notes.length > 0 ? notes : undefined,
+    };
+  }
+
+  const exports: PyExport[] = [];
   const uniqueAllNames = [...new Set(allDeclaredNames)];
+  const directExportMap = new Map<string, PyExport>();
+  for (const exp of directExports) {
+    if (!directExportMap.has(exp.name)) {
+      directExportMap.set(exp.name, exp);
+    }
+  }
 
   for (const name of uniqueAllNames) {
-    if (directExportNames.has(name)) {
+    const direct = directExportMap.get(name);
+    if (direct) {
+      exports.push(direct);
       continue;
     }
 
-    const kind = inferKind(name);
-    exports.push({
-      name,
-      kind,
-      signature: null,
-    });
-
     const imp = importedSymbols.get(name);
     if (imp) {
+      exports.push({
+        name,
+        kind: inferKind(name),
+        signature: null,
+      });
       notes.push(`Exported symbol "${name}" imported from ${imp.fromModule} is declared in __all__; signature unresolvable from this stub.`);
     } else {
+      exports.push({
+        name,
+        kind: inferKind(name),
+        signature: null,
+      });
       notes.push(`Exported symbol "${name}" is declared in __all__ but not defined or imported in this stub.`);
     }
   }
 
   return {
-    exports,
-    reExports,
+    exports: dedupeExports(exports),
+    reExports: dedupedReExports,
     notes: notes.length > 0 ? notes : undefined,
   };
 }
+

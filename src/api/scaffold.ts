@@ -9,45 +9,93 @@ const JS_RESERVED_WORDS = new Set([
   "delete", "do", "else", "enum", "export", "extends", "false", "finally",
   "for", "function", "if", "import", "in", "instanceof", "new", "null",
   "return", "super", "switch", "this", "throw", "true", "try", "typeof",
-  "var", "void", "while", "with", "yield", "await", "async",
+  "var", "void", "while", "with", "yield", "await", "async", "let",
+  "static", "implements", "interface", "package", "private", "protected", "public",
 ]);
+
+const PYTHON_RESERVED_WORDS = new Set([
+  "False", "None", "True", "and", "as", "assert", "async", "await",
+  "break", "class", "continue", "def", "del", "elif", "else", "except",
+  "finally", "for", "from", "global", "if", "import", "in", "is",
+  "lambda", "nonlocal", "not", "or", "pass", "raise", "return", "try",
+  "while", "with", "yield",
+]);
+
+export function isValidJsIdentifier(name: string): boolean {
+  if (!name || typeof name !== "string") return false;
+  if (!/^[A-Za-z_$][A-Za-z0-9_$]*$/.test(name)) return false;
+  if (JS_RESERVED_WORDS.has(name) && name !== "default") return false;
+  return true;
+}
+
+export function isValidPythonIdentifier(name: string): boolean {
+  if (!name || typeof name !== "string") return false;
+  if (!/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)) return false;
+  if (PYTHON_RESERVED_WORDS.has(name)) return false;
+  return true;
+}
+
+function isValidExportName(name: string, isPython: boolean): boolean {
+  return isPython ? isValidPythonIdentifier(name) : isValidJsIdentifier(name);
+}
+
+function isCallableKind(kind: string): boolean {
+  return kind === "function" || kind === "class" || kind === "default" || kind === "const";
+}
+
+function hasBalancedDelimiters(str: string): boolean {
+  let paren = 0;
+  let angle = 0;
+  let curly = 0;
+  let square = 0;
+
+  for (let i = 0; i < str.length; i++) {
+    const c = str[i];
+    if (c === "(") paren++;
+    else if (c === ")") { paren--; if (paren < 0) return false; }
+    else if (c === "<") angle++;
+    else if (c === ">") {
+      if (!(i > 0 && (str[i - 1] === "-" || str[i - 1] === "="))) {
+        angle--;
+        if (angle < 0) return false;
+      }
+    }
+    else if (c === "{") curly++;
+    else if (c === "}") { curly--; if (curly < 0) return false; }
+    else if (c === "[") square++;
+    else if (c === "]") { square--; if (square < 0) return false; }
+  }
+  return paren === 0 && angle === 0 && curly === 0 && square === 0;
+}
 
 function extractPackageRawName(id: string): string {
   return id.replace(/^[a-z]+:/, "");
 }
 
-function extractImportIdentifier(manifest: IntegrationManifest): string {
-  const esmMatch = manifest.importForm.esm?.match(/import\s+([A-Za-z_$][A-Za-z0-9_$]*)\s+from/);
-  if (esmMatch?.[1]) return esmMatch[1];
-  const cjsMatch = manifest.importForm.cjs?.match(/(?:const|let|var)\s+([A-Za-z_$][A-Za-z0-9_$]*)\s*=/);
-  if (cjsMatch?.[1]) return cjsMatch[1];
-
-  const rawName = extractPackageRawName(manifest.id).replace(/^@/, "");
-  const words = rawName.split(/[\/_-]+/).filter(Boolean);
-  const candidate = words.map((w, i) => (i === 0 ? w : w[0].toUpperCase() + w.slice(1))).join("");
-  return candidate && /^[A-Za-z_$]/.test(candidate) ? candidate : "pkg";
-}
-
 function splitTopLevelCommas(str: string): string[] {
   const result: string[] = [];
   let current = "";
-  let depthParen = 0;
-  let depthAngle = 0;
-  let depthCurly = 0;
-  let depthSquare = 0;
+  let paren = 0;
+  let angle = 0;
+  let curly = 0;
+  let square = 0;
 
   for (let i = 0; i < str.length; i++) {
     const char = str[i];
-    if (char === "(") depthParen++;
-    else if (char === ")") depthParen--;
-    else if (char === "<") depthAngle++;
-    else if (char === ">") depthAngle--;
-    else if (char === "{") depthCurly++;
-    else if (char === "}") depthCurly--;
-    else if (char === "[") depthSquare++;
-    else if (char === "]") depthSquare--;
+    if (char === "(") paren++;
+    else if (char === ")") paren--;
+    else if (char === "<") angle++;
+    else if (char === ">") {
+      if (!(i > 0 && (str[i - 1] === "-" || str[i - 1] === "="))) {
+        angle--;
+      }
+    }
+    else if (char === "{") curly++;
+    else if (char === "}") curly--;
+    else if (char === "[") square++;
+    else if (char === "]") square--;
 
-    if (char === "," && depthParen === 0 && depthAngle === 0 && depthCurly === 0 && depthSquare === 0) {
+    if (char === "," && paren === 0 && angle === 0 && curly === 0 && square === 0) {
       if (current.trim()) result.push(current.trim());
       current = "";
     } else {
@@ -58,55 +106,75 @@ function splitTopLevelCommas(str: string): string[] {
   return result;
 }
 
-function sanitizeParamName(paramStr: string, index: number): string {
-  let head = paramStr.split(/[:=]/)[0]?.trim() || "";
-  head = head.replace(/^\.\.\./, "").replace(/\?$/, "").trim();
-
-  if (head.startsWith("{") || head.startsWith("[")) {
-    return "options";
-  }
-
-  head = head.replace(/[^a-zA-Z0-9_$]/g, "");
-
-  if (!head || JS_RESERVED_WORDS.has(head)) {
-    return head ? `${head}Param` : `arg${index}`;
-  }
-
-  return head;
+export interface ParsedJsSignature {
+  declarationName: string;
+  params: string[];
+  returnType: string | null;
+  isAsync: boolean;
+  isVoid: boolean;
 }
 
-function isTypeScriptMethodSignature(signature: string): boolean {
-  let startIdx = 0;
-  while (startIdx < signature.length && /[a-zA-Z0-9_$]/.test(signature[startIdx] ?? "")) {
-    startIdx++;
+export function parseJsSignature(exportName: string, signature: string): ParsedJsSignature | null {
+  if (!signature || typeof signature !== "string") return null;
+  if (signature.includes("\n") || signature.includes("\r")) return null;
+  if (!hasBalancedDelimiters(signature)) return null;
+
+  const trimmed = signature.trim();
+
+  let declName = "";
+  let afterDeclIdx = 0;
+
+  const fnPrefixMatch = /^(?:async\s+)?function\s+([A-Za-z_$][A-Za-z0-9_$]*)/.exec(trimmed);
+  if (fnPrefixMatch) {
+    declName = fnPrefixMatch[1]!;
+    afterDeclIdx = fnPrefixMatch[0].length;
+  } else {
+    const identMatch = /^([A-Za-z_$][A-Za-z0-9_$]*)/.exec(trimmed);
+    if (identMatch) {
+      declName = identMatch[1]!;
+      afterDeclIdx = identMatch[0].length;
+      const colonMatch = /^\s*:\s*/.exec(trimmed.slice(afterDeclIdx));
+      if (colonMatch) {
+        afterDeclIdx += colonMatch[0].length;
+      }
+    } else if (exportName === "default" && trimmed.startsWith("(")) {
+      declName = "default";
+      afterDeclIdx = 0;
+    } else {
+      return null;
+    }
   }
-  while (startIdx < signature.length && /\s/.test(signature[startIdx] ?? "")) {
-    startIdx++;
+
+  if (exportName !== "default" && declName !== exportName) {
+    return null;
   }
-  if (signature[startIdx] === "<") {
+
+  let rest = trimmed.slice(afterDeclIdx).trim();
+
+  if (rest.startsWith("<")) {
     let angleDepth = 0;
-    while (startIdx < signature.length) {
-      if (signature[startIdx] === "<") angleDepth++;
-      else if (signature[startIdx] === ">") {
+    let angleEnd = -1;
+    for (let i = 0; i < rest.length; i++) {
+      if (rest[i] === "<") angleDepth++;
+      else if (rest[i] === ">") {
         angleDepth--;
         if (angleDepth === 0) {
-          startIdx++;
+          angleEnd = i;
           break;
         }
       }
-      startIdx++;
     }
+    if (angleEnd === -1) return null;
+    rest = rest.slice(angleEnd + 1).trim();
   }
-  while (startIdx < signature.length && /\s/.test(signature[startIdx] ?? "")) {
-    startIdx++;
-  }
-  if (signature[startIdx] !== "(") return false;
+
+  if (!rest.startsWith("(")) return null;
 
   let parenDepth = 0;
   let parenEnd = -1;
-  for (let i = startIdx; i < signature.length; i++) {
-    if (signature[i] === "(") parenDepth++;
-    else if (signature[i] === ")") {
+  for (let i = 0; i < rest.length; i++) {
+    if (rest[i] === "(") parenDepth++;
+    else if (rest[i] === ")") {
       parenDepth--;
       if (parenDepth === 0) {
         parenEnd = i;
@@ -114,11 +182,157 @@ function isTypeScriptMethodSignature(signature: string): boolean {
       }
     }
   }
-  if (parenEnd === -1) return false;
+  if (parenEnd === -1) return null;
 
-  const paramsText = signature.slice(startIdx + 1, parenEnd).trim();
+  const paramsText = rest.slice(1, parenEnd).trim();
+  const remainder = rest.slice(parenEnd + 1).trim();
+
+  const rawParams = paramsText ? splitTopLevelCommas(paramsText) : [];
+  const params: string[] = [];
+
+  for (let idx = 0; idx < rawParams.length; idx++) {
+    const rawParam = rawParams[idx]!.trim();
+    if (!rawParam) continue;
+
+    if (rawParam.startsWith("*")) return null;
+    if (rawParam.startsWith("...")) continue;
+
+    let head = rawParam.split(/[:=]/)[0]?.trim() || "";
+    head = head.replace(/\?$/, "").trim();
+
+    if (idx === 0 && head === "this") continue;
+    if (head === "self" || head === "cls") continue;
+
+    if (head.startsWith("{") || head.startsWith("[")) {
+      params.push("options");
+      continue;
+    }
+
+    if (!isValidJsIdentifier(head)) {
+      return null;
+    }
+
+    params.push(head);
+  }
+
+  let returnType: string | null = null;
+  if (remainder.startsWith(":")) {
+    returnType = remainder.slice(1).trim();
+  } else if (remainder.startsWith("=>")) {
+    returnType = remainder.slice(2).trim();
+  } else if (remainder === "" || remainder === ";") {
+    returnType = null;
+  } else {
+    return null;
+  }
+
+  if (returnType && !hasBalancedDelimiters(returnType)) return null;
+
+  const isAsync = returnType
+    ? /^Promise(?:Like)?\s*<[\s\S]*>$/.test(returnType) || returnType === "Promise" || returnType === "PromiseLike"
+    : false;
+  const isVoid = returnType ? returnType === "void" || returnType === "never" : false;
+
+  return { declarationName: declName, params, returnType, isAsync, isVoid };
+}
+
+export interface ParsedPythonSignature {
+  declarationName: string;
+  args: string[];
+  returnType: string | null;
+  isAsync: boolean;
+  isNone: boolean;
+}
+
+export function parsePythonSignature(exportName: string, signature: string): ParsedPythonSignature | null {
+  if (!signature || typeof signature !== "string") return null;
+  if (signature.includes("\n") || signature.includes("\r")) return null;
+  if (!hasBalancedDelimiters(signature)) return null;
+
+  const trimmed = signature.trim();
+
+  const defMatch = /^(?:(async\s+)?def\s+)?([A-Za-z_][A-Za-z0-9_]*)\s*\(/.exec(trimmed);
+  if (!defMatch) return null;
+
+  const isAsync = Boolean(defMatch[1]);
+  const declName = defMatch[2]!;
+
+  if (declName !== exportName) {
+    return null;
+  }
+
+  const parenStart = trimmed.indexOf("(", defMatch.index);
+  if (parenStart < 0) return null;
+
+  let parenDepth = 0;
+  let parenEnd = -1;
+  for (let i = parenStart; i < trimmed.length; i++) {
+    if (trimmed[i] === "(") parenDepth++;
+    else if (trimmed[i] === ")") {
+      parenDepth--;
+      if (parenDepth === 0) {
+        parenEnd = i;
+        break;
+      }
+    }
+  }
+  if (parenEnd < 0) return null;
+
+  const paramsText = trimmed.slice(parenStart + 1, parenEnd).trim();
+  const rawParams = paramsText ? splitTopLevelCommas(paramsText) : [];
+
+  let keywordOnly = false;
+  const args: string[] = [];
+
+  for (const rawParam of rawParams) {
+    const param = rawParam.trim();
+    if (!param || param === "/") continue;
+    if (param === "*") {
+      keywordOnly = true;
+      continue;
+    }
+
+    if (param.startsWith("**") || param.startsWith("*")) {
+      continue;
+    }
+
+    const name = param.split(/[:=]/)[0]?.trim();
+    if (!name || !isValidPythonIdentifier(name)) return null;
+
+    if (name === "self" || name === "cls") {
+      continue;
+    }
+
+    args.push(keywordOnly ? `${name}=${name}` : name);
+  }
+
+  let remainder = trimmed.slice(parenEnd + 1).trim();
+  remainder = remainder.replace(/^:\s*(\.\.\.|pass)?\s*$/, "").trim();
+
+  let returnType: string | null = null;
+  if (remainder.startsWith("->")) {
+    returnType = remainder.slice(2).trim().replace(/:\s*(\.\.\.|pass)?\s*$/, "").trim() || null;
+  } else if (remainder === "" || remainder === ":") {
+    returnType = null;
+  } else {
+    return null;
+  }
+
+  if (returnType && !hasBalancedDelimiters(returnType)) return null;
+
+  const isNone = returnType === "None" || returnType === "NoReturn" || returnType === "Never";
+
+  return { declarationName: declName, args, returnType, isAsync, isNone };
+}
+
+function isTypeScriptMethodSignature(signature: string): boolean {
+  if (!signature || signature.includes("\n")) return false;
+  const parenStart = signature.indexOf("(");
+  if (parenStart < 0) return false;
+  const parenEnd = signature.indexOf(")", parenStart);
+  if (parenEnd < 0) return false;
+  const paramsText = signature.slice(parenStart + 1, parenEnd).trim();
   if (!paramsText) return false;
-
   for (const rawParam of splitTopLevelCommas(paramsText)) {
     const param = rawParam.trim();
     if (!param) continue;
@@ -129,116 +343,19 @@ function isTypeScriptMethodSignature(signature: string): boolean {
   return false;
 }
 
-function parseSignatureParams(signature: string): { params: string[]; returnType: string | null } | null {
-  let startIdx = 0;
-
-  while (startIdx < signature.length && /[a-zA-Z0-9_$]/.test(signature[startIdx] ?? "")) {
-    startIdx++;
-  }
-  while (startIdx < signature.length && /\s/.test(signature[startIdx] ?? "")) {
-    startIdx++;
-  }
-
-  if (signature[startIdx] === "<") {
-    let angleDepth = 0;
-    while (startIdx < signature.length) {
-      if (signature[startIdx] === "<") angleDepth++;
-      else if (signature[startIdx] === ">") {
-        angleDepth--;
-        if (angleDepth === 0) {
-          startIdx++;
-          break;
-        }
-      }
-      startIdx++;
-    }
-  }
-
-  while (startIdx < signature.length && /\s/.test(signature[startIdx] ?? "")) {
-    startIdx++;
-  }
-
-  if (signature[startIdx] !== "(") return null;
-  const parenStart = startIdx;
-
-  let parenDepth = 0;
-  let parenEnd = -1;
-  for (let i = parenStart; i < signature.length; i++) {
-    if (signature[i] === "(") parenDepth++;
-    else if (signature[i] === ")") {
-      parenDepth--;
-      if (parenDepth === 0) {
-        parenEnd = i;
-        break;
-      }
-    }
-  }
-
-  if (parenEnd === -1) return null;
-
-  const paramsText = signature.slice(parenStart + 1, parenEnd).trim();
-  const rawParams = paramsText ? splitTopLevelCommas(paramsText) : [];
-  const params: string[] = [];
-  for (let idx = 0; idx < rawParams.length; idx++) {
-    const rawParam = rawParams[idx]!;
-    let head = rawParam.split(/[:=]/)[0]?.trim() || "";
-    head = head.replace(/^\.\.\./, "").replace(/\?$/, "").trim();
-    if (idx === 0 && head === "this") {
-      continue;
-    }
-    params.push(sanitizeParamName(rawParam, idx));
-  }
-
-  const remainder = signature.slice(parenEnd + 1).trim();
-  let returnType: string | null = null;
-  if (remainder.startsWith(":")) {
-    returnType = remainder.slice(1).trim();
-  } else if (remainder.startsWith("=>")) {
-    returnType = remainder.slice(2).trim();
-  }
-
-  return { params, returnType };
-}
-
-interface ParsedPythonSignature {
-  args: string[];
-  returnType: string | null;
-  isAsync: boolean;
-}
-
 function isPythonMethodSignature(signature: string): boolean {
-  const source = signature.trim();
-  const asyncMatch = /^(async\s+)?def\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(/.exec(source);
-  const bareMatch = /^([A-Za-z_][A-Za-z0-9_]*)\s*\(/.exec(source);
-  const match = asyncMatch ?? bareMatch;
-  if (!match) return false;
-
-  const parenStart = source.indexOf("(", match.index);
+  if (!signature || signature.includes("\n")) return false;
+  const parenStart = signature.indexOf("(");
   if (parenStart < 0) return false;
-
-  let parenDepth = 0;
-  let parenEnd = -1;
-  for (let index = parenStart; index < source.length; index++) {
-    if (source[index] === "(") parenDepth++;
-    else if (source[index] === ")") {
-      parenDepth--;
-      if (parenDepth === 0) {
-        parenEnd = index;
-        break;
-      }
-    }
-  }
+  const parenEnd = signature.indexOf(")", parenStart);
   if (parenEnd < 0) return false;
-
-  const paramsText = source.slice(parenStart + 1, parenEnd).trim();
+  const paramsText = signature.slice(parenStart + 1, parenEnd).trim();
   if (!paramsText) return false;
-
   for (const rawParam of splitTopLevelCommas(paramsText)) {
     const param = rawParam.trim();
     if (!param || param === "/" || param === "*") continue;
-    const prefix = param.startsWith("**") ? "**" : param.startsWith("*") ? "*" : "";
-    if (prefix) return false;
-    const name = param.slice(prefix.length).split(/[:=]/)[0]?.trim();
+    if (param.startsWith("*") || param.startsWith("**")) continue;
+    const name = param.split(/[:=]/)[0]?.trim();
     return name === "self" || name === "cls";
   }
   return false;
@@ -248,75 +365,10 @@ function isMethodSignature(signature: string, isPython: boolean): boolean {
   return isPython ? isPythonMethodSignature(signature) : isTypeScriptMethodSignature(signature);
 }
 
-/**
- * Parses a Python declaration sufficiently to emit a call whose placeholders
- * are all taken from its verified parameter list. This deliberately does not
- * synthesize names for unparseable Python parameters.
- */
-function parsePythonSignature(signature: string): ParsedPythonSignature | null {
-  const source = signature.trim();
-  const asyncMatch = /^(async\s+)?def\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(/.exec(source);
-  const bareMatch = /^([A-Za-z_][A-Za-z0-9_]*)\s*\(/.exec(source);
-  const match = asyncMatch ?? bareMatch;
-  if (!match) return null;
-
-  const parenStart = source.indexOf("(", match.index);
-  if (parenStart < 0) return null;
-
-  let parenDepth = 0;
-  let parenEnd = -1;
-  for (let index = parenStart; index < source.length; index++) {
-    if (source[index] === "(") parenDepth++;
-    else if (source[index] === ")") {
-      parenDepth--;
-      if (parenDepth === 0) {
-        parenEnd = index;
-        break;
-      }
-    }
-  }
-  if (parenEnd < 0) return null;
-
-  let keywordOnly = false;
-  const args: string[] = [];
-  const paramsText = source.slice(parenStart + 1, parenEnd).trim();
-  for (const rawParam of paramsText ? splitTopLevelCommas(paramsText) : []) {
-    const param = rawParam.trim();
-    if (param === "/") continue;
-    if (param === "*") {
-      keywordOnly = true;
-      continue;
-    }
-
-    const prefix = param.startsWith("**") ? "**" : param.startsWith("*") ? "*" : "";
-    const name = param.slice(prefix.length).split(/[:=]/)[0]?.trim();
-    if (!name || !/^[A-Za-z_][A-Za-z0-9_]*$/.test(name)) return null;
-
-    if (name === "self" || name === "cls") {
-      continue;
-    }
-
-    if (prefix) {
-      args.push(`${prefix}${name}`);
-    } else {
-      args.push(keywordOnly ? `${name}=${name}` : name);
-    }
-  }
-
-  const remainder = source.slice(parenEnd + 1).trim();
-  const returnType = remainder.startsWith("->") ? remainder.slice(2).trim() || null : null;
-  return { args, returnType, isAsync: Boolean(asyncMatch?.[1]) };
-}
-
 function isPythonComponent(surface: ApiSurface, manifest: IntegrationManifest): boolean {
   return (manifest.id || surface.id).startsWith("pypi:");
 }
 
-/**
- * Returns a callable Python module name only when its exact import statement
- * was verified by the Python manifest. There is intentionally no package-name
- * fallback: inventing one could emit a broken or fabricated API call.
- */
 function extractPythonImportIdentifier(manifest: IntegrationManifest): string | null {
   const python = manifest.importForm.python;
   if (!python?.importName) return null;
@@ -327,11 +379,151 @@ function extractPythonImportIdentifier(manifest: IntegrationManifest): string | 
     : null;
 }
 
-/**
- * Canonical list of high-value entry points across TypeScript and Python ecosystems,
- * including constructors such as `array`.
- * Ranked in priority order (exact match index used in ranking heuristic).
- */
+export interface ImportBindings {
+  defaultBinding: string | null;
+  namespaceBinding: string | null;
+  namedBindings: Map<string, string>;
+}
+
+export function parseEsmImport(statement: string): ImportBindings | null {
+  const trimmed = statement.trim();
+  const match = /^import\s+([\s\S]+?)\s+from\s+['"][^'"]+['"];?$/.exec(trimmed);
+  if (!match) return null;
+
+  const importClause = match[1]!.trim();
+  const bindings: ImportBindings = {
+    defaultBinding: null,
+    namespaceBinding: null,
+    namedBindings: new Map(),
+  };
+
+  let remaining = importClause;
+
+  const defaultMatch = /^([A-Za-z_$][A-Za-z0-9_$]*)(?:\s*,\s*([\s\S]+))?$/.exec(remaining);
+  if (defaultMatch) {
+    if (isValidJsIdentifier(defaultMatch[1]!)) {
+      bindings.defaultBinding = defaultMatch[1]!;
+    }
+    remaining = defaultMatch[2]?.trim() || "";
+  }
+
+  if (!remaining) return bindings;
+
+  const nsMatch = /^\*\s*as\s+([A-Za-z_$][A-Za-z0-9_$]*)$/.exec(remaining);
+  if (nsMatch) {
+    if (isValidJsIdentifier(nsMatch[1]!)) {
+      bindings.namespaceBinding = nsMatch[1]!;
+    }
+    return bindings;
+  }
+
+  const namedMatch = /^\{([\s\S]*)\}$/.exec(remaining);
+  if (namedMatch) {
+    const list = splitTopLevelCommas(namedMatch[1]!.trim());
+    for (const item of list) {
+      const aliasMatch = /^([A-Za-z_$][A-Za-z0-9_$]*)\s+as\s+([A-Za-z_$][A-Za-z0-9_$]*)$/.exec(item.trim());
+      if (aliasMatch) {
+        const [, exportName, localName] = aliasMatch;
+        if (exportName && localName && isValidJsIdentifier(localName)) {
+          bindings.namedBindings.set(exportName, localName);
+        }
+      } else {
+        const singleMatch = /^([A-Za-z_$][A-Za-z0-9_$]*)$/.exec(item.trim());
+        if (singleMatch) {
+          const name = singleMatch[1]!;
+          if (isValidJsIdentifier(name)) {
+            bindings.namedBindings.set(name, name);
+          }
+        }
+      }
+    }
+  }
+
+  return bindings;
+}
+
+export function parseCjsRequire(statement: string): ImportBindings | null {
+  const trimmed = statement.trim();
+  const match = /^(?:const|let|var)\s+([\s\S]+?)\s*=\s*require\s*\(\s*['"][^'"]+['"]\s*\);?$/.exec(trimmed);
+  if (!match) return null;
+
+  const bindingClause = match[1]!.trim();
+  const bindings: ImportBindings = {
+    defaultBinding: null,
+    namespaceBinding: null,
+    namedBindings: new Map(),
+  };
+
+  const destructureMatch = /^\{([\s\S]*)\}$/.exec(bindingClause);
+  if (destructureMatch) {
+    const list = splitTopLevelCommas(destructureMatch[1]!.trim());
+    for (const item of list) {
+      const aliasMatch = /^([A-Za-z_$][A-Za-z0-9_$]*)\s*:\s*([A-Za-z_$][A-Za-z0-9_$]*)$/.exec(item.trim());
+      if (aliasMatch) {
+        const [, exportName, localName] = aliasMatch;
+        if (exportName && localName && isValidJsIdentifier(localName)) {
+          bindings.namedBindings.set(exportName, localName);
+        }
+      } else {
+        const singleMatch = /^([A-Za-z_$][A-Za-z0-9_$]*)$/.exec(item.trim());
+        if (singleMatch) {
+          const name = singleMatch[1]!;
+          if (isValidJsIdentifier(name)) {
+            bindings.namedBindings.set(name, name);
+          }
+        }
+      }
+    }
+    return bindings;
+  }
+
+  if (isValidJsIdentifier(bindingClause)) {
+    bindings.defaultBinding = bindingClause;
+    bindings.namespaceBinding = bindingClause;
+    return bindings;
+  }
+
+  return null;
+}
+
+export function resolveJsCallTarget(
+  exportItem: ApiExport,
+  bindings: ImportBindings,
+): { target: string; isDirectCall: boolean } | null {
+  const exportName = exportItem.name;
+
+  if (exportName === "default" || exportItem.kind === "default") {
+    if (bindings.namedBindings.has("default")) {
+      return { target: bindings.namedBindings.get("default")!, isDirectCall: true };
+    }
+    if (bindings.defaultBinding) {
+      return { target: bindings.defaultBinding, isDirectCall: true };
+    }
+    if (bindings.namespaceBinding) {
+      return { target: `${bindings.namespaceBinding}.default`, isDirectCall: false };
+    }
+    return null;
+  }
+
+  if (bindings.namedBindings.has(exportName)) {
+    return { target: bindings.namedBindings.get(exportName)!, isDirectCall: true };
+  }
+
+  if (bindings.defaultBinding === exportName) {
+    return { target: bindings.defaultBinding, isDirectCall: true };
+  }
+
+  if (bindings.namespaceBinding) {
+    return { target: `${bindings.namespaceBinding}.${exportName}`, isDirectCall: false };
+  }
+
+  if (bindings.defaultBinding) {
+    return { target: `${bindings.defaultBinding}.${exportName}`, isDirectCall: false };
+  }
+
+  return null;
+}
+
 const ENTRY_POINT_VERBS: readonly string[] = [
   "safe_load",
   "array",
@@ -357,7 +549,6 @@ function scoreVerbMatch(name: string): VerbScore | null {
   const lower = name.toLowerCase();
   const normalized = lower.replace(/[-_]/g, "");
 
-  // 1. Exact match (e.g. "safe_load", "create", "get", "load")
   for (let i = 0; i < ENTRY_POINT_VERBS.length; i++) {
     const verb = ENTRY_POINT_VERBS[i]!;
     const normVerb = verb.replace(/[-_]/g, "");
@@ -366,7 +557,6 @@ function scoreVerbMatch(name: string): VerbScore | null {
     }
   }
 
-  // 2. Prefix / compound match (e.g. "createClient", "parseDocument", "safe_load_all")
   for (let i = 0; i < ENTRY_POINT_VERBS.length; i++) {
     const verb = ENTRY_POINT_VERBS[i]!;
     const normVerb = verb.replace(/[-_]/g, "");
@@ -378,36 +568,16 @@ function scoreVerbMatch(name: string): VerbScore | null {
   return null;
 }
 
-/**
- * Counts the number of required parameters declared in a verified signature.
- * Optional parameters (with '?', default '=', or rest '...') are excluded.
- */
 function countRequiredParameters(signature: string, isPython: boolean): number {
+  if (!signature || signature.includes("\n")) return 99;
+
   if (isPython) {
-    const source = signature.trim();
-    const asyncMatch = /^(async\s+)?def\s+([A-Za-z_][A-Za-z0-9_]*)\s*\(/.exec(source);
-    const bareMatch = /^([A-Za-z_][A-Za-z0-9_]*)\s*\(/.exec(source);
-    const match = asyncMatch ?? bareMatch;
-    if (!match) return 99;
-
-    const parenStart = source.indexOf("(", match.index);
+    const parenStart = signature.indexOf("(");
     if (parenStart < 0) return 99;
-
-    let parenDepth = 0;
-    let parenEnd = -1;
-    for (let i = parenStart; i < source.length; i++) {
-      if (source[i] === "(") parenDepth++;
-      else if (source[i] === ")") {
-        parenDepth--;
-        if (parenDepth === 0) {
-          parenEnd = i;
-          break;
-        }
-      }
-    }
+    const parenEnd = signature.indexOf(")", parenStart);
     if (parenEnd < 0) return 99;
 
-    const paramsText = source.slice(parenStart + 1, parenEnd).trim();
+    const paramsText = signature.slice(parenStart + 1, parenEnd).trim();
     if (!paramsText) return 0;
 
     let requiredCount = 0;
@@ -423,48 +593,12 @@ function countRequiredParameters(signature: string, isPython: boolean): number {
     return requiredCount;
   }
 
-  // TypeScript / JavaScript
-  let startIdx = 0;
-  while (startIdx < signature.length && /[a-zA-Z0-9_$]/.test(signature[startIdx] ?? "")) {
-    startIdx++;
-  }
-  while (startIdx < signature.length && /\s/.test(signature[startIdx] ?? "")) {
-    startIdx++;
-  }
-  if (signature[startIdx] === "<") {
-    let angleDepth = 0;
-    while (startIdx < signature.length) {
-      if (signature[startIdx] === "<") angleDepth++;
-      else if (signature[startIdx] === ">") {
-        angleDepth--;
-        if (angleDepth === 0) {
-          startIdx++;
-          break;
-        }
-      }
-      startIdx++;
-    }
-  }
-  while (startIdx < signature.length && /\s/.test(signature[startIdx] ?? "")) {
-    startIdx++;
-  }
-  if (signature[startIdx] !== "(") return 99;
+  const parenStart = signature.indexOf("(");
+  if (parenStart < 0) return 99;
+  const parenEnd = signature.indexOf(")", parenStart);
+  if (parenEnd < 0) return 99;
 
-  let parenDepth = 0;
-  let parenEnd = -1;
-  for (let i = startIdx; i < signature.length; i++) {
-    if (signature[i] === "(") parenDepth++;
-    else if (signature[i] === ")") {
-      parenDepth--;
-      if (parenDepth === 0) {
-        parenEnd = i;
-        break;
-      }
-    }
-  }
-  if (parenEnd === -1) return 99;
-
-  const paramsText = signature.slice(startIdx + 1, parenEnd).trim();
+  const paramsText = signature.slice(parenStart + 1, parenEnd).trim();
   if (!paramsText) return 0;
 
   let requiredCount = 0;
@@ -474,6 +608,7 @@ function countRequiredParameters(signature: string, isPython: boolean): number {
     if (!param || param.startsWith("...")) continue;
     const head = param.split(/[:=]/)[0]?.trim() || "";
     if (idx === 0 && head === "this") continue;
+    if (head === "self" || head === "cls") continue;
     if (head.endsWith("?")) continue;
     if (param.includes("=")) continue;
     requiredCount++;
@@ -481,49 +616,16 @@ function countRequiredParameters(signature: string, isPython: boolean): number {
   return requiredCount;
 }
 
-/**
- * Determines whether an API export has a genuinely callable signature with a parameter list.
- */
-export function hasCallableSignature(exportItem: ApiExport): boolean {
+export function hasCallableSignature(exportItem: ApiExport, isPython?: boolean): boolean {
   if (!exportItem.signature) return false;
-  return parseSignatureParams(exportItem.signature) !== null || parsePythonSignature(exportItem.signature) !== null;
+  if (!isCallableKind(exportItem.kind)) return false;
+  if (!isValidExportName(exportItem.name, Boolean(isPython))) return false;
+
+  return isPython
+    ? parsePythonSignature(exportItem.name, exportItem.signature) !== null
+    : parseJsSignature(exportItem.name, exportItem.signature) !== null;
 }
 
-/**
- * Selects the highest-ranking callable export using ordered, documented heuristics:
- *
- * 1. Explicit preference:
- *    `opts.preferExport` always wins if it exists and has a verified callable signature.
- *
- * 2. Public exports preference:
- *    Public exports (not starting with '_') are strongly preferred over internal/dunder exports ('_x', '__x__').
- *    Internal exports are only considered if no public callable export exists.
- *
- * 3. Primary / Default / Package-name match:
- *    - A callable `default` export is the canonical default entry point.
- *    - An export matching the package name (e.g. `axios` or Python import name) is the primary entry point.
- *
- * 4. Idiomatic entry-point verbs:
- *    Common action verbs (`safe_load`, `load`, `create`, `get`, `request`, `parse`, `run`, etc.)
- *    are prioritized over obscure utility functions (e.g. `add_constructor`, `all`).
- *    Exact verb matches take precedence over compound prefix matches.
- *
- * 5. Required parameter count:
- *    Functions with fewer required parameters (e.g. 0 or 1 params) are preferred over functions
- *    requiring many parameters, as agents can reliably invoke them without inventing arguments.
- *
- * 6. Kind preference:
- *    Export declarations with `kind: "function"` or `kind: "class"` are preferred over generic callable symbols.
- *
- * 7. Deterministic tiebreak:
- *    Stable alphabetical sorting (`a.name.localeCompare(b.name)`) ensures consistent, flicker-free output.
- *
- * Non-Module-Level Signature Exclusion:
- * Methods with `self`/`cls` (Python) or `this` (TypeScript) as their first parameter are excluded.
- *
- * Anti-Fabrication Guarantee:
- * Selection is strictly restricted to exports present in `surface.exports` with verified signatures.
- */
 function selectCallableExport(
   surface: ApiSurface,
   manifest: IntegrationManifest,
@@ -533,7 +635,11 @@ function selectCallableExport(
 
   const isPython = isPythonComponent(surface, manifest);
   const callableExports = surface.exports.filter(
-    (e) => hasCallableSignature(e) && (!e.signature || !isMethodSignature(e.signature, isPython)),
+    (e) =>
+      isValidExportName(e.name, isPython) &&
+      isCallableKind(e.kind) &&
+      hasCallableSignature(e, isPython) &&
+      (!e.signature || !isMethodSignature(e.signature, isPython)),
   );
   if (callableExports.length === 0) return undefined;
 
@@ -554,27 +660,22 @@ function selectCallableExport(
   };
 
   const sorted = [...callableExports].sort((a, b) => {
-    // 1. Explicit preferExport
     const prefA = isExplicitPreferred(a) ? 1 : 0;
     const prefB = isExplicitPreferred(b) ? 1 : 0;
     if (prefA !== prefB) return prefB - prefA;
 
-    // 2. Public exports over underscore-prefixed (_x, __x__) exports
     const pubA = isPublicExport(a) ? 1 : 0;
     const pubB = isPublicExport(b) ? 1 : 0;
     if (pubA !== pubB) return pubB - pubA;
 
-    // 3. Default export
     const defA = isDefaultExport(a) ? 1 : 0;
     const defB = isDefaultExport(b) ? 1 : 0;
     if (defA !== defB) return defB - defA;
 
-    // 4. Package / module name match
     const pkgA = isPackageNameMatch(a) ? 1 : 0;
     const pkgB = isPackageNameMatch(b) ? 1 : 0;
     if (pkgA !== pkgB) return pkgB - pkgA;
 
-    // 5. Idiomatic entry-point verbs
     const verbA = scoreVerbMatch(a.name);
     const verbB = scoreVerbMatch(b.name);
     if (verbA && !verbB) return -1;
@@ -585,97 +686,95 @@ function selectCallableExport(
       if (verbA.verbIndex !== verbB.verbIndex) return verbA.verbIndex - verbB.verbIndex;
     }
 
-    // 6. Fewer required parameters
     const reqA = countRequiredParameters(a.signature ?? "", isPython);
     const reqB = countRequiredParameters(b.signature ?? "", isPython);
     if (reqA !== reqB) return reqA - reqB;
 
-    // 7. Kind preference (function or class)
     const kindScoreA = a.kind === "function" || a.kind === "class" ? 1 : 0;
     const kindScoreB = b.kind === "function" || b.kind === "class" ? 1 : 0;
     if (kindScoreA !== kindScoreB) return kindScoreB - kindScoreA;
 
-    // 8. Deterministic tiebreak (alphabetical)
     return a.name.localeCompare(b.name);
   });
 
   return sorted[0];
 }
 
-/**
- * Selects candidate export irrespective of callability for fallback reporting.
- */
 function selectFallbackCandidate(
   surface: ApiSurface,
   manifest: IntegrationManifest,
   preferExport?: string,
 ): ApiExport | undefined {
-  if (surface.exports.length === 0) return undefined;
+  const isPython = isPythonComponent(surface, manifest);
+  const validExports = surface.exports.filter((e) => isValidExportName(e.name, isPython));
+  if (validExports.length === 0) return undefined;
 
   if (preferExport) {
-    const preferred = surface.exports.find((e) => e.name === preferExport);
+    const preferred = validExports.find((e) => e.name === preferExport);
     if (preferred) return preferred;
   }
 
-  const defaultExport = surface.exports.find((e) => e.name === "default" || e.kind === "default");
+  const defaultExport = validExports.find((e) => e.name === "default" || e.kind === "default");
   if (defaultExport) return defaultExport;
 
   const rawPkgName = extractPackageRawName(manifest.id || surface.id);
   const unScopedName = rawPkgName.replace(/^@[^\/]+\//, "");
-  const nameMatch = surface.exports.find((e) => {
+  const nameMatch = validExports.find((e) => {
     const lower = e.name.toLowerCase();
     return lower === rawPkgName.toLowerCase() || lower === unScopedName.toLowerCase();
   });
   if (nameMatch) return nameMatch;
 
-  const fnOrClass = surface.exports.find((e) => !e.name.startsWith("_") && (e.kind === "function" || e.kind === "class"));
+  const fnOrClass = validExports.find((e) => !e.name.startsWith("_") && (e.kind === "function" || e.kind === "class"));
   if (fnOrClass) return fnOrClass;
 
-  const anyPublic = surface.exports.find((e) => !e.name.startsWith("_"));
+  const anyPublic = validExports.find((e) => !e.name.startsWith("_"));
   if (anyPublic) return anyPublic;
 
-  const anyFnOrClass = surface.exports.find((e) => e.kind === "function" || e.kind === "class");
+  const anyFnOrClass = validExports.find((e) => e.kind === "function" || e.kind === "class");
   if (anyFnOrClass) return anyFnOrClass;
 
-  return surface.exports[0];
+  return validExports[0];
 }
 
 function generateSnippet(
   exportItem: ApiExport,
-  manifest: IntegrationManifest,
+  importStatement: string,
+  isCjs: boolean,
 ): string | null {
   if (!exportItem.signature) return null;
-
-  const parsed = parseSignatureParams(exportItem.signature);
+  const parsed = parseJsSignature(exportItem.name, exportItem.signature);
   if (!parsed) return null;
 
-  const { params, returnType } = parsed;
-  const importId = extractImportIdentifier(manifest);
-  const exportName = exportItem.name;
+  const bindings = isCjs ? parseCjsRequire(importStatement) : parseEsmImport(importStatement);
+  if (!bindings) return null;
 
-  const isAsync = returnType ? /Promise(?:Like)?\s*</.test(returnType) || returnType.trim() === "Promise" : false;
-  const isVoid = returnType ? returnType.trim() === "void" || returnType.trim() === "never" : false;
+  const callResolution = resolveJsCallTarget(exportItem, bindings);
+  if (!callResolution) return null;
+
+  const { target } = callResolution;
+  const { params, isAsync, isVoid } = parsed;
   const isClass = exportItem.kind === "class";
-
   const argsStr = params.join(", ");
 
-  let callExpr = "";
-  if (exportName === "default" || exportItem.kind === "default" || exportName === importId) {
-    callExpr = isClass ? `new ${importId}(${argsStr})` : `${importId}(${argsStr})`;
-  } else {
-    callExpr = isClass ? `new ${importId}.${exportName}(${argsStr})` : `${importId}.${exportName}(${argsStr})`;
-  }
-
-  if (isAsync) {
-    callExpr = `await ${callExpr}`;
-  }
+  const callExpr = isClass ? `new ${target}(${argsStr})` : `${target}(${argsStr})`;
+  const varName = (parsed.returnType && /Response/.test(parsed.returnType)) || exportItem.name === "get" ? "response" : "result";
 
   let statement = "";
-  if (isVoid) {
-    statement = `${callExpr};`;
+  if (isCjs) {
+    if (isAsync) {
+      statement = isVoid
+        ? `(async () => {\n  await ${callExpr};\n})();`
+        : `(async () => {\n  const ${varName} = await ${callExpr};\n})();`;
+    } else {
+      statement = isVoid ? `${callExpr};` : `const ${varName} = ${callExpr};`;
+    }
   } else {
-    const varName = (returnType && /Response/.test(returnType)) || exportName === "get" ? "response" : "result";
-    statement = `const ${varName} = ${callExpr};`;
+    if (isAsync) {
+      statement = isVoid ? `await ${callExpr};` : `const ${varName} = await ${callExpr};`;
+    } else {
+      statement = isVoid ? `${callExpr};` : `const ${varName} = ${callExpr};`;
+    }
   }
 
   return `// Verified signature: ${exportItem.signature}\n${statement}`;
@@ -687,16 +786,13 @@ function generatePythonSnippet(
 ): string | null {
   if (!exportItem.signature) return null;
 
-  const parsed = parsePythonSignature(exportItem.signature);
+  const parsed = parsePythonSignature(exportItem.name, exportItem.signature);
   const importId = extractPythonImportIdentifier(manifest);
   if (!parsed || !importId) return null;
 
-  // exportItem is selected exclusively from surface.exports. The module name
-  // comes exclusively from importForm.python's verified import statement.
   const callExpr = `${importId}.${exportItem.name}(${parsed.args.join(", ")})`;
   const awaitedCall = parsed.isAsync ? `await ${callExpr}` : callExpr;
-  const isNone = parsed.returnType === "None" || parsed.returnType === "NoReturn" || parsed.returnType === "Never";
-  const statement = isNone ? awaitedCall : `result = ${awaitedCall}`;
+  const statement = parsed.isNone ? awaitedCall : `result = ${awaitedCall}`;
 
   return `# Verified signature: ${exportItem.signature}\n${statement}`;
 }
@@ -721,20 +817,47 @@ export function buildScaffold(
   }
 
   const imports: string[] = [];
+  const notes: string[] = [];
+  let isCjs = false;
+  let activeImportStatement: string | null = null;
+
   if (python) {
     imports.push(...(manifest.importForm.python?.statements ?? []));
   } else {
     const { moduleType, esm, cjs } = manifest.importForm;
     if (moduleType === "esm") {
-      if (esm) imports.push(esm);
+      if (esm) {
+        imports.push(esm);
+        activeImportStatement = esm;
+        isCjs = false;
+      } else if (cjs) {
+        imports.push(cjs);
+        activeImportStatement = cjs;
+        isCjs = true;
+      }
     } else if (moduleType === "cjs") {
-      if (cjs) imports.push(cjs);
-    } else if (moduleType === "dual") {
-      if (esm) imports.push(esm);
-      if (cjs) imports.push(cjs);
+      if (cjs) {
+        imports.push(cjs);
+        activeImportStatement = cjs;
+        isCjs = true;
+      } else if (esm) {
+        imports.push(esm);
+        activeImportStatement = esm;
+        isCjs = false;
+      }
     } else {
-      if (esm) imports.push(esm);
-      if (cjs) imports.push(cjs);
+      if (esm) {
+        imports.push(esm);
+        activeImportStatement = esm;
+        isCjs = false;
+        if (cjs) {
+          notes.push(`Dual module: ESM import emitted; CommonJS require is also supported ('${cjs}').`);
+        }
+      } else if (cjs) {
+        imports.push(cjs);
+        activeImportStatement = cjs;
+        isCjs = true;
+      }
     }
   }
 
@@ -744,8 +867,6 @@ export function buildScaffold(
       warnings.push(`Requires the ${prereq.name} binary to be installed on the system (${prereq.evidence}).`);
     }
   }
-
-  const notes: string[] = [];
 
   if (surface.typesAvailable === "none") {
     notes.push("API surface types are not available (typesAvailable: none); no usage code was generated.");
@@ -765,7 +886,7 @@ export function buildScaffold(
 
   if (!chosenExport) {
     const fallbackCandidate = selectFallbackCandidate(surface, manifest, opts?.preferExport);
-    if (!fallbackCandidate) {
+    if (!fallbackCandidate || !isValidExportName(fallbackCandidate.name, python)) {
       notes.push("No suitable export found in API surface; no usage code was generated.");
     } else if (!fallbackCandidate.signature) {
       notes.push(`Selected export '${fallbackCandidate.name}' has no verifiable signature; no usage code was generated.`);
@@ -786,11 +907,26 @@ export function buildScaffold(
 
   const snippet = python
     ? generatePythonSnippet(chosenExport, manifest)
-    : generateSnippet(chosenExport, manifest);
+    : activeImportStatement
+      ? generateSnippet(chosenExport, activeImportStatement, isCjs)
+      : null;
 
   if (!snippet) {
     if (python && !extractPythonImportIdentifier(manifest)) {
       notes.push(`Selected export '${chosenExport.name}' has no verified Python import name; no usage code was generated.`);
+    } else if (
+      !python &&
+      activeImportStatement &&
+      !resolveJsCallTarget(
+        chosenExport,
+        (isCjs ? parseCjsRequire(activeImportStatement) : parseEsmImport(activeImportStatement)) ?? {
+          defaultBinding: null,
+          namespaceBinding: null,
+          namedBindings: new Map(),
+        },
+      )
+    ) {
+      notes.push(`Selected export '${chosenExport.name}' is not bound by the emitted import statement; no usage code was generated.`);
     } else {
       notes.push(`Selected export '${chosenExport.name}' signature is not callable; no usage code was generated.`);
     }
@@ -807,9 +943,16 @@ export function buildScaffold(
   }
 
   const defaultExport = surface.exports.find((e) => e.name === "default" || e.kind === "default");
-  if (!python && defaultExport && !hasCallableSignature(defaultExport) && chosenExport.name !== "default" && chosenExport.kind !== "default") {
-    const importId = extractImportIdentifier(manifest);
-    notes.push(`The 'default' export is not callable; selected callable export '${chosenExport.name}' accessed via default import '${importId}'.`);
+  if (!python && defaultExport && !hasCallableSignature(defaultExport, false) && chosenExport.name !== "default" && chosenExport.kind !== "default") {
+    const bindings = activeImportStatement
+      ? isCjs
+        ? parseCjsRequire(activeImportStatement)
+        : parseEsmImport(activeImportStatement)
+      : null;
+    const defaultBinding = bindings?.defaultBinding;
+    if (defaultBinding) {
+      notes.push(`The 'default' export is not callable; selected callable export '${chosenExport.name}' accessed via default import '${defaultBinding}'.`);
+    }
   }
 
   return ScaffoldSchema.parse({
