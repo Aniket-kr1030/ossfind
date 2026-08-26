@@ -19,7 +19,7 @@ import {
 } from "../fixtures/loader.js";
 import type { HttpClient, HttpResponse } from "./client.js";
 
-function response(body: unknown, status = 200): HttpResponse {
+function response(body: unknown, status = 200, headers: Record<string, string> = {}): HttpResponse {
   const bytes = body instanceof Uint8Array ? body : undefined;
   return {
     ok: status >= 200 && status < 300,
@@ -31,7 +31,37 @@ function response(body: unknown, status = 200): HttpResponse {
     // The fixture client mirrors fetch's binary response capability for wheel
     // downloads without widening the shared JSON-oriented HttpResponse type.
     arrayBuffer: bytes ? async () => Uint8Array.from(bytes).buffer : undefined,
+    headers: {
+      get: (name: string) => headers[name.toLowerCase()] ?? null,
+    },
   } as HttpResponse;
+}
+
+function requestHeader(init: RequestInit | undefined, name: string): string | undefined {
+  try {
+    return new Headers(init?.headers).get(name) ?? undefined;
+  } catch {
+    return undefined;
+  }
+}
+
+function byteRange(bytes: Uint8Array, header: string | undefined): { body: Uint8Array; start: number; end: number } | undefined {
+  if (!header) return undefined;
+
+  const match = /^bytes=(\d*)-(\d*)$/i.exec(header.trim());
+  if (!match || (!match[1] && !match[2])) return undefined;
+
+  const start = match[1]
+    ? Number(match[1])
+    : Math.max(0, bytes.byteLength - Number(match[2]));
+  const end = match[2] && match[1]
+    ? Math.min(bytes.byteLength - 1, Number(match[2]))
+    : bytes.byteLength - 1;
+  if (!Number.isSafeInteger(start) || !Number.isSafeInteger(end) || start < 0 || start >= bytes.byteLength || end < start) {
+    return undefined;
+  }
+
+  return { body: bytes.subarray(start, end + 1), start, end };
 }
 
 function notFound(): HttpResponse {
@@ -153,7 +183,15 @@ export function createFixtureHttpClient(): HttpClient {
       if (url.hostname === "files.pythonhosted.org") {
         const filename = url.pathname.split("/").at(-1);
         if (filename === "attrs-26.1.0-py3-none-any.whl") {
-          return response(await loadPyApiWheel(filename));
+          const wheel = await loadPyApiWheel(filename);
+          const range = byteRange(wheel, requestHeader(init, "range"));
+          if (range) {
+            return response(range.body, 206, {
+              "accept-ranges": "bytes",
+              "content-range": `bytes ${range.start}-${range.end}/${wheel.byteLength}`,
+            });
+          }
+          return response(wheel);
         }
         return notFound();
       }

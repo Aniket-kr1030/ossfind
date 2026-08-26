@@ -2,7 +2,7 @@ import { posix as path } from "node:path";
 import { ApiSurfaceSchema, type ApiSurface } from "../contracts/api-surface.js";
 import { defaultHttpClient, type HttpClient } from "../http/client.js";
 import { parsePyStub, type ParsedPyStub, type PyExport, type PyReExport } from "./py-stub-parser.js";
-import { parseZip } from "./zip-reader.js";
+import { openRemoteZip, parseZip, type ZipResult } from "./zip-reader.js";
 
 type ApiExport = ApiSurface["exports"][number];
 
@@ -33,11 +33,16 @@ interface OwnWheelSurface {
   truncated: boolean;
 }
 
+interface WheelArchive {
+  listEntryNames(): string[];
+  extractText(name: string): Promise<ZipResult<string>>;
+}
+
 const MAX_REEXPORT_DEPTH = 3;
-// The metadata check happens before downloading the wheel. This is deliberately
-// well below the ZIP reader's defensive archive limit: wheel fallback is only
-// intended for small, inspectable API roots.
-const MAX_WHEEL_BYTES = 3 * 1024 * 1024;
+// Range extraction does not download the whole wheel. This cap is deliberately
+// reserved for the exceptional non-Range fallback, where parseZip still needs
+// one bounded in-memory archive.
+const MAX_NON_RANGE_WHEEL_BYTES = 16 * 1024 * 1024;
 
 function isRecord(value: unknown): value is Record<string, unknown> {
   return typeof value === "object" && value !== null && !Array.isArray(value);
@@ -257,13 +262,8 @@ export class PyApiSurfaceExtractor {
       return undefined;
     }
 
-    const wheel = wheels.find((candidate) => candidate.size <= MAX_WHEEL_BYTES);
-    if (!wheel) {
-      notes.add(`Skipped PyPI wheels for ${packageName}: all exceed the ${MAX_WHEEL_BYTES} byte safety limit.`);
-      return undefined;
-    }
-
-    return wheel;
+    return [...wheels].sort((left, right) =>
+      left.size - right.size || left.filename.localeCompare(right.filename) || left.url.localeCompare(right.url))[0];
   }
 
   private async extractOwnWheelSurface(
@@ -275,13 +275,30 @@ export class PyApiSurfaceExtractor {
     const wheel = this.selectSmallWheel(document, packageName, notes);
     if (!wheel) return undefined;
 
-    const bytes = await this.requestBytes(wheel.url);
-    if (!bytes) {
-      notes.add(`Could not fetch the selected PyPI wheel for ${packageName}.`);
+    const remote = await openRemoteZip({ http: this.http, url: wheel.url });
+    if (remote.ok) {
+      const surface = await this.extractOwnWheelArchiveSurface(packageName, distribution, wheel, remote.value, notes);
+      notes.add(`Used HTTP byte ranges to inspect ${wheel.filename} (${remote.value.bytesFetched} bytes fetched).`);
+      return surface;
+    }
+
+    if (!remote.rangeUnsupported) {
+      notes.add(`Could not inspect ${wheel.filename} with HTTP byte ranges: ${remote.error}`);
       return undefined;
     }
-    if (bytes.byteLength > MAX_WHEEL_BYTES) {
-      notes.add(`Skipped PyPI wheel for ${packageName}: download exceeds the ${MAX_WHEEL_BYTES} byte safety limit.`);
+
+    if (wheel.size > MAX_NON_RANGE_WHEEL_BYTES) {
+      notes.add(`Skipped PyPI wheel for ${packageName}: its ${wheel.size} byte full-download fallback exceeds the ${MAX_NON_RANGE_WHEEL_BYTES} byte safety limit.`);
+      return undefined;
+    }
+
+    const bytes = await this.requestBytes(wheel.url);
+    if (!bytes) {
+      notes.add(`Could not fetch the selected PyPI wheel for ${packageName} using the non-Range fallback.`);
+      return undefined;
+    }
+    if (bytes.byteLength > MAX_NON_RANGE_WHEEL_BYTES) {
+      notes.add(`Skipped PyPI wheel for ${packageName}: download exceeds the ${MAX_NON_RANGE_WHEEL_BYTES} byte non-Range fallback safety limit.`);
       return undefined;
     }
 
@@ -291,7 +308,18 @@ export class PyApiSurfaceExtractor {
       return undefined;
     }
 
-    const entryNames = new Set(archive.value.listEntryNames());
+    notes.add(`Used bounded full-download fallback for ${wheel.filename} because the server did not honour HTTP Range requests.`);
+    return this.extractOwnWheelArchiveSurface(packageName, distribution, wheel, archive.value, notes);
+  }
+
+  private async extractOwnWheelArchiveSurface(
+    packageName: string,
+    distribution: string,
+    wheel: PyPiWheel,
+    archive: WheelArchive,
+    notes: Set<string>,
+  ): Promise<OwnWheelSurface | undefined> {
+    const entryNames = new Set(archive.listEntryNames());
     let bestSurface: (OwnWheelSurface & { fromSource: boolean; parserNotes?: string[] }) | undefined;
     let foundOwnTypes = false;
     for (const importPackage of this.generateOwnImportCandidates(packageName, distribution)) {
@@ -311,7 +339,7 @@ export class PyApiSurfaceExtractor {
         continue;
       }
 
-      const content = await archive.value.extractText(entryPath);
+      const content = await archive.extractText(entryPath);
       if (!content.ok) {
         notes.add(`Could not extract ${entryPath} from ${wheel.filename}: ${content.error}`);
         continue;

@@ -116,6 +116,57 @@ describe("PyApiSurfaceExtractor", () => {
     expect(attrs.exports.length).toBeGreaterThan(0);
     expect(attrs.exports).toContainEqual(expect.objectContaining({ name: "Attribute", kind: "class" }));
     expect(attrs.exports).toContainEqual(expect.objectContaining({ name: "attrib", kind: "function" }));
+    expect(attrs.notes.join(" ")).toMatch(/HTTP byte ranges/i);
+  });
+
+  it("prefers the smallest eligible wheel in PyPI metadata", async () => {
+    const fixture = createFixtureHttpClient();
+    const smallWheelUrl = "https://files.pythonhosted.org/packages/attrs-26.1.0-py3-none-any.whl";
+    const requestedWheelUrls: string[] = [];
+    const client: HttpClient = async (url, init) => {
+      if (url === "https://pypi.org/pypi/attrs/json") {
+        return {
+          ok: true,
+          status: 200,
+          json: async () => ({
+            info: { name: "attrs", version: "26.1.0" },
+            urls: [
+              {
+                filename: "attrs-large.whl",
+                url: "https://files.pythonhosted.org/packages/attrs-large.whl",
+                size: 4_000_000,
+                packagetype: "bdist_wheel",
+              },
+              {
+                filename: "attrs-26.1.0-py3-none-any.whl",
+                url: smallWheelUrl,
+                size: 67_548,
+                packagetype: "bdist_wheel",
+              },
+            ],
+          }),
+        };
+      }
+      if (url.startsWith("https://files.pythonhosted.org/")) requestedWheelUrls.push(url);
+      return fixture(url, init);
+    };
+
+    const attrs = await new PyApiSurfaceExtractor(client).extract("attrs");
+
+    expectValidSurface(attrs);
+    expect(attrs.typesAvailable).toBe("own");
+    expect([...new Set(requestedWheelUrls)]).toEqual([smallWheelUrl]);
+  });
+
+  it("uses the bounded full-download fallback only when a wheel server ignores Range", async () => {
+    const fixture = createFixtureHttpClient();
+    const ignoresRange: HttpClient = async (url) => fixture(url);
+
+    const attrs = await new PyApiSurfaceExtractor(ignoresRange).extract("attrs");
+
+    expectValidSurface(attrs);
+    expect(attrs.typesAvailable).toBe("own");
+    expect(attrs.notes.join(" ")).toMatch(/bounded full-download fallback/i);
   });
 
   it("fails closed when no own wheel can be extracted", async () => {

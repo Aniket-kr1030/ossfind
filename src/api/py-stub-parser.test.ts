@@ -214,4 +214,134 @@ def test_fn() -> None: ...  # trailing comment
       signature: "test_fn() -> None",
     });
   });
+
+  it("extracts public API names declared in __all__ from plain parenthesised imports (numpy-like)", () => {
+    const stub = `
+__all__ = [
+    "array",
+    "zeros",
+    "arange",
+    "asarray",
+    "ndarray",
+]
+
+from numpy._core.multiarray import (
+    array,
+    empty_like,
+    zeros,
+    arange,
+    asarray,
+)
+
+class ndarray: ...
+`;
+    const result = parsePyStub(stub);
+
+    // Public names in __all__ must be emitted
+    expect(result.exports).toContainEqual({
+      name: "array",
+      kind: "function",
+      signature: null,
+    });
+    expect(result.exports).toContainEqual({
+      name: "zeros",
+      kind: "function",
+      signature: null,
+    });
+    expect(result.exports).toContainEqual({
+      name: "arange",
+      kind: "function",
+      signature: null,
+    });
+    expect(result.exports).toContainEqual({
+      name: "asarray",
+      kind: "function",
+      signature: null,
+    });
+    expect(result.exports).toContainEqual({
+      name: "ndarray",
+      kind: "class",
+      signature: null,
+    });
+
+    // Plain import NOT in __all__ must NOT be emitted as an export
+    expect(result.exports.find((e) => e.name === "empty_like")).toBeUndefined();
+
+    // Notes must indicate unresolvable signatures for names defined in external modules
+    expect(result.notes).toBeDefined();
+    expect(result.notes?.some((n) => n.includes("array") && n.includes("numpy._core.multiarray"))).toBe(true);
+    expect(result.notes?.some((n) => n.includes("zeros") && n.includes("numpy._core.multiarray"))).toBe(true);
+  });
+
+  it("does not emit plain imports as exports when __all__ is absent", () => {
+    const stub = `
+from numpy._core.multiarray import (
+    array,
+    zeros,
+)
+
+def direct_func() -> None: ...
+`;
+    const result = parsePyStub(stub);
+
+    // When __all__ is absent, plain imports are internal and must NOT be emitted
+    expect(result.exports).toEqual([
+      {
+        name: "direct_func",
+        kind: "function",
+        signature: "direct_func() -> None",
+      },
+    ]);
+    expect(result.exports.find((e) => e.name === "array")).toBeUndefined();
+    expect(result.exports.find((e) => e.name === "zeros")).toBeUndefined();
+    expect(result.notes).toBeUndefined();
+  });
+
+  it("emits exports for __all__ names that are neither imported nor defined in the file", () => {
+    const stub = `
+__all__ = ["declared_only_fn", "DeclaredClass", "DECLARED_CONST"]
+`;
+    const result = parsePyStub(stub);
+
+    expect(result.exports).toEqual([
+      {
+        name: "declared_only_fn",
+        kind: "function",
+        signature: null,
+      },
+      {
+        name: "DeclaredClass",
+        kind: "class",
+        signature: null,
+      },
+      {
+        name: "DECLARED_CONST",
+        kind: "const",
+        signature: null,
+      },
+    ]);
+
+    expect(result.notes?.length).toBe(3);
+    expect(result.notes?.every((n) => n.includes("not defined or imported"))).toBe(true);
+  });
+
+  it("supports typed, annotated, tuple, and augmented __all__ definitions", () => {
+    const stub = `
+__all__: Final[list[str]] = [
+    'first_fn',
+    'SecondClass',
+]
+__all__ += ('third_fn',)
+__all__.extend(["fourth_fn"])
+
+from .helpers import first_fn, SecondClass, third_fn, fourth_fn
+`;
+    const result = parsePyStub(stub);
+
+    expect(result.exports).toContainEqual({ name: "first_fn", kind: "function", signature: null });
+    expect(result.exports).toContainEqual({ name: "SecondClass", kind: "class", signature: null });
+    expect(result.exports).toContainEqual({ name: "third_fn", kind: "function", signature: null });
+    expect(result.exports).toContainEqual({ name: "fourth_fn", kind: "function", signature: null });
+  });
 });
+
