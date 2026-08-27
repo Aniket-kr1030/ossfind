@@ -16,8 +16,8 @@ about five minutes.
 
 ```bash
 npm install
-npm run typecheck && npm test     # 90 tests, fully offline
-npm run gates                     # 7 safety gates, each proven able to fail
+npm run typecheck && npm test     # 387 tests, fully offline
+npm run gates                     # 12 safety gates, each proven able to fail
 ```
 
 Run the web app (offline demo mode, uses frozen fixtures):
@@ -99,7 +99,7 @@ Supplier APIs are free but rate-limited; review each supplier's terms before com
 |---|---|---|
 | **Discover** | `src/adapters/discovery.ts` | npm registry search |
 | **Enrich** | `src/adapters/enrichment.ts` | ecosyste.ms (license/repo), deps.dev + OpenSSF Scorecard (health), OSV (vulns) |
-| **Fit** | `src/fit/lexical.ts` | lexical relevance (embeddings-ready interface) |
+| **Fit** | `src/fit/embeddings.ts` · `src/fit/tfidf.ts` | local embedding model (live) / deterministic TF-IDF (tests), both with a keyword+coverage guard |
 | **Rank** ★ | `src/ranking/rank.ts` | pure, deterministic, explainable blend + verdict |
 
 The HTTP layer is injectable (`src/http/client.ts`), so every test replays frozen fixtures in
@@ -121,17 +121,30 @@ Every result carries a non-empty, human-readable `reasons[]` explaining the driv
 
 ## Quality gates (`npm run gates`)
 
-Seven executable gates, each mapped to the defect/decision that spawned it (see `PIPELINE_LOG.md`),
+Twelve executable gates, each mapped to the defect/decision that spawned it (see `PIPELINE_LOG.md`),
 each proven to **reject a known-bad input** (not just accept a good one):
 
 `G1` contract · `G2` determinism · `G3` critical-CVSS fact (v3.0/v3.1/v4) · `G4` license SPDX fact ·
-`G5` offline · `G6` version-relevance fact · `G7` evidence completeness.
+`G5` offline · `G6` version-relevance fact · `G7` evidence completeness · `G8` federation provenance ·
+`G9` Python project-context honesty · `G10` scaffold snippet integrity · `G11` Python stub structural
+honesty · `G12` recipe resolution honesty.
+
+Every gate after `G7` exists because an independent adversarial audit found a real bug that the
+then-green test suite missed.
 
 ## Audit trail
 
-- `AUDIT_REPORT.md` — independent adversarial audit that found 5 safety blockers (all fixed).
+Every component has been independently audited — each audit by an agent that did not write the code —
+and **every one found real bugs the green test suite had missed**. All are fixed and gated.
+
+- `AUDIT_REPORT.md` — the safety layer: 5 blockers (all fixed).
 - `REAUDIT_REPORT.md` — independent re-audit confirming all 5 closed.
-- `CACHE_AUDIT.md` — independent audit of the live cache (key-collision + stale-signal, both fixed).
+- `CACHE_AUDIT.md` — the live cache: key-collision + stale safety signal (both fixed).
+- `FEDERATION_AUDIT.md` — federation/GitHub/all-ecosystem: 2 structural holes (→ `G8`).
+- `AUDIT_AGENT_LAYER_A.md` — npm/PyPI manifest, compat, MCP, ZIP/range: false "compatible" blocker (→ `G9`).
+- `AUDIT_AGENT_LAYER_B.md` — scaffold + stub parser: **code injection** into generated snippets and
+  fabricated exports from docstrings (→ `G10`, `G11`).
+- `AUDIT_AGENT_LAYER_C.md` — recipes + typeshed: fail-open on supplier errors, false "ready" (→ `G12`).
 
 ## Status & limitations (MVP)
 
