@@ -23,8 +23,13 @@ npm run gates                     # 7 safety gates, each proven able to fail
 Run the web app (offline demo mode, uses frozen fixtures):
 
 ```bash
-OSSFIND_FIXTURES=1 npm run web    # http://localhost:8787
+OSSFIND_FIXTURES=1 npm run web    # http://127.0.0.1:8787
 ```
+
+By default, the web server binds exclusively to loopback (`127.0.0.1`).
+- `HOST` — bind host (default `127.0.0.1`). Non-loopback hosts (e.g. `HOST=0.0.0.0`) require `OSSFIND_WEB_TOKEN` to be set; starting wide-open without a token is refused.
+- `PORT` — server port (default `8787`).
+- `OSSFIND_WEB_TOKEN` — optional Bearer token requiring `Authorization: Bearer <token>` on `/api/*` endpoints.
 
 Run the MCP server (for AI agents):
 

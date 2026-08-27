@@ -33,6 +33,7 @@ describe("LibrariesIoDiscoverer", () => {
     const warn = vi.fn();
     const discoverer = new LibrariesIoDiscoverer(undefined, { warn });
 
+    expect(discoverer.isAvailable()).toBe(false);
     await expect(discoverer.discover("video editing")).resolves.toEqual([]);
     await expect(discoverer.discover("another query")).resolves.toEqual([]);
     expect(warn).toHaveBeenCalledTimes(1);
@@ -42,7 +43,9 @@ describe("LibrariesIoDiscoverer", () => {
     delete process.env.LIBRARIES_IO_API_KEY;
     process.env.LIBRARY_IO_API_KEY = "fixture";
 
-    await expect(new LibrariesIoDiscoverer(createFixtureHttpClient()).discover("video editing"))
+    const discoverer = new LibrariesIoDiscoverer(createFixtureHttpClient());
+    expect(discoverer.isAvailable()).toBe(true);
+    await expect(discoverer.discover("video editing"))
       .resolves.toContainEqual(expect.objectContaining({ id: "pypi:moviepy" }));
   });
 });

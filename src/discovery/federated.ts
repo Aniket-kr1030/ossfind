@@ -10,6 +10,35 @@ export interface FederatedSource {
   discoverer: Discoverer;
 }
 
+/** Structural readiness reported by one discovery source. */
+export interface DiscoverySourceAvailability {
+  name: string;
+  available: boolean;
+}
+
+/** Whether a discovery search had at least one source that could be run. */
+export interface DiscoveryAvailability {
+  available: boolean;
+  sources: DiscoverySourceAvailability[];
+}
+
+interface AvailabilityAwareDiscoverer extends Discoverer {
+  isAvailable(): boolean;
+}
+
+function isAvailabilityAware(discoverer: Discoverer): discoverer is AvailabilityAwareDiscoverer {
+  return typeof (discoverer as Partial<AvailabilityAwareDiscoverer>).isAvailable === "function";
+}
+
+function sourceAvailable(discoverer: Discoverer): boolean {
+  if (!isAvailabilityAware(discoverer)) return true;
+  try {
+    return discoverer.isAvailable();
+  } catch {
+    return false;
+  }
+}
+
 export interface FederatedDiscovererOptions {
   perSourceLimit?: number;
   totalLimit?: number;
@@ -54,6 +83,7 @@ export class FederatedDiscoverer implements Discoverer {
   private readonly warn: (message: string) => void;
   private readonly warnedSources = new Set<string>();
   private readonly provenance = new Map<string, Set<string>>();
+  private lastAvailability: DiscoveryAvailability;
 
   constructor(
     private readonly sources: FederatedSource[],
@@ -63,25 +93,54 @@ export class FederatedDiscoverer implements Discoverer {
     this.totalLimit = limit(options.totalLimit, DEFAULT_TOTAL_LIMIT);
     this.sourceTimeoutMs = limit(options.sourceTimeoutMs, DEFAULT_SOURCE_TIMEOUT_MS);
     this.warn = options.warn ?? console.warn;
+    this.lastAvailability = this.currentAvailability();
+  }
+
+  /**
+   * Reports source readiness independently of candidates, so callers never
+   * have to infer an empty search space from an empty candidate list.
+   */
+  availability(): DiscoveryAvailability {
+    return this.lastAvailability;
+  }
+
+  /** Lets a federation participate as an availability-aware source itself. */
+  isAvailable(): boolean {
+    return this.currentAvailability().available;
   }
 
   async discover(query: string): Promise<ComponentCandidate[]> {
-    const settled = await Promise.allSettled(this.sources.map((source) =>
+    const availability = this.currentAvailability();
+    this.lastAvailability = availability;
+    const runnable = this.sources
+      .map((source, index) => ({ source, index, available: availability.sources[index].available }))
+      .filter((entry) => entry.available);
+    const settled = await Promise.allSettled(runnable.map(({ source }) =>
       withinTimeout(Promise.resolve().then(() => source.discoverer.discover(query)), this.sourceTimeoutMs),
     ));
-    const candidatesBySource: ComponentCandidate[][] = [];
+    const candidatesBySource: ComponentCandidate[][] = this.sources.map(() => []);
 
-    settled.forEach((result, index) => {
-      const source = this.sources[index];
+    settled.forEach((result, runnableIndex) => {
+      const { source, index } = runnable[runnableIndex];
       if (result.status === "rejected") {
         this.warnUnavailable(source.name);
-        candidatesBySource.push([]);
         return;
       }
-      candidatesBySource.push(result.value.slice(0, this.perSourceLimit));
+      candidatesBySource[index] = result.value.slice(0, this.perSourceLimit);
     });
 
     return this.roundRobinDeduplicate(candidatesBySource);
+  }
+
+  private currentAvailability(): DiscoveryAvailability {
+    const sources = this.sources.map((source) => ({
+      name: source.name,
+      available: sourceAvailable(source.discoverer),
+    }));
+    return {
+      available: sources.some((source) => source.available),
+      sources,
+    };
   }
 
   private roundRobinDeduplicate(candidatesBySource: ComponentCandidate[][]): ComponentCandidate[] {

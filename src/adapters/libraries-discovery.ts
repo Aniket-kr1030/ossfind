@@ -92,6 +92,11 @@ export class LibrariesIoDiscoverer implements Discoverer {
     this.warn = options.warn ?? console.warn;
   }
 
+  /** True only when this optional API-backed source has credentials to run. */
+  isAvailable(): boolean {
+    return Boolean(this.apiKey);
+  }
+
   discover(query: string): Promise<ComponentCandidate[]> {
     const cached = this.cache.get(query);
     if (cached) return cached;

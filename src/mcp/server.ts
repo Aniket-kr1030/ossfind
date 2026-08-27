@@ -23,10 +23,16 @@ import {
   type ScoredComponent,
 } from "../contracts/index.js";
 import { searchComponents } from "../pipeline/orchestrator.js";
+import type { Discoverer } from "../pipeline/interfaces.js";
+import {
+  FederatedDiscoverer,
+  type DiscoveryAvailability,
+} from "../discovery/federated.js";
 import {
   buildPipeline,
   createPipelineHttpClient,
   type BuildPipelineOptions,
+  type SearchEcosystem,
 } from "./pipeline.js";
 
 export const CompactScoredComponentSchema = z.object({
@@ -48,6 +54,10 @@ export const SearchComponentsInputSchema = z.object({
 
 const SearchComponentsOutputSchema = z.object({
   results: z.array(z.union([ScoredComponentSchema, CompactScoredComponentSchema])),
+  availability: z.object({
+    available: z.boolean(),
+    sources: z.array(z.object({ name: z.string(), available: z.boolean() })),
+  }).optional(),
 });
 
 const ProjectContextInputSchema = z.object({
@@ -111,8 +121,46 @@ function errorResult(tool: string, error: unknown): CallToolResult {
   };
 }
 
-function summaryFor(results: ScoredComponent[]): string {
-  if (results.length === 0) return "No matching components found.";
+function discoveryAvailability(discoverer: Discoverer): DiscoveryAvailability | undefined {
+  return discoverer instanceof FederatedDiscoverer ? discoverer.availability() : undefined;
+}
+
+function pypiUnavailableSummary(availability: DiscoveryAvailability): string {
+  const unavailable = new Set(availability.sources
+    .filter((source) => !source.available)
+    .map((source) => source.name));
+  const missingIndex = unavailable.has("local-index");
+  const missingKey = unavailable.has("libraries.io");
+
+  if (missingIndex && missingKey) {
+    return "PyPI discovery is not configured: no local index was found and no libraries.io API key is set. Build one with `INDEX_MAX=50000 npm run index:build`, or set `LIBRARY_IO_API_KEY` in `.env.local`. No packages were searched.";
+  }
+  if (missingIndex) {
+    return "PyPI discovery is not configured: no local index was found. Build one with `INDEX_MAX=50000 npm run index:build`. No packages were searched.";
+  }
+  return "PyPI discovery is not configured: no libraries.io API key is set. Set `LIBRARY_IO_API_KEY` in `.env.local`. No packages were searched.";
+}
+
+function summaryFor(
+  results: ScoredComponent[],
+  ecosystem: SearchEcosystem,
+  availability: DiscoveryAvailability | undefined,
+): string {
+  if (results.length === 0) {
+    if (availability && !availability.available) {
+      if (ecosystem === "pypi") {
+        return pypiUnavailableSummary(availability);
+      }
+      return `${ecosystem} discovery is not configured. No packages were searched.`;
+    }
+
+    const unavailable = availability?.sources
+      .filter((source) => !source.available)
+      .map((source) => source.name) ?? [];
+    return unavailable.length > 0
+      ? `No matching components found. Discovery was unavailable for: ${unavailable.join(", ")}.`
+      : "No matching components found.";
+  }
   return results
     .slice(0, 3)
     .map((component) =>
@@ -211,13 +259,15 @@ export function createSearchComponentsHandler(
         fixtures: pipelineOptions.fixtures,
         projectLicense: parsed.projectLicense ?? pipelineOptions.projectLicense,
         ecosystem: parsed.ecosystem,
+        pypiIndexPath: pipelineOptions.pypiIndexPath,
       });
       const components = await searchComponents(parsed.query, pipeline, { limit: parsed.limit });
       const results = parsed.detail === "full" ? components : components.map(compactResult);
+      const availability = discoveryAvailability(pipeline.discoverer);
 
       return {
-        content: [{ type: "text", text: summaryFor(components) }],
-        structuredContent: { results },
+        content: [{ type: "text", text: summaryFor(components, parsed.ecosystem, availability) }],
+        structuredContent: { results, availability },
       };
     } catch (error) {
       return errorResult("search_components", error);

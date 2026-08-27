@@ -1,6 +1,6 @@
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
 import {
   ApiSurfaceSchema,
   CompatibilityReportSchema,
@@ -93,6 +93,69 @@ describe("search_components MCP tool", () => {
 
     expect(result.isError).not.toBe(true);
     expect(results.map((result) => ScoredComponentSchema.parse(result).id)).toContain("pypi:moviepy");
+  });
+
+  it("reports an unconfigured PyPI search without claiming that it found no matches", async () => {
+    vi.stubEnv("LIBRARIES_IO_API_KEY", "");
+    vi.stubEnv("LIBRARY_IO_API_KEY", "");
+    const handler = createSearchComponentsHandler({
+      pypiIndexPath: `/tmp/ossfind-mcp-missing-pypi-index-${process.pid}.db`,
+    });
+
+    try {
+      const result = await handler({ query: "http client", ecosystem: "pypi" });
+      const summary = result.content.find((content) => content.type === "text");
+
+      expect(result.isError).not.toBe(true);
+      expect(summary).toMatchObject({
+        type: "text",
+        text: "PyPI discovery is not configured: no local index was found and no libraries.io API key is set. Build one with `INDEX_MAX=50000 npm run index:build`, or set `LIBRARY_IO_API_KEY` in `.env.local`. No packages were searched.",
+      });
+      if (summary?.type === "text") expect(summary.text).not.toContain("No matching components found.");
+      expect(result.structuredContent).toMatchObject({
+        results: [],
+        availability: {
+          available: false,
+          sources: [
+            { name: "local-index", available: false },
+            { name: "libraries.io", available: false },
+          ],
+        },
+      });
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
+
+  it("keeps a searched-but-empty PyPI fixture result as a normal no-match response", async () => {
+    vi.stubEnv("OSSFIND_PYPI_DISCOVERY", "libraries");
+    try {
+      const handler = createSearchComponentsHandler({ fixtures: true });
+      const result = await handler({ query: "unfindable package phrase", ecosystem: "pypi" });
+      const summary = result.content.find((content) => content.type === "text");
+
+      expect(result.isError).not.toBe(true);
+      expect(summary).toMatchObject({ type: "text", text: "No matching components found." });
+      expect(result.structuredContent).toMatchObject({
+        results: [],
+        availability: { available: true },
+      });
+    } finally {
+      vi.unstubAllEnvs();
+    }
+  });
+
+  it("keeps npm no-match responses unchanged because npm discovery is available", async () => {
+    const handler = createSearchComponentsHandler({ fixtures: true });
+    const result = await handler({ query: "unfindable package phrase", ecosystem: "npm" });
+    const summary = result.content.find((content) => content.type === "text");
+
+    expect(result.isError).not.toBe(true);
+    expect(summary).toMatchObject({ type: "text", text: "No matching components found." });
+    expect(result.structuredContent).toMatchObject({
+      results: [],
+      availability: { available: true },
+    });
   });
 
   it("routes GitHub searches through the fixture pipeline in full detail", async () => {

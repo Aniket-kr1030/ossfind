@@ -80,13 +80,6 @@ function requestedPypiDiscoveryMode(): PypiDiscoveryMode {
   return mode === "index" || mode === "libraries" ? mode : "auto";
 }
 
-function librariesIoKeyAvailable(): boolean {
-  const environment = (globalThis as unknown as {
-    process?: { env?: Record<string, string | undefined> };
-  }).process?.env;
-  return Boolean(environment?.LIBRARIES_IO_API_KEY ?? environment?.LIBRARY_IO_API_KEY);
-}
-
 let fixturePypiIndexPath: string | undefined;
 
 /**
@@ -108,18 +101,15 @@ function fixtureIndexPath(): string {
 function pypiDiscoverer(http: HttpClient, fixtures: boolean, indexPath?: string) {
   const local = new LocalIndexDiscoverer("pypi", fixtures ? fixtureIndexPath() : indexPath);
   const mode = requestedPypiDiscoveryMode();
-  if (mode === "index") return local;
-
   const libraries = new LibrariesIoDiscoverer(http, fixtures ? { apiKey: "fixture" } : {});
-  if (mode === "libraries") return libraries;
-
-  const sources: FederatedSource[] = [];
-  if (local.isAvailable()) sources.push({ name: "local-index", discoverer: local });
-  if (fixtures || librariesIoKeyAvailable()) {
-    sources.push({ name: "libraries.io", discoverer: libraries });
-  }
-
-  if (sources.length === 1) return sources[0].discoverer;
+  const sources: FederatedSource[] = mode === "index"
+    ? [{ name: "local-index", discoverer: local }]
+    : mode === "libraries"
+      ? [{ name: "libraries.io", discoverer: libraries }]
+      : [
+          { name: "local-index", discoverer: local },
+          { name: "libraries.io", discoverer: libraries },
+        ];
   return new FederatedDiscoverer(sources);
 }
 

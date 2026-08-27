@@ -56,4 +56,34 @@ describe("FederatedDiscoverer", () => {
     expect(warn).toHaveBeenCalledWith("[ossfind] discovery source unavailable: failing-source.");
     expect(warn.mock.calls.flat().join(" ")).not.toContain("secret");
   });
+
+  it("reports and skips structurally unavailable sources without treating them as empty searches", async () => {
+    const unavailable = {
+      isAvailable: () => false,
+      discover: vi.fn().mockResolvedValue([candidate("should-not-run")]),
+    };
+    const federation = new FederatedDiscoverer([{ name: "optional-source", discoverer: unavailable }]);
+
+    await expect(federation.discover("nothing")).resolves.toEqual([]);
+    expect(unavailable.discover).not.toHaveBeenCalled();
+    expect(federation.availability()).toEqual({
+      available: false,
+      sources: [{ name: "optional-source", available: false }],
+    });
+  });
+
+  it("keeps a genuine empty result distinct when a source was available", async () => {
+    const available = {
+      isAvailable: () => true,
+      discover: vi.fn().mockResolvedValue([]),
+    };
+    const federation = new FederatedDiscoverer([{ name: "searched-source", discoverer: available }]);
+
+    await expect(federation.discover("nothing")).resolves.toEqual([]);
+    expect(available.discover).toHaveBeenCalledWith("nothing");
+    expect(federation.availability()).toEqual({
+      available: true,
+      sources: [{ name: "searched-source", available: true }],
+    });
+  });
 });

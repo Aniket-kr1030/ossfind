@@ -1,6 +1,7 @@
 import * as http from "node:http";
 import * as fs from "node:fs/promises";
 import * as path from "node:path";
+import * as crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { buildPipeline } from "../mcp/pipeline.js";
 import { searchComponents } from "../pipeline/orchestrator.js";
@@ -9,12 +10,99 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const PUBLIC_DIR = path.resolve(__dirname, "../../public");
 
-export function createWebServer(): http.Server {
+export interface WebServerOptions {
+  token?: string;
+}
+
+export interface StartServerOptions {
+  port?: number;
+  host?: string;
+  token?: string;
+}
+
+/**
+ * Checks whether a given host string resolves to a local loopback interface.
+ */
+export function isLoopbackHost(host: string): boolean {
+  if (!host) return false;
+  const normalized = host.trim().toLowerCase().replace(/^\[|\]$/g, "");
+  if (normalized === "localhost" || normalized === "::1") {
+    return true;
+  }
+  const parts = normalized.split(".");
+  if (parts.length === 4 && parts[0] === "127") {
+    return parts.every((p) => {
+      if (!/^\d+$/.test(p)) return false;
+      const num = parseInt(p, 10);
+      return num >= 0 && num <= 255;
+    });
+  }
+  return false;
+}
+
+/**
+ * Timing-safe string comparison to prevent timing attacks on authentication tokens.
+ */
+export function timingSafeEqualStr(a: string, b: string): boolean {
+  const bufA = Buffer.from(a, "utf-8");
+  const bufB = Buffer.from(b, "utf-8");
+  if (bufA.length !== bufB.length) {
+    return false;
+  }
+  return crypto.timingSafeEqual(bufA, bufB);
+}
+
+/**
+ * Verifies the Bearer token in the Authorization header against the expected token.
+ */
+export function verifyBearerToken(authHeader: string | undefined, expectedToken: string): boolean {
+  if (!authHeader || !expectedToken) return false;
+  const match = /^Bearer\s+(.+)$/i.exec(authHeader.trim());
+  if (!match) return false;
+  const providedToken = match[1].trim();
+  return timingSafeEqualStr(providedToken, expectedToken);
+}
+
+/**
+ * Resolves and validates the server host, port, and token configuration.
+ * Refuses to bind to a non-loopback host unless an authentication token is provided.
+ */
+export function resolveServerConfig(options: StartServerOptions = {}): {
+  port: number;
+  host: string;
+  token?: string;
+} {
+  const port = options.port ?? (process.env.PORT ? parseInt(process.env.PORT, 10) : 8787);
+  const host = options.host ?? (process.env.HOST || "127.0.0.1");
+  const token = options.token !== undefined ? options.token : process.env.OSSFIND_WEB_TOKEN;
+
+  if (!isLoopbackHost(host) && !token) {
+    throw new Error(
+      `Refusing to bind to non-loopback host "${host}" without authentication. ` +
+      `Set OSSFIND_WEB_TOKEN=<secret> to enable bearer-token auth, or bind to loopback (HOST=127.0.0.1).`
+    );
+  }
+
+  return { port, host, token: token || undefined };
+}
+
+export function createWebServer(options: WebServerOptions = {}): http.Server {
+  const token = options.token !== undefined ? options.token : process.env.OSSFIND_WEB_TOKEN;
+
   return http.createServer(async (req, res) => {
     try {
       const host = req.headers.host || "localhost";
       const url = new URL(req.url || "", `http://${host}`);
       const pathname = url.pathname;
+
+      // Optional bearer-token authentication for /api/* routes
+      if (pathname.startsWith("/api/")) {
+        if (token && !verifyBearerToken(req.headers.authorization, token)) {
+          res.writeHead(401, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Unauthorized" }));
+          return;
+        }
+      }
 
       // Handle JSON API
       if (pathname === "/api/search") {
@@ -119,15 +207,26 @@ export function createWebServer(): http.Server {
   });
 }
 
+export function startWebServer(options: StartServerOptions = {}): http.Server {
+  const { port, host, token } = resolveServerConfig(options);
+  const server = createWebServer({ token });
+  server.listen(port, host, () => {
+    const authStatus = token ? "enabled" : "disabled";
+    console.log(`Server listening at http://${host}:${port} (auth: ${authStatus})`);
+  });
+  return server;
+}
+
 // Start the server if this file is run directly
 const runtimeProcess = (globalThis as unknown as {
   process?: { argv: string[]; exitCode?: number };
 }).process;
 
 if (runtimeProcess?.argv[1] && import.meta.url === new URL(`file://${runtimeProcess.argv[1]}`).href) {
-  const PORT = process.env.PORT ? parseInt(process.env.PORT, 10) : 8787;
-  const server = createWebServer();
-  server.listen(PORT, () => {
-    console.log(`Server listening at http://localhost:${PORT}`);
-  });
+  try {
+    startWebServer();
+  } catch (err: any) {
+    console.error(err?.message || err);
+    process.exit(1);
+  }
 }

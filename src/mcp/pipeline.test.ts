@@ -1,8 +1,6 @@
 import { describe, expect, it, vi } from "vitest";
-import { LibrariesIoDiscoverer } from "../adapters/libraries-discovery.js";
 import { GitHubDiscoverer } from "../adapters/github-discovery.js";
 import { HuggingFaceDiscoverer } from "../adapters/huggingface-discovery.js";
-import { LocalIndexDiscoverer } from "../adapters/local-index-discovery.js";
 import { HttpDiscoverer } from "../adapters/discovery.js";
 import type { ComponentCandidate } from "../contracts/index.js";
 import { FederatedDiscoverer } from "../discovery/federated.js";
@@ -99,7 +97,12 @@ describe("buildPipeline fit scorer selection", () => {
     vi.stubEnv("OSSFIND_PYPI_DISCOVERY", "libraries");
 
     try {
-      expect(buildPipeline({ ecosystem: "pypi" }).discoverer).toBeInstanceOf(LibrariesIoDiscoverer);
+      const discoverer = buildPipeline({ ecosystem: "pypi" }).discoverer;
+      expect(discoverer).toBeInstanceOf(FederatedDiscoverer);
+      expect((discoverer as FederatedDiscoverer).availability()).toEqual({
+        available: false,
+        sources: [{ name: "libraries.io", available: false }],
+      });
     } finally {
       vi.unstubAllEnvs();
     }
@@ -109,10 +112,15 @@ describe("buildPipeline fit scorer selection", () => {
     vi.stubEnv("OSSFIND_PYPI_DISCOVERY", "index");
 
     try {
-      expect(buildPipeline({
+      const discoverer = buildPipeline({
         ecosystem: "pypi",
         pypiIndexPath: "/tmp/ossfind-no-such-index-directory/pypi.db",
-      }).discoverer).toBeInstanceOf(LocalIndexDiscoverer);
+      }).discoverer;
+      expect(discoverer).toBeInstanceOf(FederatedDiscoverer);
+      expect((discoverer as FederatedDiscoverer).availability()).toEqual({
+        available: false,
+        sources: [{ name: "local-index", available: false }],
+      });
     } finally {
       vi.unstubAllEnvs();
     }
@@ -123,10 +131,18 @@ describe("buildPipeline fit scorer selection", () => {
     vi.stubEnv("LIBRARIES_IO_API_KEY", "fixture");
 
     try {
-      expect(buildPipeline({
+      const discoverer = buildPipeline({
         ecosystem: "pypi",
         pypiIndexPath: "/tmp/ossfind-no-such-index-directory/pypi.db",
-      }).discoverer).toBeInstanceOf(LibrariesIoDiscoverer);
+      }).discoverer;
+      expect(discoverer).toBeInstanceOf(FederatedDiscoverer);
+      expect((discoverer as FederatedDiscoverer).availability()).toEqual({
+        available: true,
+        sources: [
+          { name: "local-index", available: false },
+          { name: "libraries.io", available: true },
+        ],
+      });
     } finally {
       vi.unstubAllEnvs();
     }
