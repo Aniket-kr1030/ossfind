@@ -57,5 +57,13 @@
     "zod": "^3.25.0"
   },
   "license": "MIT",
-  "author": "Aniket"
+  "author": "Aniket",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Aniket-kr1030/ossfind.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Aniket-kr1030/ossfind/issues"
+  },
+  "homepage": "https://github.com/Aniket-kr1030/ossfind#readme"
 }
