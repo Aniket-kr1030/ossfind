@@ -16,8 +16,8 @@ about five minutes.
 
 ```bash
 npm install
-npm run typecheck && npm test     # 387 tests, fully offline
-npm run gates                     # 12 safety gates, each proven able to fail
+npm run typecheck && npm test     # 418 tests, fully offline
+npm run gates                     # 13 safety gates, each proven able to fail
 ```
 
 Run the web app (offline demo mode, uses frozen fixtures):
@@ -91,6 +91,87 @@ stricter vulnerability-data freshness is required.
 
 Supplier APIs are free but rate-limited; review each supplier's terms before commercial use.
 
+## Telemetry & Usage Metrics
+
+ossfind includes an in-memory, privacy-preserving usage collector that tracks aggregate operational health and supplier rate limits.
+
+### Local Inspection (Read-Only)
+
+You can inspect usage metrics at any time without sending data anywhere:
+- **MCP Tool:** Call `usage_stats` to receive the metrics snapshot and a formatted summary of top suppliers, cache hit rates, rate-limit headroom, and latency percentiles (p50/p95).
+- **Web API:** Send `GET /api/usage` to retrieve the JSON snapshot. When `OSSFIND_WEB_TOKEN` is set, `/api/usage` requires the same `Authorization: Bearer <token>` header as `/api/search`.
+
+### What Is Collected
+- **Aggregate Supplier Counters:** Total requests, cache hits, cache misses, HTTP status class counts (`2xx`, `4xx`, `5xx`), 429 counts, error counts, and latest rate-limit headroom (`remaining`, `limit`, `reset`, `retryAfter`) per approved supplier host.
+- **Search Operations:** Total searches served, ecosystem distribution (`npm`, `pypi`, `github`, `huggingface`), verdict distribution (`ship`, `caution`, `avoid`), result count summary (min, max, mean), error counts, and latency percentiles (p50, p95).
+- **Anonymous Install ID:** A random UUID v4 generated once and stored locally in `.cache/telemetry/install-id`.
+- **Metadata:** Tool version (`0.1.0`) and ISO 8601 timestamp.
+
+### What Is Explicitly NOT Collected
+- **NO** raw query strings or search phrases.
+- **NO** package names, repository names, or model identifiers.
+- **NO** file paths, local paths, or directory names.
+- **NO** auth tokens, API keys, credentials, or environment secrets.
+- **NO** full URLs, request payloads, or response bodies.
+- **NO** IP addresses, hostnames, usernames, MAC addresses, or hardware fingerprints.
+
+### Opt-In Remote Telemetry (Client-Side)
+
+Remote telemetry is **off by default**. Absolutely no network calls are made unless **both** switches are explicitly set:
+
+```bash
+# Enable remote telemetry by setting BOTH switches:
+export OSSFIND_TELEMETRY=1
+export OSSFIND_TELEMETRY_URL="https://your-telemetry-collector.example.com/v1/metrics"
+```
+
+- **Two-switch requirement:** If either `OSSFIND_TELEMETRY=1` or `OSSFIND_TELEMETRY_URL` is omitted, telemetry is completely inert.
+- **HTTPS required:** Ingestion URLs must use `https://`; unencrypted `http://` URLs are rejected.
+- **Batched & Non-blocking:** Telemetry flushes asynchronously in the background and never blocks search or user requests.
+- **Fail-open & silent:** Any network failure, DNS error, timeout, or HTTP error is swallowed silently. It will never break, slow, or alter search results.
+- **Inert in fixture/test mode:** Telemetry never executes when `OSSFIND_FIXTURES=1` or during automated test runs.
+- **To disable:** Unset `OSSFIND_TELEMETRY` (or set `OSSFIND_TELEMETRY=0`) or unset `OSSFIND_TELEMETRY_URL`.
+
+### Telemetry Payload Shape
+
+```json
+{
+  "installId": "c3e98db2-5b94-4f27-9c98-1092e4ab78ef",
+  "version": "0.1.0",
+  "timestamp": "2026-08-30T06:30:00.000Z",
+  "snapshot": {
+    "suppliers": {
+      "registry.npmjs.org": {
+        "requests": 14,
+        "cacheHits": 12,
+        "cacheMisses": 2,
+        "statusClasses": { "1xx": 0, "2xx": 2, "3xx": 0, "4xx": 0, "5xx": 0 },
+        "rateLimited429": 0,
+        "errors": 0,
+        "rateLimit": { "remaining": 980, "limit": 1000 }
+      },
+      "api.github.com": {
+        "requests": 4,
+        "cacheHits": 3,
+        "cacheMisses": 1,
+        "statusClasses": { "1xx": 0, "2xx": 1, "3xx": 0, "4xx": 0, "5xx": 0 },
+        "rateLimited429": 0,
+        "errors": 0,
+        "rateLimit": { "remaining": 58, "limit": 60, "reset": 1725000000 }
+      }
+    },
+    "operations": {
+      "searchesServed": 3,
+      "ecosystems": { "npm": 2, "pypi": 1, "github": 0, "huggingface": 0 },
+      "verdicts": { "ship": 2, "caution": 1, "avoid": 0 },
+      "results": { "count": 3, "total": 24, "min": 5, "max": 10, "mean": 8.0 },
+      "errors": 0,
+      "latency": { "count": 3, "p50": 18, "p95": 42, "reservoirSize": 3 }
+    }
+  }
+}
+```
+
 ## How it works
 
 `discover → enrich → fit → rank`, wired in `src/pipeline/orchestrator.ts`:
@@ -121,13 +202,13 @@ Every result carries a non-empty, human-readable `reasons[]` explaining the driv
 
 ## Quality gates (`npm run gates`)
 
-Twelve executable gates, each mapped to the defect/decision that spawned it (see `PIPELINE_LOG.md`),
+Thirteen executable gates, each mapped to the defect/decision that spawned it (see `PIPELINE_LOG.md`),
 each proven to **reject a known-bad input** (not just accept a good one):
 
 `G1` contract · `G2` determinism · `G3` critical-CVSS fact (v3.0/v3.1/v4) · `G4` license SPDX fact ·
 `G5` offline · `G6` version-relevance fact · `G7` evidence completeness · `G8` federation provenance ·
 `G9` Python project-context honesty · `G10` scaffold snippet integrity · `G11` Python stub structural
-honesty · `G12` recipe resolution honesty.
+honesty · `G12` recipe resolution honesty · `G13` adoption cannot override safety.
 
 Every gate after `G7` exists because an independent adversarial audit found a real bug that the
 then-green test suite missed.

@@ -34,6 +34,11 @@ import {
   type BuildPipelineOptions,
   type SearchEcosystem,
 } from "./pipeline.js";
+import { UsageCollector, type UsageSnapshot } from "../telemetry/collector.js";
+import {
+  TelemetryEmitter,
+  formatUsageSummary,
+} from "../telemetry/emitter.js";
 
 export const CompactScoredComponentSchema = z.object({
   id: ScoredComponentSchema.shape.id,
@@ -107,10 +112,55 @@ export const PlanIntegrationOutputSchema = z.object({
   compatibility: CompatibilityReportSchema.optional(),
 });
 
+export const UsageStatsInputSchema = z.object({}).strict();
+
+export const RateLimitHeadroomSchema = z.object({
+  remaining: z.number().optional(),
+  limit: z.number().optional(),
+  reset: z.number().optional(),
+  retryAfter: z.number().optional(),
+});
+
+export const SupplierUsageSchema = z.object({
+  requests: z.number().int().nonnegative(),
+  cacheHits: z.number().int().nonnegative(),
+  cacheMisses: z.number().int().nonnegative(),
+  statusClasses: z.record(z.enum(["1xx", "2xx", "3xx", "4xx", "5xx"]), z.number().int().nonnegative()),
+  rateLimited429: z.number().int().nonnegative(),
+  errors: z.number().int().nonnegative(),
+  rateLimit: RateLimitHeadroomSchema,
+});
+
+export const UsageSnapshotSchema = z.object({
+  suppliers: z.record(z.string(), SupplierUsageSchema),
+  operations: z.object({
+    searchesServed: z.number().int().nonnegative(),
+    ecosystems: z.record(z.enum(["npm", "pypi", "github", "huggingface"]), z.number().int().nonnegative()),
+    verdicts: z.record(z.enum(["ship", "caution", "avoid"]), z.number().int().nonnegative()),
+    results: z.object({
+      count: z.number().int().nonnegative(),
+      total: z.number().int().nonnegative(),
+      min: z.number().int().nonnegative(),
+      max: z.number().int().nonnegative(),
+      mean: z.number().nonnegative(),
+    }),
+    errors: z.number().int().nonnegative(),
+    latency: z.object({
+      count: z.number().int().nonnegative(),
+      p50: z.number().nonnegative(),
+      p95: z.number().nonnegative(),
+      reservoirSize: z.number().int().nonnegative(),
+    }),
+  }),
+});
+
+export const UsageStatsOutputSchema = UsageSnapshotSchema;
+
 export type SearchComponentsInput = z.infer<typeof SearchComponentsInputSchema>;
 export type InspectComponentInput = z.infer<typeof InspectComponentInputSchema>;
 export type CheckCompatibilityInput = z.infer<typeof CheckCompatibilityInputSchema>;
 export type PlanIntegrationInput = z.infer<typeof PlanIntegrationInputSchema>;
+export type UsageStatsInput = z.infer<typeof UsageStatsInputSchema>;
 
 function errorResult(tool: string, error: unknown): CallToolResult {
   const message = error instanceof Error ? error.message : `Unable to ${tool.replace(/_/g, " ")}.`;
@@ -245,12 +295,17 @@ async function compatibilityFor(
   return checkCompatibility(manifest, project, enrichment.license.spdxId ?? undefined);
 }
 
+export const defaultUsageCollector = new UsageCollector();
+export const defaultTelemetryEmitter = new TelemetryEmitter();
+
 /**
  * Create an independently testable MCP tool callback. Errors, including invalid
  * direct calls in unit tests, are represented as MCP tool error results.
  */
 export function createSearchComponentsHandler(
   pipelineOptions: BuildPipelineOptions = {},
+  collector: UsageCollector = defaultUsageCollector,
+  emitter?: TelemetryEmitter,
 ): (input: unknown) => Promise<CallToolResult> {
   return async (input: unknown): Promise<CallToolResult> => {
     try {
@@ -261,7 +316,11 @@ export function createSearchComponentsHandler(
         ecosystem: parsed.ecosystem,
         pypiIndexPath: pipelineOptions.pypiIndexPath,
       });
-      const components = await searchComponents(parsed.query, pipeline, { limit: parsed.limit });
+      const components = await searchComponents(parsed.query, pipeline, {
+        limit: parsed.limit,
+        collector,
+      });
+      emitter?.emitAsync(collector);
       const results = parsed.detail === "full" ? components : components.map(compactResult);
       const availability = discoveryAvailability(pipeline.discoverer);
 
@@ -378,14 +437,45 @@ export function createPlanIntegrationHandler(
   };
 }
 
+/** Return in-memory aggregate usage stats and a human-readable text summary. */
+export function createUsageStatsHandler(
+  collector: UsageCollector = defaultUsageCollector,
+): (input: unknown) => Promise<CallToolResult> {
+  return async (input: unknown): Promise<CallToolResult> => {
+    try {
+      const parsedInput = input === undefined ? {} : input;
+      UsageStatsInputSchema.parse(parsedInput);
+      const snapshot = collector.snapshot();
+
+      return {
+        content: [{
+          type: "text",
+          text: formatUsageSummary(snapshot),
+        }],
+        structuredContent: snapshot as unknown as Record<string, unknown>,
+      };
+    } catch (error) {
+      return errorResult("usage_stats", error);
+    }
+  };
+}
+
+export interface McpServerOptions extends BuildPipelineOptions {
+  collector?: UsageCollector;
+  telemetryEmitter?: TelemetryEmitter;
+}
+
 /** The production callbacks registered by the stdio server. */
 export const searchComponentsToolHandler = createSearchComponentsHandler();
 export const inspectComponentToolHandler = createInspectComponentHandler();
 export const checkCompatibilityToolHandler = createCheckCompatibilityHandler();
 export const planIntegrationToolHandler = createPlanIntegrationHandler();
+export const usageStatsToolHandler = createUsageStatsHandler();
 
-/** Build an MCP server with agent-oriented search, inspection, compatibility, and planning tools. */
-export function createMcpServer(pipelineOptions: BuildPipelineOptions = {}): McpServer {
+/** Build an MCP server with agent-oriented search, inspection, compatibility, planning, and usage stats tools. */
+export function createMcpServer(options: McpServerOptions = {}): McpServer {
+  const collector = options.collector ?? defaultUsageCollector;
+  const emitter = options.telemetryEmitter ?? defaultTelemetryEmitter;
   const server = new McpServer({ name: "ossfind", version: "0.1.0" });
   server.registerTool(
     "search_components",
@@ -395,7 +485,7 @@ export function createMcpServer(pipelineOptions: BuildPipelineOptions = {}): Mcp
       inputSchema: SearchComponentsInputSchema,
       outputSchema: SearchComponentsOutputSchema,
     },
-    createSearchComponentsHandler(pipelineOptions),
+    createSearchComponentsHandler(options, collector, emitter),
   );
   server.registerTool(
     "inspect_component",
@@ -405,7 +495,7 @@ export function createMcpServer(pipelineOptions: BuildPipelineOptions = {}): Mcp
       inputSchema: InspectComponentInputSchema,
       outputSchema: InspectComponentOutputSchema,
     },
-    createInspectComponentHandler(pipelineOptions),
+    createInspectComponentHandler(options),
   );
   server.registerTool(
     "check_compatibility",
@@ -415,7 +505,7 @@ export function createMcpServer(pipelineOptions: BuildPipelineOptions = {}): Mcp
       inputSchema: CheckCompatibilityInputSchema,
       outputSchema: CompatibilityReportSchema,
     },
-    createCheckCompatibilityHandler(pipelineOptions),
+    createCheckCompatibilityHandler(options),
   );
   server.registerTool(
     "plan_integration",
@@ -425,7 +515,17 @@ export function createMcpServer(pipelineOptions: BuildPipelineOptions = {}): Mcp
       inputSchema: PlanIntegrationInputSchema,
       outputSchema: PlanIntegrationOutputSchema,
     },
-    createPlanIntegrationHandler(pipelineOptions),
+    createPlanIntegrationHandler(options),
+  );
+  server.registerTool(
+    "usage_stats",
+    {
+      title: "View usage and operational statistics",
+      description: "Return in-memory aggregate usage metrics including supplier request counters, rate-limit headroom, cache hit rates, verdict distributions, and latency percentiles.",
+      inputSchema: UsageStatsInputSchema,
+      outputSchema: UsageStatsOutputSchema,
+    },
+    createUsageStatsHandler(collector),
   );
   return server;
 }

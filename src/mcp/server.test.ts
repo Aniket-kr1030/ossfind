@@ -12,11 +12,14 @@ import {
   CompactScoredComponentSchema,
   InspectComponentOutputSchema,
   PlanIntegrationOutputSchema,
+  UsageStatsOutputSchema,
   createCheckCompatibilityHandler,
   createInspectComponentHandler,
   createPlanIntegrationHandler,
   createSearchComponentsHandler,
+  createUsageStatsHandler,
 } from "./server.js";
+import { UsageCollector } from "../telemetry/collector.js";
 
 function structuredResults(result: { structuredContent?: Record<string, unknown> }): unknown[] {
   const results = result.structuredContent?.results;
@@ -303,6 +306,8 @@ describe("agent-ergonomic MCP integration tools", () => {
       createInspectComponentHandler({ fixtures: true })({ component: "" }),
       createCheckCompatibilityHandler({ fixtures: true })({ component: "", project: {} }),
       createPlanIntegrationHandler({ fixtures: true })({ component: "" }),
+      createUsageStatsHandler()({ unexpectedField: "not allowed" }),
+      createUsageStatsHandler()("not an object"),
     ];
 
     for (const result of await Promise.all(cases)) {
@@ -312,6 +317,29 @@ describe("agent-ergonomic MCP integration tools", () => {
         structuredContent: { error: { message: expect.any(String) } },
       });
     }
+  });
+
+  it("returns a valid snapshot and human summary from usage_stats", async () => {
+    const collector = new UsageCollector();
+    collector.recordHttpResponse("https://registry.npmjs.org/axios", "hit", {
+      ok: true,
+      status: 200,
+      json: async () => ({}),
+    });
+    const handler = createUsageStatsHandler(collector);
+    const result = await handler({});
+
+    expect(result.isError).not.toBe(true);
+    expect(result.content[0]).toMatchObject({ type: "text" });
+    if (result.content[0].type === "text") {
+      expect(result.content[0].text).toContain("Usage Statistics:");
+      expect(result.content[0].text).toContain("registry.npmjs.org");
+    }
+    const parsedSnapshot = UsageStatsOutputSchema.parse(result.structuredContent);
+    expect(parsedSnapshot.suppliers["registry.npmjs.org"]).toMatchObject({
+      requests: 1,
+      cacheHits: 1,
+    });
   });
 
   it("returns a clear structured error for ecosystems without package API surfaces", async () => {
@@ -332,7 +360,7 @@ describe("agent-ergonomic MCP integration tools", () => {
 });
 
 describe("MCP stdio server", () => {
-  it("lists and calls all four tools over real fixture-backed stdio", async () => {
+  it("lists and calls all five tools over real fixture-backed stdio", async () => {
     const transport = new StdioClientTransport({
       command: process.execPath,
       args: ["--import", "tsx", "src/mcp/server.ts"],
@@ -350,6 +378,7 @@ describe("MCP stdio server", () => {
         "inspect_component",
         "check_compatibility",
         "plan_integration",
+        "usage_stats",
       ]));
 
       const calls = [
@@ -357,6 +386,7 @@ describe("MCP stdio server", () => {
         { name: "inspect_component", arguments: { component: "npm:axios", limit: 1 } },
         { name: "check_compatibility", arguments: { component: "npm:axios", project: { license: "MIT" } } },
         { name: "plan_integration", arguments: { component: "npm:axios", preferExport: "formToJSON" } },
+        { name: "usage_stats", arguments: {} },
       ] as const;
       for (const call of calls) {
         const result = await client.callTool(call);

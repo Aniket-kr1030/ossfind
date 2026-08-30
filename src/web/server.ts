@@ -5,6 +5,8 @@ import * as crypto from "node:crypto";
 import { fileURLToPath } from "node:url";
 import { buildPipeline } from "../mcp/pipeline.js";
 import { searchComponents } from "../pipeline/orchestrator.js";
+import { UsageCollector } from "../telemetry/collector.js";
+import { TelemetryEmitter } from "../telemetry/emitter.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -12,12 +14,16 @@ const PUBLIC_DIR = path.resolve(__dirname, "../../public");
 
 export interface WebServerOptions {
   token?: string;
+  collector?: UsageCollector;
+  telemetryEmitter?: TelemetryEmitter;
 }
 
 export interface StartServerOptions {
   port?: number;
   host?: string;
   token?: string;
+  collector?: UsageCollector;
+  telemetryEmitter?: TelemetryEmitter;
 }
 
 /**
@@ -88,6 +94,8 @@ export function resolveServerConfig(options: StartServerOptions = {}): {
 
 export function createWebServer(options: WebServerOptions = {}): http.Server {
   const token = options.token !== undefined ? options.token : process.env.OSSFIND_WEB_TOKEN;
+  const collector = options.collector ?? new UsageCollector();
+  const emitter = options.telemetryEmitter ?? new TelemetryEmitter();
 
   return http.createServer(async (req, res) => {
     try {
@@ -104,7 +112,25 @@ export function createWebServer(options: WebServerOptions = {}): http.Server {
         }
       }
 
-      // Handle JSON API
+      // Handle JSON API: /api/usage
+      if (pathname === "/api/usage") {
+        if (req.method !== "GET" && req.method !== "HEAD") {
+          res.writeHead(405, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Method Not Allowed" }));
+          return;
+        }
+
+        const snapshot = collector.snapshot();
+        res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
+        if (req.method === "HEAD") {
+          res.end();
+        } else {
+          res.end(JSON.stringify(snapshot));
+        }
+        return;
+      }
+
+      // Handle JSON API: /api/search
       if (pathname === "/api/search") {
         if (req.method !== "GET") {
           res.writeHead(405, { "Content-Type": "application/json" });
@@ -140,7 +166,8 @@ export function createWebServer(options: WebServerOptions = {}): http.Server {
             projectLicense,
             ecosystem,
           });
-          const results = await searchComponents(q, pipeline, { limit });
+          const results = await searchComponents(q, pipeline, { limit, collector });
+          emitter.emitAsync(collector);
 
           res.writeHead(200, { "Content-Type": "application/json; charset=utf-8" });
           res.end(JSON.stringify({ query: q, results }));
@@ -209,7 +236,11 @@ export function createWebServer(options: WebServerOptions = {}): http.Server {
 
 export function startWebServer(options: StartServerOptions = {}): http.Server {
   const { port, host, token } = resolveServerConfig(options);
-  const server = createWebServer({ token });
+  const server = createWebServer({
+    token,
+    collector: options.collector,
+    telemetryEmitter: options.telemetryEmitter,
+  });
   server.listen(port, host, () => {
     const authStatus = token ? "enabled" : "disabled";
     console.log(`Server listening at http://${host}:${port} (auth: ${authStatus})`);

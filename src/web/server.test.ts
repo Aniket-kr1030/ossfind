@@ -107,6 +107,23 @@ describe("Web Server", () => {
     expect(typeof body.error).toBe("string");
   });
 
+  it("should return usage stats JSON from /api/usage", async () => {
+    const res = await fetch(`${baseUrl}/api/usage`);
+    expect(res.status).toBe(200);
+    expect(res.headers.get("content-type")).toContain("application/json");
+    const snapshot = await res.json() as any;
+    expect(snapshot).toHaveProperty("suppliers");
+    expect(snapshot).toHaveProperty("operations");
+    expect(snapshot.operations.searchesServed).toBeGreaterThan(0);
+  });
+
+  it("should return 405 Method Not Allowed for non-GET /api/usage", async () => {
+    const res = await fetch(`${baseUrl}/api/usage`, { method: "POST" });
+    expect(res.status).toBe(405);
+    const body = await res.json() as any;
+    expect(body).toEqual({ error: "Method Not Allowed" });
+  });
+
   it("should serve static files successfully", async () => {
     const res = await fetch(`${baseUrl}/`);
     expect(res.status).toBe(200);
@@ -270,6 +287,25 @@ describe("Server Security & Host Configuration", () => {
       expect(body).toHaveProperty("results");
       const text = JSON.stringify(body);
       expect(text).not.toContain(SECRET_TOKEN);
+    });
+
+    it("rejects /api/usage with 401 when no token is provided", async () => {
+      const res = await fetch(`${authBaseUrl}/api/usage`);
+      expect(res.status).toBe(401);
+      const body = await res.json() as any;
+      expect(body).toEqual({ error: "Unauthorized" });
+    });
+
+    it("allows /api/usage with 200 when valid bearer token is provided", async () => {
+      const res = await fetch(`${authBaseUrl}/api/usage`, {
+        headers: {
+          Authorization: `Bearer ${SECRET_TOKEN}`,
+        },
+      });
+      expect(res.status).toBe(200);
+      const body = await res.json() as any;
+      expect(body).toHaveProperty("suppliers");
+      expect(body).toHaveProperty("operations");
     });
 
     it("still serves static files without requiring bearer token", async () => {
