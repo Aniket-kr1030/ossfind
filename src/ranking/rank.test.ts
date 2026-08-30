@@ -62,6 +62,82 @@ describe("WeightedRanker", () => {
     expect(result1).toEqual(result2);
   });
 
+  it("uses log-scaled adoption only within an ecosystem and explains the effect", () => {
+    const ranker = new WeightedRanker({ projectLicense: "MIT" });
+    const githubHigh = { ...makeCandidate("github:owner/high-stars"), stars: 12_400 };
+    const githubLow = { ...makeCandidate("github:owner/low-stars"), stars: 100 };
+    // Downloads are deliberately much larger in absolute terms. They must not
+    // be compared against GitHub stars.
+    const npmHigh = { ...makeCandidate("npm:high-downloads"), downloads: 1_000 };
+    const npmLow = { ...makeCandidate("npm:low-downloads"), downloads: 1 };
+    const candidates = [githubHigh, githubLow, npmHigh, npmLow];
+    const results = ranker.rank(
+      "query",
+      candidates.map((candidate) => ({ candidate, bundle: makeBundle(candidate.id) })),
+      candidates.map((candidate) => makeFitSignal(candidate.id, 1)),
+    );
+    const byId = new Map(results.map((result) => [result.id, result]));
+
+    expect(byId.get(githubHigh.id)?.scores.adoption).toBe(1);
+    expect(byId.get(githubLow.id)?.scores.adoption).toBe(0);
+    expect(byId.get(npmHigh.id)?.scores.adoption).toBe(1);
+    expect(byId.get(npmLow.id)?.scores.adoption).toBe(0);
+    expect(byId.get(githubHigh.id)?.reasons).toContain("12.4k GitHub stars — widely adopted");
+  });
+
+  it("treats missing adoption as neutral and does not factor it into the blend", () => {
+    const candidate = makeCandidate("npm:unknown-adoption");
+    const [scored] = new WeightedRanker({ projectLicense: "MIT" }).rank(
+      "query",
+      [{ candidate, bundle: makeBundle(candidate.id, { scorecard: { overall: 10, checks: [] } }) }],
+      [makeFitSignal(candidate.id, 1)],
+    );
+
+    expect(scored.scores.adoption).toBe(0.5);
+    expect(scored.reasons).toContain("adoption unknown — not factored");
+    expect(scored.overall).toBe(99);
+  });
+
+  it("keeps curated repositories visible but ranks them below genuine components", () => {
+    const ranker = new WeightedRanker({ projectLicense: "MIT" });
+    const awesomeList = {
+      ...makeCandidate("github:rafska/awesome-local-llm"),
+      stars: 2_800,
+      keywords: ["awesome", "curated-list"],
+    };
+    const genuineProject = {
+      ...makeCandidate("github:qualcomm/GenieX"),
+      stars: 8_338,
+    };
+    const results = ranker.rank(
+      "run llm locally",
+      [awesomeList, genuineProject].map((candidate) => ({ candidate, bundle: makeBundle(candidate.id, {
+        scorecard: { overall: 10, checks: [] },
+      }) })),
+      [makeFitSignal(awesomeList.id, 1), makeFitSignal(genuineProject.id, 1)],
+    );
+    const awesome = results.find((result) => result.id === awesomeList.id);
+    const genuine = results.find((result) => result.id === genuineProject.id);
+
+    expect(awesome?.reasons).toContain("curated link list, not an integratable library — deprioritised");
+    expect(awesome?.overall).toBeLessThan(genuine?.overall ?? 0);
+    expect(results.map((result) => result.id)).toContain(awesomeList.id);
+  });
+
+  it("does not misclassify a linked-list library from its name alone", () => {
+    const linkedList = { ...makeCandidate("github:owner/linked-list"), stars: 1_000 };
+    const peer = { ...makeCandidate("github:owner/peer-library"), stars: 100 };
+    const results = new WeightedRanker({ projectLicense: "MIT" }).rank(
+      "linked list",
+      [linkedList, peer].map((candidate) => ({ candidate, bundle: makeBundle(candidate.id) })),
+      [makeFitSignal(linkedList.id, 1), makeFitSignal(peer.id, 1)],
+    );
+
+    expect(results.find((result) => result.id === linkedList.id)?.reasons).not.toContain(
+      "curated link list, not an integratable library — deprioritised",
+    );
+  });
+
   it("critical-CVE gate: a component with an unfixed critical vuln can NEVER get verdict 'ship'", () => {
     const ranker = new WeightedRanker();
     const candidate = makeCandidate("npm:vuln-pkg");

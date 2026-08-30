@@ -10,6 +10,104 @@ import { checkLicense } from "../license/compat.js";
 import { DEFAULT_WEIGHTS, type RankerWeights } from "./weights.js";
 import * as semver from "semver";
 
+const NEUTRAL_ADOPTION = 0.5;
+const CURATED_REPOSITORY_PENALTY = 0.20;
+const CURATED_TOPICS = new Set([
+  "awesome",
+  "awesome-list",
+  "curated-list",
+  "tutorial",
+  "learning-resources",
+  "books",
+]);
+
+type AdoptionMetric = { value: number; label: string };
+type AdoptionSignal = { score: number; factored: boolean; reason: string };
+
+function adoptionMetric(candidate: ComponentCandidate): AdoptionMetric | undefined {
+  if (candidate.ecosystem === "github" && candidate.stars !== undefined) {
+    return { value: candidate.stars, label: "GitHub stars" };
+  }
+  if (candidate.ecosystem !== "github" && candidate.downloads !== undefined) {
+    return { value: candidate.downloads, label: `${candidate.ecosystem} downloads` };
+  }
+  return undefined;
+}
+
+function formatAdoption(value: number): string {
+  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}m`;
+  if (value >= 1_000) return `${(value / 1_000).toFixed(1)}k`;
+  return String(value);
+}
+
+/**
+ * Stars and downloads are different measures, so adoption is only compared
+ * among candidates from the same ecosystem. Log scaling prevents a single
+ * outlier from making every other viable candidate indistinguishable. Missing
+ * data, singleton groups, and ties carry the neutral score but do not enter
+ * the weighted blend: no observation is neither a reward nor a penalty.
+ */
+function adoptionSignals(
+  enriched: Array<{ candidate: ComponentCandidate; bundle: EnrichmentBundle }>,
+): Map<string, AdoptionSignal> {
+  const groups = new Map<string, Array<{ id: string; metric: AdoptionMetric }>>();
+  for (const { candidate } of enriched) {
+    const metric = adoptionMetric(candidate);
+    if (!metric) continue;
+    const group = groups.get(candidate.ecosystem) ?? [];
+    group.push({ id: candidate.id, metric });
+    groups.set(candidate.ecosystem, group);
+  }
+
+  const signals = new Map<string, AdoptionSignal>();
+  for (const { candidate } of enriched) {
+    const metric = adoptionMetric(candidate);
+    if (!metric) {
+      signals.set(candidate.id, {
+        score: NEUTRAL_ADOPTION,
+        factored: false,
+        reason: "adoption unknown — not factored",
+      });
+      continue;
+    }
+
+    const group = groups.get(candidate.ecosystem) ?? [];
+    const logged = group.map(({ metric: value }) => Math.log1p(value.value));
+    const minimum = Math.min(...logged);
+    const maximum = Math.max(...logged);
+    if (group.length < 2 || maximum === minimum) {
+      signals.set(candidate.id, {
+        score: NEUTRAL_ADOPTION,
+        factored: false,
+        reason: "adoption comparable candidates tied — not factored",
+      });
+      continue;
+    }
+
+    const score = (Math.log1p(metric.value) - minimum) / (maximum - minimum);
+    const descriptor = score >= 0.6 ? "widely adopted" : "lower adoption within this result set";
+    signals.set(candidate.id, {
+      score,
+      factored: true,
+      reason: `${formatAdoption(metric.value)} ${metric.label} — ${descriptor}`,
+    });
+  }
+  return signals;
+}
+
+function isCuratedRepository(candidate: ComponentCandidate): boolean {
+  const repositoryName = candidate.name.split("/").at(-1)?.toLowerCase() ?? "";
+  const topics = new Set((candidate.keywords ?? []).map((topic) => topic.toLowerCase()));
+  const hasCuratedTopic = [...topics].some((topic) => CURATED_TOPICS.has(topic));
+
+  if (hasCuratedTopic || repositoryName.startsWith("awesome-")) return true;
+  if (/(?:^|[-_])(tutorial|examples|books)$/.test(repositoryName)) return true;
+
+  // A bare "*-list" would misclassify genuine linked-list libraries. Require
+  // a corroborating curated topic for this ambiguous name pattern.
+  return /(?:^|[-_])list$/.test(repositoryName) && hasCuratedTopic;
+}
+
 export class WeightedRanker implements Ranker {
   private readonly projectLicense?: string;
   private readonly weights: RankerWeights;
@@ -27,9 +125,15 @@ export class WeightedRanker implements Ranker {
   ): ScoredComponent[] {
     const projLicense = options?.projectLicense ?? this.projectLicense ?? "MIT";
     const fitById = new Map(fit.map((signal) => [signal.id, signal]));
+    const adoptionById = adoptionSignals(enriched);
 
     const scored = enriched.map(({ candidate, bundle }) => {
       const reasons: string[] = [];
+      const adoption = adoptionById.get(candidate.id) ?? {
+        score: NEUTRAL_ADOPTION,
+        factored: false,
+        reason: "adoption unknown — not factored",
+      };
 
       // 1. Fit Score
       const fitSignal = fitById.get(candidate.id);
@@ -174,23 +278,35 @@ export class WeightedRanker implements Ranker {
         reasons.push("Low integration effort; active and maintained.");
       }
 
+      const curatedRepository = isCuratedRepository(candidate);
+      if (curatedRepository) {
+        reasons.push("curated link list, not an integratable library — deprioritised");
+      }
+      reasons.push(adoption.reason);
+
       // Calculate overall score (weighted blend, normalized to 0-100)
       const totalWeight =
         this.weights.fit +
         this.weights.license +
         this.weights.security +
         this.weights.health +
-        this.weights.effort;
+        this.weights.effort +
+        (adoption.factored ? this.weights.adoption : 0);
 
       const rawOverall =
         (fitScore * this.weights.fit +
           licenseScore * this.weights.license +
           securityScore * this.weights.security +
           healthScore * this.weights.health +
-          effortScore * this.weights.effort) /
+          effortScore * this.weights.effort +
+          (adoption.factored ? adoption.score * this.weights.adoption : 0)) /
         totalWeight;
 
-      const overall = Math.max(0, Math.min(100, Math.round(rawOverall * 100)));
+      // Curated repositories remain visible but are not integration components.
+      // This affects ordering only; the safety caps below still run afterward.
+      const overall = Math.max(0, Math.min(100, Math.round(
+        (rawOverall - (curatedRepository ? CURATED_REPOSITORY_PENALTY : 0)) * 100,
+      )));
 
       // Verdict derivation with explicit hard rules
       let verdict: "ship" | "caution" | "avoid" = "caution";
@@ -261,6 +377,7 @@ export class WeightedRanker implements Ranker {
           security: securityScore,
           health: healthScore,
           effort: effortScore,
+          adoption: adoption.score,
         },
         overall,
         verdict,
