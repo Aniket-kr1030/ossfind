@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import type { HttpClient, HttpResponse } from "./client.js";
+import type { UsageCollector } from "../telemetry/collector.js";
 
 export interface CacheOptions {
   /** Directory containing one JSON file per cached HTTP response. */
@@ -12,6 +13,8 @@ export interface CacheOptions {
   securityTtlSeconds?: number;
   /** Injectable wall clock, primarily for deterministic expiry tests. */
   now?: () => number;
+  /** Optional aggregate-only accounting; omitted preserves cache behavior. */
+  collector?: UsageCollector;
 }
 
 export type CacheCategory = "default" | "security";
@@ -122,19 +125,24 @@ export function withCache(inner: HttpClient, options: CacheOptions = {}): HttpCl
   const securityTtlSeconds = options.securityTtlSeconds
     ?? envNumber(process.env.OSSFIND_SECURITY_TTL, 300);
   const now = options.now ?? Date.now;
+  const collector = options.collector;
 
   return async (url, init) => {
     const key = keyFor(url, init);
-    if (!key) return inner(url, init);
+    if (!key) return collector ? callMiss(inner, collector, url, init) : inner(url, init);
 
     const path = join(dir, `${key}.json`);
     const cached = await loadEntry(path);
     const ttl = cacheCategoryFor(url) === "security" ? securityTtlSeconds : ttlSeconds;
     if (cached && now() - cached.cachedAt < ttl * 1_000) {
-      return responseFrom(cached);
+      const response = responseFrom(cached);
+      collector?.recordHttpResponse(url, "hit", response);
+      return response;
     }
 
-    const response = await inner(url, init);
+    const response = collector
+      ? await callMiss(inner, collector, url, init)
+      : await inner(url, init);
     if (response.ok) {
       const body = await response.json();
       const entry = { cachedAt: now(), ok: response.ok, status: response.status, body };
@@ -143,4 +151,20 @@ export function withCache(inner: HttpClient, options: CacheOptions = {}): HttpCl
     }
     return response;
   };
+}
+
+async function callMiss(
+  inner: HttpClient,
+  collector: UsageCollector | undefined,
+  url: string,
+  init: RequestInit | undefined,
+): Promise<HttpResponse> {
+  try {
+    const response = await inner(url, init);
+    collector?.recordHttpResponse(url, "miss", response);
+    return response;
+  } catch (error) {
+    collector?.recordHttpError(url, "miss");
+    throw error;
+  }
 }

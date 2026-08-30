@@ -4,6 +4,7 @@ import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import type { HttpClient, HttpResponse } from "./client.js";
 import { cacheCategoryFor, withCache } from "./cache.js";
+import { UsageCollector } from "../telemetry/collector.js";
 
 const directories: string[] = [];
 
@@ -22,6 +23,24 @@ function jsonResponse(body: unknown, status = 200): HttpResponse {
 }
 
 describe("withCache", () => {
+  it("reports first requests as misses and retained responses as hits", async () => {
+    const directory = await cacheDirectory();
+    const collector = new UsageCollector();
+    let calls = 0;
+    const client = withCache(async () => jsonResponse({ value: ++calls }), { dir: directory, collector });
+
+    await client("https://registry.npmjs.org/-/v1/search?text=private-package");
+    await client("https://registry.npmjs.org/-/v1/search?text=private-package");
+
+    expect(calls).toBe(1);
+    expect(collector.snapshot().suppliers["registry.npmjs.org"]).toMatchObject({
+      requests: 2,
+      cacheHits: 1,
+      cacheMisses: 1,
+      statusClasses: { "2xx": 2 },
+    });
+  });
+
   it("serves an identical request from disk after the first cache miss", async () => {
     const directory = await cacheDirectory();
     let calls = 0;
