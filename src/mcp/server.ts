@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import { PACKAGE_VERSION } from "../version.js";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import type { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
@@ -476,7 +477,7 @@ export const usageStatsToolHandler = createUsageStatsHandler();
 export function createMcpServer(options: McpServerOptions = {}): McpServer {
   const collector = options.collector ?? defaultUsageCollector;
   const emitter = options.telemetryEmitter ?? defaultTelemetryEmitter;
-  const server = new McpServer({ name: "ossfind", version: "0.1.0" });
+  const server = new McpServer({ name: "ossfind", version: PACKAGE_VERSION });
   server.registerTool(
     "search_components",
     {

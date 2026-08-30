@@ -2,10 +2,12 @@ import * as crypto from "node:crypto";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import type { UsageCollector, UsageSnapshot } from "./collector.js";
+import { PACKAGE_VERSION } from "../version.js";
 
 export const DEFAULT_MAX_PAYLOAD_BYTES = 64 * 1024; // 64 KB
 export const DEFAULT_TELEMETRY_TIMEOUT_MS = 2000;
-export const TOOL_VERSION = "0.1.0";
+/** Read from package.json so it can never drift from the published version. */
+export const TOOL_VERSION = PACKAGE_VERSION;
 
 const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
 
@@ -64,7 +66,7 @@ export interface TelemetryEmitterOptions {
   installId?: string;
   /** Optional path to store/load the anonymous install ID */
   installIdPath?: string;
-  /** Application version; defaults to "0.1.0" */
+  /** Application version; defaults to the package version from package.json. */
   version?: string;
   /** Injectable fetch implementation for tests and custom networking */
   fetch?: typeof fetch;
