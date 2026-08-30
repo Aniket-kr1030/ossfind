@@ -1,0 +1,18 @@
+#!/usr/bin/env node
+// Wrapper around the MCP stdio server.
+//
+// Why this exists: pointing `bin` directly at `dist/mcp/server.js` breaks when the
+// package is installed as a dependency. npm links bins from `node_modules/.bin/`,
+// and executing the symlinked ESM file from a CommonJS consumer resolves the module
+// type against the CONSUMER's package.json ("type" absent => commonjs), so the server
+// exits silently producing no output. Re-invoking through `process.execPath` with the
+// real resolved path keeps ESM resolution anchored to this package.
+//
+// `stdio: "inherit"` is required: MCP speaks JSON-RPC over stdin/stdout, so the child
+// must share the parent's file descriptors directly.
+import { spawn } from "node:child_process";
+import { fileURLToPath } from "node:url";
+
+const server = fileURLToPath(new URL("../dist/mcp/server.js", import.meta.url));
+const child = spawn(process.execPath, [server, ...process.argv.slice(2)], { env: process.env, stdio: "inherit" });
+child.on("exit", (code) => { process.exitCode = code ?? 1; });

@@ -1,6 +1,6 @@
 {
   "name": "ossfind",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Safety-ranked open-source component discovery across npm, PyPI, GitHub, and Hugging Face for humans and AI agents.",
   "type": "module",
   "keywords": [
@@ -38,7 +38,7 @@
     "index:build": "tsx scripts/build-index.mjs"
   },
   "bin": {
-    "ossfind-mcp": "dist/mcp/server.js",
+    "ossfind-mcp": "bin/ossfind-mcp",
     "ossfind-web": "bin/ossfind-web"
   },
   "devDependencies": {

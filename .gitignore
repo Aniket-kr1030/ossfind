@@ -9,3 +9,6 @@ coverage/
 
 # generated knowledge-graph output (not product source)
 graphify-out/
+
+# npm pack output
+*.tgz
