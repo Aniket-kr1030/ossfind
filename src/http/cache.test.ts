@@ -19,7 +19,22 @@ async function cacheDirectory(): Promise<string> {
 }
 
 function jsonResponse(body: unknown, status = 200): HttpResponse {
-  return { ok: status >= 200 && status < 300, status, json: async () => body };
+  const text = JSON.stringify(body);
+  return {
+    ok: status >= 200 && status < 300,
+    status,
+    json: async () => body,
+    text: async () => text,
+  };
+}
+
+function textResponse(body: string, status = 200): HttpResponse {
+  return {
+    ok: status >= 200 && status < 300,
+    status,
+    json: async () => JSON.parse(body),
+    text: async () => body,
+  };
 }
 
 describe("withCache", () => {
@@ -52,6 +67,58 @@ describe("withCache", () => {
     await expect(client("https://supplier.test/resource", { method: "POST", body: "{\"name\":\"axios\"}" }).then((response) => response.json()))
       .resolves.toEqual({ value: 1 });
     expect(calls).toBe(1);
+  });
+
+  it("round-trips raw text while retaining fetch-compatible JSON parsing", async () => {
+    const directory = await cacheDirectory();
+    const declaration = 'export declare const caf\u00e9: "ready";\r\n';
+    const json = '{"name":"axios","exports":63}';
+    let calls = 0;
+    const client = withCache(async (url) => {
+      calls += 1;
+      return textResponse(url.endsWith(".d.ts") ? declaration : json);
+    }, { dir: directory });
+
+    await expect(client("https://supplier.test/index.d.ts").then((response) => response.text?.()))
+      .resolves.toBe(declaration);
+    await expect(client("https://supplier.test/index.d.ts").then((response) => response.text?.()))
+      .resolves.toBe(declaration);
+    await expect(client("https://supplier.test/document.json").then((response) => response.json()))
+      .resolves.toEqual({ name: "axios", exports: 63 });
+    await expect(client("https://supplier.test/document.json").then((response) => response.json()))
+      .resolves.toEqual({ name: "axios", exports: 63 });
+    expect(calls).toBe(2);
+  });
+
+  it("replays invalid JSON as a JSON.parse failure", async () => {
+    const directory = await cacheDirectory();
+    let calls = 0;
+    const client = withCache(async () => {
+      calls += 1;
+      return textResponse("export declare const notJson: true;\n");
+    }, { dir: directory });
+
+    await expect(client("https://supplier.test/not-json").then((response) => response.json()))
+      .rejects.toThrow(SyntaxError);
+    await expect(client("https://supplier.test/not-json").then((response) => response.json()))
+      .rejects.toThrow(SyntaxError);
+    expect(calls).toBe(1);
+  });
+
+  it("does not cache a response whose text body cannot be read", async () => {
+    const directory = await cacheDirectory();
+    let calls = 0;
+    const client = withCache(async () => ({
+      ok: true,
+      status: 200,
+      json: async () => ({ call: ++calls }),
+      text: async () => { throw new Error("body unavailable"); },
+    }), { dir: directory });
+
+    await expect(client("https://supplier.test/unreadable").then((response) => response.json()))
+      .resolves.toEqual({ call: 1 });
+    await expect(client("https://supplier.test/unreadable").then((response) => response.json()))
+      .resolves.toEqual({ call: 2 });
   });
 
   it("refreshes entries after their TTL expires", async () => {

@@ -23,7 +23,8 @@ interface CacheEntry {
   cachedAt: number;
   ok: boolean;
   status: number;
-  body: unknown;
+  /** Raw response text, preserved so declaration files round-trip verbatim. */
+  body: string;
 }
 
 function envNumber(value: string | undefined, fallback: number): number {
@@ -84,7 +85,8 @@ function responseFrom(entry: CacheEntry): HttpResponse {
   return {
     ok: entry.ok,
     status: entry.status,
-    json: async () => entry.body,
+    text: async () => entry.body,
+    json: async () => JSON.parse(entry.body),
   };
 }
 
@@ -96,7 +98,7 @@ async function loadEntry(path: string): Promise<CacheEntry | undefined> {
       || !("cachedAt" in parsed) || typeof parsed.cachedAt !== "number"
       || !("ok" in parsed) || typeof parsed.ok !== "boolean"
       || !("status" in parsed) || typeof parsed.status !== "number"
-      || !("body" in parsed)
+      || !("body" in parsed) || typeof parsed.body !== "string"
     ) return undefined;
     return parsed as CacheEntry;
   } catch {
@@ -116,7 +118,7 @@ async function saveEntry(path: string, entry: CacheEntry): Promise<void> {
 }
 
 /**
- * Adds a persistent JSON-response cache to an HTTP client. Cache failures and
+ * Adds a persistent HTTP-response cache to an HTTP client. Cache failures and
  * corrupt entries are treated as misses so live discovery remains resilient.
  */
 export function withCache(inner: HttpClient, options: CacheOptions = {}): HttpClient {
@@ -143,13 +145,18 @@ export function withCache(inner: HttpClient, options: CacheOptions = {}): HttpCl
     const response = collector
       ? await callMiss(inner, collector, url, init)
       : await inner(url, init);
-    if (response.ok) {
-      const body = await response.json();
+    if (!response.ok || !response.text) return response;
+
+    try {
+      const body = await response.text();
       const entry = { cachedAt: now(), ok: response.ok, status: response.status, body };
       await saveEntry(path, entry);
       return responseFrom(entry);
+    } catch {
+      // A response we cannot read must remain a pass-through, never a broken
+      // cache entry. Caching is an optimisation only.
+      return response;
     }
-    return response;
   };
 }
 
