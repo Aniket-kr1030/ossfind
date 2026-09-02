@@ -1,10 +1,12 @@
 import { describe, expect, it } from "vitest";
+import semver from "semver";
 import {
   ComponentCandidateSchema,
   EnrichmentBundleSchema,
   type ComponentCandidate,
 } from "../contracts/index.js";
 import { createFixtureHttpClient } from "../http/fixture-client.js";
+import { loadEcosystems, loadOsv } from "../fixtures/loader.js";
 import type { HttpClient } from "../http/client.js";
 import { WeightedRanker } from "../ranking/rank.js";
 import { HttpEnricher } from "./enrichment.js";
@@ -38,7 +40,7 @@ function advisory(id: string, score: string, affected: object): object {
 function candidate(
   name: string,
   repoUrl: string,
-  ecosystem: "npm" | "pypi" | "github" | "huggingface" = "npm",
+  ecosystem: "npm" | "pypi" | "cargo" | "rubygems" | "github" | "huggingface" = "npm",
 ): ComponentCandidate {
   return ComponentCandidateSchema.parse({
     id: `${ecosystem}:${name}`,
@@ -155,6 +157,77 @@ describe("HttpEnricher", () => {
     expect(vulnerable.sources.osv).toBe("ok");
     expect(noScorecard.scorecard.overall).toBeNull();
     expect(noScorecard.sources.scorecard).toBe("missing");
+  });
+
+  it("preserves Cargo's explicit dual-license expression and supplier provenance", async () => {
+    const bundle = await new HttpEnricher(createFixtureHttpClient()).enrich(
+      candidate("serde", "https://github.com/serde-rs/serde", "cargo"),
+    );
+
+    expect(bundle).toMatchObject({
+      id: "cargo:serde",
+      license: { spdxId: "MIT OR Apache-2.0", source: "ecosyste.ms", confidence: 1 },
+      sources: { license: "ok", osv: "ok", scorecard: "ok" },
+      maintenance: { archived: false },
+    });
+    expect(bundle.maintenance.lastCommit).toBeTruthy();
+  });
+
+  it("filters Cargo smallvec advisories that were all fixed before the latest version", async () => {
+    const [packageFixture, osvFixture] = await Promise.all([
+      loadEcosystems("smallvec", "cargo"),
+      loadOsv("smallvec", "cargo"),
+    ]);
+    const latestVersion = packageFixture.latest_release_number;
+    if (!latestVersion) throw new Error("smallvec fixture must provide a latest version");
+    const capturedAdvisories = osvFixture.vulns ?? [];
+    const allAdvisoriesFixedByLatest = capturedAdvisories.every((advisory) => {
+      const fixedVersions = advisory.affected?.flatMap((affected) =>
+        affected.ranges?.flatMap((range) =>
+          range.events.flatMap((event) => event.fixed ? [event.fixed] : []),
+        ) ?? [],
+      ) ?? [];
+      return fixedVersions.length > 0 && fixedVersions.every((fixed) => semver.lte(fixed, latestVersion));
+    });
+
+    const bundle = await new HttpEnricher(createFixtureHttpClient()).enrich(
+      candidate("smallvec", "https://github.com/servo/rust-smallvec", "cargo"),
+    );
+
+    expect(bundle.sources.osv).toBe("ok");
+    expect(capturedAdvisories).not.toHaveLength(0);
+    expect(allAdvisoriesFixedByLatest).toBe(true);
+    expect(bundle.vulnerabilities).toEqual([]);
+  });
+
+  it("enriches RubyGems rails with its scorecard and OSV evidence", async () => {
+    const bundle = await new HttpEnricher(createFixtureHttpClient()).enrich(
+      candidate("rails", "https://github.com/rails/rails", "rubygems"),
+    );
+
+    expect(bundle.scorecard.overall).toBe(6.8);
+    expect(bundle.vulnerabilities.length).toBeGreaterThan(0);
+    expect(bundle.sources).toEqual({ license: "ok", osv: "ok", scorecard: "ok" });
+  });
+
+  it("fails closed when a multi-license array lacks an explicit matching expression", async () => {
+    const ambiguousLicenses: HttpClient = async (url) => {
+      if (url.includes("packages.ecosyste.ms")) {
+        return { ok: true, status: 200, json: async () => ({
+          normalized_licenses: ["MIT", "Apache-2.0"], latest_release_number: "1.0.0",
+        }) };
+      }
+      if (url.includes("api.osv.dev")) return { ok: true, status: 200, json: async () => ({ vulns: [] }) };
+      if (url.includes("/projects/")) return { ok: true, status: 200, json: async () => ({ scorecard: { overallScore: 10, checks: [] } }) };
+      return { ok: true, status: 200, json: async () => ({ versions: [] }) };
+    };
+
+    const bundle = await new HttpEnricher(ambiguousLicenses).enrich(
+      candidate("ambiguous", "https://github.com/example/ambiguous", "cargo"),
+    );
+
+    expect(bundle.license).toEqual({ spdxId: null, source: "ecosyste.ms", confidence: 0 });
+    expect(bundle.sources.license).toBe("missing");
   });
 
   it("maps express from offline supplier fixtures into a valid bundle", async () => {

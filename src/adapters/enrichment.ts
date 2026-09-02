@@ -10,7 +10,7 @@ import { getBaseScore } from "cvss";
 import * as semver from "semver";
 
 type JsonRecord = Record<string, unknown>;
-export type PackageEcosystem = "npm" | "pypi" | "github" | "huggingface";
+export type PackageEcosystem = "npm" | "pypi" | "cargo" | "rubygems" | "github" | "huggingface";
 type RegistryEcosystem = Exclude<PackageEcosystem, "github" | "huggingface">;
 
 const ecosystemAddressing: Record<RegistryEcosystem, {
@@ -27,6 +27,16 @@ const ecosystemAddressing: Record<RegistryEcosystem, {
     depsDevSystem: "pypi",
     osvEcosystem: "PyPI",
     ecosystemsRegistry: "pypi.org",
+  },
+  cargo: {
+    depsDevSystem: "cargo",
+    osvEcosystem: "crates.io",
+    ecosystemsRegistry: "crates.io",
+  },
+  rubygems: {
+    depsDevSystem: "rubygems",
+    osvEcosystem: "RubyGems",
+    ecosystemsRegistry: "rubygems.org",
   },
 };
 
@@ -102,19 +112,42 @@ function isHuggingFaceModel(candidate: ComponentCandidate): boolean {
  * discovery ecosystems feed the same pipeline. Route package suppliers from
  * that identity rather than from a pipeline-wide selection.
  */
-function registryEcosystemFor(candidate: ComponentCandidate): RegistryEcosystem {
-  return candidate.id.startsWith("pypi:") ? "pypi" : "npm";
+function ecosystemFor(candidate: ComponentCandidate): RegistryEcosystem {
+  if (candidate.id.startsWith("pypi:")) return "pypi";
+  if (candidate.id.startsWith("cargo:")) return "cargo";
+  if (candidate.id.startsWith("rubygems:")) return "rubygems";
+  return "npm";
 }
 
 function candidateArchived(candidate: ComponentCandidate): boolean | undefined {
   return candidate.archived;
 }
 
-function firstLicense(ecosystems: unknown): string | undefined {
+function escapedForRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * ecosyste.ms exposes both normalized license identifiers and its declared
+ * license expression. A list alone does not communicate whether its entries
+ * are alternatives or cumulative terms, so it is deliberately insufficient
+ * for multi-license packages. Preserve an explicit, matching SPDX expression
+ * (for example Rust's `MIT OR Apache-2.0`) rather than choosing an operand or
+ * inventing an AND relationship.
+ */
+function licenseFrom(ecosystems: unknown): string | undefined {
   if (!isRecord(ecosystems) || !Array.isArray(ecosystems.normalized_licenses)) return undefined;
-  return ecosystems.normalized_licenses.find(
+  const normalized = [...new Set(ecosystems.normalized_licenses.filter(
     (license): license is string => typeof license === "string" && license.length > 0,
-  );
+  ))];
+  if (normalized.length === 1) return normalized[0];
+  if (normalized.length < 2) return undefined;
+
+  const expression = stringAt(ecosystems, "licenses")?.trim();
+  if (!expression || !/\b(?:OR|AND)\b/i.test(expression)) return undefined;
+  return normalized.every((license) => new RegExp(`(^|[^A-Za-z0-9.-])${escapedForRegExp(license)}(?=$|[^A-Za-z0-9.-])`, "i").test(expression))
+    ? expression
+    : undefined;
 }
 
 function defaultVersionFromDepsDev(depsDev: unknown): string | undefined {
@@ -334,7 +367,7 @@ export class HttpEnricher implements Enricher {
 
     const pkg = packageName(candidate);
     const encodedPackage = encodeURIComponent(pkg);
-    const ecosystem = registryEcosystemFor(candidate);
+    const ecosystem = ecosystemFor(candidate);
     const addressing = ecosystemAddressing[ecosystem];
     const ecosystemsUrl = `https://packages.ecosyste.ms/api/v1/registries/${addressing.ecosystemsRegistry}/packages/${encodedPackage}`;
     const depsUrl = `https://api.deps.dev/v3/systems/${addressing.depsDevSystem}/packages/${encodedPackage}`;
@@ -362,7 +395,7 @@ export class HttpEnricher implements Enricher {
     const osv = osvResult.status === "ok" ? osvResult.data : undefined;
     const scorecard = scorecardResult.status === "ok" ? scorecardResult.data : undefined;
 
-    const license = firstLicense(ecosystems);
+    const license = licenseFrom(ecosystems);
     const repositoryMetadata = isRecord(ecosystemRecord?.repo_metadata)
       ? ecosystemRecord.repo_metadata
       : undefined;

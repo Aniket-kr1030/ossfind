@@ -114,7 +114,7 @@ interface FixtureProject {
 
 async function fixtureProjectPackages(): Promise<Map<string, FixtureProject>> {
   const projects = new Map<string, FixtureProject>();
-  for (const ecosystem of ["npm", "pypi"] as const) {
+  for (const ecosystem of ["npm", "pypi", "cargo", "rubygems"] as const) {
     for (const pkg of await listFixturePackages(ecosystem)) {
       const fixture = await loadEcosystems(pkg, ecosystem);
     if (!fixture.repository_url) continue;
@@ -135,12 +135,16 @@ async function fixtureProjectPackages(): Promise<Map<string, FixtureProject>> {
 function ecosystemForRegistry(url: URL): FixtureEcosystem | undefined {
   if (url.pathname.includes("/registries/npmjs.org/")) return "npm";
   if (url.pathname.includes("/registries/pypi.org/")) return "pypi";
+  if (url.pathname.includes("/registries/crates.io/")) return "cargo";
+  if (url.pathname.includes("/registries/rubygems.org/")) return "rubygems";
   return undefined;
 }
 
 function ecosystemForDepsDev(url: URL): FixtureEcosystem | undefined {
   if (url.pathname.includes("/systems/npm/packages/")) return "npm";
   if (url.pathname.includes("/systems/pypi/packages/")) return "pypi";
+  if (url.pathname.includes("/systems/cargo/packages/")) return "cargo";
+  if (url.pathname.includes("/systems/rubygems/packages/")) return "rubygems";
   return undefined;
 }
 
@@ -148,7 +152,15 @@ function ecosystemForOsv(body: unknown): FixtureEcosystem | undefined {
   if (!body || typeof body !== "object" || !("package" in body)) return undefined;
   const pkg = body.package;
   if (!pkg || typeof pkg !== "object" || !("ecosystem" in pkg)) return undefined;
-  return pkg.ecosystem === "npm" ? "npm" : pkg.ecosystem === "PyPI" ? "pypi" : undefined;
+  return pkg.ecosystem === "npm"
+    ? "npm"
+    : pkg.ecosystem === "PyPI"
+      ? "pypi"
+      : pkg.ecosystem === "crates.io"
+        ? "cargo"
+        : pkg.ecosystem === "RubyGems"
+          ? "rubygems"
+          : undefined;
 }
 
 /**

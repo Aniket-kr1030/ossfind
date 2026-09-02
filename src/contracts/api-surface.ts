@@ -2,7 +2,7 @@ import { z } from "zod";
 
 /** A declaration-derived npm package API surface; unknown facts are omitted. */
 export const ApiSurfaceSchema = z.object({
-  id: z.string().regex(/^(npm|pypi|github|huggingface):.+$/, 'id must use the "<ecosystem>:<name>" format'),
+  id: z.string().regex(/^(npm|pypi|github|huggingface|cargo|rubygems):.+$/, 'id must use the "<ecosystem>:<name>" format'),
   version: z.string().min(1).nullable(),
   typesAvailable: z.enum(["own", "definitely-typed", "none"]),
   typesSource: z.string().min(1).nullable(),

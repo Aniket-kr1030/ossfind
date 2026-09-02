@@ -30,13 +30,11 @@ describe("ComponentCandidateSchema", () => {
     }).id).toBe("huggingface:owner/model");
   });
 
-  it("rejects an unsupported ecosystem prefix", () => {
-    expect(ComponentCandidateSchema.safeParse({
-      id: "rubygems:rails",
-      name: "rails",
-      ecosystem: "rubygems",
-      description: "Web framework",
-    }).success).toBe(false);
+  it.each([
+    ["cargo:serde", "serde", "cargo"],
+    ["rubygems:rails", "rails", "rubygems"],
+  ] as const)("accepts %s", (id, name, ecosystem) => {
+    expect(ComponentCandidateSchema.parse({ id, name, ecosystem, description: "fixture package" }).id).toBe(id);
   });
 
   it.each([
@@ -44,6 +42,8 @@ describe("ComponentCandidateSchema", () => {
     ["pypi:github", "npm"],
     ["github:owner/repo", "huggingface"],
     ["huggingface:owner/model", "github"],
+    ["cargo:serde", "rubygems"],
+    ["rubygems:rails", "cargo"],
   ] as const)("rejects id %s when its declared ecosystem is %s", (id, ecosystem) => {
     const result = ComponentCandidateSchema.safeParse({
       id,

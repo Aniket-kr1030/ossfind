@@ -1,6 +1,6 @@
 import { readFile, readdir } from "node:fs/promises";
 
-export type FixtureEcosystem = "npm" | "pypi";
+export type FixtureEcosystem = "npm" | "pypi" | "cargo" | "rubygems";
 
 /**
  * Minimal, supplier-shaped representations of the frozen API responses.
@@ -178,7 +178,7 @@ function fixtureSegment(value: string, label: string): string {
 }
 
 function fixtureDirectory(ecosystem: FixtureEcosystem): string {
-  return ecosystem === "pypi" ? `${rawFixturesDirectory}pypi/` : rawFixturesDirectory;
+  return ecosystem === "npm" ? rawFixturesDirectory : `${rawFixturesDirectory}${ecosystem}/`;
 }
 
 function githubFixturePath(supplier: "search" | "scorecard", name: string): string {

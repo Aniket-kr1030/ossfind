@@ -12,7 +12,7 @@ function mockComponent(
   verdict: "ship" | "caution" | "avoid",
   overall: number = 80,
 ): ScoredComponent {
-  const name = id.replace(/^(npm|pypi|github|huggingface):/, "");
+  const name = id.replace(/^(npm|pypi|github|huggingface|cargo|rubygems):/, "");
   return {
     id,
     name,

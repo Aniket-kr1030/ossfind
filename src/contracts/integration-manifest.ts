@@ -2,7 +2,7 @@ import { z } from "zod";
 
 /** Verifiable package-installation facts, with uncertainty kept explicit. */
 export const IntegrationManifestSchema = z.object({
-  id: z.string().regex(/^(npm|pypi|github|huggingface):.+$/, 'id must use the "<ecosystem>:<name>" format'),
+  id: z.string().regex(/^(npm|pypi|github|huggingface|cargo|rubygems):.+$/, 'id must use the "<ecosystem>:<name>" format'),
   version: z.string().min(1).nullable(),
   install: z.object({ command: z.string().min(1) }),
   importForm: z.object({
