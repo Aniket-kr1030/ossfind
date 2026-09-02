@@ -1,0 +1,44 @@
+{
+  "name": "puma",
+  "downloads": 599490928,
+  "version": "8.0.2",
+  "version_created_at": "2026-05-26T23:27:56.364Z",
+  "version_downloads": 10477668,
+  "platform": "ruby",
+  "ruby_abi": null,
+  "authors": "Evan Phoenix",
+  "info": "Puma is a simple, fast, multi-threaded, and highly parallel HTTP 1.1 server\nfor Ruby/Rack applications. Puma is intended for use in both development and\nproduction environments. It's great for highly parallel Ruby implementations such as\nJRuby and TruffleRuby as well as as providing process worker support to support CRuby well.\n",
+  "licenses": [
+    "BSD-3-Clause"
+  ],
+  "metadata": {
+    "homepage_uri": "https://puma.io",
+    "changelog_uri": "https://github.com/puma/puma/blob/main/History.md",
+    "bug_tracker_uri": "https://github.com/puma/puma/issues",
+    "source_code_uri": "https://github.com/puma/puma",
+    "rubygems_mfa_required": "true",
+    "msys2_mingw_dependencies": "openssl"
+  },
+  "yanked": false,
+  "sha": "c8ed871dfbbe66448ea9ffd46692342d9804d4071522b52b5331b7b6e7b686fb",
+  "spec_sha": "ad443c8d8ba9db21956c282fccb410edd55317c00fcfa43a16bba9e2a9925a1e",
+  "project_uri": "https://rubygems.org/gems/puma",
+  "gem_uri": "https://rubygems.org/gems/puma-8.0.2.gem",
+  "homepage_uri": "https://puma.io",
+  "wiki_uri": null,
+  "documentation_uri": null,
+  "mailing_list_uri": null,
+  "source_code_uri": "https://github.com/puma/puma",
+  "bug_tracker_uri": "https://github.com/puma/puma/issues",
+  "changelog_uri": "https://github.com/puma/puma/blob/main/History.md",
+  "funding_uri": null,
+  "dependencies": {
+    "development": [],
+    "runtime": [
+      {
+        "name": "nio4r",
+        "requirements": "~> 2.0"
+      }
+    ]
+  }
+}

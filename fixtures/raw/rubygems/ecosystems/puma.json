@@ -1,0 +1,3606 @@
+{
+  "id": 277088,
+  "name": "puma",
+  "ecosystem": "rubygems",
+  "description": "Puma is a simple, fast, multi-threaded, and highly parallel HTTP 1.1 server\nfor Ruby/Rack applications. Puma is intended for use in both development and\nproduction environments. It's great for highly parallel Ruby implementations such as\nJRuby and TruffleRuby as well as as providing process worker support to support CRuby well.\n",
+  "homepage": "https://puma.io",
+  "licenses": "BSD-3-Clause",
+  "normalized_licenses": [
+    "BSD-3-Clause"
+  ],
+  "repository_url": "https://github.com/puma/puma",
+  "keywords_array": [],
+  "namespace": null,
+  "versions_count": 360,
+  "first_release_published_at": "2011-10-25T21:41:02.998Z",
+  "latest_release_published_at": "2026-05-26T23:27:56.364Z",
+  "latest_release_number": "8.0.2",
+  "last_synced_at": "2026-09-02T17:18:01.328Z",
+  "created_at": "2022-04-06T07:38:19.820Z",
+  "updated_at": "2026-09-02T22:18:35.910Z",
+  "registry_url": "https://rubygems.org/gems/puma",
+  "install_command": "gem install puma -s https://rubygems.org",
+  "documentation_url": "http://www.rubydoc.info/gems/puma/",
+  "metadata": {
+    "funding": null
+  },
+  "repo_metadata": {
+    "id": 38818418,
+    "uuid": "2441517",
+    "full_name": "puma/puma",
+    "owner": "puma",
+    "description": "A Ruby/Rack web server built for parallelism",
+    "archived": false,
+    "fork": false,
+    "pushed_at": "2026-08-29T23:26:08.000Z",
+    "size": 12949,
+    "stargazers_count": 7916,
+    "open_issues_count": 102,
+    "forks_count": 1489,
+    "subscribers_count": 171,
+    "default_branch": "main",
+    "last_synced_at": "2026-08-30T17:15:50.370Z",
+    "etag": null,
+    "topics": [
+      "multithreading",
+      "rack",
+      "ruby",
+      "server"
+    ],
+    "latest_commit_sha": null,
+    "homepage": "https://puma.io",
+    "language": "Ruby",
+    "has_issues": true,
+    "has_wiki": null,
+    "has_pages": null,
+    "mirror_url": null,
+    "source_name": null,
+    "license": "bsd-3-clause",
+    "status": null,
+    "scm": "git",
+    "pull_requests_enabled": true,
+    "icon_url": "https://github.com/puma.png",
+    "metadata": {
+      "files": {
+        "readme": "README.md",
+        "changelog": "History.md",
+        "contributing": "CONTRIBUTING.md",
+        "funding": null,
+        "license": "LICENSE",
+        "code_of_conduct": "CODE_OF_CONDUCT.md",
+        "threat_model": null,
+        "audit": null,
+        "citation": null,
+        "codeowners": null,
+        "security": "SECURITY.md",
+        "support": null,
+        "governance": "GOVERNANCE.md",
+        "roadmap": null,
+        "authors": null,
+        "dei": null,
+        "publiccode": null,
+        "codemeta": null,
+        "zenodo": null,
+        "notice": null,
+        "maintainers": "MAINTAINERS",
+        "copyright": null,
+        "agents": null,
+        "claude": null,
+        "gemini": null,
+        "cursor": null,
+        "copilot": null,
+        "dco": null,
+        "cla": null,
+        "disclosure": null
+      }
+    },
+    "created_at": "2011-09-23T02:26:08.000Z",
+    "updated_at": "2026-08-30T07:21:30.000Z",
+    "dependencies_parsed_at": "2025-12-25T16:03:42.772Z",
+    "dependency_job_id": "278b1ccb-569e-400b-843b-360c6026aa1c",
+    "html_url": "https://github.com/puma/puma",
+    "commit_stats": {
+      "total_commits": 3591,
+      "total_committers": 516,
+      "mean_commits": 6.959302325581396,
+      "dds": 0.8267891952102479,
+      "last_synced_commit": "edd2a1728e39d055545fd12ffdfa42d5d4ccbc58"
+    },
+    "previous_names": [],
+    "tags_count": 174,
+    "template": false,
+    "template_full_name": null,
+    "purl": "pkg:github/puma/puma",
+    "repository_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma",
+    "tags_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags",
+    "releases_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/releases",
+    "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/manifests",
+    "owner_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/owners/puma",
+    "download_url": "https://codeload.github.com/puma/puma/tar.gz/refs/heads/main",
+    "sbom_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/sbom",
+    "scorecard": {
+      "id": 594778,
+      "data": {
+        "date": "2025-08-11",
+        "repo": {
+          "name": "github.com/puma/puma",
+          "commit": "1b08ed77741d0f6ed17c43795df7b50601d09060"
+        },
+        "scorecard": {
+          "version": "v5.2.1-40-gf6ed084d",
+          "commit": "f6ed084d17c9236477efd66e5b258b9d4cc7b389"
+        },
+        "score": 7.2,
+        "checks": [
+          {
+            "name": "Code-Review",
+            "score": 6,
+            "reason": "Found 16/25 approved changesets -- score normalized to 6",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project requires human code review before pull requests (aka merge requests) are merged.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#code-review"
+            }
+          },
+          {
+            "name": "Maintained",
+            "score": 10,
+            "reason": "26 commit(s) and 10 issue activity found in the last 90 days -- score normalized to 10",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project is \"actively maintained\".",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#maintained"
+            }
+          },
+          {
+            "name": "Dangerous-Workflow",
+            "score": 10,
+            "reason": "no dangerous workflow patterns detected",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project's GitHub Action workflows avoid dangerous patterns.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#dangerous-workflow"
+            }
+          },
+          {
+            "name": "Packaging",
+            "score": -1,
+            "reason": "packaging workflow not detected",
+            "details": [
+              "Warn: no GitHub/GitLab publishing workflow detected."
+            ],
+            "documentation": {
+              "short": "Determines if the project is published as a package that others can easily download, install, easily update, and uninstall.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#packaging"
+            }
+          },
+          {
+            "name": "Token-Permissions",
+            "score": 10,
+            "reason": "GitHub workflow tokens follow principle of least privilege",
+            "details": [
+              "Info: topLevel 'contents' permission set to 'read': .github/workflows/pr-label-status.yml:11",
+              "Info: topLevel 'contents' permission set to 'read': .github/workflows/rack_conform.yml:6",
+              "Info: topLevel 'contents' permission set to 'read': .github/workflows/ragel.yml:6",
+              "Info: topLevel 'contents' permission set to 'read': .github/workflows/skip_duplicate_workflow_runs.yml:17",
+              "Info: topLevel 'contents' permission set to 'read': .github/workflows/tests.yml:6",
+              "Info: topLevel 'contents' permission set to 'read': .github/workflows/turbo-rails.yml:9",
+              "Info: no jobLevel write permissions found"
+            ],
+            "documentation": {
+              "short": "Determines if the project's workflows follow the principle of least privilege.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#token-permissions"
+            }
+          },
+          {
+            "name": "Security-Policy",
+            "score": 10,
+            "reason": "security policy file detected",
+            "details": [
+              "Info: security policy file detected: SECURITY.md:1",
+              "Info: Found linked content: SECURITY.md:1",
+              "Info: Found disclosure, vulnerability, and/or timelines in security policy: SECURITY.md:1",
+              "Info: Found text in security policy: SECURITY.md:1"
+            ],
+            "documentation": {
+              "short": "Determines if the project has published a security policy.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#security-policy"
+            }
+          },
+          {
+            "name": "Binary-Artifacts",
+            "score": 10,
+            "reason": "no binaries found in the repo",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project has generated executable (binary) artifacts in the source repository.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#binary-artifacts"
+            }
+          },
+          {
+            "name": "CII-Best-Practices",
+            "score": 0,
+            "reason": "no effort to earn an OpenSSF best practices badge detected",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project has an OpenSSF (formerly CII) Best Practices Badge.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#cii-best-practices"
+            }
+          },
+          {
+            "name": "Fuzzing",
+            "score": 0,
+            "reason": "project is not fuzzed",
+            "details": [
+              "Warn: no fuzzer integrations found"
+            ],
+            "documentation": {
+              "short": "Determines if the project uses fuzzing.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#fuzzing"
+            }
+          },
+          {
+            "name": "Vulnerabilities",
+            "score": 10,
+            "reason": "0 existing vulnerabilities detected",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project has open, known unfixed vulnerabilities.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#vulnerabilities"
+            }
+          },
+          {
+            "name": "License",
+            "score": 10,
+            "reason": "license file detected",
+            "details": [
+              "Info: project has a license file: LICENSE:0",
+              "Info: FSF or OSI recognized license: BSD 3-Clause \"New\" or \"Revised\" License: LICENSE:0"
+            ],
+            "documentation": {
+              "short": "Determines if the project has defined a license.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#license"
+            }
+          },
+          {
+            "name": "Branch-Protection",
+            "score": -1,
+            "reason": "internal error: error during branchesHandler.setup: internal error: githubv4.Query: Resource not accessible by integration",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the default and release branches are protected with GitHub's branch protection settings.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#branch-protection"
+            }
+          },
+          {
+            "name": "Signed-Releases",
+            "score": -1,
+            "reason": "no releases found",
+            "details": null,
+            "documentation": {
+              "short": "Determines if the project cryptographically signs release artifacts.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#signed-releases"
+            }
+          },
+          {
+            "name": "Pinned-Dependencies",
+            "score": 0,
+            "reason": "dependency not pinned by hash detected -- score normalized to 0",
+            "details": [
+              "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr-label-status.yml:19: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/pr-label-status.yml/master?enable=pin",
+              "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr-label-status.yml:22: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/pr-label-status.yml/master?enable=pin",
+              "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rack_conform.yml:37: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/rack_conform.yml/master?enable=pin",
+              "Warn: third-party GitHubAction not pinned by hash: .github/workflows/rack_conform.yml:49: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/rack_conform.yml/master?enable=pin",
+              "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ragel.yml:48: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/ragel.yml/master?enable=pin",
+              "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ragel.yml:52: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/ragel.yml/master?enable=pin",
+              "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ragel.yml:81: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/ragel.yml/master?enable=pin",
+              "Warn: third-party GitHubAction not pinned by hash: .github/workflows/skip_duplicate_workflow_runs.yml:27: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/skip_duplicate_workflow_runs.yml/master?enable=pin",
+              "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/tests.yml:16: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/tests.yml/master?enable=pin",
+              "Warn: third-party GitHubAction not pinned by hash: .github/workflows/tests.yml:17: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/tests.yml/master?enable=pin",
+              "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/tests.yml:85: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/tests.yml/master?enable=pin",
+              "Warn: third-party GitHubAction not pinned by hash: .github/workflows/tests.yml:100: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/tests.yml/master?enable=pin",
+              "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/tests.yml:173: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/tests.yml/master?enable=pin",
+              "Warn: third-party GitHubAction not pinned by hash: .github/workflows/tests.yml:177: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/tests.yml/master?enable=pin",
+              "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/turbo-rails.yml:47: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/turbo-rails.yml/master?enable=pin",
+              "Warn: third-party GitHubAction not pinned by hash: .github/workflows/turbo-rails.yml:80: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/turbo-rails.yml/master?enable=pin",
+              "Warn: containerImage not pinned by hash: .devcontainer/Dockerfile:5",
+              "Warn: containerImage not pinned by hash: tools/Dockerfile:3: pin your Docker image by updating ruby:3.2 to ruby:3.2@sha256:f2c162a99e72e980e3a97933428a9809b08c72b193ccff7073ff6a02f6aa6325",
+              "Info:   0 out of   9 GitHub-owned GitHubAction dependencies pinned",
+              "Info:   0 out of   7 third-party GitHubAction dependencies pinned",
+              "Info:   0 out of   2 containerImage dependencies pinned"
+            ],
+            "documentation": {
+              "short": "Determines if the project has declared and pinned the dependencies of its build process.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#pinned-dependencies"
+            }
+          },
+          {
+            "name": "SAST",
+            "score": 0,
+            "reason": "SAST tool is not run on all commits -- score normalized to 0",
+            "details": [
+              "Warn: 0 commits out of 29 are checked with a SAST tool"
+            ],
+            "documentation": {
+              "short": "Determines if the project uses static code analysis.",
+              "url": "https://github.com/ossf/scorecard/blob/f6ed084d17c9236477efd66e5b258b9d4cc7b389/docs/checks.md#sast"
+            }
+          }
+        ]
+      },
+      "last_synced_at": "2025-08-20T22:52:33.413Z",
+      "repository_id": 38818418,
+      "created_at": "2025-08-20T22:52:33.414Z",
+      "updated_at": "2025-08-20T22:52:33.414Z"
+    },
+    "host": {
+      "name": "GitHub",
+      "url": "https://github.com",
+      "kind": "github",
+      "repositories_count": 286080680,
+      "owners_count": 36989335,
+      "icon_url": "https://github.com/github.png",
+      "version": null,
+      "created_at": "2022-05-30T11:31:42.601Z",
+      "updated_at": "2026-08-22T15:14:58.755Z",
+      "status": "online",
+      "status_checked_at": "2026-08-30T02:00:08.400Z",
+      "response_time": 126,
+      "last_error": null,
+      "robots_txt_status": "success",
+      "robots_txt_updated_at": "2025-07-24T06:49:26.215Z",
+      "robots_txt_url": "https://github.com/robots.txt",
+      "online": true,
+      "can_crawl_api": true,
+      "host_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub",
+      "repositories_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories",
+      "repository_names_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repository_names",
+      "owners_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/owners"
+    },
+    "owner_record": {
+      "login": "puma",
+      "name": "Puma",
+      "uuid": "1264292",
+      "kind": "organization",
+      "description": null,
+      "email": null,
+      "website": "http://puma.io",
+      "location": "Los Angeles, CA",
+      "twitter": null,
+      "company": null,
+      "icon_url": "https://avatars.githubusercontent.com/u/1264292?v=4",
+      "repositories_count": 11,
+      "last_synced_at": "2024-04-16T00:03:01.249Z",
+      "metadata": {
+        "has_sponsors_listing": false
+      },
+      "html_url": "https://github.com/puma",
+      "funding_links": [],
+      "total_stars": 9432,
+      "followers": 35,
+      "following": 0,
+      "created_at": "2022-11-02T16:17:14.367Z",
+      "updated_at": "2024-04-16T00:03:02.412Z",
+      "owner_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/owners/puma",
+      "repositories_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/owners/puma/repositories"
+    },
+    "tags": [
+      {
+        "name": "v7.2.1",
+        "sha": "92754ace040db67622f0e6406dea0b47c94d0139",
+        "kind": "tag",
+        "published_at": "2026-05-27T00:06:00.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v7.2.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v7.2.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v7.2.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.2.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.2.1/manifests"
+      },
+      {
+        "name": "v8.0.2",
+        "sha": "8085b75e79e3f7f1a96e5b488d74a71f62edd24d",
+        "kind": "tag",
+        "published_at": "2026-05-26T23:15:32.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v8.0.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v8.0.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v8.0.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v8.0.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v8.0.2/manifests"
+      },
+      {
+        "name": "v8.0.1",
+        "sha": "cee7e613c0d6e072b1ae9993c6dec63cbf259ec3",
+        "kind": "tag",
+        "published_at": "2026-04-26T22:45:18.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v8.0.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v8.0.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v8.0.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v8.0.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v8.0.1/manifests"
+      },
+      {
+        "name": "v8.0.0",
+        "sha": "08f63d495955eaee065d0ee18849f4ddcd52fe72",
+        "kind": "tag",
+        "published_at": "2026-04-08T23:45:48.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v8.0.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v8.0.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v8.0.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v8.0.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v8.0.0/manifests"
+      },
+      {
+        "name": "v7.2.0",
+        "sha": "96b5aa63e0599e8adf971ceb57efa3cc5663f8a9",
+        "kind": "tag",
+        "published_at": "2026-01-21T05:38:47.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v7.2.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v7.2.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v7.2.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.2.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.2.0/manifests"
+      },
+      {
+        "name": "v7.1.0",
+        "sha": "fb2a0733e938c8786e033f22dc5bf66727dddb3a",
+        "kind": "tag",
+        "published_at": "2025-10-17T15:35:16.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v7.1.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v7.1.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v7.1.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.1.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.1.0/manifests"
+      },
+      {
+        "name": "v7.0.4",
+        "sha": "a4c451c142a93ffb33af4a643b1e065341d9ad3a",
+        "kind": "tag",
+        "published_at": "2025-09-23T15:29:34.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v7.0.4",
+        "html_url": "https://github.com/puma/puma/releases/tag/v7.0.4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v7.0.4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.0.4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.0.4/manifests"
+      },
+      {
+        "name": "v7.0.3",
+        "sha": "ef2c6aae78a5df5ceb6126045768e474fe2b51be",
+        "kind": "tag",
+        "published_at": "2025-09-14T02:14:47.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v7.0.3",
+        "html_url": "https://github.com/puma/puma/releases/tag/v7.0.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v7.0.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.0.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.0.3/manifests"
+      },
+      {
+        "name": "v7.0.2",
+        "sha": "6c4decd0954ad2fa3c8a04738856656bdc957913",
+        "kind": "tag",
+        "published_at": "2025-09-09T02:56:38.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v7.0.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v7.0.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v7.0.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.0.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.0.2/manifests"
+      },
+      {
+        "name": "v7.0.1",
+        "sha": "ded6a4af98a0d0d066f33396cda5578b71972d78",
+        "kind": "tag",
+        "published_at": "2025-09-05T21:44:34.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v7.0.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v7.0.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v7.0.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.0.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.0.1/manifests"
+      },
+      {
+        "name": "v7.0.0",
+        "sha": "89a448e51b9ba22d46a7a6108fb4787623290dc2",
+        "kind": "tag",
+        "published_at": "2025-09-03T18:29:14.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v7.0.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v7.0.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v7.0.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.0.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.0.0/manifests"
+      },
+      {
+        "name": "v7.0.0.pre1",
+        "sha": "4e60f73d857f65e6a5800fc0b4c6286a864d1811",
+        "kind": "tag",
+        "published_at": "2025-07-31T22:22:41.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v7.0.0.pre1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v7.0.0.pre1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v7.0.0.pre1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.0.0.pre1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v7.0.0.pre1/manifests"
+      },
+      {
+        "name": "v6.6.1",
+        "sha": "5f93ae6e57596e412d2c92448b8a33fd3c05890b",
+        "kind": "tag",
+        "published_at": "2025-07-31T20:58:25.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.6.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.6.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.6.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.6.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.6.1/manifests"
+      },
+      {
+        "name": "v6.6.0",
+        "sha": "5a58290f05bb964bf3d913b9b03564a916e84815",
+        "kind": "tag",
+        "published_at": "2025-01-28T23:02:55.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.6.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.6.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.6.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.6.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.6.0/manifests"
+      },
+      {
+        "name": "v6.5.0",
+        "sha": "9e98151258b5ce80fa50e88d06827c0122011e7d",
+        "kind": "tag",
+        "published_at": "2024-11-22T23:49:59.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.5.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.5.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.5.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.5.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.5.0/manifests"
+      },
+      {
+        "name": "v6.4.3",
+        "sha": "e867e53aa4e7df91fa97d8995a80fc2f9466a080",
+        "kind": "tag",
+        "published_at": "2024-09-19T05:48:52.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.4.3",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.4.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.4.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.4.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.4.3/manifests"
+      },
+      {
+        "name": "v5.6.9",
+        "sha": "f196b23be24712fb8fb16051cc124798cc84f70e",
+        "kind": "tag",
+        "published_at": "2024-09-19T05:40:59.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.6.9",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.6.9",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.6.9",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.9",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.9/manifests"
+      },
+      {
+        "name": "v5.6.8",
+        "sha": "129357322e837e7d99c25c9cd71d36ecb4f9540b",
+        "kind": "tag",
+        "published_at": "2024-01-08T06:00:13.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.6.8",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.6.8",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.6.8",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.8",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.8/manifests"
+      },
+      {
+        "name": "v6.4.2",
+        "sha": "5fc43d73b6ff193325e657a24ed76dec79133e93",
+        "kind": "tag",
+        "published_at": "2024-01-08T05:53:49.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.4.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.4.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.4.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.4.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.4.2/manifests"
+      },
+      {
+        "name": "v6.4.1",
+        "sha": "a2870252e3c525f6529358807faee1169f28270e",
+        "kind": "tag",
+        "published_at": "2024-01-02T23:33:26.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.4.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.4.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.4.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.4.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.4.1/manifests"
+      },
+      {
+        "name": "v6.4.0",
+        "sha": "52eff8d3344fa0a4daa8d00ba1de74cb746a5ff4",
+        "kind": "tag",
+        "published_at": "2023-09-21T04:09:08.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.4.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.4.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.4.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.4.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.4.0/manifests"
+      },
+      {
+        "name": "v5.6.7",
+        "sha": "78393bf2c58bf293860fa9cdc73938ac58c18afb",
+        "kind": "tag",
+        "published_at": "2023-08-18T05:56:05.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.6.7",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.6.7",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.6.7",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.7",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.7/manifests"
+      },
+      {
+        "name": "v6.3.1",
+        "sha": "72bdcd16cd680ab109a9df448b64ab53cb6bfccd",
+        "kind": "tag",
+        "published_at": "2023-08-18T01:11:55.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.3.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.3.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.3.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.3.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.3.1/manifests"
+      },
+      {
+        "name": "v5.6.6",
+        "sha": "f8c7b235f971ed6b290cc4733fe7bce840037ede",
+        "kind": "tag",
+        "published_at": "2023-06-21T02:53:36.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.6.6",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.6.6",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.6.6",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.6",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.6/manifests"
+      },
+      {
+        "name": "v6.3.0",
+        "sha": "763d1a1a971d9bb17fc1478859d626a539c29970",
+        "kind": "tag",
+        "published_at": "2023-05-31T07:06:48.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.3.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.3.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.3.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.3.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.3.0/manifests"
+      },
+      {
+        "name": "v6.2.2",
+        "sha": "904b47a0c4347d2d3d7bf8606d1ebd26c6350721",
+        "kind": "tag",
+        "published_at": "2023-04-17T22:35:58.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.2.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.2.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.2.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.2.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.2.2/manifests"
+      },
+      {
+        "name": "v6.2.1",
+        "sha": "92d976de2dc08128bea9bf8169e25c288ca7387b",
+        "kind": "tag",
+        "published_at": "2023-03-31T06:48:13.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.2.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.2.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.2.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.2.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.2.1/manifests"
+      },
+      {
+        "name": "v6.2.0",
+        "sha": "d79f59d69dd91cd1ea401ad5e9051e74b1ce0ebf",
+        "kind": "tag",
+        "published_at": "2023-03-29T06:49:22.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.2.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.2.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.2.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.2.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.2.0/manifests"
+      },
+      {
+        "name": "v6.1.1",
+        "sha": "f0cf66d70684dbc41bce5901e177cb17acf2ea29",
+        "kind": "tag",
+        "published_at": "2023-02-28T07:29:55.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.1.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.1.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.1.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.1.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.1.1/manifests"
+      },
+      {
+        "name": "v6.1.0",
+        "sha": "e3d5794a7ebe47577ced4d4dfdd6a6cc969ded01",
+        "kind": "tag",
+        "published_at": "2023-02-12T04:54:13.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.1.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.1.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.1.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.1.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.1.0/manifests"
+      },
+      {
+        "name": "v6.0.2",
+        "sha": "8831577fb0f0fef4a205e3e77e20abc5780cf510",
+        "kind": "tag",
+        "published_at": "2023-01-01T21:59:50.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.0.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.0.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.0.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.0.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.0.2/manifests"
+      },
+      {
+        "name": "v6.0.1",
+        "sha": "45f82b714310fc925549bb36ee4080cd584edc14",
+        "kind": "tag",
+        "published_at": "2022-12-20T20:18:09.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.0.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.0.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.0.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.0.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.0.1/manifests"
+      },
+      {
+        "name": "v6.0.0",
+        "sha": "32d999708d7019b85b0518c8e0693773b0bd4ff4",
+        "kind": "tag",
+        "published_at": "2022-10-14T01:30:49.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v6.0.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v6.0.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v6.0.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.0.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v6.0.0/manifests"
+      },
+      {
+        "name": "v5.6.5",
+        "sha": "3bace01d3009dabc6a7ea269b97bdfea455128cb",
+        "kind": "tag",
+        "published_at": "2022-08-23T05:59:37.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.6.5",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.6.5",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.6.5",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.5",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.5/manifests"
+      },
+      {
+        "name": "v4.3.12",
+        "sha": "831d8a8be0da8d2dea7b47d683cfea66a0b0b47f",
+        "kind": "tag",
+        "published_at": "2022-03-30T15:59:53.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.3.12",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.3.12",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.3.12",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.12",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.12/manifests"
+      },
+      {
+        "name": "v5.6.4",
+        "sha": "7add06a280c305eeb32a98c4fca4b34521cbf12f",
+        "kind": "tag",
+        "published_at": "2022-03-30T14:30:05.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.6.4",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.6.4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.6.4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.4/manifests"
+      },
+      {
+        "name": "v5.6.3",
+        "sha": "643daa1db7637fb6079a5a07054398f39c753a75",
+        "kind": "tag",
+        "published_at": "2022-03-30T14:23:27.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.6.3",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.6.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.6.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.3/manifests"
+      },
+      {
+        "name": "v4.3.11",
+        "sha": "4ce94d7975d755f5ecdf50c5134b6d8af081e3ad",
+        "kind": "tag",
+        "published_at": "2022-02-11T21:19:11.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.3.11",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.3.11",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.3.11",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.11",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.11/manifests"
+      },
+      {
+        "name": "v5.6.2",
+        "sha": "c6340d1fabcd02c4cc5c1d4effaeba393dedb1a8",
+        "kind": "tag",
+        "published_at": "2022-02-11T21:10:00.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.6.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.6.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.6.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.2/manifests"
+      },
+      {
+        "name": "v5.6.1",
+        "sha": "e0753de846a1651401343687a22bfd52c97bc72a",
+        "kind": "tag",
+        "published_at": "2022-01-27T00:36:17.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.6.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.6.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.6.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.1/manifests"
+      },
+      {
+        "name": "v5.6.0",
+        "sha": "61ebbbe8ec5a7937abb48f62ed0e733c2f634e6f",
+        "kind": "tag",
+        "published_at": "2022-01-25T21:20:03.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.6.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.6.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.6.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.6.0/manifests"
+      },
+      {
+        "name": "v4.3.10",
+        "sha": "a62754edc7a9de5295f3aca92f4bca3d606f205d",
+        "kind": "tag",
+        "published_at": "2021-10-12T23:12:43.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.3.10",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.3.10",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.3.10",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.10",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.10/manifests"
+      },
+      {
+        "name": "v5.5.2",
+        "sha": "a2bcda414377ee3f5855a66ed83aa41ce6f0a29d",
+        "kind": "tag",
+        "published_at": "2021-10-12T23:07:09.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.5.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.5.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.5.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.5.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.5.2/manifests"
+      },
+      {
+        "name": "v4.3.9",
+        "sha": "fb6ad8f8013ab5cdbb2f444cbfabd0b4fde71139",
+        "kind": "tag",
+        "published_at": "2021-10-12T15:13:09.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.3.9",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.3.9",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.3.9",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.9",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.9/manifests"
+      },
+      {
+        "name": "v5.5.1",
+        "sha": "acdc3ae571dfae0e045cf09a295280127db65c7f",
+        "kind": "tag",
+        "published_at": "2021-10-12T15:09:14.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.5.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.5.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.5.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.5.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.5.1/manifests"
+      },
+      {
+        "name": "v5.5.0",
+        "sha": "21e0443cca4a53c8f0f97fe5197423031cab3610",
+        "kind": "tag",
+        "published_at": "2021-09-19T20:09:23.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.5.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.5.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.5.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.5.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.5.0/manifests"
+      },
+      {
+        "name": "v5.4.0",
+        "sha": "f041b020aad2da0fa99d183c7e8a4147baeea28d",
+        "kind": "tag",
+        "published_at": "2021-07-29T14:25:53.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.4.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.4.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.4.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.4.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.4.0/manifests"
+      },
+      {
+        "name": "v5.3.2",
+        "sha": "f4766ce46976ec623f163a0428515d157f53e420",
+        "kind": "tag",
+        "published_at": "2021-05-21T17:15:37.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.3.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.3.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.3.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.3.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.3.2/manifests"
+      },
+      {
+        "name": "v5.3.1",
+        "sha": "1c91a4f1af23328118dbfe5b615f812af5e817ef",
+        "kind": "tag",
+        "published_at": "2021-05-11T14:54:42.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.3.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.3.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.3.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.3.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.3.1/manifests"
+      },
+      {
+        "name": "v4.3.8",
+        "sha": "b911c13f8797aacaa8decf8532d6d7d45fda334f",
+        "kind": "tag",
+        "published_at": "2021-05-11T14:53:20.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.3.8",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.3.8",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.3.8",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.8",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.8/manifests"
+      },
+      {
+        "name": "v5.3.0",
+        "sha": "6dfb8bc2ba1175198f5982cc8092bcb7f021fe22",
+        "kind": "tag",
+        "published_at": "2021-05-07T14:48:29.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.3.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.3.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.3.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.3.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.3.0/manifests"
+      },
+      {
+        "name": "v5.2.2",
+        "sha": "a192434909513a0e77b6837ef208f627e502bed2",
+        "kind": "tag",
+        "published_at": "2021-03-02T16:07:51.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.2.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.2.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.2.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.2.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.2.2/manifests"
+      },
+      {
+        "name": "v5.2.1",
+        "sha": "9ede356a4735bd9eb3d2bde34378e47096b689ad",
+        "kind": "tag",
+        "published_at": "2021-02-05T22:26:27.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.2.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.2.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.2.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.2.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.2.1/manifests"
+      },
+      {
+        "name": "v5.2.0",
+        "sha": "f7f58ae2ae9e6feb71c1fb80d0fa51471aef9006",
+        "kind": "tag",
+        "published_at": "2021-01-27T20:36:39.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.2.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.2.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.2.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.2.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.2.0/manifests"
+      },
+      {
+        "name": "v5.1.1",
+        "sha": "607c3193cab45caa74c966acc676efc96f2b2ae4",
+        "kind": "tag",
+        "published_at": "2020-12-10T15:26:56.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.1.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.1.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.1.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.1.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.1.1/manifests"
+      },
+      {
+        "name": "v5.1.0",
+        "sha": "c389c088e509a78abaaf166e34a82e6d3fa218aa",
+        "kind": "tag",
+        "published_at": "2020-11-30T17:31:43.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.1.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.1.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.1.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.1.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.1.0/manifests"
+      },
+      {
+        "name": "v4.3.7",
+        "sha": "f3c95afbec09d8f728fa82a36fd69c9aa6426ab7",
+        "kind": "tag",
+        "published_at": "2020-11-30T16:52:44.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.3.7",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.3.7",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.3.7",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.7",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.7/manifests"
+      },
+      {
+        "name": "v5.0.4",
+        "sha": "1f0c08e3a7de13452e2f05d3160d90e04ab1987b",
+        "kind": "tag",
+        "published_at": "2020-10-27T14:15:25.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.0.4",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.0.4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.0.4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.4/manifests"
+      },
+      {
+        "name": "v5.0.3",
+        "sha": "d0f75b472c7c32f0daa7ffd56b1c4d945538efb3",
+        "kind": "tag",
+        "published_at": "2020-10-26T12:59:50.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.0.3",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.0.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.0.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.3/manifests"
+      },
+      {
+        "name": "v5.0.2",
+        "sha": "f9def0b3c90ea0fba471aabdf56281ca636f31d9",
+        "kind": "tag",
+        "published_at": "2020-09-28T15:15:44.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.0.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.0.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.0.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.2/manifests"
+      },
+      {
+        "name": "v5.0.1",
+        "sha": "3212427f1e6fddb467d37624e7df8aa28820f862",
+        "kind": "tag",
+        "published_at": "2020-09-28T13:42:37.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.0.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.0.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.0.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.1/manifests"
+      },
+      {
+        "name": "v5.0.0",
+        "sha": "13e18e8078c800adfc52af687acc1d8de5f3988d",
+        "kind": "commit",
+        "published_at": "2020-09-17T17:02:55.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.0.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.0.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.0.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.0/manifests"
+      },
+      {
+        "name": "v5.0.0.beta2",
+        "sha": "b08afd37438534047241b9bb85e6f544dfdab7a0",
+        "kind": "commit",
+        "published_at": "2020-09-05T22:25:32.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.0.0.beta2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.0.0.beta2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.0.0.beta2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.0.beta2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.0.beta2/manifests"
+      },
+      {
+        "name": "v4.3.6",
+        "sha": "3e3647a32d4c3f6921c80174ada5ee208d71cfa5",
+        "kind": "commit",
+        "published_at": "2020-09-05T20:58:59.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.3.6",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.3.6",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.3.6",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.6",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.6/manifests"
+      },
+      {
+        "name": "v4.3.5",
+        "sha": "a24b51b294ff8dd2511f910abe1a0db0d66ed43a",
+        "kind": "tag",
+        "published_at": "2020-08-11T00:01:20.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.3.5",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.3.5",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.3.5",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.5",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.5/manifests"
+      },
+      {
+        "name": "v3.12.6",
+        "sha": "0a3c09a0603857f088571d0eb69e0b9adee0fed1",
+        "kind": "tag",
+        "published_at": "2020-08-10T23:59:53.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.12.6",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.12.6",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.12.6",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.6",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.6/manifests"
+      },
+      {
+        "name": "v3.12.5",
+        "sha": "99b18e86c5d0433a2a127de55987f6c31f7ecdc5",
+        "kind": "tag",
+        "published_at": "2020-05-18T23:12:31.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.12.5",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.12.5",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.12.5",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.5",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.5/manifests"
+      },
+      {
+        "name": "v4.3.4",
+        "sha": "3846a4e0ae9cdfe80b4dfb7fc477f03ec4cabb9d",
+        "kind": "tag",
+        "published_at": "2020-05-18T23:10:15.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.3.4",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.3.4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.3.4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.4/manifests"
+      },
+      {
+        "name": "v5.0.0.beta1",
+        "sha": "c1963c0dcf35dcf1ee16adab045842c4931a7398",
+        "kind": "tag",
+        "published_at": "2020-05-12T01:46:45.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v5.0.0.beta1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v5.0.0.beta1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v5.0.0.beta1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.0.beta1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v5.0.0.beta1/manifests"
+      },
+      {
+        "name": "v3.12.4",
+        "sha": "f809e6b7aa3083afb8da5eb54bdd45fc391d1ba1",
+        "kind": "tag",
+        "published_at": "2020-02-28T19:46:07.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.12.4",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.12.4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.12.4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.4/manifests"
+      },
+      {
+        "name": "v4.3.3",
+        "sha": "7a6593760d667dff95953e15c2327892e2da673c",
+        "kind": "tag",
+        "published_at": "2020-02-28T19:20:22.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.3.3",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.3.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.3.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.3/manifests"
+      },
+      {
+        "name": "v3.12.3",
+        "sha": "2ff978fa9f27fd3fcd11ddf774d684fda250c46e",
+        "kind": "tag",
+        "published_at": "2020-02-27T19:12:44.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.12.3",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.12.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.12.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.3/manifests"
+      },
+      {
+        "name": "v4.3.2",
+        "sha": "040a5bf8842fbaebf6656e6556328d6c45be5b10",
+        "kind": "tag",
+        "published_at": "2020-02-27T18:53:36.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.3.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.3.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.3.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.2/manifests"
+      },
+      {
+        "name": "v3.12.2",
+        "sha": "bb29fc7fe8f822d0f72706a1ae86e49af3476777",
+        "kind": "tag",
+        "published_at": "2019-12-05T07:42:29.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.12.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.12.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.12.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.2/manifests"
+      },
+      {
+        "name": "v4.3.1",
+        "sha": "2986bc4ab5e03072d4c09739649c5c9221b13c8d",
+        "kind": "tag",
+        "published_at": "2019-12-05T07:36:00.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.3.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.3.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.3.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.1/manifests"
+      },
+      {
+        "name": "v4.3.0",
+        "sha": "d20242b2ec76cc7e8078986f29f1e083f62ef157",
+        "kind": "tag",
+        "published_at": "2019-11-07T19:53:44.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.3.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.3.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.3.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.3.0/manifests"
+      },
+      {
+        "name": "v4.2.1",
+        "sha": "2d46f0b63a0a9113603d67b8518acb7ca57af814",
+        "kind": "tag",
+        "published_at": "2019-10-07T09:42:44.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.2.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.2.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.2.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.2.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.2.1/manifests"
+      },
+      {
+        "name": "v4.2.0",
+        "sha": "120f2470068b3c065a60fa5868c567a90c3b2893",
+        "kind": "tag",
+        "published_at": "2019-09-23T09:14:46.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.2.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.2.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.2.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.2.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.2.0/manifests"
+      },
+      {
+        "name": "v4.1.1",
+        "sha": "e324a12b6fde3935c8548c81af274562c448f6d9",
+        "kind": "tag",
+        "published_at": "2019-09-09T12:19:06.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.1.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.1.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.1.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.1.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.1.1/manifests"
+      },
+      {
+        "name": "v4.1.0",
+        "sha": "736117c13ef2a7ff441e8d27d324ccb6a9087064",
+        "kind": "tag",
+        "published_at": "2019-08-08T19:28:03.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.1.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.1.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.1.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.1.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.1.0/manifests"
+      },
+      {
+        "name": "v4.0.1",
+        "sha": "1c9da362c8d2f09360ace3eedc12946dea39de05",
+        "kind": "tag",
+        "published_at": "2019-07-11T17:45:45.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.0.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.0.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.0.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.0.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.0.1/manifests"
+      },
+      {
+        "name": "v4.0.0",
+        "sha": "f5d7600e4e4d9104803b5f0f5f596f8dc45fc191",
+        "kind": "tag",
+        "published_at": "2019-06-25T17:43:02.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v4.0.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v4.0.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v4.0.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.0.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v4.0.0/manifests"
+      },
+      {
+        "name": "v3.12.1",
+        "sha": "461c9e99783e5f69e632acedae83be55017d5fe4",
+        "kind": "tag",
+        "published_at": "2019-03-19T18:05:53.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.12.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.12.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.12.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.1/manifests"
+      },
+      {
+        "name": "rm",
+        "sha": "c24c0c883496f581d9092bbe7f7431129eeb7190",
+        "kind": "commit",
+        "published_at": "2019-01-04T22:09:56.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/rm",
+        "html_url": "https://github.com/puma/puma/releases/tag/rm",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@rm",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/rm",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/rm/manifests"
+      },
+      {
+        "name": "v3.12.0",
+        "sha": "f7e1e58dcba1e19e470b6eb0c44c33a0722285f6",
+        "kind": "tag",
+        "published_at": "2018-07-13T16:04:35.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.12.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.12.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.12.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.12.0/manifests"
+      },
+      {
+        "name": "v3.11.4",
+        "sha": "e1865c25fa0e8169dc2de7d1c6b9a6648bf81842",
+        "kind": "commit",
+        "published_at": "2018-04-12T19:38:52.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.11.4",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.11.4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.11.4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.11.4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.11.4/manifests"
+      },
+      {
+        "name": "v3.11.3",
+        "sha": "4163dd71a11ed3b5b45799ed99c296e7df6ef3ba",
+        "kind": "tag",
+        "published_at": "2018-03-06T05:41:33.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.11.3",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.11.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.11.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.11.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.11.3/manifests"
+      },
+      {
+        "name": "v3.11.2",
+        "sha": "dc9fa77f855c5018a03430366ea8c8db17fbfeea",
+        "kind": "tag",
+        "published_at": "2018-01-19T19:23:10.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.11.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.11.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.11.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.11.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.11.2/manifests"
+      },
+      {
+        "name": "v3.11.1",
+        "sha": "beea8dc548ed76580753bbd5984779428e340009",
+        "kind": "tag",
+        "published_at": "2018-01-19T04:46:36.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.11.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.11.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.11.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.11.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.11.1/manifests"
+      },
+      {
+        "name": "v3.11.0",
+        "sha": "f6f3892f4d82638fb7a2a57d993641b1486ee88a",
+        "kind": "tag",
+        "published_at": "2017-11-20T16:26:13.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.11.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.11.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.11.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.11.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.11.0/manifests"
+      },
+      {
+        "name": "v3.10.0",
+        "sha": "77ca1f554278b36ae6147af93f811fd1c0698a65",
+        "kind": "tag",
+        "published_at": "2017-08-17T19:18:29.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.10.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.10.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.10.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.10.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.10.0/manifests"
+      },
+      {
+        "name": "v3.9.1",
+        "sha": "813eda45ec34f516b6e574bf064b1a6a06029a80",
+        "kind": "tag",
+        "published_at": "2017-06-03T13:52:49.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.9.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.9.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.9.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.9.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.9.1/manifests"
+      },
+      {
+        "name": "v3.9.0",
+        "sha": "964780b4e7f85b452332a5ec1c9f069901b3618b",
+        "kind": "tag",
+        "published_at": "2017-06-01T15:27:53.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.9.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.9.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.9.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.9.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.9.0/manifests"
+      },
+      {
+        "name": "v3.8.2",
+        "sha": "9aa4e1b45cb6d6b3590cc00a552982b02c246469",
+        "kind": "tag",
+        "published_at": "2017-03-14T16:21:59.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.8.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.8.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.8.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.8.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.8.2/manifests"
+      },
+      {
+        "name": "v3.8.1",
+        "sha": "49c1466cfdb08e99265fe01ca5171bbe81f49981",
+        "kind": "tag",
+        "published_at": "2017-03-10T17:17:54.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.8.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.8.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.8.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.8.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.8.1/manifests"
+      },
+      {
+        "name": "v3.8.0",
+        "sha": "1992a79a0b4c585c3c23b95372b06161e6bd132c",
+        "kind": "tag",
+        "published_at": "2017-03-09T22:21:40.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.8.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.8.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.8.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.8.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.8.0/manifests"
+      },
+      {
+        "name": "v3.7.1",
+        "sha": "f4f094566f779c7f50eac32ab398e53fd020df43",
+        "kind": "tag",
+        "published_at": "2017-02-20T15:14:13.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.7.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.7.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.7.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.7.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.7.1/manifests"
+      },
+      {
+        "name": "v3.7.0",
+        "sha": "f413b61f4ba9a453528b1ea44a0dbdd4a6f030f1",
+        "kind": "tag",
+        "published_at": "2017-01-28T00:35:14.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.7.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.7.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.7.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.7.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.7.0/manifests"
+      },
+      {
+        "name": "v3.6.2",
+        "sha": "42bec4600c51ab8a1c1ee5a0e1b738a4ffd82bf2",
+        "kind": "tag",
+        "published_at": "2016-11-22T23:56:59.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.6.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.6.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.6.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.6.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.6.2/manifests"
+      },
+      {
+        "name": "v3.6.1",
+        "sha": "02415e14139854df65910b2a0fde8decab9f4e8c",
+        "kind": "tag",
+        "published_at": "2016-11-21T18:52:23.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.6.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.6.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.6.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.6.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.6.1/manifests"
+      },
+      {
+        "name": "v3.6.0",
+        "sha": "b4bf9240802f52e2baea3dbaeb15e9c7b2020af8",
+        "kind": "tag",
+        "published_at": "2016-07-25T05:17:20.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.6.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.6.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.6.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.6.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.6.0/manifests"
+      },
+      {
+        "name": "v3.5.2",
+        "sha": "433b885d616462d5ee1961691888c2edfd00e97f",
+        "kind": "tag",
+        "published_at": "2016-07-20T17:59:29.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.5.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.5.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.5.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.5.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.5.2/manifests"
+      },
+      {
+        "name": "v3.5.1",
+        "sha": "b6cd454a6d705d4cb7bc03b0baa83e126c069c13",
+        "kind": "tag",
+        "published_at": "2016-07-20T17:54:49.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.5.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.5.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.5.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.5.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.5.1/manifests"
+      },
+      {
+        "name": "v3.5.0",
+        "sha": "7cdb33ff6fb8e30ca495216ee1c4d346a2bf7218",
+        "kind": "tag",
+        "published_at": "2016-07-19T05:07:00.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.5.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.5.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.5.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.5.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.5.0/manifests"
+      },
+      {
+        "name": "v3.4.0",
+        "sha": "d2da2caf49932827f07994c8b65b1f99001c5fb9",
+        "kind": "tag",
+        "published_at": "2016-04-07T22:02:32.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.4.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.4.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.4.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.4.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.4.0/manifests"
+      },
+      {
+        "name": "v3.3.0",
+        "sha": "a3136985887d44c79e623b1408a41779b71d8b23",
+        "kind": "tag",
+        "published_at": "2016-04-05T16:28:19.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.3.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.3.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.3.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.3.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.3.0/manifests"
+      },
+      {
+        "name": "v3.2.0",
+        "sha": "9a4912a3e46b3603b9d224fdda57fdb97eb6b201",
+        "kind": "tag",
+        "published_at": "2016-03-20T21:20:03.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.2.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.2.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.2.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.2.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.2.0/manifests"
+      },
+      {
+        "name": "v3.1.1",
+        "sha": "d8ce817f08ac035a1622ee7ba41e36ca24ac27aa",
+        "kind": "tag",
+        "published_at": "2016-03-18T04:32:28.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.1.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.1.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.1.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.1.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.1.1/manifests"
+      },
+      {
+        "name": "v3.1.0",
+        "sha": "cf6a09dfc6863b150b7f81681c50b671200207dc",
+        "kind": "tag",
+        "published_at": "2016-03-06T00:33:18.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.1.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.1.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.1.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.1.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.1.0/manifests"
+      },
+      {
+        "name": "v3.0.2",
+        "sha": "32b1fb3742e5918e0e79ee705b48c912a1f0742d",
+        "kind": "tag",
+        "published_at": "2016-02-26T18:35:27.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.0.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.0.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.0.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.0.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.0.2/manifests"
+      },
+      {
+        "name": "v3.0.1",
+        "sha": "d3379c28006110894090b235d8a89903f492020d",
+        "kind": "tag",
+        "published_at": "2016-02-26T03:44:04.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.0.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.0.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.0.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.0.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.0.1/manifests"
+      },
+      {
+        "name": "v3.0.0",
+        "sha": "f0762d1216c825009a5d3d0a13d1d3ec1ff95682",
+        "kind": "tag",
+        "published_at": "2016-02-25T22:23:43.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.0.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.0.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.0.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.0.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.0.0/manifests"
+      },
+      {
+        "name": "v3.0.0.rc1",
+        "sha": "32913e79c6882bd742b0d743074e97e22c10c082",
+        "kind": "tag",
+        "published_at": "2016-02-20T01:27:22.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v3.0.0.rc1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v3.0.0.rc1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v3.0.0.rc1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.0.0.rc1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v3.0.0.rc1/manifests"
+      },
+      {
+        "name": "v2.16.0",
+        "sha": "2af80d69d1e3f0a5eec73bcd2b7a7e0d9728e0f2",
+        "kind": "tag",
+        "published_at": "2016-01-28T03:56:59.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.16.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.16.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.16.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.16.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.16.0/manifests"
+      },
+      {
+        "name": "v2.15.3",
+        "sha": "81c2ccb6d4c040de03119109d8784ef28f04035e",
+        "kind": "tag",
+        "published_at": "2015-11-07T17:17:59.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.15.3",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.15.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.15.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.15.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.15.3/manifests"
+      },
+      {
+        "name": "v2.15.2",
+        "sha": "dd69e9a10c56cddcba25d7b8120a16f9a831533e",
+        "kind": "tag",
+        "published_at": "2015-11-06T23:35:59.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.15.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.15.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.15.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.15.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.15.2/manifests"
+      },
+      {
+        "name": "v2.15.1",
+        "sha": "6b55557e5d657faa988ced476b1746f22cccc1c5",
+        "kind": "tag",
+        "published_at": "2015-11-06T23:31:40.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.15.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.15.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.15.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.15.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.15.1/manifests"
+      },
+      {
+        "name": "v2.15.0",
+        "sha": "8d757750faa356980c7fc275de81a3d1ae2e10cb",
+        "kind": "tag",
+        "published_at": "2015-11-06T19:09:01.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.15.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.15.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.15.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.15.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.15.0/manifests"
+      },
+      {
+        "name": "v2.14.0",
+        "sha": "1cd87a600f51783f2908ea4085c6c596963013f2",
+        "kind": "tag",
+        "published_at": "2015-09-18T16:56:46.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.14.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.14.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.14.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.14.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.14.0/manifests"
+      },
+      {
+        "name": "v2.13.4",
+        "sha": "c26490da4ba609e19c38e72a1782e785742b6372",
+        "kind": "tag",
+        "published_at": "2015-08-16T16:21:09.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.13.4",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.13.4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.13.4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.13.4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.13.4/manifests"
+      },
+      {
+        "name": "v2.13.3",
+        "sha": "524f72453c8bca6c2f95c7cde3e9a8e47dd3be8e",
+        "kind": "tag",
+        "published_at": "2015-08-16T02:14:30.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.13.3",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.13.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.13.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.13.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.13.3/manifests"
+      },
+      {
+        "name": "v2.13.2",
+        "sha": "d787a8064d5b5aba45bb673e7967d8b9da7e5bfa",
+        "kind": "tag",
+        "published_at": "2015-08-15T21:51:42.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.13.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.13.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.13.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.13.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.13.2/manifests"
+      },
+      {
+        "name": "v2.13.1",
+        "sha": "a64ec48e35482d5be68d09acfa1380bc65002349",
+        "kind": "tag",
+        "published_at": "2015-08-15T17:10:08.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.13.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.13.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.13.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.13.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.13.1/manifests"
+      },
+      {
+        "name": "v2.13.0",
+        "sha": "9bb78a6b1d65a8a50d0fe667912b8add6041a0bd",
+        "kind": "tag",
+        "published_at": "2015-08-15T01:34:26.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.13.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.13.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.13.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.13.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.13.0/manifests"
+      },
+      {
+        "name": "v2.12.3",
+        "sha": "972e8102f520a86b7da6c556770ae01959689a87",
+        "kind": "tag",
+        "published_at": "2015-08-04T05:19:02.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.12.3",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.12.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.12.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.12.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.12.3/manifests"
+      },
+      {
+        "name": "v2.12.2",
+        "sha": "2348285fcb8fb7f2a30ebdead4ab0900e0ae5634",
+        "kind": "tag",
+        "published_at": "2015-07-17T18:51:20.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.12.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.12.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.12.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.12.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.12.2/manifests"
+      },
+      {
+        "name": "v2.12.1",
+        "sha": "1ca727ea1168a308581ac5fba36ba53a960334b6",
+        "kind": "tag",
+        "published_at": "2015-07-16T17:05:16.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.12.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.12.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.12.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.12.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.12.1/manifests"
+      },
+      {
+        "name": "v2.12.0",
+        "sha": "efc3d9124722d8a6b50d1b348b035f0d6e548d13",
+        "kind": "tag",
+        "published_at": "2015-07-14T19:02:35.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.12.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.12.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.12.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.12.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.12.0/manifests"
+      },
+      {
+        "name": "v2.11.3",
+        "sha": "e1eb3ecbe88895fc6edf562d99940f07d4b82c98",
+        "kind": "tag",
+        "published_at": "2015-05-19T04:11:31.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.11.3",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.11.3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.11.3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.11.3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.11.3/manifests"
+      },
+      {
+        "name": "v2.11.2",
+        "sha": "a3af7ba7ab8e7463ad192227f6aaf28d825fbbdf",
+        "kind": "tag",
+        "published_at": "2015-04-11T20:20:05.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.11.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.11.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.11.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.11.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.11.2/manifests"
+      },
+      {
+        "name": "v2.11.0",
+        "sha": "e8feadd2b2cc9cf4fd317e71e888ae2077cb11f0",
+        "kind": "tag",
+        "published_at": "2015-01-20T18:51:36.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.11.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.11.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.11.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.11.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.11.0/manifests"
+      },
+      {
+        "name": "v2.10.2",
+        "sha": "bdb3478fb6ed39069270610aec4f97b9287544ff",
+        "kind": "commit",
+        "published_at": "2014-11-27T07:05:13.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.10.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.10.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.10.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.10.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.10.2/manifests"
+      },
+      {
+        "name": "v2.10.1",
+        "sha": "dcd45c9132ca0cfc115e05d5ca0f69c18fc99b37",
+        "kind": "tag",
+        "published_at": "2014-11-24T19:49:26.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.10.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.10.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.10.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.10.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.10.1/manifests"
+      },
+      {
+        "name": "v2.10.0",
+        "sha": "8960a90506edfd2bd541f0b8a26f0c26cdd50445",
+        "kind": "tag",
+        "published_at": "2014-11-24T03:56:56.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.10.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.10.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.10.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.10.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.10.0/manifests"
+      },
+      {
+        "name": "v2.9.2",
+        "sha": "971f4829f8a566e97793ded69274a9e71a92992d",
+        "kind": "tag",
+        "published_at": "2014-10-30T00:15:41.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.9.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.9.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.9.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.9.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.9.2/manifests"
+      },
+      {
+        "name": "v2.9.1",
+        "sha": "4332f86fbaac214795ea9acfc6f89b6c0c2fb447",
+        "kind": "commit",
+        "published_at": "2014-09-05T18:34:59.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.9.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.9.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.9.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.9.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.9.1/manifests"
+      },
+      {
+        "name": "v2.9.0",
+        "sha": "55b9ce01e5160ef9513e1bc0e9bb549762cf3e07",
+        "kind": "tag",
+        "published_at": "2014-07-13T00:59:56.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.9.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.9.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.9.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.9.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.9.0/manifests"
+      },
+      {
+        "name": "v2.8.2",
+        "sha": "de59a88c864c98d6a39b930405ab464f3ddd17f9",
+        "kind": "tag",
+        "published_at": "2014-04-12T21:08:49.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.8.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.8.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.8.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.8.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.8.2/manifests"
+      },
+      {
+        "name": "v2.8.1",
+        "sha": "d57385ff692eb39a4ca2e559f51987705f4fcaca",
+        "kind": "tag",
+        "published_at": "2014-03-06T19:39:07.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.8.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.8.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.8.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.8.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.8.1/manifests"
+      },
+      {
+        "name": "v2.8.0",
+        "sha": "303f29a1d7a70b3604e5d527d76f31b74ffb5e45",
+        "kind": "tag",
+        "published_at": "2014-02-28T22:49:40.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.8.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.8.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.8.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.8.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.8.0/manifests"
+      },
+      {
+        "name": "v2.7.1",
+        "sha": "e8f1a0e7eac4cdec60c147ffdef235d90d00da5e",
+        "kind": "tag",
+        "published_at": "2013-12-05T17:57:33.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.7.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.7.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.7.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.7.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.7.1/manifests"
+      },
+      {
+        "name": "v2.7.0",
+        "sha": "f8f6219861dc890b6129b5f871562d42179b9960",
+        "kind": "tag",
+        "published_at": "2013-12-04T00:52:10.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.7.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.7.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.7.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.7.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.7.0/manifests"
+      },
+      {
+        "name": "v2.6.0",
+        "sha": "cd6c8fe9422c9136461d21269300c356f83801dc",
+        "kind": "tag",
+        "published_at": "2013-09-13T17:06:07.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.6.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.6.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.6.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.6.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.6.0/manifests"
+      },
+      {
+        "name": "v2.5.1",
+        "sha": "ec2b732ba7d072702488c4e9ae7d4aafe65d743d",
+        "kind": "tag",
+        "published_at": "2013-08-13T23:18:39.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.5.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.5.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.5.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.5.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.5.1/manifests"
+      },
+      {
+        "name": "v2.5.0",
+        "sha": "8faea06e44504a950ba9874a80358e047841bff3",
+        "kind": "tag",
+        "published_at": "2013-08-08T23:25:57.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.5.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.5.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.5.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.5.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.5.0/manifests"
+      },
+      {
+        "name": "v2.4.1",
+        "sha": "aacf8ad0d0da840cbc87274b3d7f08a667f83e8f",
+        "kind": "tag",
+        "published_at": "2013-08-07T23:44:51.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.4.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.4.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.4.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.4.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.4.1/manifests"
+      },
+      {
+        "name": "v2.4.0",
+        "sha": "2ef57daf8b064ad9cb8af6ab0389f57791bfdb14",
+        "kind": "tag",
+        "published_at": "2013-07-22T21:44:11.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.4.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.4.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.4.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.4.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.4.0/manifests"
+      },
+      {
+        "name": "v2.3.2",
+        "sha": "a9349ee28606e692cc0bd1f52647225330e174ce",
+        "kind": "tag",
+        "published_at": "2013-07-09T05:47:29.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.3.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.3.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.3.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.3.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.3.2/manifests"
+      },
+      {
+        "name": "v2.3.1",
+        "sha": "2425d9643e6598148705bd92eb7f5f36bbd527c6",
+        "kind": "tag",
+        "published_at": "2013-07-06T21:00:40.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.3.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.3.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.3.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.3.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.3.1/manifests"
+      },
+      {
+        "name": "v2.3.0",
+        "sha": "9338e504995228bcdda62f3b506c50e59ca06b56",
+        "kind": "tag",
+        "published_at": "2013-07-06T05:23:11.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.3.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.3.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.3.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.3.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.3.0/manifests"
+      },
+      {
+        "name": "v2.2.2",
+        "sha": "d62a99aeca341dadc70d899eb39a09febb2fe911",
+        "kind": "tag",
+        "published_at": "2013-07-02T18:41:55.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.2.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.2.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.2.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.2.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.2.2/manifests"
+      },
+      {
+        "name": "v2.2.1",
+        "sha": "01877c30f5460f1c67c629b29526b87fec585a4e",
+        "kind": "tag",
+        "published_at": "2013-07-02T18:24:24.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.2.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.2.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.2.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.2.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.2.1/manifests"
+      },
+      {
+        "name": "v2.2.0",
+        "sha": "9b780bacb66699e255e51792aa72488de586f596",
+        "kind": "tag",
+        "published_at": "2013-07-02T00:52:50.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.2.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.2.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.2.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.2.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.2.0/manifests"
+      },
+      {
+        "name": "v2.1.1",
+        "sha": "1660c8b7fabc063d3a63c0bc77916550f6353bec",
+        "kind": "tag",
+        "published_at": "2013-06-20T22:52:27.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.1.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.1.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.1.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.1.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.1.1/manifests"
+      },
+      {
+        "name": "v2.1.0",
+        "sha": "cc31cb2d231046adb2d225e5f0d2245ada46e1e4",
+        "kind": "tag",
+        "published_at": "2013-06-18T21:53:18.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.1.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.1.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.1.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.1.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.1.0/manifests"
+      },
+      {
+        "name": "v2.0.1",
+        "sha": "ba83a60807fe38032b1794213ab791f8024792f4",
+        "kind": "commit",
+        "published_at": "2013-04-30T18:17:49.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.0.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.0.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.0.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.1/manifests"
+      },
+      {
+        "name": "v2.0.0",
+        "sha": "d195b69acbab6cf3fc1d08ac656369cd48a1a615",
+        "kind": "tag",
+        "published_at": "2013-04-29T23:19:36.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.0.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.0.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.0.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0/manifests"
+      },
+      {
+        "name": "v2.0.0.b7",
+        "sha": "df1db1819b6dcf06a23b876af35f766d00ca9559",
+        "kind": "tag",
+        "published_at": "2013-03-19T05:31:49.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.0.0.b7",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.0.0.b7",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.0.0.b7",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0.b7",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0.b7/manifests"
+      },
+      {
+        "name": "v2.0.0.b6",
+        "sha": "46cb6754c5e3559ae003dde040aa40ffd6d69748",
+        "kind": "tag",
+        "published_at": "2013-02-07T02:21:25.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.0.0.b6",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.0.0.b6",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.0.0.b6",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0.b6",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0.b6/manifests"
+      },
+      {
+        "name": "v2.0.0.b5",
+        "sha": "f336e8f1330b10dee5911d8d66fb855c28774481",
+        "kind": "tag",
+        "published_at": "2013-02-06T06:51:04.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.0.0.b5",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.0.0.b5",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.0.0.b5",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0.b5",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0.b5/manifests"
+      },
+      {
+        "name": "v2.0.0.b4",
+        "sha": "ecdb3c870c4b38a1584029bdb6fda311fed2dae4",
+        "kind": "tag",
+        "published_at": "2012-12-13T05:47:35.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.0.0.b4",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.0.0.b4",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.0.0.b4",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0.b4",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0.b4/manifests"
+      },
+      {
+        "name": "v2.0.0.b3",
+        "sha": "2e80dec278f54eaeea2abb43e9957be9d00a3ce8",
+        "kind": "tag",
+        "published_at": "2012-11-22T20:56:11.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.0.0.b3",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.0.0.b3",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.0.0.b3",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0.b3",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0.b3/manifests"
+      },
+      {
+        "name": "v2.0.0.b2",
+        "sha": "935ee97374caf848e777c5bfd453b78ea9f03814",
+        "kind": "tag",
+        "published_at": "2012-11-19T04:47:30.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v2.0.0.b2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v2.0.0.b2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v2.0.0.b2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0.b2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v2.0.0.b2/manifests"
+      },
+      {
+        "name": "v1.6.2",
+        "sha": "074adfbf4d9c735530e242a9da55889cad7624ce",
+        "kind": "tag",
+        "published_at": "2012-08-27T18:03:00.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v1.6.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v1.6.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v1.6.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.6.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.6.2/manifests"
+      },
+      {
+        "name": "v1.5.0",
+        "sha": "5b11c5e23ce96b6dd8725c02fc6dc1e8fb0a57b6",
+        "kind": "tag",
+        "published_at": "2012-07-19T23:41:53.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v1.5.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v1.5.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v1.5.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.5.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.5.0/manifests"
+      },
+      {
+        "name": "v1.4.0",
+        "sha": "2459d3b7d53bca7405e2a79d03b91f7c6fa65618",
+        "kind": "tag",
+        "published_at": "2012-06-04T19:29:41.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v1.4.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v1.4.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v1.4.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.4.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.4.0/manifests"
+      },
+      {
+        "name": "v1.3.1",
+        "sha": "2848930736e79fa42863b12be9f761da7b4b9bb1",
+        "kind": "tag",
+        "published_at": "2012-05-16T04:02:04.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v1.3.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v1.3.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v1.3.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.3.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.3.1/manifests"
+      },
+      {
+        "name": "v1.3.0",
+        "sha": "7af141b97fdfdc604481fde84f12134bb9138d20",
+        "kind": "tag",
+        "published_at": "2012-05-08T21:31:20.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v1.3.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v1.3.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v1.3.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.3.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.3.0/manifests"
+      },
+      {
+        "name": "v1.2.2",
+        "sha": "f96d0ca05e2d69f7082016eff2e9d6a4824eaaec",
+        "kind": "commit",
+        "published_at": "2012-04-28T17:11:28.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v1.2.2",
+        "html_url": "https://github.com/puma/puma/releases/tag/v1.2.2",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v1.2.2",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.2.2",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.2.2/manifests"
+      },
+      {
+        "name": "v1.2.1",
+        "sha": "00a5d173fe87eb1c5fca4ff0f13dff06382969e4",
+        "kind": "tag",
+        "published_at": "2012-04-11T19:19:48.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v1.2.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v1.2.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v1.2.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.2.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.2.1/manifests"
+      },
+      {
+        "name": "v1.2.0",
+        "sha": "7b77f13dad08df3d47aded839a400e18e87a7a5b",
+        "kind": "tag",
+        "published_at": "2012-04-11T18:42:25.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v1.2.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v1.2.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v1.2.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.2.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.2.0/manifests"
+      },
+      {
+        "name": "v1.1.1",
+        "sha": "4beefe3100d51470ea8a330c852f35ca458b9529",
+        "kind": "tag",
+        "published_at": "2012-03-31T02:40:00.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v1.1.1",
+        "html_url": "https://github.com/puma/puma/releases/tag/v1.1.1",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v1.1.1",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.1.1",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.1.1/manifests"
+      },
+      {
+        "name": "v1.1.0",
+        "sha": "aa4be1c0e9572fa1e0801088f5304ca848b6f4ed",
+        "kind": "tag",
+        "published_at": "2012-03-30T23:54:06.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v1.1.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v1.1.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v1.1.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.1.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.1.0/manifests"
+      },
+      {
+        "name": "v1.0.0",
+        "sha": "cd4d8722ccd6027c4e6a6d7998d6e117998945a8",
+        "kind": "tag",
+        "published_at": "2012-03-29T22:50:01.000Z",
+        "download_url": "https://codeload.github.com/puma/puma/tar.gz/v1.0.0",
+        "html_url": "https://github.com/puma/puma/releases/tag/v1.0.0",
+        "dependencies_parsed_at": null,
+        "dependency_job_id": null,
+        "purl": "pkg:github/puma/puma@v1.0.0",
+        "tag_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.0.0",
+        "manifests_url": "https://repos.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/tags/v1.0.0/manifests"
+      }
+    ]
+  },
+  "repo_metadata_updated_at": "2026-09-02T04:38:43.500Z",
+  "dependent_packages_count": 653,
+  "downloads": 599351010,
+  "downloads_period": "total",
+  "dependent_repos_count": 404320,
+  "rankings": {
+    "downloads": 0.04237240887144434,
+    "dependent_repos_count": 0.04516006734982884,
+    "dependent_packages_count": 0.0724791204379969,
+    "stargazers_count": 0.15833900157223937,
+    "forks_count": 0.16279925513765459,
+    "docker_downloads_count": 0.11262140252673364,
+    "average": 0.0989618759826496
+  },
+  "purl": "pkg:gem/puma",
+  "advisories": [
+    {
+      "uuid": "GSA_kwCzR0hTQS0ydnF3LTNtcDgtY2dteM4ABYTD",
+      "url": "https://github.com/advisories/GHSA-2vqw-3mp8-cgmx",
+      "title": "Puma PROXY Protocol v1 Accepts Repeated Protocol Headers on Persistent Connections",
+      "description": "### Impact\n\nPuma is vulnerable to source IP spoofing when `set_remote_address proxy_protocol: :v1` is enabled and persistent connections are used.\n\nPROXY protocol v1 is a connection-level protocol. [Support was added to Puma in v5.5.0](https://github.com/puma/puma/issues/2651). A proxy sends one PROXY header at the beginning of a TCP connection, before any HTTP data. Puma incorrectly re-parsed PROXY protocol headers after each keep-alive request on the same connection. An attacker able to send HTTP requests through a trusted proxy could therefore inject a second PROXY header between HTTP requests. Puma would treat the injected header as authoritative for the next request and overwrite `REMOTE_ADDR`.\n\nThis can mislead applications or middleware that use `REMOTE_ADDR` for security decisions, rate limiting, auditing, or allow/deny lists.\n\n**Only deployments that explicitly enable PROXY protocol v1 are affected**, and will have set:\n\n```ruby\nset_remote_address proxy_protocol: :v1\n```\n\nPuma's default configuration is not affected. Deployments that do not use persistent connections to Puma are also not expected to be affected by this issue.\n\n### Patches\n\nUsers should upgrade to versions 7.2.1 or 8.0.2.\n\n### Workarounds\n\nDisable PROXY protocol v1 parsing if it is not required:\n\n ```ruby\n   # remove/comment this:\n   # set_remote_address proxy_protocol: :v1\n ```\n\nUsers can also disable persistent connections to Puma, for example:\n\n```ruby\nenable_keep_alives false\n```\n\n### References\n\n- [HAProxy PROXY protocol specification](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt)\n- [CVE-2025-31135 / GHSA-c2c3-pqw5-5p7c: go-guerrilla repeated PROXY command source IP spoofing](https://github.com/phires/go-guerrilla/security/advisories/GHSA-c2c3-pqw5-5p7c)\n- [Puma `set_remote_address` documentation](https://github.com/puma/puma/blob/master/lib/puma/dsl.rb)",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2026-06-09T00:09:44.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 7.5,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-2vqw-3mp8-cgmx",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2026-47737.yml",
+        "https://www.cve.org/CVERecord/SearchResults?query=CVE-2026-47737",
+        "https://github.com/advisories/GHSA-2vqw-3mp8-cgmx"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-2vqw-3mp8-cgmx",
+        "CVE-2026-47737"
+      ],
+      "repository_url": null,
+      "blast_radius": 0,
+      "created_at": "2026-06-09T01:00:10.147Z",
+      "updated_at": "2026-09-02T22:01:57.570Z",
+      "epss_percentage": 0.00266,
+      "epss_percentile": 0.18015,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS0ydnF3LTNtcDgtY2dteM4ABYTD",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS0ydnF3LTNtcDgtY2dteM4ABYTD",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "7.2.1",
+              "vulnerable_version_range": ">= 5.5.0, < 7.2.1"
+            },
+            {
+              "first_patched_version": "8.0.2",
+              "vulnerable_version_range": ">= 8.0.0, < 8.0.2"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS0ydnF3LTNtcDgtY2dteM4ABYTD/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS1xcGdwLTkzdngtZzh2OM4ABYTC",
+      "url": "https://github.com/advisories/GHSA-qpgp-93vx-g8v8",
+      "title": "Puma PROXY Protocol v1 Parser Allows Remote Memory Exhaustion ",
+      "description": "### Impact\n\n[PROXY protocol support for Puma](https://github.com/puma/puma/issues/2651) was added in version 5.5.0.\n\nWhen PROXY protocol v1 support is enabled, Puma reads incoming bytes into an internal buffer. It waits for \"\\r\\n\" to determine whether a PROXY v1 line is present. If an attacker opens a TCP connection and continuously sends bytes without CRLF, Puma keeps appending to this pre-parse buffer.\n\nThis can cause unbounded in-process memory growth and additional CPU cost from repeatedly scanning the growing buffer for CRLF. A single, unauthenticated TCP connection can drive significant memory growth and may cause process/container OOM or degraded availability.\n\n**Only Puma servers using the following non-default config are affected:**\n\n```ruby\n   set_remote_address proxy_protocol: :v1\n```\n\n### Patches\n\nUsers should upgrade to versions 7.2.1 or 8.0.2.\n\n### Workarounds\n\n- Disable PROXY protocol v1 parsing if it is not required:\n\n ```ruby\n   # remove/comment this:\n   # set_remote_address proxy_protocol: :v1\n ```\n\n - Restrict direct network access to Puma listeners using PROXY protocol:\n     - Only allow trusted load balancers/reverse proxies to connect.\n     - Block arbitrary client TCP access with firewall/security group rules.\n\n### Resources\n- [HAProxy PROXY protocol specification](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt)\n- [CWE-400: Uncontrolled Resource Consumption](https://cwe.mitre.org/data/definitions/400.html)\n- [CWE-770: Allocation of Resources Without Limits or Throttling](https://cwe.mitre.org/data/definitions/770.html)\n- [Puma `set_remote_address` documentation](https://github.com/puma/puma/blob/master/lib/puma/dsl.rb)\n- [Puma client PROXY protocol parsing code](https://github.com/puma/puma/blob/master/lib/puma/client.rb)\n- [Puma constants, including `PROXY_PROTOCOL_V1_REGEX`](https://github.com/puma/puma/blob/master/lib/puma/const.rb)",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2026-06-08T23:55:44.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 7.5,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-qpgp-93vx-g8v8",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2026-47736.yml",
+        "https://www.cve.org/CVERecord?id=CVE-2026-47736",
+        "https://github.com/advisories/GHSA-qpgp-93vx-g8v8"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-qpgp-93vx-g8v8",
+        "CVE-2026-47736"
+      ],
+      "repository_url": null,
+      "blast_radius": 0,
+      "created_at": "2026-06-09T00:00:09.205Z",
+      "updated_at": "2026-09-02T22:01:57.576Z",
+      "epss_percentage": 0.0063,
+      "epss_percentile": 0.47719,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1xcGdwLTkzdngtZzh2OM4ABYTC",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS1xcGdwLTkzdngtZzh2OM4ABYTC",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "7.2.1",
+              "vulnerable_version_range": ">= 5.5.0, < 7.2.1"
+            },
+            {
+              "first_patched_version": "8.0.2",
+              "vulnerable_version_range": ">= 8.0.0, < 8.0.2"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1xcGdwLTkzdngtZzh2OM4ABYTC/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS05aGY0LTY3ZmMtNHZmNM4AA_tB",
+      "url": "https://github.com/advisories/GHSA-9hf4-67fc-4vf4",
+      "title": "Puma's header normalization allows for client to clobber proxy set headers",
+      "description": "### Impact\n\nClients could clobber values set by intermediate proxies (such as X-Forwarded-For) by providing a underscore version of the same header (X-Forwarded_For). Any users trusting headers set by their proxy may be affected. Attackers may be able to downgrade connections to HTTP (non-SSL) or redirect responses, which could cause confidentiality leaks if combined with a separate MITM attack. \n\n### Patches\nv6.4.3/v5.6.9 now discards any headers using underscores if the non-underscore version also exists. Effectively, allowing the proxy defined headers to always win.\n\n### Workarounds\nNginx has a [underscores_in_headers](https://nginx.org/en/docs/http/ngx_http_core_module.html#underscores_in_headers) configuration variable to discard these headers at the proxy level.\n\nAny users that are implicitly trusting the proxy defined headers for security or availability should immediately cease doing so until upgraded to the fixed versions.",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2024-09-20T14:40:16.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 6.3,
+      "cvss_vector": "CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:N/VI:N/VA:N/SC:L/SI:L/SA:N",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-9hf4-67fc-4vf4",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-45614",
+        "https://github.com/puma/puma/commit/cac3fd18cf29ed43719ff5d52d9cfec215f0a043",
+        "https://github.com/puma/puma/commit/f196b23be24712fb8fb16051cc124798cc84f70e",
+        "https://nginx.org/en/docs/http/ngx_http_core_module.html#underscores_in_headers",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2024-45614.yml",
+        "https://lists.debian.org/debian-lts-announce/2024/11/msg00004.html",
+        "https://github.com/advisories/GHSA-9hf4-67fc-4vf4"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-9hf4-67fc-4vf4",
+        "CVE-2024-45614"
+      ],
+      "repository_url": "https://github.com/puma/puma",
+      "blast_radius": 35.32236891482779,
+      "created_at": "2024-09-20T15:06:26.050Z",
+      "updated_at": "2026-08-15T20:10:45.190Z",
+      "epss_percentage": 0.0064,
+      "epss_percentile": 0.47509,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS05aGY0LTY3ZmMtNHZmNM4AA_tB",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS05aGY0LTY3ZmMtNHZmNM4AA_tB",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "6.4.3",
+              "vulnerable_version_range": ">= 6.0.0, < 6.4.3"
+            },
+            {
+              "first_patched_version": "5.6.9",
+              "vulnerable_version_range": "< 5.6.9"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS05aGY0LTY3ZmMtNHZmNM4AA_tB/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS1jMmY0LWN2cW0tNjV3Ms4AA4Qh",
+      "url": "https://github.com/advisories/GHSA-c2f4-cvqm-65w2",
+      "title": "Puma HTTP Request/Response Smuggling vulnerability",
+      "description": "### Impact\nPrior to versions 6.4.2 and 5.6.8, puma exhibited dangerous behavior when parsing chunked transfer encoding bodies.\n\nFixed versions limit the size of chunk extensions. Without this limit, an attacker could cause unbounded resource (CPU, network bandwidth) consumption.\n\n### Patches\n\nThe vulnerability has been fixed in 6.4.2 and 5.6.8.\n\n### Workarounds\n\nNo known workarounds.\n\n### References\n\n* [HTTP Request Smuggling](https://portswigger.net/web-security/request-smuggling)\n* Open an issue in [Puma](https://github.com/puma/puma)\n* See our [security policy](https://github.com/puma/puma/security/policy)",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2024-01-08T15:56:48.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 5.9,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-c2f4-cvqm-65w2",
+        "https://nvd.nist.gov/vuln/detail/CVE-2024-21647",
+        "https://github.com/puma/puma/commit/5fc43d73b6ff193325e657a24ed76dec79133e93",
+        "https://github.com/puma/puma/commit/60d5ee3734adc8cee85c3f0561af392448fe19b7",
+        "https://github.com/puma/puma/commit/bbb880ffb6debbfdea535b4b3eb2204d49ae151d",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2024-21647.yml",
+        "https://lists.debian.org/debian-lts-announce/2024/11/msg00004.html",
+        "https://github.com/advisories/GHSA-c2f4-cvqm-65w2"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-c2f4-cvqm-65w2",
+        "CVE-2024-21647"
+      ],
+      "repository_url": "https://github.com/puma/puma",
+      "blast_radius": 0,
+      "created_at": "2024-01-08T16:06:01.803Z",
+      "updated_at": "2026-09-02T22:12:20.399Z",
+      "epss_percentage": 0.00958,
+      "epss_percentile": 0.59012,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1jMmY0LWN2cW0tNjV3Ms4AA4Qh",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS1jMmY0LWN2cW0tNjV3Ms4AA4Qh",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "5.6.8",
+              "vulnerable_version_range": "< 5.6.8"
+            },
+            {
+              "first_patched_version": "6.4.2",
+              "vulnerable_version_range": ">= 6.0.0, < 6.4.2"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1jMmY0LWN2cW0tNjV3Ms4AA4Qh/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS02OHhnLWdxcW0tdmdqOM4AA1Yw",
+      "url": "https://github.com/advisories/GHSA-68xg-gqqm-vgj8",
+      "title": "Puma HTTP Request/Response Smuggling vulnerability",
+      "description": "### Impact\nPrior to version 6.3.1, puma exhibited incorrect behavior when parsing chunked transfer encoding bodies and zero-length Content-Length headers in a way that allowed HTTP request smuggling.\n\nThe following vulnerabilities are addressed by this advisory:\n\n* Incorrect parsing of trailing fields in chunked transfer encoding bodies\n* Parsing of blank/zero-length Content-Length headers\n\n### Patches\nThe vulnerability has been fixed in 6.3.1 and 5.6.7.\n\n### Workarounds\nNo known workarounds.\n\n### References\n[HTTP Request Smuggling](https://portswigger.net/web-security/request-smuggling)\n\n### For more information\nIf you have any questions or comments about this advisory:\n\nOpen an issue in [Puma](https://github.com/puma/puma)\nSee our [security policy](https://github.com/puma/puma/security/policy)\n",
+      "origin": "UNSPECIFIED",
+      "severity": "CRITICAL",
+      "published_at": "2023-08-18T21:50:05.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 9.8,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-68xg-gqqm-vgj8",
+        "https://github.com/puma/puma/commit/690155e7d644b80eeef0a6094f9826ee41f1080a",
+        "https://github.com/puma/puma/commit/ed0f2f94b56982c687452504b95d5f1fbbe3eed1",
+        "https://github.com/puma/puma/releases/tag/v5.6.7",
+        "https://github.com/puma/puma/releases/tag/v6.3.1",
+        "https://nvd.nist.gov/vuln/detail/CVE-2023-40175",
+        "https://github.com/puma/puma/commit/7405a219801dcebc0ad6e0aa108d4319ca23f662",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2023-40175.yml",
+        "https://github.com/advisories/GHSA-68xg-gqqm-vgj8"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-68xg-gqqm-vgj8",
+        "CVE-2023-40175"
+      ],
+      "repository_url": "https://github.com/puma/puma",
+      "blast_radius": 0,
+      "created_at": "2023-08-18T22:05:05.029Z",
+      "updated_at": "2026-09-02T22:13:57.701Z",
+      "epss_percentage": 0.00847,
+      "epss_percentile": 0.55517,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS02OHhnLWdxcW0tdmdqOM4AA1Yw",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS02OHhnLWdxcW0tdmdqOM4AA1Yw",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "5.6.7",
+              "vulnerable_version_range": "< 5.6.7"
+            },
+            {
+              "first_patched_version": "6.3.1",
+              "vulnerable_version_range": ">= 6.0.0, < 6.3.1"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS02OHhnLWdxcW0tdmdqOM4AA1Yw/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS1oOTl3LTlxNXItZ2pxOc028Q",
+      "url": "https://github.com/advisories/GHSA-h99w-9q5r-gjq9",
+      "title": "Puma vulnerable to HTTP Request Smuggling",
+      "description": "When using Puma behind a proxy that does not properly validate that the incoming HTTP request matches the RFC7230 standard, Puma and the frontend proxy may disagree on where a request starts and ends. This would allow requests to be smuggled via the front-end proxy to Puma.\n\nThe following vulnerabilities are addressed by this advisory:\n- Lenient parsing of `Transfer-Encoding` headers, when unsupported encodings should be rejected and the final encoding must be `chunked`.\n- Lenient parsing of malformed `Content-Length` headers and chunk sizes, when only digits and hex digits should be allowed.\n- Lenient parsing of duplicate `Content-Length` headers, when they should be rejected.\n- Lenient parsing of the ending of chunked segments, when they should end with `\\r\\n`.\n\nThe vulnerability has been fixed in 5.6.4 and 4.3.12. When deploying a proxy in front of Puma, turning on any and all functionality to make sure that the request matches the RFC7230 standard. \n\nThese proxy servers are known to have \"good\" behavior re: this standard and upgrading Puma may not be necessary. Users are encouraged to validate for themselves.\n\n- Nginx (latest)\n- Apache (latest)\n- Haproxy 2.5+\n- Caddy (latest)\n- Traefik (latest)",
+      "origin": "UNSPECIFIED",
+      "severity": "CRITICAL",
+      "published_at": "2022-03-30T21:48:50.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 9.1,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-h99w-9q5r-gjq9",
+        "https://github.com/puma/puma/commit/5bb7d202e24dec00a898dca4aa11db391d7787a5",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-24790",
+        "https://portswigger.net/web-security/request-smuggling",
+        "https://www.debian.org/security/2022/dsa-5146",
+        "https://security.gentoo.org/glsa/202208-28",
+        "https://lists.debian.org/debian-lts-announce/2022/08/msg00015.html",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/L7NESIBFCNSR3XH7LXDPKVMSUBNUB43G/",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/TUBFJ44NCKJ34LECZRAP4N5VL6USJSIB/",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/F6YWGIIKL7KKTS3ZOAYMYPC7D6WQ5OA5/",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2022-24790.yml",
+        "https://github.com/advisories/GHSA-h99w-9q5r-gjq9"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-h99w-9q5r-gjq9",
+        "CVE-2022-24790"
+      ],
+      "repository_url": "https://github.com/puma/puma",
+      "blast_radius": 0,
+      "created_at": "2022-12-21T16:12:31.362Z",
+      "updated_at": "2026-09-02T22:16:16.390Z",
+      "epss_percentage": 0.02191,
+      "epss_percentile": 0.8087,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1oOTl3LTlxNXItZ2pxOc028Q",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS1oOTl3LTlxNXItZ2pxOc028Q",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "4.3.12",
+              "vulnerable_version_range": "< 4.3.12"
+            },
+            {
+              "first_patched_version": "5.6.4",
+              "vulnerable_version_range": ">= 5.0.0, < 5.6.4"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1oOTl3LTlxNXItZ2pxOc028Q/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS1ybWo4LThoaGgtZ3Y1aM0rDw",
+      "url": "https://github.com/advisories/GHSA-rmj8-8hhh-gv5h",
+      "title": "Puma used with Rails may lead to Information Exposure",
+      "description": "### Impact\nPrior to `puma` version `5.6.2`, `puma` may not always call `close` on the response body. Rails, prior to version `7.0.2.2`, depended on the response body being closed in order for its `CurrentAttributes` implementation to work correctly.\n\nFrom Rails:\n\n> Under certain circumstances response bodies will not be closed, for example a bug in a webserver[1] or a bug in a Rack middleware. In the event a response is not notified of a close, ActionDispatch::Executor will not know to reset thread local state for the next request. This can lead to data being leaked to subsequent requests, especially when interacting with ActiveSupport::CurrentAttributes.\n\nThe combination of these two behaviors (Puma not closing the body + Rails' Executor implementation) causes information leakage.\n\n### Patches\nThis problem is fixed in Puma versions 5.6.2 and 4.3.11.\n\nThis problem is fixed in Rails versions 7.02.2, 6.1.4.6, 6.0.4.6, and 5.2.6.2.\n\nSee: \nhttps://github.com/advisories/GHSA-wh98-p28r-vrc9 \nfor details about the rails vulnerability\n\nUpgrading to a patched Rails _or_ Puma version fixes the vulnerability.\n\n### Workarounds\n\nUpgrade to Rails versions 7.02.2, 6.1.4.6, 6.0.4.6, and 5.2.6.2.\n\nThe [Rails CVE](https://groups.google.com/g/ruby-security-ann/c/FkTM-_7zSNA/m/K2RiMJBlBAAJ?utm_medium=email&utm_source=footer&pli=1) includes a middleware that can be used instead.\n\n### References\n\n* Rails CVE: [CVE-2022-23633](https://groups.google.com/g/ruby-security-ann/c/FkTM-_7zSNA/m/K2RiMJBlBAAJ?utm_medium=email&utm_source=footer&pli=1)\n\n### For more information\nIf you have any questions or comments about this advisory:\n* Open an issue in [puma](https://github.com/puma/puma)\n* See our [security policy](https://github.com/puma/puma/security/policy)",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2022-02-11T21:33:23.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 8,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:N",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-rmj8-8hhh-gv5h",
+        "https://github.com/puma/puma/commit/b70f451fe8abc0cff192c065d549778452e155bb",
+        "https://nvd.nist.gov/vuln/detail/CVE-2022-23634",
+        "https://github.com/advisories/GHSA-rmj8-8hhh-gv5h",
+        "https://github.com/advisories/GHSA-wh98-p28r-vrc9",
+        "https://groups.google.com/g/ruby-security-ann/c/FkTM-_7zSNA/m/K2RiMJBlBAAJ?utm_medium=email&utm_source=footer&pli=1",
+        "https://www.debian.org/security/2022/dsa-5146",
+        "https://lists.debian.org/debian-lts-announce/2022/05/msg00034.html",
+        "https://security.gentoo.org/glsa/202208-28",
+        "https://lists.debian.org/debian-lts-announce/2022/08/msg00015.html",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/L7NESIBFCNSR3XH7LXDPKVMSUBNUB43G/",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/TUBFJ44NCKJ34LECZRAP4N5VL6USJSIB/",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/F6YWGIIKL7KKTS3ZOAYMYPC7D6WQ5OA5/",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2022-23634.yml"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-rmj8-8hhh-gv5h",
+        "CVE-2022-23634"
+      ],
+      "repository_url": "https://github.com/puma/puma",
+      "blast_radius": 0,
+      "created_at": "2022-12-21T16:12:35.947Z",
+      "updated_at": "2026-08-15T20:20:42.059Z",
+      "epss_percentage": 0.02107,
+      "epss_percentile": 0.8009,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1ybWo4LThoaGgtZ3Y1aM0rDw",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS1ybWo4LThoaGgtZ3Y1aM0rDw",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "4.3.11",
+              "vulnerable_version_range": "< 4.3.11"
+            },
+            {
+              "first_patched_version": "5.6.2",
+              "vulnerable_version_range": ">= 5.0.0, < 5.6.2"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS1ybWo4LThoaGgtZ3Y1aM0rDw/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "GSA_kwCzR0hTQS00OHcyLXJtNjUtNjJ4eM0Whw",
+      "url": "https://github.com/advisories/GHSA-48w2-rm65-62xx",
+      "title": "Puma with proxy which forwards LF characters as line endings could allow HTTP request smuggling",
+      "description": "### Impact\n\nPrior to `puma` version 5.5.0, using `puma` with a proxy which forwards LF characters as line endings could allow HTTP request smuggling. A client could smuggle a request through a proxy, causing the proxy to send a response back to another unknown client.\n\nThis behavior (forwarding LF characters as line endings) is very uncommon amongst proxy servers, so we have graded the impact here as \"low\". Puma is only aware of a single proxy server which has this behavior.\n\nIf the proxy uses persistent connections and the client adds another request in via HTTP pipelining, the proxy may mistake it as the first request's body. Puma, however, would see it as two requests, and when processing the second request, send back a response that the proxy does not expect. If the proxy has reused the persistent connection to Puma to send another request for a different client, the second response from the first client will be sent to the second client.\n\n### Patches\n\nThis vulnerability was patched in Puma 5.5.1 and 4.3.9.\n\n### Workarounds\n\nThis vulnerability only affects Puma installations without any proxy in front.\n\nUse a proxy which does not forward LF characters as line endings.\n\nProxies which do not forward LF characters as line endings:\n\n* Nginx\n* Apache (>2.4.25)\n* Haproxy\n* Caddy\n* Traefik\n\n### Possible Breakage\n\nIf you are [dealing with legacy clients that want to send `LF` as a line ending](https://stackoverflow.com/questions/43574428/have-apache-accept-lf-vs-crlf-in-request-headers) in an HTTP header, this will cause those clients to receive a `400` error.\n\n### References\n\n* [HTTP Request Smuggling](https://portswigger.net/web-security/request-smuggling)\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n* Open an issue in [Puma](https://github.com/puma/puma)\n* See our [security policy](https://github.com/puma/puma/security/policy)",
+      "origin": "UNSPECIFIED",
+      "severity": "LOW",
+      "published_at": "2021-10-12T17:53:00.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 3.7,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-48w2-rm65-62xx",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-41136",
+        "https://github.com/puma/puma/commit/acdc3ae571dfae0e045cf09a295280127db65c7f",
+        "https://github.com/puma/puma/releases/tag/v4.3.9",
+        "https://github.com/puma/puma/releases/tag/v5.5.1",
+        "https://www.debian.org/security/2022/dsa-5146",
+        "https://security.gentoo.org/glsa/202208-28",
+        "https://lists.debian.org/debian-lts-announce/2022/08/msg00015.html",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2021-41136.yml",
+        "https://github.com/puma/puma/commit/436c71807f00e07070902a03f79fd3e130eb6b18",
+        "https://github.com/puma/puma/commit/fb6ad8f8013ab5cdbb2f444cbfabd0b4fde71139",
+        "https://github.com/advisories/GHSA-48w2-rm65-62xx"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-48w2-rm65-62xx",
+        "CVE-2021-41136"
+      ],
+      "repository_url": "https://github.com/puma/puma",
+      "blast_radius": 0,
+      "created_at": "2022-12-21T16:12:44.688Z",
+      "updated_at": "2026-09-02T22:16:46.661Z",
+      "epss_percentage": 0.01203,
+      "epss_percentile": 0.65879,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS00OHcyLXJtNjUtNjJ4eM0Whw",
+      "html_url": "https://advisories.ecosyste.ms/advisories/GSA_kwCzR0hTQS00OHcyLXJtNjUtNjJ4eM0Whw",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "4.3.9",
+              "vulnerable_version_range": "< 4.3.9"
+            },
+            {
+              "first_patched_version": "5.5.1",
+              "vulnerable_version_range": ">= 5.0.0, < 5.5.1"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/GSA_kwCzR0hTQS00OHcyLXJtNjUtNjJ4eM0Whw/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXEyOG0tOHhqdy04dnI1",
+      "url": "https://github.com/advisories/GHSA-q28m-8xjw-8vr5",
+      "title": "Puma's Keepalive Connections Causing Denial Of Service",
+      "description": "This vulnerability is related to [CVE-2019-16770](https://github.com/puma/puma/security/advisories/GHSA-7xx3-m584-x994).\n\n### Impact\n\nThe fix for CVE-2019-16770 was incomplete. The original fix only protected existing connections that had already been accepted from having their requests starved by greedy persistent-connections saturating all threads in the same process. However, new connections may still be starved by greedy persistent-connections saturating all threads in all processes in the cluster.\n\nA `puma` server which received more concurrent `keep-alive` connections than the server had threads in its threadpool would service only a subset of connections, denying service to the unserved connections.\n\n### Patches\n\nThis problem has been fixed in `puma` 4.3.8 and 5.3.1.\n\n### Workarounds\n\nSetting `queue_requests false` also fixes the issue. This is not advised when using `puma` without a reverse proxy, such as `nginx` or `apache`, because you will open yourself to slow client attacks (e.g. [slowloris](https://en.wikipedia.org/wiki/Slowloris_(computer_security))).\n\nThe fix is very small. [A git patch is available here](https://gist.github.com/nateberkopec/4b3ea5676c0d70cbb37c82d54be25837) for those using [unsupported versions](https://github.com/puma/puma/security/policy#supported-versions) of Puma.\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n* Open an issue in [Puma](https://github.com/puma/puma).\n* To report problems with this fix or to report another vulnerability, see [our security policy.](https://github.com/puma/puma/security/policy)\n\n### Acknowledgements\n\nThank you to @MSP-Greg, @wjordan and @evanphx for their review on this issue. \n\nThank you to @ioquatix for providing a modified fork of `wrk` which made debugging this issue much easier.",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2021-05-18T01:27:15.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 7.5,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-q28m-8xjw-8vr5",
+        "https://nvd.nist.gov/vuln/detail/CVE-2021-29509",
+        "https://gist.github.com/nateberkopec/4b3ea5676c0d70cbb37c82d54be25837",
+        "https://github.com/puma/puma/security/policy",
+        "https://rubygems.org/gems/puma",
+        "https://security.gentoo.org/glsa/202208-28",
+        "https://lists.debian.org/debian-lts-announce/2022/08/msg00015.html",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2021-29509.yml",
+        "https://github.com/advisories/GHSA-q28m-8xjw-8vr5"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-q28m-8xjw-8vr5",
+        "CVE-2021-29509"
+      ],
+      "repository_url": "https://github.com/puma/puma",
+      "blast_radius": 0,
+      "created_at": "2022-12-21T16:13:03.378Z",
+      "updated_at": "2026-09-02T22:17:20.193Z",
+      "epss_percentage": 0.01599,
+      "epss_percentile": 0.73876,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXEyOG0tOHhqdy04dnI1",
+      "html_url": "https://advisories.ecosyste.ms/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXEyOG0tOHhqdy04dnI1",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "5.3.1",
+              "vulnerable_version_range": ">= 5.0.0, <= 5.3.0"
+            },
+            {
+              "first_patched_version": "4.3.8",
+              "vulnerable_version_range": "<= 4.3.7"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXEyOG0tOHhqdy04dnI1/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXc2NHctcXFwaC01Z3ht",
+      "url": "https://github.com/advisories/GHSA-w64w-qqph-5gxm",
+      "title": "HTTP Smuggling via Transfer-Encoding Header in Puma",
+      "description": "### Impact\nThis is a similar but different vulnerability to the one patched in 3.12.5 and 4.3.4.\n\nA client could smuggle a request through a proxy, causing the proxy to send a response back to another unknown client. \n\nIf the proxy uses persistent connections and the client adds another request in via HTTP pipelining, the proxy may mistake it as the first request's body. Puma, however, would see it as two requests, and when processing the second request, send back a response that the proxy does not expect. If the proxy has reused the persistent connection to Puma to send another request for a different client, the second response from the first client will be sent to the second client.\n\n### Patches\n\nThe problem has been fixed in Puma 3.12.6 and Puma 4.3.5.\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n* Open an issue in [Puma](https://github.com/puma/puma)\n* See our [security policy](https://github.com/puma/puma/security/policy)",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2020-05-22T14:55:09.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 6.8,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-w64w-qqph-5gxm",
+        "https://github.com/puma/puma/blob/master/History.md#434435-and-31253126--2020-05-22",
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-11077",
+        "http://lists.opensuse.org/opensuse-security-announce/2020-07/msg00034.html",
+        "http://lists.opensuse.org/opensuse-security-announce/2020-07/msg00038.html",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/SKIY5H67GJIGJL6SMFWFLUQQQR3EMVPR/",
+        "https://lists.debian.org/debian-lts-announce/2020/10/msg00009.html",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2020-11077.yml",
+        "https://github.com/advisories/GHSA-w64w-qqph-5gxm"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-w64w-qqph-5gxm",
+        "CVE-2020-11077"
+      ],
+      "repository_url": "https://github.com/puma/puma",
+      "blast_radius": 0,
+      "created_at": "2022-12-21T16:13:24.599Z",
+      "updated_at": "2026-09-02T22:17:54.844Z",
+      "epss_percentage": 0.02806,
+      "epss_percentile": 0.85507,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXc2NHctcXFwaC01Z3ht",
+      "html_url": "https://advisories.ecosyste.ms/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXc2NHctcXFwaC01Z3ht",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "4.3.5",
+              "vulnerable_version_range": ">= 4.0.0, < 4.3.5"
+            },
+            {
+              "first_patched_version": "3.12.6",
+              "vulnerable_version_range": "< 3.12.6"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXc2NHctcXFwaC01Z3ht/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXg3amctNnB3Zy1meDVo",
+      "url": "https://github.com/advisories/GHSA-x7jg-6pwg-fx5h",
+      "title": "HTTP Smuggling via Transfer-Encoding Header in Puma",
+      "description": "### Impact\n\nBy using an invalid transfer-encoding header, an attacker could [smuggle an HTTP response.](https://portswigger.net/web-security/request-smuggling)\n\nOriginally reported by @ZeddYu, who has our thanks for the detailed report.\n\n### Patches\n\nThe problem has been fixed in Puma 3.12.5 and Puma 4.3.4.\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n* Open an issue in [Puma](https://github.com/puma/puma)\n* See our [security policy](https://github.com/puma/puma/security/policy)",
+      "origin": "UNSPECIFIED",
+      "severity": "HIGH",
+      "published_at": "2020-05-22T14:55:05.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 7.5,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-x7jg-6pwg-fx5h",
+        "https://github.com/puma/puma/commit/f24d5521295a2152c286abb0a45a1e1e2bd275bd",
+        "https://github.com/puma/puma/blob/master/History.md#434435-and-31253126--2020-05-22",
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-11076",
+        "http://lists.opensuse.org/opensuse-security-announce/2020-07/msg00034.html",
+        "http://lists.opensuse.org/opensuse-security-announce/2020-07/msg00038.html",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/SKIY5H67GJIGJL6SMFWFLUQQQR3EMVPR/",
+        "https://lists.debian.org/debian-lts-announce/2020/10/msg00009.html",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2020-11076.yml",
+        "https://github.com/advisories/GHSA-x7jg-6pwg-fx5h"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-x7jg-6pwg-fx5h",
+        "CVE-2020-11076"
+      ],
+      "repository_url": "https://github.com/puma/puma",
+      "blast_radius": 0,
+      "created_at": "2022-12-21T16:13:24.609Z",
+      "updated_at": "2026-09-02T22:17:54.844Z",
+      "epss_percentage": 0.04088,
+      "epss_percentile": 0.89808,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXg3amctNnB3Zy1meDVo",
+      "html_url": "https://advisories.ecosyste.ms/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXg3amctNnB3Zy1meDVo",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "4.3.4",
+              "vulnerable_version_range": ">= 4.0.0, < 4.3.4"
+            },
+            {
+              "first_patched_version": "3.12.5",
+              "vulnerable_version_range": "< 3.12.5"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLXg3amctNnB3Zy1meDVo/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTMzdmYtNHhnZy05cjU4",
+      "url": "https://github.com/advisories/GHSA-33vf-4xgg-9r58",
+      "title": "HTTP Response Splitting (Early Hints) in Puma",
+      "description": "### Impact\nIf an application using Puma allows untrusted input in an early-hints header, an attacker can use a carriage return character to end the header and inject malicious content, such as additional headers or an entirely new response body. This vulnerability is known as [HTTP Response Splitting](https://owasp.org/www-community/attacks/HTTP_Response_Splitting).\n\nWhile not an attack in itself, response splitting is a vector for several other attacks, such as cross-site scripting (XSS).\n\nThis is related to [CVE-2020-5247](https://github.com/puma/puma/security/advisories/GHSA-84j7-475p-hp8v), which fixed this vulnerability but only for regular responses.\n\n### Patches\nThis has been fixed in 4.3.3 and 3.12.4.\n\n### Workarounds\nUsers can not allow untrusted/user input in the Early Hints response header.\n\n### For more information\nIf you have any questions or comments about this advisory:\n* Open an issue in [puma](https://github.com/puma/puma)\n* Email us a project maintainer. [Email addresses are listed in our Code of Conduct](https://github.com/puma/puma/blob/master/CODE_OF_CONDUCT.md#enforcement).",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2020-03-03T23:33:16.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 6.5,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:L",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-33vf-4xgg-9r58",
+        "https://github.com/puma/puma/security/advisories/GHSA-84j7-475p-hp8v",
+        "https://github.com/puma/puma/commit/c22712fc93284a45a93f9ad7023888f3a65524f3",
+        "https://owasp.org/www-community/attacks/HTTP_Response_Splitting",
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-5249",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/BMJ3CGZ3DLBJ5WUUKMI5ZFXFJQMXJZIK/",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/DIHVO3CQMU7BZC7FCTSRJ33YDNS3GFPK/",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NJ3LL5F5QADB6LM46GXZETREAKZMQNRD/",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2020-5249.yml",
+        "https://github.com/advisories/GHSA-33vf-4xgg-9r58"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-33vf-4xgg-9r58",
+        "CVE-2020-5249"
+      ],
+      "repository_url": "https://github.com/puma/puma",
+      "blast_radius": 0,
+      "created_at": "2022-12-21T16:13:25.898Z",
+      "updated_at": "2026-09-02T22:17:56.674Z",
+      "epss_percentage": 0.01571,
+      "epss_percentile": 0.73617,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTMzdmYtNHhnZy05cjU4",
+      "html_url": "https://advisories.ecosyste.ms/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTMzdmYtNHhnZy05cjU4",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "4.3.3",
+              "vulnerable_version_range": ">= 4.0.0, < 4.3.3"
+            },
+            {
+              "first_patched_version": "3.12.4",
+              "vulnerable_version_range": "< 3.12.4"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTMzdmYtNHhnZy05cjU4/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTg0ajctNDc1cC1ocDh2",
+      "url": "https://github.com/advisories/GHSA-84j7-475p-hp8v",
+      "title": "HTTP Response Splitting in Puma",
+      "description": "In Puma (RubyGem) before 4.3.2 and 3.12.3, if an application using Puma allows untrusted input in a response header, an attacker can use newline characters (i.e. `CR`, `LF` or`/r`, `/n`) to end the header and inject malicious content, such as additional headers or an entirely new response body. This vulnerability is known as HTTP Response Splitting.\n\nWhile not an attack in itself, response splitting is a vector for several other attacks, such as cross-site scripting (XSS).\n\nThis is related to CVE-2019-16254, which fixed this vulnerability for the WEBrick Ruby web server.\n\nThis has been fixed in versions 4.3.2 and 3.12.3 by checking all headers for line endings and rejecting headers with those characters.  ",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2020-02-28T16:53:55.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 6.5,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:L",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-84j7-475p-hp8v",
+        "https://github.com/puma/puma/commit/c36491756f68a9d6a8b3a49e7e5eb07fe6f1332f",
+        "https://owasp.org/www-community/attacks/HTTP_Response_Splitting",
+        "https://www.ruby-lang.org/en/news/2019/10/01/http-response-splitting-in-webrick-cve-2019-16254",
+        "https://nvd.nist.gov/vuln/detail/CVE-2020-5247",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/BMJ3CGZ3DLBJ5WUUKMI5ZFXFJQMXJZIK/",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/DIHVO3CQMU7BZC7FCTSRJ33YDNS3GFPK/",
+        "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NJ3LL5F5QADB6LM46GXZETREAKZMQNRD/",
+        "https://lists.debian.org/debian-lts-announce/2022/05/msg00034.html",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2020-5247.yml",
+        "https://github.com/advisories/GHSA-84j7-475p-hp8v"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-84j7-475p-hp8v",
+        "CVE-2020-5247"
+      ],
+      "repository_url": "https://github.com/puma/puma",
+      "blast_radius": 0,
+      "created_at": "2022-12-21T16:13:25.889Z",
+      "updated_at": "2026-09-02T22:17:56.674Z",
+      "epss_percentage": 0.02549,
+      "epss_percentile": 0.83511,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTg0ajctNDc1cC1ocDh2",
+      "html_url": "https://advisories.ecosyste.ms/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTg0ajctNDc1cC1ocDh2",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "4.3.3",
+              "vulnerable_version_range": ">= 4.0.0, < 4.3.2"
+            },
+            {
+              "first_patched_version": "3.12.4",
+              "vulnerable_version_range": "< 3.12.3"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTg0ajctNDc1cC1ocDh2/related_packages",
+      "related_advisories": []
+    },
+    {
+      "uuid": "MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTd4eDMtbTU4NC14OTk0",
+      "url": "https://github.com/advisories/GHSA-7xx3-m584-x994",
+      "title": "A poorly-behaved client could use keepalive requests to monopolize Puma's reactor and create a denial of service attack",
+      "description": "## Keepalive thread overload/DoS\n\n### Impact\n\nA poorly-behaved client could use keepalive requests to monopolize Puma's reactor and create a denial of service attack.\n\nIf more keepalive connections to Puma are opened than there are threads available, additional connections will wait permanently if the attacker sends requests frequently enough.\n\n### Patches\n\nThis vulnerability is patched in Puma 4.3.1 and 3.12.2.\n\n### Workarounds\n\nReverse proxies in front of Puma could be configured to always allow less than X keepalive connections to a Puma cluster or process, where X is the number of threads configured in Puma's thread pool.\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n* Open an issue at [puma](github.com/puma/puma).",
+      "origin": "UNSPECIFIED",
+      "severity": "MODERATE",
+      "published_at": "2019-12-05T19:26:37.000Z",
+      "withdrawn_at": null,
+      "classification": "GENERAL",
+      "cvss_score": 5.3,
+      "cvss_vector": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L",
+      "references": [
+        "https://github.com/puma/puma/security/advisories/GHSA-7xx3-m584-x994",
+        "https://nvd.nist.gov/vuln/detail/CVE-2019-16770",
+        "https://github.com/advisories/GHSA-7xx3-m584-x994",
+        "https://lists.debian.org/debian-lts-announce/2022/05/msg00034.html",
+        "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2019-16770.yml"
+      ],
+      "source_kind": "github",
+      "identifiers": [
+        "GHSA-7xx3-m584-x994",
+        "CVE-2019-16770"
+      ],
+      "repository_url": "https://github.com/puma/puma",
+      "blast_radius": 0,
+      "created_at": "2022-12-21T16:13:26.948Z",
+      "updated_at": "2026-09-02T22:17:58.036Z",
+      "epss_percentage": 0.02014,
+      "epss_percentile": 0.79503,
+      "api_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTd4eDMtbTU4NC14OTk0",
+      "html_url": "https://advisories.ecosyste.ms/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTd4eDMtbTU4NC14OTk0",
+      "packages": [
+        {
+          "ecosystem": "rubygems",
+          "package_name": "puma",
+          "versions": [
+            {
+              "first_patched_version": "4.3.1",
+              "vulnerable_version_range": ">= 4.0.0, < 4.3.1"
+            },
+            {
+              "first_patched_version": "3.12.2",
+              "vulnerable_version_range": "< 3.12.2"
+            }
+          ],
+          "purl": "pkg:gem/puma"
+        }
+      ],
+      "related_packages_url": "https://advisories.ecosyste.ms/api/v1/advisories/MDE2OlNlY3VyaXR5QWR2aXNvcnlHSFNBLTd4eDMtbTU4NC14OTk0/related_packages",
+      "related_advisories": []
+    }
+  ],
+  "docker_usage_url": "https://docker.ecosyste.ms/usage/rubygems/puma",
+  "docker_dependents_count": 1504,
+  "docker_downloads_count": 1024060246,
+  "usage_url": "https://repos.ecosyste.ms/usage/rubygems/puma",
+  "dependent_repositories_url": "https://repos.ecosyste.ms/api/v1/usage/rubygems/puma/dependencies",
+  "status": null,
+  "funding_links": [],
+  "critical": true,
+  "issue_metadata": {
+    "last_synced_at": "2026-09-01T18:02:32.868Z",
+    "issues_count": 285,
+    "pull_requests_count": 817,
+    "avg_time_to_close_issue": 13611795.277173912,
+    "avg_time_to_close_pull_request": 3368160.857357357,
+    "issues_closed_count": 184,
+    "pull_requests_closed_count": 666,
+    "pull_request_authors_count": 129,
+    "issue_authors_count": 204,
+    "avg_comments_per_issue": 6.71578947368421,
+    "avg_comments_per_pull_request": 2.489596083231334,
+    "merged_pull_requests_count": 558,
+    "bot_issues_count": 0,
+    "bot_pull_requests_count": 13,
+    "past_year_issues_count": 54,
+    "past_year_pull_requests_count": 163,
+    "past_year_avg_time_to_close_issue": 1773073.3333333333,
+    "past_year_avg_time_to_close_pull_request": 703674.2870370371,
+    "past_year_issues_closed_count": 24,
+    "past_year_pull_requests_closed_count": 108,
+    "past_year_pull_request_authors_count": 43,
+    "past_year_issue_authors_count": 32,
+    "past_year_avg_comments_per_issue": 3.9814814814814814,
+    "past_year_avg_comments_per_pull_request": 1.6441717791411044,
+    "past_year_bot_issues_count": 0,
+    "past_year_bot_pull_requests_count": 8,
+    "past_year_merged_pull_requests_count": 97,
+    "issues_url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/repositories/puma%2Fpuma/issues",
+    "maintainers": [
+      {
+        "login": "MSP-Greg",
+        "count": 339,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/MSP-Greg"
+      },
+      {
+        "login": "nateberkopec",
+        "count": 58,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/nateberkopec"
+      },
+      {
+        "login": "dentarg",
+        "count": 45,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/dentarg"
+      },
+      {
+        "login": "joshuay03",
+        "count": 16,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/joshuay03"
+      },
+      {
+        "login": "evanphx",
+        "count": 4,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/evanphx"
+      },
+      {
+        "login": "schneems",
+        "count": 2,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/schneems"
+      },
+      {
+        "login": "cjlarose",
+        "count": 2,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/cjlarose"
+      },
+      {
+        "login": "elizasviel",
+        "count": 1,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/elizasviel"
+      }
+    ],
+    "active_maintainers": [
+      {
+        "login": "MSP-Greg",
+        "count": 50,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/MSP-Greg"
+      },
+      {
+        "login": "nateberkopec",
+        "count": 24,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/nateberkopec"
+      },
+      {
+        "login": "joshuay03",
+        "count": 6,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/joshuay03"
+      },
+      {
+        "login": "dentarg",
+        "count": 3,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/dentarg"
+      },
+      {
+        "login": "schneems",
+        "count": 2,
+        "url": "https://issues.ecosyste.ms/api/v1/hosts/GitHub/authors/schneems"
+      }
+    ]
+  },
+  "versions_url": "https://packages.ecosyste.ms/api/v1/registries/rubygems.org/packages/puma/versions",
+  "version_numbers_url": "https://packages.ecosyste.ms/api/v1/registries/rubygems.org/packages/puma/version_numbers",
+  "latest_version_url": "https://packages.ecosyste.ms/api/v1/registries/rubygems.org/packages/puma/latest_version",
+  "dependent_packages_url": "https://packages.ecosyste.ms/api/v1/registries/rubygems.org/packages/puma/dependent_packages",
+  "related_packages_url": "https://packages.ecosyste.ms/api/v1/registries/rubygems.org/packages/puma/related_packages",
+  "codemeta_url": "https://packages.ecosyste.ms/api/v1/registries/rubygems.org/packages/puma/codemeta",
+  "maintainers": [
+    {
+      "uuid": "49862",
+      "login": "schneems",
+      "name": null,
+      "email": null,
+      "url": null,
+      "packages_count": 67,
+      "html_url": "https://rubygems.org/profiles/schneems",
+      "role": null,
+      "created_at": "2022-11-09T09:46:01.383Z",
+      "updated_at": "2022-11-09T09:46:01.383Z",
+      "packages_url": "https://packages.ecosyste.ms/api/v1/registries/rubygems.org/maintainers/schneems/packages"
+    },
+    {
+      "uuid": "42258",
+      "login": "evan",
+      "name": null,
+      "email": null,
+      "url": null,
+      "packages_count": 33,
+      "html_url": "https://rubygems.org/profiles/evan",
+      "role": null,
+      "created_at": "2022-11-09T09:46:01.349Z",
+      "updated_at": "2022-11-09T09:46:01.349Z",
+      "packages_url": "https://packages.ecosyste.ms/api/v1/registries/rubygems.org/maintainers/evan/packages"
+    },
+    {
+      "uuid": "62792",
+      "login": "nateberkopec",
+      "name": null,
+      "email": null,
+      "url": null,
+      "packages_count": 28,
+      "html_url": "https://rubygems.org/profiles/nateberkopec",
+      "role": null,
+      "created_at": "2022-11-09T09:46:01.419Z",
+      "updated_at": "2022-11-09T09:46:01.419Z",
+      "packages_url": "https://packages.ecosyste.ms/api/v1/registries/rubygems.org/maintainers/nateberkopec/packages"
+    }
+  ]
+}

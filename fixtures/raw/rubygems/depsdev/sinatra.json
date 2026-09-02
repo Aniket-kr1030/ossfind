@@ -1,0 +1,1196 @@
+{
+  "packageKey": {
+    "system": "RUBYGEMS",
+    "name": "sinatra"
+  },
+  "versions": [
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.1.0"
+      },
+      "publishedAt": "2009-07-25T17:52:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.1.5"
+      },
+      "publishedAt": "2009-07-25T17:52:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.1.6"
+      },
+      "publishedAt": "2009-07-25T17:52:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.1.7"
+      },
+      "publishedAt": "2009-07-25T17:52:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.2.0"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.2.1"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.2.2"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.3.0"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.3.1"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.3.2"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.3.3"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.9.0"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.9.0.1"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.9.0.2"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.9.0.3"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.9.0.4"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.9.0.5"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.9.1"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.9.1.1"
+      },
+      "publishedAt": "2009-07-25T17:52:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.9.2"
+      },
+      "publishedAt": "2009-07-25T17:52:05Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.9.4"
+      },
+      "publishedAt": "2009-08-05T13:47:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.9.5"
+      },
+      "publishedAt": "2010-03-04T15:16:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "0.9.6"
+      },
+      "publishedAt": "2010-03-07T10:54:03Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.0"
+      },
+      "publishedAt": "2010-03-23T21:25:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.0.a"
+      },
+      "publishedAt": "2010-01-28T19:53:52Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.0.b"
+      },
+      "publishedAt": "2010-03-07T15:34:42Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.1.0"
+      },
+      "publishedAt": "2010-10-24T14:01:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.1.2"
+      },
+      "publishedAt": "2010-12-25T22:56:19Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.1.3"
+      },
+      "publishedAt": "2011-02-20T09:15:19Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.1.4"
+      },
+      "publishedAt": "2011-04-13T13:36:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.1.a"
+      },
+      "publishedAt": "2010-10-19T12:51:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.1.b"
+      },
+      "publishedAt": "2010-10-23T08:04:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.2.0"
+      },
+      "publishedAt": "2011-03-03T20:50:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.2.0.a"
+      },
+      "publishedAt": "2010-12-25T22:38:52Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.2.0.c"
+      },
+      "publishedAt": "2011-02-19T21:37:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.2.0.d"
+      },
+      "publishedAt": "2011-02-26T15:18:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.2.1"
+      },
+      "publishedAt": "2011-03-17T10:35:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.2.2"
+      },
+      "publishedAt": "2011-04-08T17:24:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.2.3"
+      },
+      "publishedAt": "2011-04-13T13:42:01Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.2.6"
+      },
+      "publishedAt": "2011-05-01T08:25:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.2.7"
+      },
+      "publishedAt": "2011-10-01T02:32:09Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.2.8"
+      },
+      "publishedAt": "2011-12-30T12:47:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.2.9"
+      },
+      "publishedAt": "2013-03-15T11:01:03Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.0"
+      },
+      "publishedAt": "2011-10-01T02:17:51Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.0.a"
+      },
+      "publishedAt": "2011-03-22T17:27:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.0.b"
+      },
+      "publishedAt": "2011-04-08T17:14:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.0.c"
+      },
+      "publishedAt": "2011-04-13T13:50:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.0.d"
+      },
+      "publishedAt": "2011-04-30T09:06:45Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.0.e"
+      },
+      "publishedAt": "2011-06-09T08:38:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.0.f"
+      },
+      "publishedAt": "2011-09-11T17:12:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.0.g"
+      },
+      "publishedAt": "2011-09-25T21:45:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.1"
+      },
+      "publishedAt": "2011-10-05T01:29:19Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.2"
+      },
+      "publishedAt": "2011-12-30T12:55:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.3"
+      },
+      "publishedAt": "2012-08-19T12:54:58Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.4"
+      },
+      "publishedAt": "2013-01-26T22:18:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.5"
+      },
+      "publishedAt": "2013-02-25T10:09:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.3.6"
+      },
+      "publishedAt": "2013-03-15T11:23:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.4.0"
+      },
+      "publishedAt": "2013-03-15T11:28:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.4.0.a"
+      },
+      "publishedAt": "2013-02-26T07:01:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.4.0.b"
+      },
+      "publishedAt": "2013-02-26T13:58:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.4.0.c"
+      },
+      "publishedAt": "2013-02-26T23:19:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.4.0.d"
+      },
+      "publishedAt": "2013-03-09T17:17:45Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.4.1"
+      },
+      "publishedAt": "2013-03-15T17:20:56Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.4.2"
+      },
+      "publishedAt": "2013-03-21T09:08:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.4.3"
+      },
+      "publishedAt": "2013-06-07T21:05:59Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.4.4"
+      },
+      "publishedAt": "2013-10-21T10:12:03Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.4.5"
+      },
+      "publishedAt": "2014-04-08T15:21:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.4.6"
+      },
+      "publishedAt": "2015-03-24T02:42:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.4.7"
+      },
+      "publishedAt": "2016-01-24T12:26:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "1.4.8"
+      },
+      "publishedAt": "2017-01-30T03:31:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.0"
+      },
+      "publishedAt": "2017-05-07T00:05:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.0.beta1"
+      },
+      "publishedAt": "2016-08-22T15:17:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.0.beta2"
+      },
+      "publishedAt": "2016-08-22T17:01:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.0.rc1"
+      },
+      "publishedAt": "2017-03-04T18:18:27Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.0.rc2"
+      },
+      "publishedAt": "2017-03-19T03:34:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.0.rc5"
+      },
+      "publishedAt": "2017-05-06T23:52:27Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.0.rc6"
+      },
+      "publishedAt": "2017-05-06T23:59:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.1"
+      },
+      "publishedAt": "2018-02-16T15:43:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.1.rc1"
+      },
+      "publishedAt": "2018-02-13T11:12:05Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.2"
+      },
+      "publishedAt": "2018-06-05T16:54:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.3"
+      },
+      "publishedAt": "2018-06-08T16:04:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.4"
+      },
+      "publishedAt": "2018-09-15T09:38:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.5"
+      },
+      "publishedAt": "2018-12-22T11:11:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.6"
+      },
+      "publishedAt": "2019-08-21T17:01:12Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.7"
+      },
+      "publishedAt": "2019-08-22T10:04:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.8"
+      },
+      "publishedAt": "2020-01-01T09:42:27Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.0.8.1"
+      },
+      "publishedAt": "2020-01-01T20:06:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.1.0"
+      },
+      "publishedAt": "2020-09-04T18:51:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.2.0"
+      },
+      "publishedAt": "2022-02-15T16:23:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.2.1"
+      },
+      "publishedAt": "2022-07-15T14:35:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.2.2"
+      },
+      "publishedAt": "2022-07-23T21:17:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.2.3"
+      },
+      "publishedAt": "2022-11-25T20:30:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "2.2.4"
+      },
+      "publishedAt": "2022-12-16T23:04:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "3.0.0"
+      },
+      "publishedAt": "2022-09-26T01:06:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "3.0.1"
+      },
+      "publishedAt": "2022-09-26T16:05:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "3.0.2"
+      },
+      "publishedAt": "2022-10-01T17:24:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "3.0.3"
+      },
+      "publishedAt": "2022-11-11T19:42:00Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "3.0.4"
+      },
+      "publishedAt": "2022-11-25T16:38:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "3.0.5"
+      },
+      "publishedAt": "2022-12-16T23:13:40Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "3.0.6"
+      },
+      "publishedAt": "2023-04-11T15:35:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "3.1.0"
+      },
+      "publishedAt": "2023-08-07T09:22:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "3.2.0"
+      },
+      "publishedAt": "2023-12-29T17:56:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "4.0.0"
+      },
+      "publishedAt": "2024-01-19T11:52:18Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "4.0.1"
+      },
+      "publishedAt": "2025-05-23T22:18:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "4.1.0"
+      },
+      "publishedAt": "2024-11-18T11:33:17Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "4.1.1"
+      },
+      "publishedAt": "2024-11-20T15:49:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "4.2.0"
+      },
+      "publishedAt": "2025-10-08T15:38:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "sinatra",
+        "version": "4.2.1"
+      },
+      "publishedAt": "2025-10-10T15:20:36Z",
+      "isDefault": true,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    }
+  ]
+}

@@ -1,0 +1,866 @@
+{
+  "packageKey": {
+    "system": "CARGO",
+    "name": "smallvec"
+  },
+  "versions": [
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.1.0"
+      },
+      "publishedAt": "2015-04-06T06:21:18Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.1.1"
+      },
+      "publishedAt": "2015-04-06T06:26:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.1.2"
+      },
+      "publishedAt": "2015-04-06T06:29:27Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.1.3"
+      },
+      "publishedAt": "2015-04-29T18:31:09Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.1.4"
+      },
+      "publishedAt": "2015-06-10T15:19:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.1.5"
+      },
+      "publishedAt": "2015-06-30T12:42:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.1.6"
+      },
+      "publishedAt": "2016-02-18T17:24:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.1.7"
+      },
+      "publishedAt": "2016-04-11T10:08:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.1.8"
+      },
+      "publishedAt": "2016-06-14T19:51:00Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.2.0"
+      },
+      "publishedAt": "2016-08-22T12:26:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.2.1"
+      },
+      "publishedAt": "2016-10-04T18:25:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.3.1"
+      },
+      "publishedAt": "2016-12-06T07:02:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.3.2"
+      },
+      "publishedAt": "2017-03-22T21:44:41Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.3.3"
+      },
+      "publishedAt": "2017-04-14T09:48:53Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.3.4"
+      },
+      "publishedAt": "2018-07-20T17:21:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.4.0"
+      },
+      "publishedAt": "2017-05-20T20:33:01Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.4.1"
+      },
+      "publishedAt": "2017-06-29T01:12:20Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.4.2"
+      },
+      "publishedAt": "2017-08-11T03:56:05Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.4.3"
+      },
+      "publishedAt": "2017-08-21T20:00:16Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.4.4"
+      },
+      "publishedAt": "2017-09-25T22:41:38Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.4.5"
+      },
+      "publishedAt": "2018-07-20T17:22:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.5.0"
+      },
+      "publishedAt": "2017-10-24T15:35:02Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.5.1"
+      },
+      "publishedAt": "2018-07-20T17:22:36Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.0"
+      },
+      "publishedAt": "2017-12-01T16:26:53Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.1"
+      },
+      "publishedAt": "2018-04-23T20:26:40Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.10"
+      },
+      "publishedAt": "2019-06-10T15:43:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.11"
+      },
+      "publishedAt": "2019-10-28T22:45:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.12"
+      },
+      "publishedAt": "2019-10-30T21:03:40Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.13"
+      },
+      "publishedAt": "2019-11-05T16:37:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.14"
+      },
+      "publishedAt": "2021-01-08T17:33:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.2"
+      },
+      "publishedAt": "2018-06-14T04:06:41Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.3"
+      },
+      "publishedAt": "2018-07-19T21:37:12Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.4"
+      },
+      "publishedAt": "2018-08-06T20:39:16Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.5"
+      },
+      "publishedAt": "2018-08-22T23:03:21Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.6"
+      },
+      "publishedAt": "2018-11-16T18:07:09Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.7"
+      },
+      "publishedAt": "2018-11-29T21:52:16Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.8"
+      },
+      "publishedAt": "2019-01-19T19:51:37Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "0.6.9"
+      },
+      "publishedAt": "2019-02-17T23:59:28Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.0.0"
+      },
+      "publishedAt": "2019-11-03T22:53:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.1.0"
+      },
+      "publishedAt": "2019-12-20T22:18:52Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.10.0"
+      },
+      "publishedAt": "2022-10-02T21:51:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.11.0"
+      },
+      "publishedAt": "2023-07-05T19:01:19Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.11.1"
+      },
+      "publishedAt": "2023-09-20T17:21:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.11.2"
+      },
+      "publishedAt": "2023-11-09T21:35:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.12.0"
+      },
+      "publishedAt": "2024-01-13T23:57:36Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.13.0"
+      },
+      "publishedAt": "2024-01-18T20:07:16Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.13.1"
+      },
+      "publishedAt": "2024-01-19T16:35:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.13.2"
+      },
+      "publishedAt": "2024-03-20T20:32:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.14.0"
+      },
+      "publishedAt": "2025-02-15T04:19:58Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.15.0"
+      },
+      "publishedAt": "2025-04-05T00:46:59Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.15.1"
+      },
+      "publishedAt": "2025-06-06T17:14:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.15.2"
+      },
+      "publishedAt": "2026-06-11T20:52:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.16.0"
+      },
+      "publishedAt": "2026-09-01T15:26:29Z",
+      "isDefault": true,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.2.0"
+      },
+      "publishedAt": "2020-01-29T16:47:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.3.0"
+      },
+      "publishedAt": "2020-04-08T21:36:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.4.0"
+      },
+      "publishedAt": "2020-04-23T12:10:34Z",
+      "isDefault": false,
+      "isDeprecated": true,
+      "deprecatedReason": "yanked"
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.4.1"
+      },
+      "publishedAt": "2020-07-06T14:24:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.4.2"
+      },
+      "publishedAt": "2020-08-11T23:14:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.5.0"
+      },
+      "publishedAt": "2020-11-17T18:13:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.5.1"
+      },
+      "publishedAt": "2020-12-05T01:18:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.6.0"
+      },
+      "publishedAt": "2020-12-31T22:08:03Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.6.1"
+      },
+      "publishedAt": "2021-01-08T17:34:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.7.0"
+      },
+      "publishedAt": "2021-09-28T17:47:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.8.0"
+      },
+      "publishedAt": "2022-01-14T00:12:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.8.1"
+      },
+      "publishedAt": "2022-06-24T17:20:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "1.9.0"
+      },
+      "publishedAt": "2022-06-29T23:03:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "2.0.0-alpha.1"
+      },
+      "publishedAt": "2023-11-07T19:28:35Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "2.0.0-alpha.10"
+      },
+      "publishedAt": "2025-01-15T23:48:45Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "2.0.0-alpha.11"
+      },
+      "publishedAt": "2025-03-20T16:45:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "2.0.0-alpha.12"
+      },
+      "publishedAt": "2025-11-16T20:52:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "2.0.0-alpha.2"
+      },
+      "publishedAt": "2024-01-14T00:00:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "2.0.0-alpha.3"
+      },
+      "publishedAt": "2024-01-20T04:21:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "2.0.0-alpha.4"
+      },
+      "publishedAt": "2024-03-03T17:37:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "2.0.0-alpha.5"
+      },
+      "publishedAt": "2024-03-23T15:41:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "2.0.0-alpha.6"
+      },
+      "publishedAt": "2024-05-10T05:41:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "2.0.0-alpha.7"
+      },
+      "publishedAt": "2024-07-27T03:59:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "2.0.0-alpha.8"
+      },
+      "publishedAt": "2024-12-10T22:53:04Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "smallvec",
+        "version": "2.0.0-alpha.9"
+      },
+      "publishedAt": "2024-12-17T02:06:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    }
+  ]
+}

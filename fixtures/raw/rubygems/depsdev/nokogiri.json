@@ -1,0 +1,2120 @@
+{
+  "packageKey": {
+    "system": "RUBYGEMS",
+    "name": "nokogiri"
+  },
+  "versions": [
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.0.0"
+      },
+      "publishedAt": "2009-07-25T18:05:15Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.0.1"
+      },
+      "publishedAt": "2009-07-25T18:05:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.0.2"
+      },
+      "publishedAt": "2009-07-25T18:05:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.0.3"
+      },
+      "publishedAt": "2009-07-25T18:05:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.0.4"
+      },
+      "publishedAt": "2009-07-25T18:05:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.0.5"
+      },
+      "publishedAt": "2009-07-25T18:05:12Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.0.6"
+      },
+      "publishedAt": "2009-07-25T18:05:12Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.0.7"
+      },
+      "publishedAt": "2009-07-25T18:05:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.1.0"
+      },
+      "publishedAt": "2009-07-25T18:05:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.1.1"
+      },
+      "publishedAt": "2009-07-25T18:05:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.10.0"
+      },
+      "publishedAt": "2019-01-04T15:35:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.10.0.rc1"
+      },
+      "publishedAt": "2019-01-03T15:05:04Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.10.1"
+      },
+      "publishedAt": "2019-01-13T06:29:30Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.10.10"
+      },
+      "publishedAt": "2020-07-06T13:40:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.10.2"
+      },
+      "publishedAt": "2019-03-25T13:03:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.10.3"
+      },
+      "publishedAt": "2019-04-22T17:10:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.10.4"
+      },
+      "publishedAt": "2019-08-11T19:25:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.10.5"
+      },
+      "publishedAt": "2019-10-31T19:29:36Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.10.6"
+      },
+      "publishedAt": "2019-12-04T00:44:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.10.7"
+      },
+      "publishedAt": "2019-12-04T15:29:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.10.8"
+      },
+      "publishedAt": "2020-02-10T19:44:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.10.9"
+      },
+      "publishedAt": "2020-03-01T19:05:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.11.0"
+      },
+      "publishedAt": "2021-01-04T04:20:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.11.0.rc1"
+      },
+      "publishedAt": "2020-02-03T01:23:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.11.0.rc2"
+      },
+      "publishedAt": "2020-04-01T19:18:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.11.0.rc3"
+      },
+      "publishedAt": "2020-09-08T13:19:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.11.0.rc4"
+      },
+      "publishedAt": "2020-12-29T16:45:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.11.1"
+      },
+      "publishedAt": "2021-01-06T05:30:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.11.2"
+      },
+      "publishedAt": "2021-03-11T15:56:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.11.3"
+      },
+      "publishedAt": "2021-04-07T20:33:59Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.11.4"
+      },
+      "publishedAt": "2021-05-14T23:30:56Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.11.5"
+      },
+      "publishedAt": "2021-05-20T03:08:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.11.6"
+      },
+      "publishedAt": "2021-05-26T13:16:40Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.11.7"
+      },
+      "publishedAt": "2021-06-03T00:31:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.12.0"
+      },
+      "publishedAt": "2021-08-02T17:34:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.12.0.rc1"
+      },
+      "publishedAt": "2021-07-09T19:59:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.12.1"
+      },
+      "publishedAt": "2021-08-03T15:11:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.12.2"
+      },
+      "publishedAt": "2021-08-04T15:03:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.12.3"
+      },
+      "publishedAt": "2021-08-10T19:32:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.12.4"
+      },
+      "publishedAt": "2021-08-29T21:18:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.12.5"
+      },
+      "publishedAt": "2021-09-27T19:03:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.13.0"
+      },
+      "publishedAt": "2022-01-06T20:53:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.13.1"
+      },
+      "publishedAt": "2022-01-13T16:04:25Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.13.10"
+      },
+      "publishedAt": "2022-12-08T02:47:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.13.2"
+      },
+      "publishedAt": "2022-02-21T18:52:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.13.3"
+      },
+      "publishedAt": "2022-02-22T04:52:27Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.13.4"
+      },
+      "publishedAt": "2022-04-11T20:44:35Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.13.5"
+      },
+      "publishedAt": "2022-05-04T20:41:52Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.13.6"
+      },
+      "publishedAt": "2022-05-08T14:34:51Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.13.7"
+      },
+      "publishedAt": "2022-07-12T14:56:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.13.8"
+      },
+      "publishedAt": "2022-07-23T15:50:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.13.9"
+      },
+      "publishedAt": "2022-10-18T15:48:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.14.0"
+      },
+      "publishedAt": "2023-01-12T21:48:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.14.0.rc1"
+      },
+      "publishedAt": "2022-12-29T15:47:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.14.1"
+      },
+      "publishedAt": "2023-01-30T19:39:58Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.14.2"
+      },
+      "publishedAt": "2023-02-13T17:41:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.14.3"
+      },
+      "publishedAt": "2023-04-11T17:00:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.14.4"
+      },
+      "publishedAt": "2023-05-11T18:12:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.14.5"
+      },
+      "publishedAt": "2023-05-24T13:04:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.15.0"
+      },
+      "publishedAt": "2023-05-15T19:57:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.15.1"
+      },
+      "publishedAt": "2023-05-19T14:06:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.15.2"
+      },
+      "publishedAt": "2023-05-24T13:31:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.15.3"
+      },
+      "publishedAt": "2023-07-05T14:34:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.15.4"
+      },
+      "publishedAt": "2023-08-11T19:25:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.15.5"
+      },
+      "publishedAt": "2023-11-17T16:13:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.15.6"
+      },
+      "publishedAt": "2024-03-16T13:14:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.15.7"
+      },
+      "publishedAt": "2024-12-02T20:32:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.16.0"
+      },
+      "publishedAt": "2023-12-28T00:08:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.16.0.rc1"
+      },
+      "publishedAt": "2023-12-13T22:00:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.16.1"
+      },
+      "publishedAt": "2024-02-03T16:27:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.16.2"
+      },
+      "publishedAt": "2024-02-04T16:52:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.16.3"
+      },
+      "publishedAt": "2024-03-15T21:21:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.16.4"
+      },
+      "publishedAt": "2024-04-10T18:17:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.16.5"
+      },
+      "publishedAt": "2024-05-13T14:01:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.16.6"
+      },
+      "publishedAt": "2024-06-13T13:46:03Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.16.7"
+      },
+      "publishedAt": "2024-07-27T19:52:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.16.8"
+      },
+      "publishedAt": "2024-12-02T20:17:05Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.17.0"
+      },
+      "publishedAt": "2024-12-08T20:39:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.17.1"
+      },
+      "publishedAt": "2024-12-10T14:36:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.17.2"
+      },
+      "publishedAt": "2024-12-12T21:21:59Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.18.0"
+      },
+      "publishedAt": "2024-12-25T16:23:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.18.0.rc1"
+      },
+      "publishedAt": "2024-12-16T17:48:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.18.1"
+      },
+      "publishedAt": "2024-12-29T22:30:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.18.10"
+      },
+      "publishedAt": "2025-09-15T01:53:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.18.2"
+      },
+      "publishedAt": "2025-01-19T20:31:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.18.3"
+      },
+      "publishedAt": "2025-02-18T22:20:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.18.4"
+      },
+      "publishedAt": "2025-03-14T15:42:15Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.18.5"
+      },
+      "publishedAt": "2025-03-19T14:43:15Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.18.6"
+      },
+      "publishedAt": "2025-03-24T19:36:18Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.18.7"
+      },
+      "publishedAt": "2025-03-31T17:48:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.18.8"
+      },
+      "publishedAt": "2025-04-21T19:13:25Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.18.9"
+      },
+      "publishedAt": "2025-07-21T02:32:35Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.19.0"
+      },
+      "publishedAt": "2025-12-28T16:47:52Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.19.1"
+      },
+      "publishedAt": "2026-02-16T23:31:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.19.2"
+      },
+      "publishedAt": "2026-03-19T21:12:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.19.3"
+      },
+      "publishedAt": "2026-04-27T21:16:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.19.4"
+      },
+      "publishedAt": "2026-06-18T15:18:58Z",
+      "isDefault": true,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.2.0"
+      },
+      "publishedAt": "2009-07-25T18:05:09Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.2.1"
+      },
+      "publishedAt": "2009-07-25T18:05:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.2.2"
+      },
+      "publishedAt": "2009-07-25T18:05:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.2.3"
+      },
+      "publishedAt": "2009-07-25T18:05:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.3.0"
+      },
+      "publishedAt": "2009-07-25T18:05:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.3.1"
+      },
+      "publishedAt": "2009-07-25T18:05:05Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.3.2"
+      },
+      "publishedAt": "2009-08-05T13:12:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.3.3"
+      },
+      "publishedAt": "2009-08-05T13:12:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.4.0"
+      },
+      "publishedAt": "2009-10-31T06:45:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.4.1"
+      },
+      "publishedAt": "2009-12-11T05:11:58Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.4.2"
+      },
+      "publishedAt": "2010-05-22T15:35:01Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.4.3"
+      },
+      "publishedAt": "2010-07-29T14:58:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.4.3.1"
+      },
+      "publishedAt": "2010-07-29T15:26:36Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.4.4"
+      },
+      "publishedAt": "2010-11-16T06:22:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.4.5"
+      },
+      "publishedAt": "2011-06-16T11:21:04Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.4.6"
+      },
+      "publishedAt": "2011-06-20T02:53:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.4.7"
+      },
+      "publishedAt": "2011-07-01T05:21:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.0"
+      },
+      "publishedAt": "2011-07-01T07:25:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.0.beta.1"
+      },
+      "publishedAt": "2010-06-08T13:32:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.0.beta.2"
+      },
+      "publishedAt": "2010-07-30T15:53:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.0.beta.3"
+      },
+      "publishedAt": "2010-12-02T20:10:00Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.0.beta.4"
+      },
+      "publishedAt": "2011-01-27T22:59:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.1"
+      },
+      "publishedAt": "2012-03-09T05:59:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.1.rc1"
+      },
+      "publishedAt": "2012-03-04T02:00:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.10"
+      },
+      "publishedAt": "2013-06-07T21:12:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.11"
+      },
+      "publishedAt": "2013-12-15T01:53:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.2"
+      },
+      "publishedAt": "2012-03-09T21:00:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.3"
+      },
+      "publishedAt": "2012-06-01T13:53:05Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.3.rc2"
+      },
+      "publishedAt": "2012-03-22T15:16:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.3.rc3"
+      },
+      "publishedAt": "2012-03-26T22:06:59Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.3.rc4"
+      },
+      "publishedAt": "2012-04-27T04:11:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.3.rc5"
+      },
+      "publishedAt": "2012-04-27T14:55:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.3.rc6"
+      },
+      "publishedAt": "2012-05-30T15:25:05Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.4"
+      },
+      "publishedAt": "2012-06-11T15:09:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.4.rc1"
+      },
+      "publishedAt": "2012-06-07T20:34:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.4.rc2"
+      },
+      "publishedAt": "2012-06-08T15:26:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.4.rc3"
+      },
+      "publishedAt": "2012-06-08T18:58:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.5"
+      },
+      "publishedAt": "2012-06-23T16:21:17Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.5.rc1"
+      },
+      "publishedAt": "2012-06-12T14:04:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.5.rc2"
+      },
+      "publishedAt": "2012-06-14T16:35:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.5.rc3"
+      },
+      "publishedAt": "2012-06-22T15:22:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.6"
+      },
+      "publishedAt": "2012-12-19T16:41:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.6.rc1"
+      },
+      "publishedAt": "2012-07-11T18:06:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.6.rc2"
+      },
+      "publishedAt": "2012-09-12T15:53:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.6.rc3"
+      },
+      "publishedAt": "2012-11-27T00:36:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.7"
+      },
+      "publishedAt": "2013-03-18T19:43:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.7.rc1"
+      },
+      "publishedAt": "2013-02-22T18:36:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.7.rc2"
+      },
+      "publishedAt": "2013-03-11T09:46:25Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.7.rc3"
+      },
+      "publishedAt": "2013-03-14T12:50:30Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.8"
+      },
+      "publishedAt": "2013-03-19T19:55:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.5.9"
+      },
+      "publishedAt": "2013-03-21T13:29:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.0"
+      },
+      "publishedAt": "2013-06-08T22:02:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.0.rc1"
+      },
+      "publishedAt": "2013-04-23T17:32:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.1"
+      },
+      "publishedAt": "2013-12-15T01:54:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.2"
+      },
+      "publishedAt": "2014-05-12T22:31:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.2.1"
+      },
+      "publishedAt": "2014-05-14T01:21:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.2.rc1"
+      },
+      "publishedAt": "2014-04-06T20:37:25Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.2.rc2"
+      },
+      "publishedAt": "2014-04-10T17:15:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.2.rc3"
+      },
+      "publishedAt": "2014-05-09T22:00:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.3"
+      },
+      "publishedAt": "2014-07-20T18:57:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.3.1"
+      },
+      "publishedAt": "2014-07-22T01:35:21Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.3.rc1"
+      },
+      "publishedAt": "2014-05-22T19:23:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.3.rc2"
+      },
+      "publishedAt": "2014-06-17T17:04:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.3.rc3"
+      },
+      "publishedAt": "2014-06-21T20:31:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.4"
+      },
+      "publishedAt": "2014-11-05T04:32:00Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.4.1"
+      },
+      "publishedAt": "2014-11-07T03:03:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.5"
+      },
+      "publishedAt": "2014-11-26T21:07:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.6.1"
+      },
+      "publishedAt": "2015-01-22T18:41:35Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.6.2"
+      },
+      "publishedAt": "2015-01-23T18:52:51Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.6.3"
+      },
+      "publishedAt": "2015-11-17T00:02:15Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.6.4"
+      },
+      "publishedAt": "2015-11-19T20:58:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.7"
+      },
+      "publishedAt": "2015-11-30T04:21:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.7.1"
+      },
+      "publishedAt": "2015-12-17T05:08:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.7.2"
+      },
+      "publishedAt": "2016-01-20T19:18:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.7.rc2"
+      },
+      "publishedAt": "2015-08-31T13:51:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.7.rc3"
+      },
+      "publishedAt": "2015-09-04T17:34:36Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.7.rc4"
+      },
+      "publishedAt": "2015-11-22T22:56:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.8"
+      },
+      "publishedAt": "2016-06-07T00:04:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.8.1"
+      },
+      "publishedAt": "2016-10-03T04:46:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.8.rc1"
+      },
+      "publishedAt": "2015-12-17T07:28:34Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.8.rc2"
+      },
+      "publishedAt": "2016-01-12T17:08:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.6.8.rc3"
+      },
+      "publishedAt": "2016-02-17T06:33:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.7.0"
+      },
+      "publishedAt": "2016-12-27T03:49:28Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.7.0.1"
+      },
+      "publishedAt": "2017-01-04T05:42:17Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.7.1"
+      },
+      "publishedAt": "2017-03-20T03:39:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.7.2"
+      },
+      "publishedAt": "2017-05-09T21:29:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.8.0"
+      },
+      "publishedAt": "2017-06-05T04:04:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.8.1"
+      },
+      "publishedAt": "2017-09-19T16:12:17Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.8.2"
+      },
+      "publishedAt": "2018-01-29T13:16:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.8.3"
+      },
+      "publishedAt": "2018-06-16T20:04:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.8.4"
+      },
+      "publishedAt": "2018-07-04T00:37:27Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.8.5"
+      },
+      "publishedAt": "2018-10-05T01:14:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.9.0"
+      },
+      "publishedAt": "2018-12-17T15:21:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.9.0.rc1"
+      },
+      "publishedAt": "2018-12-10T06:10:51Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "RUBYGEMS",
+        "name": "nokogiri",
+        "version": "1.9.1"
+      },
+      "publishedAt": "2018-12-18T05:22:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    }
+  ]
+}

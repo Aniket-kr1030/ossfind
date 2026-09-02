@@ -1,0 +1,3378 @@
+{
+  "vulns": [
+    {
+      "id": "GHSA-2vqw-3mp8-cgmx",
+      "summary": "Puma PROXY Protocol v1 Accepts Repeated Protocol Headers on Persistent Connections",
+      "details": "### Impact\n\nPuma is vulnerable to source IP spoofing when `set_remote_address proxy_protocol: :v1` is enabled and persistent connections are used.\n\nPROXY protocol v1 is a connection-level protocol. [Support was added to Puma in v5.5.0](https://github.com/puma/puma/issues/2651). A proxy sends one PROXY header at the beginning of a TCP connection, before any HTTP data. Puma incorrectly re-parsed PROXY protocol headers after each keep-alive request on the same connection. An attacker able to send HTTP requests through a trusted proxy could therefore inject a second PROXY header between HTTP requests. Puma would treat the injected header as authoritative for the next request and overwrite `REMOTE_ADDR`.\n\nThis can mislead applications or middleware that use `REMOTE_ADDR` for security decisions, rate limiting, auditing, or allow/deny lists.\n\n**Only deployments that explicitly enable PROXY protocol v1 are affected**, and will have set:\n\n```ruby\nset_remote_address proxy_protocol: :v1\n```\n\nPuma's default configuration is not affected. Deployments that do not use persistent connections to Puma are also not expected to be affected by this issue.\n\n### Patches\n\nUsers should upgrade to versions 7.2.1 or 8.0.2.\n\n### Workarounds\n\nDisable PROXY protocol v1 parsing if it is not required:\n\n ```ruby\n   # remove/comment this:\n   # set_remote_address proxy_protocol: :v1\n ```\n\nUsers can also disable persistent connections to Puma, for example:\n\n```ruby\nenable_keep_alives false\n```\n\n### References\n\n- [HAProxy PROXY protocol specification](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt)\n- [CVE-2025-31135 / GHSA-c2c3-pqw5-5p7c: go-guerrilla repeated PROXY command source IP spoofing](https://github.com/phires/go-guerrilla/security/advisories/GHSA-c2c3-pqw5-5p7c)\n- [Puma `set_remote_address` documentation](https://github.com/puma/puma/blob/master/lib/puma/dsl.rb)",
+      "aliases": [
+        "CVE-2026-47737"
+      ],
+      "modified": "2026-06-10T08:14:25.435745533Z",
+      "published": "2026-06-09T00:09:44Z",
+      "related": [
+        "CGA-hxjr-48xq-vgjq"
+      ],
+      "database_specific": {
+        "cwe_ids": [
+          "CWE-290",
+          "CWE-345"
+        ],
+        "severity": "HIGH",
+        "github_reviewed": true,
+        "github_reviewed_at": "2026-06-09T00:09:44Z",
+        "nvd_published_at": null
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-2vqw-3mp8-cgmx"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/puma/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2026-47737.yml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://www.cve.org/CVERecord/SearchResults?query=CVE-2026-47737"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.0.2"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "8.0.0",
+            "8.0.1"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/06/GHSA-2vqw-3mp8-cgmx/GHSA-2vqw-3mp8-cgmx.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "5.5.0"
+                },
+                {
+                  "fixed": "7.2.1"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "5.5.0",
+            "5.5.1",
+            "5.5.2",
+            "5.6.0",
+            "5.6.1",
+            "5.6.2",
+            "5.6.4",
+            "5.6.5",
+            "5.6.6",
+            "5.6.7",
+            "5.6.8",
+            "5.6.9",
+            "6.0.0",
+            "6.0.1",
+            "6.0.2",
+            "6.1.0",
+            "6.1.1",
+            "6.2.0",
+            "6.2.1",
+            "6.2.2",
+            "6.3.0",
+            "6.3.1",
+            "6.4.0",
+            "6.4.1",
+            "6.4.2",
+            "6.4.3",
+            "6.5.0",
+            "6.6.0",
+            "6.6.1",
+            "7.0.0",
+            "7.0.0.pre1",
+            "7.0.1",
+            "7.0.2",
+            "7.0.3",
+            "7.0.4",
+            "7.1.0",
+            "7.2.0"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/06/GHSA-2vqw-3mp8-cgmx/GHSA-2vqw-3mp8-cgmx.json"
+          }
+        }
+      ],
+      "schema_version": "1.7.5",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-33vf-4xgg-9r58",
+      "summary": "HTTP Response Splitting (Early Hints) in Puma",
+      "details": "### Impact\nIf an application using Puma allows untrusted input in an early-hints header, an attacker can use a carriage return character to end the header and inject malicious content, such as additional headers or an entirely new response body. This vulnerability is known as [HTTP Response Splitting](https://owasp.org/www-community/attacks/HTTP_Response_Splitting).\n\nWhile not an attack in itself, response splitting is a vector for several other attacks, such as cross-site scripting (XSS).\n\nThis is related to [CVE-2020-5247](https://github.com/puma/puma/security/advisories/GHSA-84j7-475p-hp8v), which fixed this vulnerability but only for regular responses.\n\n### Patches\nThis has been fixed in 4.3.3 and 3.12.4.\n\n### Workarounds\nUsers can not allow untrusted/user input in the Early Hints response header.\n\n### For more information\nIf you have any questions or comments about this advisory:\n* Open an issue in [puma](https://github.com/puma/puma)\n* Email us a project maintainer. [Email addresses are listed in our Code of Conduct](https://github.com/puma/puma/blob/master/CODE_OF_CONDUCT.md#enforcement).",
+      "aliases": [
+        "CVE-2020-5249"
+      ],
+      "modified": "2026-02-04T04:19:30.628978Z",
+      "published": "2020-03-03T23:33:16Z",
+      "related": [
+        "CVE-2020-5249"
+      ],
+      "database_specific": {
+        "cwe_ids": [
+          "CWE-113",
+          "CWE-74"
+        ],
+        "github_reviewed_at": "2020-03-02T15:03:13Z",
+        "github_reviewed": true,
+        "nvd_published_at": "2020-03-02T16:15:12Z",
+        "severity": "MODERATE"
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-33vf-4xgg-9r58"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-84j7-475p-hp8v"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-5249"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/c22712fc93284a45a93f9ad7023888f3a65524f3"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/puma/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2020-5249.yml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/BMJ3CGZ3DLBJ5WUUKMI5ZFXFJQMXJZIK"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/DIHVO3CQMU7BZC7FCTSRJ33YDNS3GFPK"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NJ3LL5F5QADB6LM46GXZETREAKZMQNRD"
+        },
+        {
+          "type": "WEB",
+          "url": "https://owasp.org/www-community/attacks/HTTP_Response_Splitting"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "3.12.4"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "0.8.0",
+            "0.8.1",
+            "0.8.2",
+            "0.9.0",
+            "0.9.1",
+            "0.9.2",
+            "0.9.3",
+            "0.9.4",
+            "0.9.5",
+            "1.0.0",
+            "1.1.0",
+            "1.1.1",
+            "1.2.0",
+            "1.2.1",
+            "1.2.2",
+            "1.3.0",
+            "1.3.1",
+            "1.4.0",
+            "1.5.0",
+            "1.6.0",
+            "1.6.1",
+            "1.6.2",
+            "1.6.3",
+            "2.0.0",
+            "2.0.0.b1",
+            "2.0.0.b2",
+            "2.0.0.b3",
+            "2.0.0.b4",
+            "2.0.0.b5",
+            "2.0.0.b6",
+            "2.0.0.b7",
+            "2.0.1",
+            "2.1.0",
+            "2.1.1",
+            "2.10.0",
+            "2.10.1",
+            "2.10.2",
+            "2.11.0",
+            "2.11.1",
+            "2.11.2",
+            "2.11.3",
+            "2.12.0",
+            "2.12.1",
+            "2.12.2",
+            "2.12.3",
+            "2.13.0",
+            "2.13.1",
+            "2.13.2",
+            "2.13.3",
+            "2.13.4",
+            "2.14.0",
+            "2.15.0",
+            "2.15.1",
+            "2.15.2",
+            "2.15.3",
+            "2.16.0",
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.3.0",
+            "2.3.1",
+            "2.3.2",
+            "2.4.0",
+            "2.4.1",
+            "2.5.0",
+            "2.5.1",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "2.8.1",
+            "2.8.2",
+            "2.9.0",
+            "2.9.1",
+            "2.9.2",
+            "3.0.0",
+            "3.0.0.rc1",
+            "3.0.1",
+            "3.0.2",
+            "3.1.0",
+            "3.1.1",
+            "3.10.0",
+            "3.11.0",
+            "3.11.1",
+            "3.11.2",
+            "3.11.3",
+            "3.11.4",
+            "3.12.0",
+            "3.12.1",
+            "3.12.2",
+            "3.2.0",
+            "3.3.0",
+            "3.4.0",
+            "3.5.0",
+            "3.5.1",
+            "3.5.2",
+            "3.6.0",
+            "3.6.1",
+            "3.6.2",
+            "3.7.0",
+            "3.7.1",
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.9.0",
+            "3.9.1"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2020/03/GHSA-33vf-4xgg-9r58/GHSA-33vf-4xgg-9r58.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "4.0.0"
+                },
+                {
+                  "fixed": "4.3.3"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "4.0.0",
+            "4.0.1",
+            "4.1.0",
+            "4.1.1",
+            "4.2.0",
+            "4.2.1",
+            "4.3.0",
+            "4.3.1"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2020/03/GHSA-33vf-4xgg-9r58/GHSA-33vf-4xgg-9r58.json"
+          }
+        }
+      ],
+      "schema_version": "1.7.3",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:L"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-48w2-rm65-62xx",
+      "summary": "Puma with proxy which forwards LF characters as line endings could allow HTTP request smuggling",
+      "details": "### Impact\n\nPrior to `puma` version 5.5.0, using `puma` with a proxy which forwards LF characters as line endings could allow HTTP request smuggling. A client could smuggle a request through a proxy, causing the proxy to send a response back to another unknown client.\n\nThis behavior (forwarding LF characters as line endings) is very uncommon amongst proxy servers, so we have graded the impact here as \"low\". Puma is only aware of a single proxy server which has this behavior.\n\nIf the proxy uses persistent connections and the client adds another request in via HTTP pipelining, the proxy may mistake it as the first request's body. Puma, however, would see it as two requests, and when processing the second request, send back a response that the proxy does not expect. If the proxy has reused the persistent connection to Puma to send another request for a different client, the second response from the first client will be sent to the second client.\n\n### Patches\n\nThis vulnerability was patched in Puma 5.5.1 and 4.3.9.\n\n### Workarounds\n\nThis vulnerability only affects Puma installations without any proxy in front.\n\nUse a proxy which does not forward LF characters as line endings.\n\nProxies which do not forward LF characters as line endings:\n\n* Nginx\n* Apache (>2.4.25)\n* Haproxy\n* Caddy\n* Traefik\n\n### Possible Breakage\n\nIf you are [dealing with legacy clients that want to send `LF` as a line ending](https://stackoverflow.com/questions/43574428/have-apache-accept-lf-vs-crlf-in-request-headers) in an HTTP header, this will cause those clients to receive a `400` error.\n\n### References\n\n* [HTTP Request Smuggling](https://portswigger.net/web-security/request-smuggling)\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n* Open an issue in [Puma](https://github.com/puma/puma)\n* See our [security policy](https://github.com/puma/puma/security/policy)",
+      "aliases": [
+        "CVE-2021-41136"
+      ],
+      "modified": "2026-07-08T06:28:18.680516550Z",
+      "published": "2021-10-12T17:53:00Z",
+      "database_specific": {
+        "cwe_ids": [
+          "CWE-444"
+        ],
+        "github_reviewed_at": "2021-10-12T17:06:36Z",
+        "github_reviewed": true,
+        "nvd_published_at": "2021-10-12T16:15:00Z",
+        "severity": "LOW"
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-48w2-rm65-62xx"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-41136"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/436c71807f00e07070902a03f79fd3e130eb6b18"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/acdc3ae571dfae0e045cf09a295280127db65c7f"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/fb6ad8f8013ab5cdbb2f444cbfabd0b4fde71139"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/puma/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/releases/tag/v4.3.9"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/releases/tag/v5.5.1"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2021-41136.yml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2022/08/msg00015.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://security.gentoo.org/glsa/202208-28"
+        },
+        {
+          "type": "WEB",
+          "url": "https://www.debian.org/security/2022/dsa-5146"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "5.0.0"
+                },
+                {
+                  "fixed": "5.5.1"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "5.0.0",
+            "5.0.1",
+            "5.0.2",
+            "5.0.3",
+            "5.0.4",
+            "5.1.0",
+            "5.1.1",
+            "5.2.0",
+            "5.2.1",
+            "5.2.2",
+            "5.3.0",
+            "5.3.1",
+            "5.3.2",
+            "5.4.0",
+            "5.5.0"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2021/10/GHSA-48w2-rm65-62xx/GHSA-48w2-rm65-62xx.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.3.9"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "0.8.0",
+            "0.8.1",
+            "0.8.2",
+            "0.9.0",
+            "0.9.1",
+            "0.9.2",
+            "0.9.3",
+            "0.9.4",
+            "0.9.5",
+            "1.0.0",
+            "1.1.0",
+            "1.1.1",
+            "1.2.0",
+            "1.2.1",
+            "1.2.2",
+            "1.3.0",
+            "1.3.1",
+            "1.4.0",
+            "1.5.0",
+            "1.6.0",
+            "1.6.1",
+            "1.6.2",
+            "1.6.3",
+            "2.0.0",
+            "2.0.0.b1",
+            "2.0.0.b2",
+            "2.0.0.b3",
+            "2.0.0.b4",
+            "2.0.0.b5",
+            "2.0.0.b6",
+            "2.0.0.b7",
+            "2.0.1",
+            "2.1.0",
+            "2.1.1",
+            "2.10.0",
+            "2.10.1",
+            "2.10.2",
+            "2.11.0",
+            "2.11.1",
+            "2.11.2",
+            "2.11.3",
+            "2.12.0",
+            "2.12.1",
+            "2.12.2",
+            "2.12.3",
+            "2.13.0",
+            "2.13.1",
+            "2.13.2",
+            "2.13.3",
+            "2.13.4",
+            "2.14.0",
+            "2.15.0",
+            "2.15.1",
+            "2.15.2",
+            "2.15.3",
+            "2.16.0",
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.3.0",
+            "2.3.1",
+            "2.3.2",
+            "2.4.0",
+            "2.4.1",
+            "2.5.0",
+            "2.5.1",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "2.8.1",
+            "2.8.2",
+            "2.9.0",
+            "2.9.1",
+            "2.9.2",
+            "3.0.0",
+            "3.0.0.rc1",
+            "3.0.1",
+            "3.0.2",
+            "3.1.0",
+            "3.1.1",
+            "3.10.0",
+            "3.11.0",
+            "3.11.1",
+            "3.11.2",
+            "3.11.3",
+            "3.11.4",
+            "3.12.0",
+            "3.12.1",
+            "3.12.2",
+            "3.12.4",
+            "3.12.5",
+            "3.12.6",
+            "3.2.0",
+            "3.3.0",
+            "3.4.0",
+            "3.5.0",
+            "3.5.1",
+            "3.5.2",
+            "3.6.0",
+            "3.6.1",
+            "3.6.2",
+            "3.7.0",
+            "3.7.1",
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.9.0",
+            "3.9.1",
+            "4.0.0",
+            "4.0.1",
+            "4.1.0",
+            "4.1.1",
+            "4.2.0",
+            "4.2.1",
+            "4.3.0",
+            "4.3.1",
+            "4.3.3",
+            "4.3.4",
+            "4.3.5",
+            "4.3.6",
+            "4.3.7",
+            "4.3.8"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2021/10/GHSA-48w2-rm65-62xx/GHSA-48w2-rm65-62xx.json"
+          }
+        }
+      ],
+      "schema_version": "1.7.5",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:L/UI:R/S:U/C:L/I:L/A:N"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-68xg-gqqm-vgj8",
+      "summary": "Puma HTTP Request/Response Smuggling vulnerability",
+      "details": "### Impact\nPrior to version 6.3.1, puma exhibited incorrect behavior when parsing chunked transfer encoding bodies and zero-length Content-Length headers in a way that allowed HTTP request smuggling.\n\nThe following vulnerabilities are addressed by this advisory:\n\n* Incorrect parsing of trailing fields in chunked transfer encoding bodies\n* Parsing of blank/zero-length Content-Length headers\n\n### Patches\nThe vulnerability has been fixed in 6.3.1 and 5.6.7.\n\n### Workarounds\nNo known workarounds.\n\n### References\n[HTTP Request Smuggling](https://portswigger.net/web-security/request-smuggling)\n\n### For more information\nIf you have any questions or comments about this advisory:\n\nOpen an issue in [Puma](https://github.com/puma/puma)\nSee our [security policy](https://github.com/puma/puma/security/policy)\n",
+      "aliases": [
+        "CVE-2023-40175"
+      ],
+      "modified": "2024-02-16T08:21:11.519474Z",
+      "published": "2023-08-18T21:50:05Z",
+      "related": [
+        "CVE-2023-40175"
+      ],
+      "database_specific": {
+        "cwe_ids": [
+          "CWE-444"
+        ],
+        "github_reviewed_at": "2023-08-18T21:50:05Z",
+        "github_reviewed": true,
+        "nvd_published_at": "2023-08-18T22:15:11Z",
+        "severity": "CRITICAL"
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-68xg-gqqm-vgj8"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-40175"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/690155e7d644b80eeef0a6094f9826ee41f1080a"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/7405a219801dcebc0ad6e0aa108d4319ca23f662"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/ed0f2f94b56982c687452504b95d5f1fbbe3eed1"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/puma/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/releases/tag/v5.6.7"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/releases/tag/v6.3.1"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2023-40175.yml"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "5.6.7"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "0.8.0",
+            "0.8.1",
+            "0.8.2",
+            "0.9.0",
+            "0.9.1",
+            "0.9.2",
+            "0.9.3",
+            "0.9.4",
+            "0.9.5",
+            "1.0.0",
+            "1.1.0",
+            "1.1.1",
+            "1.2.0",
+            "1.2.1",
+            "1.2.2",
+            "1.3.0",
+            "1.3.1",
+            "1.4.0",
+            "1.5.0",
+            "1.6.0",
+            "1.6.1",
+            "1.6.2",
+            "1.6.3",
+            "2.0.0",
+            "2.0.0.b1",
+            "2.0.0.b2",
+            "2.0.0.b3",
+            "2.0.0.b4",
+            "2.0.0.b5",
+            "2.0.0.b6",
+            "2.0.0.b7",
+            "2.0.1",
+            "2.1.0",
+            "2.1.1",
+            "2.10.0",
+            "2.10.1",
+            "2.10.2",
+            "2.11.0",
+            "2.11.1",
+            "2.11.2",
+            "2.11.3",
+            "2.12.0",
+            "2.12.1",
+            "2.12.2",
+            "2.12.3",
+            "2.13.0",
+            "2.13.1",
+            "2.13.2",
+            "2.13.3",
+            "2.13.4",
+            "2.14.0",
+            "2.15.0",
+            "2.15.1",
+            "2.15.2",
+            "2.15.3",
+            "2.16.0",
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.3.0",
+            "2.3.1",
+            "2.3.2",
+            "2.4.0",
+            "2.4.1",
+            "2.5.0",
+            "2.5.1",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "2.8.1",
+            "2.8.2",
+            "2.9.0",
+            "2.9.1",
+            "2.9.2",
+            "3.0.0",
+            "3.0.0.rc1",
+            "3.0.1",
+            "3.0.2",
+            "3.1.0",
+            "3.1.1",
+            "3.10.0",
+            "3.11.0",
+            "3.11.1",
+            "3.11.2",
+            "3.11.3",
+            "3.11.4",
+            "3.12.0",
+            "3.12.1",
+            "3.12.2",
+            "3.12.4",
+            "3.12.5",
+            "3.12.6",
+            "3.2.0",
+            "3.3.0",
+            "3.4.0",
+            "3.5.0",
+            "3.5.1",
+            "3.5.2",
+            "3.6.0",
+            "3.6.1",
+            "3.6.2",
+            "3.7.0",
+            "3.7.1",
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.9.0",
+            "3.9.1",
+            "4.0.0",
+            "4.0.1",
+            "4.1.0",
+            "4.1.1",
+            "4.2.0",
+            "4.2.1",
+            "4.3.0",
+            "4.3.1",
+            "4.3.10",
+            "4.3.11",
+            "4.3.12",
+            "4.3.3",
+            "4.3.4",
+            "4.3.5",
+            "4.3.6",
+            "4.3.7",
+            "4.3.8",
+            "4.3.9",
+            "5.0.0",
+            "5.0.0.beta1",
+            "5.0.0.beta2",
+            "5.0.1",
+            "5.0.2",
+            "5.0.3",
+            "5.0.4",
+            "5.1.0",
+            "5.1.1",
+            "5.2.0",
+            "5.2.1",
+            "5.2.2",
+            "5.3.0",
+            "5.3.1",
+            "5.3.2",
+            "5.4.0",
+            "5.5.0",
+            "5.5.1",
+            "5.5.2",
+            "5.6.0",
+            "5.6.1",
+            "5.6.2",
+            "5.6.4",
+            "5.6.5",
+            "5.6.6"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2023/08/GHSA-68xg-gqqm-vgj8/GHSA-68xg-gqqm-vgj8.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "6.0.0"
+                },
+                {
+                  "fixed": "6.3.1"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "6.0.0",
+            "6.0.1",
+            "6.0.2",
+            "6.1.0",
+            "6.1.1",
+            "6.2.0",
+            "6.2.1",
+            "6.2.2",
+            "6.3.0"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2023/08/GHSA-68xg-gqqm-vgj8/GHSA-68xg-gqqm-vgj8.json"
+          }
+        }
+      ],
+      "schema_version": "1.7.3",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-7xx3-m584-x994",
+      "summary": "A poorly-behaved client could use keepalive requests to monopolize Puma's reactor and create a denial of service attack",
+      "details": "## Keepalive thread overload/DoS\n\n### Impact\n\nA poorly-behaved client could use keepalive requests to monopolize Puma's reactor and create a denial of service attack.\n\nIf more keepalive connections to Puma are opened than there are threads available, additional connections will wait permanently if the attacker sends requests frequently enough.\n\n### Patches\n\nThis vulnerability is patched in Puma 4.3.1 and 3.12.2.\n\n### Workarounds\n\nReverse proxies in front of Puma could be configured to always allow less than X keepalive connections to a Puma cluster or process, where X is the number of threads configured in Puma's thread pool.\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n* Open an issue at [puma](github.com/puma/puma).",
+      "aliases": [
+        "CVE-2019-16770"
+      ],
+      "modified": "2026-07-08T06:00:11.133080946Z",
+      "published": "2019-12-05T19:26:37Z",
+      "database_specific": {
+        "github_reviewed": true,
+        "nvd_published_at": "2019-12-05T20:15:00Z",
+        "severity": "MODERATE",
+        "cwe_ids": [
+          "CWE-770"
+        ],
+        "github_reviewed_at": "2020-06-16T21:23:51Z"
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-7xx3-m584-x994"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2019-16770"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://github.com/advisories/GHSA-7xx3-m584-x994"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2019-16770.yml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2022/05/msg00034.html"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "3.12.2"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "0.8.0",
+            "0.8.1",
+            "0.8.2",
+            "0.9.0",
+            "0.9.1",
+            "0.9.2",
+            "0.9.3",
+            "0.9.4",
+            "0.9.5",
+            "1.0.0",
+            "1.1.0",
+            "1.1.1",
+            "1.2.0",
+            "1.2.1",
+            "1.2.2",
+            "1.3.0",
+            "1.3.1",
+            "1.4.0",
+            "1.5.0",
+            "1.6.0",
+            "1.6.1",
+            "1.6.2",
+            "1.6.3",
+            "2.0.0",
+            "2.0.0.b1",
+            "2.0.0.b2",
+            "2.0.0.b3",
+            "2.0.0.b4",
+            "2.0.0.b5",
+            "2.0.0.b6",
+            "2.0.0.b7",
+            "2.0.1",
+            "2.1.0",
+            "2.1.1",
+            "2.10.0",
+            "2.10.1",
+            "2.10.2",
+            "2.11.0",
+            "2.11.1",
+            "2.11.2",
+            "2.11.3",
+            "2.12.0",
+            "2.12.1",
+            "2.12.2",
+            "2.12.3",
+            "2.13.0",
+            "2.13.1",
+            "2.13.2",
+            "2.13.3",
+            "2.13.4",
+            "2.14.0",
+            "2.15.0",
+            "2.15.1",
+            "2.15.2",
+            "2.15.3",
+            "2.16.0",
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.3.0",
+            "2.3.1",
+            "2.3.2",
+            "2.4.0",
+            "2.4.1",
+            "2.5.0",
+            "2.5.1",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "2.8.1",
+            "2.8.2",
+            "2.9.0",
+            "2.9.1",
+            "2.9.2",
+            "3.0.0",
+            "3.0.0.rc1",
+            "3.0.1",
+            "3.0.2",
+            "3.1.0",
+            "3.1.1",
+            "3.10.0",
+            "3.11.0",
+            "3.11.1",
+            "3.11.2",
+            "3.11.3",
+            "3.11.4",
+            "3.12.0",
+            "3.12.1",
+            "3.2.0",
+            "3.3.0",
+            "3.4.0",
+            "3.5.0",
+            "3.5.1",
+            "3.5.2",
+            "3.6.0",
+            "3.6.1",
+            "3.6.2",
+            "3.7.0",
+            "3.7.1",
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.9.0",
+            "3.9.1"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2019/12/GHSA-7xx3-m584-x994/GHSA-7xx3-m584-x994.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "4.0.0"
+                },
+                {
+                  "fixed": "4.3.1"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "4.0.0",
+            "4.0.1",
+            "4.1.0",
+            "4.1.1",
+            "4.2.0",
+            "4.2.1",
+            "4.3.0"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2019/12/GHSA-7xx3-m584-x994/GHSA-7xx3-m584-x994.json"
+          }
+        }
+      ],
+      "schema_version": "1.7.5",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-84j7-475p-hp8v",
+      "summary": "HTTP Response Splitting in Puma",
+      "details": "In Puma (RubyGem) before 4.3.2 and 3.12.3, if an application using Puma allows untrusted input in a response header, an attacker can use newline characters (i.e. `CR`, `LF` or`/r`, `/n`) to end the header and inject malicious content, such as additional headers or an entirely new response body. This vulnerability is known as HTTP Response Splitting.\n\nWhile not an attack in itself, response splitting is a vector for several other attacks, such as cross-site scripting (XSS).\n\nThis is related to CVE-2019-16254, which fixed this vulnerability for the WEBrick Ruby web server.\n\nThis has been fixed in versions 4.3.2 and 3.12.3 by checking all headers for line endings and rejecting headers with those characters.  ",
+      "aliases": [
+        "BIT-ruby-2020-5247",
+        "BIT-ruby-min-2020-5247",
+        "CVE-2020-5247"
+      ],
+      "modified": "2026-07-08T06:27:02.150553465Z",
+      "published": "2020-02-28T16:53:55Z",
+      "related": [
+        "CVE-2020-5249"
+      ],
+      "database_specific": {
+        "cwe_ids": [
+          "CWE-113"
+        ],
+        "github_reviewed_at": "2020-02-28T16:50:49Z",
+        "github_reviewed": true,
+        "nvd_published_at": "2020-02-28T17:15:00Z",
+        "severity": "MODERATE"
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-84j7-475p-hp8v"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-5247"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/c36491756f68a9d6a8b3a49e7e5eb07fe6f1332f"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/puma/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2020-5247.yml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2022/05/msg00034.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/BMJ3CGZ3DLBJ5WUUKMI5ZFXFJQMXJZIK"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/DIHVO3CQMU7BZC7FCTSRJ33YDNS3GFPK"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/NJ3LL5F5QADB6LM46GXZETREAKZMQNRD"
+        },
+        {
+          "type": "WEB",
+          "url": "https://owasp.org/www-community/attacks/HTTP_Response_Splitting"
+        },
+        {
+          "type": "WEB",
+          "url": "https://www.ruby-lang.org/en/news/2019/10/01/http-response-splitting-in-webrick-cve-2019-16254"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "3.12.4"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "0.8.0",
+            "0.8.1",
+            "0.8.2",
+            "0.9.0",
+            "0.9.1",
+            "0.9.2",
+            "0.9.3",
+            "0.9.4",
+            "0.9.5",
+            "1.0.0",
+            "1.1.0",
+            "1.1.1",
+            "1.2.0",
+            "1.2.1",
+            "1.2.2",
+            "1.3.0",
+            "1.3.1",
+            "1.4.0",
+            "1.5.0",
+            "1.6.0",
+            "1.6.1",
+            "1.6.2",
+            "1.6.3",
+            "2.0.0",
+            "2.0.0.b1",
+            "2.0.0.b2",
+            "2.0.0.b3",
+            "2.0.0.b4",
+            "2.0.0.b5",
+            "2.0.0.b6",
+            "2.0.0.b7",
+            "2.0.1",
+            "2.1.0",
+            "2.1.1",
+            "2.10.0",
+            "2.10.1",
+            "2.10.2",
+            "2.11.0",
+            "2.11.1",
+            "2.11.2",
+            "2.11.3",
+            "2.12.0",
+            "2.12.1",
+            "2.12.2",
+            "2.12.3",
+            "2.13.0",
+            "2.13.1",
+            "2.13.2",
+            "2.13.3",
+            "2.13.4",
+            "2.14.0",
+            "2.15.0",
+            "2.15.1",
+            "2.15.2",
+            "2.15.3",
+            "2.16.0",
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.3.0",
+            "2.3.1",
+            "2.3.2",
+            "2.4.0",
+            "2.4.1",
+            "2.5.0",
+            "2.5.1",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "2.8.1",
+            "2.8.2",
+            "2.9.0",
+            "2.9.1",
+            "2.9.2",
+            "3.0.0",
+            "3.0.0.rc1",
+            "3.0.1",
+            "3.0.2",
+            "3.1.0",
+            "3.1.1",
+            "3.10.0",
+            "3.11.0",
+            "3.11.1",
+            "3.11.2",
+            "3.11.3",
+            "3.11.4",
+            "3.12.0",
+            "3.12.1",
+            "3.12.2",
+            "3.2.0",
+            "3.3.0",
+            "3.4.0",
+            "3.5.0",
+            "3.5.1",
+            "3.5.2",
+            "3.6.0",
+            "3.6.1",
+            "3.6.2",
+            "3.7.0",
+            "3.7.1",
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.9.0",
+            "3.9.1"
+          ],
+          "database_specific": {
+            "last_known_affected_version_range": "< 3.12.3",
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2020/02/GHSA-84j7-475p-hp8v/GHSA-84j7-475p-hp8v.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "4.0.0"
+                },
+                {
+                  "fixed": "4.3.3"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "4.0.0",
+            "4.0.1",
+            "4.1.0",
+            "4.1.1",
+            "4.2.0",
+            "4.2.1",
+            "4.3.0",
+            "4.3.1"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2020/02/GHSA-84j7-475p-hp8v/GHSA-84j7-475p-hp8v.json",
+            "last_known_affected_version_range": "< 4.3.2"
+          }
+        }
+      ],
+      "schema_version": "1.7.5",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:L/UI:R/S:C/C:L/I:L/A:L"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-9hf4-67fc-4vf4",
+      "summary": "Puma's header normalization allows for client to clobber proxy set headers",
+      "details": "### Impact\n\nClients could clobber values set by intermediate proxies (such as X-Forwarded-For) by providing a underscore version of the same header (X-Forwarded_For). Any users trusting headers set by their proxy may be affected. Attackers may be able to downgrade connections to HTTP (non-SSL) or redirect responses, which could cause confidentiality leaks if combined with a separate MITM attack. \n\n### Patches\nv6.4.3/v5.6.9 now discards any headers using underscores if the non-underscore version also exists. Effectively, allowing the proxy defined headers to always win.\n\n### Workarounds\nNginx has a [underscores_in_headers](https://nginx.org/en/docs/http/ngx_http_core_module.html#underscores_in_headers) configuration variable to discard these headers at the proxy level.\n\nAny users that are implicitly trusting the proxy defined headers for security or availability should immediately cease doing so until upgraded to the fixed versions.",
+      "aliases": [
+        "CVE-2024-45614"
+      ],
+      "modified": "2026-02-04T03:42:06.102645Z",
+      "published": "2024-09-20T14:40:16Z",
+      "related": [
+        "CGA-f9fj-px77-qv64"
+      ],
+      "database_specific": {
+        "nvd_published_at": "2024-09-19T23:15:11Z",
+        "severity": "MODERATE",
+        "cwe_ids": [
+          "CWE-444",
+          "CWE-639"
+        ],
+        "github_reviewed_at": "2024-09-20T14:40:16Z",
+        "github_reviewed": true
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-9hf4-67fc-4vf4"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-45614"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/cac3fd18cf29ed43719ff5d52d9cfec215f0a043"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/f196b23be24712fb8fb16051cc124798cc84f70e"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/puma/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2024-45614.yml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2024/11/msg00004.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://nginx.org/en/docs/http/ngx_http_core_module.html#underscores_in_headers"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "5.6.9"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "0.8.0",
+            "0.8.1",
+            "0.8.2",
+            "0.9.0",
+            "0.9.1",
+            "0.9.2",
+            "0.9.3",
+            "0.9.4",
+            "0.9.5",
+            "1.0.0",
+            "1.1.0",
+            "1.1.1",
+            "1.2.0",
+            "1.2.1",
+            "1.2.2",
+            "1.3.0",
+            "1.3.1",
+            "1.4.0",
+            "1.5.0",
+            "1.6.0",
+            "1.6.1",
+            "1.6.2",
+            "1.6.3",
+            "2.0.0",
+            "2.0.0.b1",
+            "2.0.0.b2",
+            "2.0.0.b3",
+            "2.0.0.b4",
+            "2.0.0.b5",
+            "2.0.0.b6",
+            "2.0.0.b7",
+            "2.0.1",
+            "2.1.0",
+            "2.1.1",
+            "2.10.0",
+            "2.10.1",
+            "2.10.2",
+            "2.11.0",
+            "2.11.1",
+            "2.11.2",
+            "2.11.3",
+            "2.12.0",
+            "2.12.1",
+            "2.12.2",
+            "2.12.3",
+            "2.13.0",
+            "2.13.1",
+            "2.13.2",
+            "2.13.3",
+            "2.13.4",
+            "2.14.0",
+            "2.15.0",
+            "2.15.1",
+            "2.15.2",
+            "2.15.3",
+            "2.16.0",
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.3.0",
+            "2.3.1",
+            "2.3.2",
+            "2.4.0",
+            "2.4.1",
+            "2.5.0",
+            "2.5.1",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "2.8.1",
+            "2.8.2",
+            "2.9.0",
+            "2.9.1",
+            "2.9.2",
+            "3.0.0",
+            "3.0.0.rc1",
+            "3.0.1",
+            "3.0.2",
+            "3.1.0",
+            "3.1.1",
+            "3.10.0",
+            "3.11.0",
+            "3.11.1",
+            "3.11.2",
+            "3.11.3",
+            "3.11.4",
+            "3.12.0",
+            "3.12.1",
+            "3.12.2",
+            "3.12.4",
+            "3.12.5",
+            "3.12.6",
+            "3.2.0",
+            "3.3.0",
+            "3.4.0",
+            "3.5.0",
+            "3.5.1",
+            "3.5.2",
+            "3.6.0",
+            "3.6.1",
+            "3.6.2",
+            "3.7.0",
+            "3.7.1",
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.9.0",
+            "3.9.1",
+            "4.0.0",
+            "4.0.1",
+            "4.1.0",
+            "4.1.1",
+            "4.2.0",
+            "4.2.1",
+            "4.3.0",
+            "4.3.1",
+            "4.3.10",
+            "4.3.11",
+            "4.3.12",
+            "4.3.3",
+            "4.3.4",
+            "4.3.5",
+            "4.3.6",
+            "4.3.7",
+            "4.3.8",
+            "4.3.9",
+            "5.0.0",
+            "5.0.0.beta1",
+            "5.0.0.beta2",
+            "5.0.1",
+            "5.0.2",
+            "5.0.3",
+            "5.0.4",
+            "5.1.0",
+            "5.1.1",
+            "5.2.0",
+            "5.2.1",
+            "5.2.2",
+            "5.3.0",
+            "5.3.1",
+            "5.3.2",
+            "5.4.0",
+            "5.5.0",
+            "5.5.1",
+            "5.5.2",
+            "5.6.0",
+            "5.6.1",
+            "5.6.2",
+            "5.6.4",
+            "5.6.5",
+            "5.6.6",
+            "5.6.7",
+            "5.6.8"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2024/09/GHSA-9hf4-67fc-4vf4/GHSA-9hf4-67fc-4vf4.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "6.0.0"
+                },
+                {
+                  "fixed": "6.4.3"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "6.0.0",
+            "6.0.1",
+            "6.0.2",
+            "6.1.0",
+            "6.1.1",
+            "6.2.0",
+            "6.2.1",
+            "6.2.2",
+            "6.3.0",
+            "6.3.1",
+            "6.4.0",
+            "6.4.1",
+            "6.4.2"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2024/09/GHSA-9hf4-67fc-4vf4/GHSA-9hf4-67fc-4vf4.json"
+          }
+        }
+      ],
+      "schema_version": "1.7.3",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:L/I:L/A:N"
+        },
+        {
+          "type": "CVSS_V4",
+          "score": "CVSS:4.0/AV:N/AC:H/AT:N/PR:N/UI:N/VC:N/VI:N/VA:N/SC:L/SI:L/SA:N"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-c2f4-cvqm-65w2",
+      "summary": "Puma HTTP Request/Response Smuggling vulnerability",
+      "details": "### Impact\nPrior to versions 6.4.2 and 5.6.8, puma exhibited dangerous behavior when parsing chunked transfer encoding bodies.\n\nFixed versions limit the size of chunk extensions. Without this limit, an attacker could cause unbounded resource (CPU, network bandwidth) consumption.\n\n### Patches\n\nThe vulnerability has been fixed in 6.4.2 and 5.6.8.\n\n### Workarounds\n\nNo known workarounds.\n\n### References\n\n* [HTTP Request Smuggling](https://portswigger.net/web-security/request-smuggling)\n* Open an issue in [Puma](https://github.com/puma/puma)\n* See our [security policy](https://github.com/puma/puma/security/policy)",
+      "aliases": [
+        "CVE-2024-21647"
+      ],
+      "modified": "2026-02-04T04:35:28.231778Z",
+      "published": "2024-01-08T15:56:48Z",
+      "related": [
+        "CGA-p38p-rh6g-qxwr"
+      ],
+      "database_specific": {
+        "cwe_ids": [
+          "CWE-444"
+        ],
+        "github_reviewed_at": "2024-01-08T15:56:48Z",
+        "github_reviewed": true,
+        "nvd_published_at": "2024-01-08T14:15:47Z",
+        "severity": "MODERATE"
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-c2f4-cvqm-65w2"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-21647"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/5fc43d73b6ff193325e657a24ed76dec79133e93"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/60d5ee3734adc8cee85c3f0561af392448fe19b7"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/bbb880ffb6debbfdea535b4b3eb2204d49ae151d"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/puma/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2024-21647.yml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2024/11/msg00004.html"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "6.0.0"
+                },
+                {
+                  "fixed": "6.4.2"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "6.0.0",
+            "6.0.1",
+            "6.0.2",
+            "6.1.0",
+            "6.1.1",
+            "6.2.0",
+            "6.2.1",
+            "6.2.2",
+            "6.3.0",
+            "6.3.1",
+            "6.4.0",
+            "6.4.1"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2024/01/GHSA-c2f4-cvqm-65w2/GHSA-c2f4-cvqm-65w2.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "5.6.8"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "0.8.0",
+            "0.8.1",
+            "0.8.2",
+            "0.9.0",
+            "0.9.1",
+            "0.9.2",
+            "0.9.3",
+            "0.9.4",
+            "0.9.5",
+            "1.0.0",
+            "1.1.0",
+            "1.1.1",
+            "1.2.0",
+            "1.2.1",
+            "1.2.2",
+            "1.3.0",
+            "1.3.1",
+            "1.4.0",
+            "1.5.0",
+            "1.6.0",
+            "1.6.1",
+            "1.6.2",
+            "1.6.3",
+            "2.0.0",
+            "2.0.0.b1",
+            "2.0.0.b2",
+            "2.0.0.b3",
+            "2.0.0.b4",
+            "2.0.0.b5",
+            "2.0.0.b6",
+            "2.0.0.b7",
+            "2.0.1",
+            "2.1.0",
+            "2.1.1",
+            "2.10.0",
+            "2.10.1",
+            "2.10.2",
+            "2.11.0",
+            "2.11.1",
+            "2.11.2",
+            "2.11.3",
+            "2.12.0",
+            "2.12.1",
+            "2.12.2",
+            "2.12.3",
+            "2.13.0",
+            "2.13.1",
+            "2.13.2",
+            "2.13.3",
+            "2.13.4",
+            "2.14.0",
+            "2.15.0",
+            "2.15.1",
+            "2.15.2",
+            "2.15.3",
+            "2.16.0",
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.3.0",
+            "2.3.1",
+            "2.3.2",
+            "2.4.0",
+            "2.4.1",
+            "2.5.0",
+            "2.5.1",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "2.8.1",
+            "2.8.2",
+            "2.9.0",
+            "2.9.1",
+            "2.9.2",
+            "3.0.0",
+            "3.0.0.rc1",
+            "3.0.1",
+            "3.0.2",
+            "3.1.0",
+            "3.1.1",
+            "3.10.0",
+            "3.11.0",
+            "3.11.1",
+            "3.11.2",
+            "3.11.3",
+            "3.11.4",
+            "3.12.0",
+            "3.12.1",
+            "3.12.2",
+            "3.12.4",
+            "3.12.5",
+            "3.12.6",
+            "3.2.0",
+            "3.3.0",
+            "3.4.0",
+            "3.5.0",
+            "3.5.1",
+            "3.5.2",
+            "3.6.0",
+            "3.6.1",
+            "3.6.2",
+            "3.7.0",
+            "3.7.1",
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.9.0",
+            "3.9.1",
+            "4.0.0",
+            "4.0.1",
+            "4.1.0",
+            "4.1.1",
+            "4.2.0",
+            "4.2.1",
+            "4.3.0",
+            "4.3.1",
+            "4.3.10",
+            "4.3.11",
+            "4.3.12",
+            "4.3.3",
+            "4.3.4",
+            "4.3.5",
+            "4.3.6",
+            "4.3.7",
+            "4.3.8",
+            "4.3.9",
+            "5.0.0",
+            "5.0.0.beta1",
+            "5.0.0.beta2",
+            "5.0.1",
+            "5.0.2",
+            "5.0.3",
+            "5.0.4",
+            "5.1.0",
+            "5.1.1",
+            "5.2.0",
+            "5.2.1",
+            "5.2.2",
+            "5.3.0",
+            "5.3.1",
+            "5.3.2",
+            "5.4.0",
+            "5.5.0",
+            "5.5.1",
+            "5.5.2",
+            "5.6.0",
+            "5.6.1",
+            "5.6.2",
+            "5.6.4",
+            "5.6.5",
+            "5.6.6",
+            "5.6.7"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2024/01/GHSA-c2f4-cvqm-65w2/GHSA-c2f4-cvqm-65w2.json"
+          }
+        }
+      ],
+      "schema_version": "1.7.3",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-h99w-9q5r-gjq9",
+      "summary": "Puma vulnerable to HTTP Request Smuggling",
+      "details": "When using Puma behind a proxy that does not properly validate that the incoming HTTP request matches the RFC7230 standard, Puma and the frontend proxy may disagree on where a request starts and ends. This would allow requests to be smuggled via the front-end proxy to Puma.\n\nThe following vulnerabilities are addressed by this advisory:\n- Lenient parsing of `Transfer-Encoding` headers, when unsupported encodings should be rejected and the final encoding must be `chunked`.\n- Lenient parsing of malformed `Content-Length` headers and chunk sizes, when only digits and hex digits should be allowed.\n- Lenient parsing of duplicate `Content-Length` headers, when they should be rejected.\n- Lenient parsing of the ending of chunked segments, when they should end with `\\r\\n`.\n\nThe vulnerability has been fixed in 5.6.4 and 4.3.12. When deploying a proxy in front of Puma, turning on any and all functionality to make sure that the request matches the RFC7230 standard. \n\nThese proxy servers are known to have \"good\" behavior re: this standard and upgrading Puma may not be necessary. Users are encouraged to validate for themselves.\n\n- Nginx (latest)\n- Apache (latest)\n- Haproxy 2.5+\n- Caddy (latest)\n- Traefik (latest)",
+      "aliases": [
+        "CVE-2022-24790"
+      ],
+      "modified": "2024-02-16T07:55:51.665412Z",
+      "published": "2022-03-30T21:48:50Z",
+      "database_specific": {
+        "cwe_ids": [
+          "CWE-444"
+        ],
+        "github_reviewed_at": "2022-03-30T21:48:50Z",
+        "github_reviewed": true,
+        "nvd_published_at": "2022-03-30T22:15:00Z",
+        "severity": "CRITICAL"
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-h99w-9q5r-gjq9"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-24790"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/5bb7d202e24dec00a898dca4aa11db391d7787a5"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/puma/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2022-24790.yml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2022/08/msg00015.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/F6YWGIIKL7KKTS3ZOAYMYPC7D6WQ5OA5"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/L7NESIBFCNSR3XH7LXDPKVMSUBNUB43G"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/TUBFJ44NCKJ34LECZRAP4N5VL6USJSIB"
+        },
+        {
+          "type": "WEB",
+          "url": "https://portswigger.net/web-security/request-smuggling"
+        },
+        {
+          "type": "WEB",
+          "url": "https://security.gentoo.org/glsa/202208-28"
+        },
+        {
+          "type": "WEB",
+          "url": "https://www.debian.org/security/2022/dsa-5146"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "5.0.0"
+                },
+                {
+                  "fixed": "5.6.4"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "5.0.0",
+            "5.0.1",
+            "5.0.2",
+            "5.0.3",
+            "5.0.4",
+            "5.1.0",
+            "5.1.1",
+            "5.2.0",
+            "5.2.1",
+            "5.2.2",
+            "5.3.0",
+            "5.3.1",
+            "5.3.2",
+            "5.4.0",
+            "5.5.0",
+            "5.5.1",
+            "5.5.2",
+            "5.6.0",
+            "5.6.1",
+            "5.6.2"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/03/GHSA-h99w-9q5r-gjq9/GHSA-h99w-9q5r-gjq9.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.3.12"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "0.8.0",
+            "0.8.1",
+            "0.8.2",
+            "0.9.0",
+            "0.9.1",
+            "0.9.2",
+            "0.9.3",
+            "0.9.4",
+            "0.9.5",
+            "1.0.0",
+            "1.1.0",
+            "1.1.1",
+            "1.2.0",
+            "1.2.1",
+            "1.2.2",
+            "1.3.0",
+            "1.3.1",
+            "1.4.0",
+            "1.5.0",
+            "1.6.0",
+            "1.6.1",
+            "1.6.2",
+            "1.6.3",
+            "2.0.0",
+            "2.0.0.b1",
+            "2.0.0.b2",
+            "2.0.0.b3",
+            "2.0.0.b4",
+            "2.0.0.b5",
+            "2.0.0.b6",
+            "2.0.0.b7",
+            "2.0.1",
+            "2.1.0",
+            "2.1.1",
+            "2.10.0",
+            "2.10.1",
+            "2.10.2",
+            "2.11.0",
+            "2.11.1",
+            "2.11.2",
+            "2.11.3",
+            "2.12.0",
+            "2.12.1",
+            "2.12.2",
+            "2.12.3",
+            "2.13.0",
+            "2.13.1",
+            "2.13.2",
+            "2.13.3",
+            "2.13.4",
+            "2.14.0",
+            "2.15.0",
+            "2.15.1",
+            "2.15.2",
+            "2.15.3",
+            "2.16.0",
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.3.0",
+            "2.3.1",
+            "2.3.2",
+            "2.4.0",
+            "2.4.1",
+            "2.5.0",
+            "2.5.1",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "2.8.1",
+            "2.8.2",
+            "2.9.0",
+            "2.9.1",
+            "2.9.2",
+            "3.0.0",
+            "3.0.0.rc1",
+            "3.0.1",
+            "3.0.2",
+            "3.1.0",
+            "3.1.1",
+            "3.10.0",
+            "3.11.0",
+            "3.11.1",
+            "3.11.2",
+            "3.11.3",
+            "3.11.4",
+            "3.12.0",
+            "3.12.1",
+            "3.12.2",
+            "3.12.4",
+            "3.12.5",
+            "3.12.6",
+            "3.2.0",
+            "3.3.0",
+            "3.4.0",
+            "3.5.0",
+            "3.5.1",
+            "3.5.2",
+            "3.6.0",
+            "3.6.1",
+            "3.6.2",
+            "3.7.0",
+            "3.7.1",
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.9.0",
+            "3.9.1",
+            "4.0.0",
+            "4.0.1",
+            "4.1.0",
+            "4.1.1",
+            "4.2.0",
+            "4.2.1",
+            "4.3.0",
+            "4.3.1",
+            "4.3.10",
+            "4.3.11",
+            "4.3.3",
+            "4.3.4",
+            "4.3.5",
+            "4.3.6",
+            "4.3.7",
+            "4.3.8",
+            "4.3.9"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/03/GHSA-h99w-9q5r-gjq9/GHSA-h99w-9q5r-gjq9.json"
+          }
+        }
+      ],
+      "schema_version": "1.7.3",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:N"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-q28m-8xjw-8vr5",
+      "summary": "Puma's Keepalive Connections Causing Denial Of Service",
+      "details": "This vulnerability is related to [CVE-2019-16770](https://github.com/puma/puma/security/advisories/GHSA-7xx3-m584-x994).\n\n### Impact\n\nThe fix for CVE-2019-16770 was incomplete. The original fix only protected existing connections that had already been accepted from having their requests starved by greedy persistent-connections saturating all threads in the same process. However, new connections may still be starved by greedy persistent-connections saturating all threads in all processes in the cluster.\n\nA `puma` server which received more concurrent `keep-alive` connections than the server had threads in its threadpool would service only a subset of connections, denying service to the unserved connections.\n\n### Patches\n\nThis problem has been fixed in `puma` 4.3.8 and 5.3.1.\n\n### Workarounds\n\nSetting `queue_requests false` also fixes the issue. This is not advised when using `puma` without a reverse proxy, such as `nginx` or `apache`, because you will open yourself to slow client attacks (e.g. [slowloris](https://en.wikipedia.org/wiki/Slowloris_(computer_security))).\n\nThe fix is very small. [A git patch is available here](https://gist.github.com/nateberkopec/4b3ea5676c0d70cbb37c82d54be25837) for those using [unsupported versions](https://github.com/puma/puma/security/policy#supported-versions) of Puma.\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n* Open an issue in [Puma](https://github.com/puma/puma).\n* To report problems with this fix or to report another vulnerability, see [our security policy.](https://github.com/puma/puma/security/policy)\n\n### Acknowledgements\n\nThank you to @MSP-Greg, @wjordan and @evanphx for their review on this issue. \n\nThank you to @ioquatix for providing a modified fork of `wrk` which made debugging this issue much easier.",
+      "aliases": [
+        "CVE-2021-29509"
+      ],
+      "modified": "2026-07-08T06:00:01.447117147Z",
+      "published": "2021-05-18T01:27:15Z",
+      "database_specific": {
+        "github_reviewed_at": "2021-05-18T01:26:55Z",
+        "github_reviewed": true,
+        "nvd_published_at": "2021-05-11T17:15:00Z",
+        "severity": "HIGH",
+        "cwe_ids": [
+          "CWE-400"
+        ]
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-q28m-8xjw-8vr5"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-29509"
+        },
+        {
+          "type": "WEB",
+          "url": "https://gist.github.com/nateberkopec/4b3ea5676c0d70cbb37c82d54be25837"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/puma/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/policy"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2021-29509.yml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2022/08/msg00015.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://rubygems.org/gems/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://security.gentoo.org/glsa/202208-28"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.3.8"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "0.8.0",
+            "0.8.1",
+            "0.8.2",
+            "0.9.0",
+            "0.9.1",
+            "0.9.2",
+            "0.9.3",
+            "0.9.4",
+            "0.9.5",
+            "1.0.0",
+            "1.1.0",
+            "1.1.1",
+            "1.2.0",
+            "1.2.1",
+            "1.2.2",
+            "1.3.0",
+            "1.3.1",
+            "1.4.0",
+            "1.5.0",
+            "1.6.0",
+            "1.6.1",
+            "1.6.2",
+            "1.6.3",
+            "2.0.0",
+            "2.0.0.b1",
+            "2.0.0.b2",
+            "2.0.0.b3",
+            "2.0.0.b4",
+            "2.0.0.b5",
+            "2.0.0.b6",
+            "2.0.0.b7",
+            "2.0.1",
+            "2.1.0",
+            "2.1.1",
+            "2.10.0",
+            "2.10.1",
+            "2.10.2",
+            "2.11.0",
+            "2.11.1",
+            "2.11.2",
+            "2.11.3",
+            "2.12.0",
+            "2.12.1",
+            "2.12.2",
+            "2.12.3",
+            "2.13.0",
+            "2.13.1",
+            "2.13.2",
+            "2.13.3",
+            "2.13.4",
+            "2.14.0",
+            "2.15.0",
+            "2.15.1",
+            "2.15.2",
+            "2.15.3",
+            "2.16.0",
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.3.0",
+            "2.3.1",
+            "2.3.2",
+            "2.4.0",
+            "2.4.1",
+            "2.5.0",
+            "2.5.1",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "2.8.1",
+            "2.8.2",
+            "2.9.0",
+            "2.9.1",
+            "2.9.2",
+            "3.0.0",
+            "3.0.0.rc1",
+            "3.0.1",
+            "3.0.2",
+            "3.1.0",
+            "3.1.1",
+            "3.10.0",
+            "3.11.0",
+            "3.11.1",
+            "3.11.2",
+            "3.11.3",
+            "3.11.4",
+            "3.12.0",
+            "3.12.1",
+            "3.12.2",
+            "3.12.4",
+            "3.12.5",
+            "3.12.6",
+            "3.2.0",
+            "3.3.0",
+            "3.4.0",
+            "3.5.0",
+            "3.5.1",
+            "3.5.2",
+            "3.6.0",
+            "3.6.1",
+            "3.6.2",
+            "3.7.0",
+            "3.7.1",
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.9.0",
+            "3.9.1",
+            "4.0.0",
+            "4.0.1",
+            "4.1.0",
+            "4.1.1",
+            "4.2.0",
+            "4.2.1",
+            "4.3.0",
+            "4.3.1",
+            "4.3.3",
+            "4.3.4",
+            "4.3.5",
+            "4.3.6",
+            "4.3.7"
+          ],
+          "database_specific": {
+            "last_known_affected_version_range": "<= 4.3.7",
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2021/05/GHSA-q28m-8xjw-8vr5/GHSA-q28m-8xjw-8vr5.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "5.0.0"
+                },
+                {
+                  "fixed": "5.3.1"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "5.0.0",
+            "5.0.1",
+            "5.0.2",
+            "5.0.3",
+            "5.0.4",
+            "5.1.0",
+            "5.1.1",
+            "5.2.0",
+            "5.2.1",
+            "5.2.2",
+            "5.3.0"
+          ],
+          "database_specific": {
+            "last_known_affected_version_range": "<= 5.3.0",
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2021/05/GHSA-q28m-8xjw-8vr5/GHSA-q28m-8xjw-8vr5.json"
+          }
+        }
+      ],
+      "schema_version": "1.7.5",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-qpgp-93vx-g8v8",
+      "summary": "Puma PROXY Protocol v1 Parser Allows Remote Memory Exhaustion ",
+      "details": "### Impact\n\n[PROXY protocol support for Puma](https://github.com/puma/puma/issues/2651) was added in version 5.5.0.\n\nWhen PROXY protocol v1 support is enabled, Puma reads incoming bytes into an internal buffer. It waits for \"\\r\\n\" to determine whether a PROXY v1 line is present. If an attacker opens a TCP connection and continuously sends bytes without CRLF, Puma keeps appending to this pre-parse buffer.\n\nThis can cause unbounded in-process memory growth and additional CPU cost from repeatedly scanning the growing buffer for CRLF. A single, unauthenticated TCP connection can drive significant memory growth and may cause process/container OOM or degraded availability.\n\n**Only Puma servers using the following non-default config are affected:**\n\n```ruby\n   set_remote_address proxy_protocol: :v1\n```\n\n### Patches\n\nUsers should upgrade to versions 7.2.1 or 8.0.2.\n\n### Workarounds\n\n- Disable PROXY protocol v1 parsing if it is not required:\n\n ```ruby\n   # remove/comment this:\n   # set_remote_address proxy_protocol: :v1\n ```\n\n - Restrict direct network access to Puma listeners using PROXY protocol:\n     - Only allow trusted load balancers/reverse proxies to connect.\n     - Block arbitrary client TCP access with firewall/security group rules.\n\n### Resources\n- [HAProxy PROXY protocol specification](https://www.haproxy.org/download/1.8/doc/proxy-protocol.txt)\n- [CWE-400: Uncontrolled Resource Consumption](https://cwe.mitre.org/data/definitions/400.html)\n- [CWE-770: Allocation of Resources Without Limits or Throttling](https://cwe.mitre.org/data/definitions/770.html)\n- [Puma `set_remote_address` documentation](https://github.com/puma/puma/blob/master/lib/puma/dsl.rb)\n- [Puma client PROXY protocol parsing code](https://github.com/puma/puma/blob/master/lib/puma/client.rb)\n- [Puma constants, including `PROXY_PROTOCOL_V1_REGEX`](https://github.com/puma/puma/blob/master/lib/puma/const.rb)",
+      "aliases": [
+        "CVE-2026-47736"
+      ],
+      "modified": "2026-06-10T08:14:25.103920769Z",
+      "published": "2026-06-08T23:55:44Z",
+      "related": [
+        "CGA-phc7-6966-mf2p"
+      ],
+      "database_specific": {
+        "cwe_ids": [
+          "CWE-400"
+        ],
+        "severity": "HIGH",
+        "github_reviewed": true,
+        "github_reviewed_at": "2026-06-08T23:55:44Z",
+        "nvd_published_at": null
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-qpgp-93vx-g8v8"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/puma/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2026-47736.yml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://www.cve.org/CVERecord?id=CVE-2026-47736"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "8.0.0"
+                },
+                {
+                  "fixed": "8.0.2"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "8.0.0",
+            "8.0.1"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/06/GHSA-qpgp-93vx-g8v8/GHSA-qpgp-93vx-g8v8.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "5.5.0"
+                },
+                {
+                  "fixed": "7.2.1"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "5.5.0",
+            "5.5.1",
+            "5.5.2",
+            "5.6.0",
+            "5.6.1",
+            "5.6.2",
+            "5.6.4",
+            "5.6.5",
+            "5.6.6",
+            "5.6.7",
+            "5.6.8",
+            "5.6.9",
+            "6.0.0",
+            "6.0.1",
+            "6.0.2",
+            "6.1.0",
+            "6.1.1",
+            "6.2.0",
+            "6.2.1",
+            "6.2.2",
+            "6.3.0",
+            "6.3.1",
+            "6.4.0",
+            "6.4.1",
+            "6.4.2",
+            "6.4.3",
+            "6.5.0",
+            "6.6.0",
+            "6.6.1",
+            "7.0.0",
+            "7.0.0.pre1",
+            "7.0.1",
+            "7.0.2",
+            "7.0.3",
+            "7.0.4",
+            "7.1.0",
+            "7.2.0"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2026/06/GHSA-qpgp-93vx-g8v8/GHSA-qpgp-93vx-g8v8.json"
+          }
+        }
+      ],
+      "schema_version": "1.7.5",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:H"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-rmj8-8hhh-gv5h",
+      "summary": "Puma used with Rails may lead to Information Exposure",
+      "details": "### Impact\nPrior to `puma` version `5.6.2`, `puma` may not always call `close` on the response body. Rails, prior to version `7.0.2.2`, depended on the response body being closed in order for its `CurrentAttributes` implementation to work correctly.\n\nFrom Rails:\n\n> Under certain circumstances response bodies will not be closed, for example a bug in a webserver[1] or a bug in a Rack middleware. In the event a response is not notified of a close, ActionDispatch::Executor will not know to reset thread local state for the next request. This can lead to data being leaked to subsequent requests, especially when interacting with ActiveSupport::CurrentAttributes.\n\nThe combination of these two behaviors (Puma not closing the body + Rails' Executor implementation) causes information leakage.\n\n### Patches\nThis problem is fixed in Puma versions 5.6.2 and 4.3.11.\n\nThis problem is fixed in Rails versions 7.02.2, 6.1.4.6, 6.0.4.6, and 5.2.6.2.\n\nSee: \nhttps://github.com/advisories/GHSA-wh98-p28r-vrc9 \nfor details about the rails vulnerability\n\nUpgrading to a patched Rails _or_ Puma version fixes the vulnerability.\n\n### Workarounds\n\nUpgrade to Rails versions 7.02.2, 6.1.4.6, 6.0.4.6, and 5.2.6.2.\n\nThe [Rails CVE](https://groups.google.com/g/ruby-security-ann/c/FkTM-_7zSNA/m/K2RiMJBlBAAJ?utm_medium=email&utm_source=footer&pli=1) includes a middleware that can be used instead.\n\n### References\n\n* Rails CVE: [CVE-2022-23633](https://groups.google.com/g/ruby-security-ann/c/FkTM-_7zSNA/m/K2RiMJBlBAAJ?utm_medium=email&utm_source=footer&pli=1)\n\n### For more information\nIf you have any questions or comments about this advisory:\n* Open an issue in [puma](https://github.com/puma/puma)\n* See our [security policy](https://github.com/puma/puma/security/policy)",
+      "aliases": [
+        "CVE-2022-23634"
+      ],
+      "modified": "2026-02-04T04:40:25.385031Z",
+      "published": "2022-02-11T21:33:23Z",
+      "related": [
+        "CVE-2022-23634"
+      ],
+      "database_specific": {
+        "github_reviewed": true,
+        "nvd_published_at": "2022-02-11T22:15:00Z",
+        "severity": "HIGH",
+        "cwe_ids": [
+          "CWE-200",
+          "CWE-404"
+        ],
+        "github_reviewed_at": "2022-02-11T21:33:23Z"
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-rmj8-8hhh-gv5h"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2022-23634"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/b70f451fe8abc0cff192c065d549778452e155bb"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://github.com/advisories/GHSA-rmj8-8hhh-gv5h"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://github.com/advisories/GHSA-wh98-p28r-vrc9"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/puma/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2022-23634.yml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://groups.google.com/g/ruby-security-ann/c/FkTM-_7zSNA/m/K2RiMJBlBAAJ?utm_medium=email&utm_source=footer&pli=1"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2022/05/msg00034.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2022/08/msg00015.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/F6YWGIIKL7KKTS3ZOAYMYPC7D6WQ5OA5"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/L7NESIBFCNSR3XH7LXDPKVMSUBNUB43G"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/TUBFJ44NCKJ34LECZRAP4N5VL6USJSIB"
+        },
+        {
+          "type": "WEB",
+          "url": "https://security.gentoo.org/glsa/202208-28"
+        },
+        {
+          "type": "WEB",
+          "url": "https://www.debian.org/security/2022/dsa-5146"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "5.0.0"
+                },
+                {
+                  "fixed": "5.6.2"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "5.0.0",
+            "5.0.1",
+            "5.0.2",
+            "5.0.3",
+            "5.0.4",
+            "5.1.0",
+            "5.1.1",
+            "5.2.0",
+            "5.2.1",
+            "5.2.2",
+            "5.3.0",
+            "5.3.1",
+            "5.3.2",
+            "5.4.0",
+            "5.5.0",
+            "5.5.1",
+            "5.5.2",
+            "5.6.0",
+            "5.6.1"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/02/GHSA-rmj8-8hhh-gv5h/GHSA-rmj8-8hhh-gv5h.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "4.3.11"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "0.8.0",
+            "0.8.1",
+            "0.8.2",
+            "0.9.0",
+            "0.9.1",
+            "0.9.2",
+            "0.9.3",
+            "0.9.4",
+            "0.9.5",
+            "1.0.0",
+            "1.1.0",
+            "1.1.1",
+            "1.2.0",
+            "1.2.1",
+            "1.2.2",
+            "1.3.0",
+            "1.3.1",
+            "1.4.0",
+            "1.5.0",
+            "1.6.0",
+            "1.6.1",
+            "1.6.2",
+            "1.6.3",
+            "2.0.0",
+            "2.0.0.b1",
+            "2.0.0.b2",
+            "2.0.0.b3",
+            "2.0.0.b4",
+            "2.0.0.b5",
+            "2.0.0.b6",
+            "2.0.0.b7",
+            "2.0.1",
+            "2.1.0",
+            "2.1.1",
+            "2.10.0",
+            "2.10.1",
+            "2.10.2",
+            "2.11.0",
+            "2.11.1",
+            "2.11.2",
+            "2.11.3",
+            "2.12.0",
+            "2.12.1",
+            "2.12.2",
+            "2.12.3",
+            "2.13.0",
+            "2.13.1",
+            "2.13.2",
+            "2.13.3",
+            "2.13.4",
+            "2.14.0",
+            "2.15.0",
+            "2.15.1",
+            "2.15.2",
+            "2.15.3",
+            "2.16.0",
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.3.0",
+            "2.3.1",
+            "2.3.2",
+            "2.4.0",
+            "2.4.1",
+            "2.5.0",
+            "2.5.1",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "2.8.1",
+            "2.8.2",
+            "2.9.0",
+            "2.9.1",
+            "2.9.2",
+            "3.0.0",
+            "3.0.0.rc1",
+            "3.0.1",
+            "3.0.2",
+            "3.1.0",
+            "3.1.1",
+            "3.10.0",
+            "3.11.0",
+            "3.11.1",
+            "3.11.2",
+            "3.11.3",
+            "3.11.4",
+            "3.12.0",
+            "3.12.1",
+            "3.12.2",
+            "3.12.4",
+            "3.12.5",
+            "3.12.6",
+            "3.2.0",
+            "3.3.0",
+            "3.4.0",
+            "3.5.0",
+            "3.5.1",
+            "3.5.2",
+            "3.6.0",
+            "3.6.1",
+            "3.6.2",
+            "3.7.0",
+            "3.7.1",
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.9.0",
+            "3.9.1",
+            "4.0.0",
+            "4.0.1",
+            "4.1.0",
+            "4.1.1",
+            "4.2.0",
+            "4.2.1",
+            "4.3.0",
+            "4.3.1",
+            "4.3.10",
+            "4.3.3",
+            "4.3.4",
+            "4.3.5",
+            "4.3.6",
+            "4.3.7",
+            "4.3.8",
+            "4.3.9"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2022/02/GHSA-rmj8-8hhh-gv5h/GHSA-rmj8-8hhh-gv5h.json"
+          }
+        }
+      ],
+      "schema_version": "1.7.3",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:R/S:C/C:H/I:H/A:N"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-w64w-qqph-5gxm",
+      "summary": "HTTP Smuggling via Transfer-Encoding Header in Puma",
+      "details": "### Impact\nThis is a similar but different vulnerability to the one patched in 3.12.5 and 4.3.4.\n\nA client could smuggle a request through a proxy, causing the proxy to send a response back to another unknown client. \n\nIf the proxy uses persistent connections and the client adds another request in via HTTP pipelining, the proxy may mistake it as the first request's body. Puma, however, would see it as two requests, and when processing the second request, send back a response that the proxy does not expect. If the proxy has reused the persistent connection to Puma to send another request for a different client, the second response from the first client will be sent to the second client.\n\n### Patches\n\nThe problem has been fixed in Puma 3.12.6 and Puma 4.3.5.\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n* Open an issue in [Puma](https://github.com/puma/puma)\n* See our [security policy](https://github.com/puma/puma/security/policy)",
+      "aliases": [
+        "CVE-2020-11077"
+      ],
+      "modified": "2026-03-13T22:00:46.829003Z",
+      "published": "2020-05-22T14:55:09Z",
+      "related": [
+        "CVE-2020-11077"
+      ],
+      "database_specific": {
+        "cwe_ids": [
+          "CWE-444"
+        ],
+        "github_reviewed_at": "2020-05-22T14:46:33Z",
+        "github_reviewed": true,
+        "nvd_published_at": "2020-05-22T15:15:00Z",
+        "severity": "MODERATE"
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-w64w-qqph-5gxm"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-11077"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/puma/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/blob/master/History.md#434435-and-31253126--2020-05-22"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2020-11077.yml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2020/10/msg00009.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/SKIY5H67GJIGJL6SMFWFLUQQQR3EMVPR"
+        },
+        {
+          "type": "WEB",
+          "url": "http://lists.opensuse.org/opensuse-security-announce/2020-07/msg00034.html"
+        },
+        {
+          "type": "WEB",
+          "url": "http://lists.opensuse.org/opensuse-security-announce/2020-07/msg00038.html"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "3.12.6"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "0.8.0",
+            "0.8.1",
+            "0.8.2",
+            "0.9.0",
+            "0.9.1",
+            "0.9.2",
+            "0.9.3",
+            "0.9.4",
+            "0.9.5",
+            "1.0.0",
+            "1.1.0",
+            "1.1.1",
+            "1.2.0",
+            "1.2.1",
+            "1.2.2",
+            "1.3.0",
+            "1.3.1",
+            "1.4.0",
+            "1.5.0",
+            "1.6.0",
+            "1.6.1",
+            "1.6.2",
+            "1.6.3",
+            "2.0.0",
+            "2.0.0.b1",
+            "2.0.0.b2",
+            "2.0.0.b3",
+            "2.0.0.b4",
+            "2.0.0.b5",
+            "2.0.0.b6",
+            "2.0.0.b7",
+            "2.0.1",
+            "2.1.0",
+            "2.1.1",
+            "2.10.0",
+            "2.10.1",
+            "2.10.2",
+            "2.11.0",
+            "2.11.1",
+            "2.11.2",
+            "2.11.3",
+            "2.12.0",
+            "2.12.1",
+            "2.12.2",
+            "2.12.3",
+            "2.13.0",
+            "2.13.1",
+            "2.13.2",
+            "2.13.3",
+            "2.13.4",
+            "2.14.0",
+            "2.15.0",
+            "2.15.1",
+            "2.15.2",
+            "2.15.3",
+            "2.16.0",
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.3.0",
+            "2.3.1",
+            "2.3.2",
+            "2.4.0",
+            "2.4.1",
+            "2.5.0",
+            "2.5.1",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "2.8.1",
+            "2.8.2",
+            "2.9.0",
+            "2.9.1",
+            "2.9.2",
+            "3.0.0",
+            "3.0.0.rc1",
+            "3.0.1",
+            "3.0.2",
+            "3.1.0",
+            "3.1.1",
+            "3.10.0",
+            "3.11.0",
+            "3.11.1",
+            "3.11.2",
+            "3.11.3",
+            "3.11.4",
+            "3.12.0",
+            "3.12.1",
+            "3.12.2",
+            "3.12.4",
+            "3.12.5",
+            "3.2.0",
+            "3.3.0",
+            "3.4.0",
+            "3.5.0",
+            "3.5.1",
+            "3.5.2",
+            "3.6.0",
+            "3.6.1",
+            "3.6.2",
+            "3.7.0",
+            "3.7.1",
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.9.0",
+            "3.9.1"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2020/05/GHSA-w64w-qqph-5gxm/GHSA-w64w-qqph-5gxm.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "4.0.0"
+                },
+                {
+                  "fixed": "4.3.5"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "4.0.0",
+            "4.0.1",
+            "4.1.0",
+            "4.1.1",
+            "4.2.0",
+            "4.2.1",
+            "4.3.0",
+            "4.3.1",
+            "4.3.3",
+            "4.3.4"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2020/05/GHSA-w64w-qqph-5gxm/GHSA-w64w-qqph-5gxm.json"
+          }
+        }
+      ],
+      "schema_version": "1.7.5",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:H/PR:N/UI:N/S:C/C:N/I:H/A:N"
+        }
+      ]
+    },
+    {
+      "id": "GHSA-x7jg-6pwg-fx5h",
+      "summary": "HTTP Smuggling via Transfer-Encoding Header in Puma",
+      "details": "### Impact\n\nBy using an invalid transfer-encoding header, an attacker could [smuggle an HTTP response.](https://portswigger.net/web-security/request-smuggling)\n\nOriginally reported by @ZeddYu, who has our thanks for the detailed report.\n\n### Patches\n\nThe problem has been fixed in Puma 3.12.5 and Puma 4.3.4.\n\n### For more information\n\nIf you have any questions or comments about this advisory:\n\n* Open an issue in [Puma](https://github.com/puma/puma)\n* See our [security policy](https://github.com/puma/puma/security/policy)",
+      "aliases": [
+        "CVE-2020-11076"
+      ],
+      "modified": "2026-03-13T22:01:10.840971Z",
+      "published": "2020-05-22T14:55:05Z",
+      "related": [
+        "CVE-2020-11076"
+      ],
+      "database_specific": {
+        "nvd_published_at": "2020-05-22T15:15:00Z",
+        "severity": "HIGH",
+        "cwe_ids": [
+          "CWE-444"
+        ],
+        "github_reviewed_at": "2020-05-22T14:40:36Z",
+        "github_reviewed": true
+      },
+      "references": [
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/security/advisories/GHSA-x7jg-6pwg-fx5h"
+        },
+        {
+          "type": "ADVISORY",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-11076"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/commit/f24d5521295a2152c286abb0a45a1e1e2bd275bd"
+        },
+        {
+          "type": "PACKAGE",
+          "url": "https://github.com/puma/puma"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/puma/puma/blob/master/History.md#434435-and-31253126--2020-05-22"
+        },
+        {
+          "type": "WEB",
+          "url": "https://github.com/rubysec/ruby-advisory-db/blob/master/gems/puma/CVE-2020-11076.yml"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.debian.org/debian-lts-announce/2020/10/msg00009.html"
+        },
+        {
+          "type": "WEB",
+          "url": "https://lists.fedoraproject.org/archives/list/package-announce@lists.fedoraproject.org/message/SKIY5H67GJIGJL6SMFWFLUQQQR3EMVPR"
+        },
+        {
+          "type": "WEB",
+          "url": "http://lists.opensuse.org/opensuse-security-announce/2020-07/msg00034.html"
+        },
+        {
+          "type": "WEB",
+          "url": "http://lists.opensuse.org/opensuse-security-announce/2020-07/msg00038.html"
+        }
+      ],
+      "affected": [
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "0"
+                },
+                {
+                  "fixed": "3.12.5"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "0.8.0",
+            "0.8.1",
+            "0.8.2",
+            "0.9.0",
+            "0.9.1",
+            "0.9.2",
+            "0.9.3",
+            "0.9.4",
+            "0.9.5",
+            "1.0.0",
+            "1.1.0",
+            "1.1.1",
+            "1.2.0",
+            "1.2.1",
+            "1.2.2",
+            "1.3.0",
+            "1.3.1",
+            "1.4.0",
+            "1.5.0",
+            "1.6.0",
+            "1.6.1",
+            "1.6.2",
+            "1.6.3",
+            "2.0.0",
+            "2.0.0.b1",
+            "2.0.0.b2",
+            "2.0.0.b3",
+            "2.0.0.b4",
+            "2.0.0.b5",
+            "2.0.0.b6",
+            "2.0.0.b7",
+            "2.0.1",
+            "2.1.0",
+            "2.1.1",
+            "2.10.0",
+            "2.10.1",
+            "2.10.2",
+            "2.11.0",
+            "2.11.1",
+            "2.11.2",
+            "2.11.3",
+            "2.12.0",
+            "2.12.1",
+            "2.12.2",
+            "2.12.3",
+            "2.13.0",
+            "2.13.1",
+            "2.13.2",
+            "2.13.3",
+            "2.13.4",
+            "2.14.0",
+            "2.15.0",
+            "2.15.1",
+            "2.15.2",
+            "2.15.3",
+            "2.16.0",
+            "2.2.0",
+            "2.2.1",
+            "2.2.2",
+            "2.3.0",
+            "2.3.1",
+            "2.3.2",
+            "2.4.0",
+            "2.4.1",
+            "2.5.0",
+            "2.5.1",
+            "2.6.0",
+            "2.7.0",
+            "2.7.1",
+            "2.8.0",
+            "2.8.1",
+            "2.8.2",
+            "2.9.0",
+            "2.9.1",
+            "2.9.2",
+            "3.0.0",
+            "3.0.0.rc1",
+            "3.0.1",
+            "3.0.2",
+            "3.1.0",
+            "3.1.1",
+            "3.10.0",
+            "3.11.0",
+            "3.11.1",
+            "3.11.2",
+            "3.11.3",
+            "3.11.4",
+            "3.12.0",
+            "3.12.1",
+            "3.12.2",
+            "3.12.4",
+            "3.2.0",
+            "3.3.0",
+            "3.4.0",
+            "3.5.0",
+            "3.5.1",
+            "3.5.2",
+            "3.6.0",
+            "3.6.1",
+            "3.6.2",
+            "3.7.0",
+            "3.7.1",
+            "3.8.0",
+            "3.8.1",
+            "3.8.2",
+            "3.9.0",
+            "3.9.1"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2020/05/GHSA-x7jg-6pwg-fx5h/GHSA-x7jg-6pwg-fx5h.json"
+          }
+        },
+        {
+          "package": {
+            "name": "puma",
+            "ecosystem": "RubyGems",
+            "purl": "pkg:gem/puma"
+          },
+          "ranges": [
+            {
+              "type": "ECOSYSTEM",
+              "events": [
+                {
+                  "introduced": "4.0.0"
+                },
+                {
+                  "fixed": "4.3.4"
+                }
+              ]
+            }
+          ],
+          "versions": [
+            "4.0.0",
+            "4.0.1",
+            "4.1.0",
+            "4.1.1",
+            "4.2.0",
+            "4.2.1",
+            "4.3.0",
+            "4.3.1",
+            "4.3.3"
+          ],
+          "database_specific": {
+            "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2020/05/GHSA-x7jg-6pwg-fx5h/GHSA-x7jg-6pwg-fx5h.json"
+          }
+        }
+      ],
+      "schema_version": "1.7.5",
+      "severity": [
+        {
+          "type": "CVSS_V3",
+          "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:H/A:N"
+        }
+      ]
+    }
+  ]
+}

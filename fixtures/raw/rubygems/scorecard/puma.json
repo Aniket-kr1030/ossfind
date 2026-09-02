@@ -1,0 +1,225 @@
+{
+  "projectKey": {
+    "id": "github.com/puma/puma"
+  },
+  "openIssuesCount": 107,
+  "starsCount": 7914,
+  "forksCount": 1489,
+  "license": "BSD-3-Clause",
+  "description": "A Ruby/Rack web server built for parallelism",
+  "homepage": "https://puma.io",
+  "scorecard": {
+    "date": "2026-08-17T00:00:00Z",
+    "repository": {
+      "name": "github.com/puma/puma",
+      "commit": "b8341dc946f0a2444e5ea6730d1967ca53c8d006"
+    },
+    "scorecard": {
+      "version": "v5.5.1-0.20260815060127-d1fab88f5463",
+      "commit": "d1fab88f54636ff366076edfc5c239f97b3c8e66"
+    },
+    "checks": [
+      {
+        "name": "Code-Review",
+        "documentation": {
+          "shortDescription": "Determines if the project requires human code review before pull requests (aka merge requests) are merged.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#code-review"
+        },
+        "score": 5,
+        "reason": "Found 15/28 approved changesets -- score normalized to 5",
+        "details": []
+      },
+      {
+        "name": "Maintained",
+        "documentation": {
+          "shortDescription": "Determines if the project is \"actively maintained\".",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#maintained"
+        },
+        "score": 10,
+        "reason": "27 commit(s) and 1 issue activity found in the last 90 days -- score normalized to 10",
+        "details": []
+      },
+      {
+        "name": "Security-Policy",
+        "documentation": {
+          "shortDescription": "Determines if the project has published a security policy.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#security-policy"
+        },
+        "score": 10,
+        "reason": "security policy file detected",
+        "details": [
+          "Info: security policy file detected: SECURITY.md:1",
+          "Info: Found linked content: SECURITY.md:1",
+          "Info: Found disclosure, vulnerability, and/or timelines in security policy: SECURITY.md:1",
+          "Info: Found text in security policy: SECURITY.md:1"
+        ]
+      },
+      {
+        "name": "CII-Best-Practices",
+        "documentation": {
+          "shortDescription": "Determines if the project has an OpenSSF (formerly CII) Best Practices Badge.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#cii-best-practices"
+        },
+        "score": 0,
+        "reason": "no effort to earn an OpenSSF best practices badge detected",
+        "details": []
+      },
+      {
+        "name": "Packaging",
+        "documentation": {
+          "shortDescription": "Determines if the project is published as a package that others can easily download, install, easily update, and uninstall.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#packaging"
+        },
+        "score": -1,
+        "reason": "packaging workflow not detected",
+        "details": [
+          "Warn: no GitHub/GitLab publishing workflow detected."
+        ]
+      },
+      {
+        "name": "Dangerous-Workflow",
+        "documentation": {
+          "shortDescription": "Determines if the project's GitHub Action workflows avoid dangerous patterns.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#dangerous-workflow"
+        },
+        "score": 0,
+        "reason": "dangerous workflow patterns detected",
+        "details": [
+          "Warn: script injection with untrusted input ' github.head_ref ': .github/workflows/release-checks.yml:27"
+        ]
+      },
+      {
+        "name": "Binary-Artifacts",
+        "documentation": {
+          "shortDescription": "Determines if the project has generated executable (binary) artifacts in the source repository.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#binary-artifacts"
+        },
+        "score": 10,
+        "reason": "no binaries found in the repo",
+        "details": []
+      },
+      {
+        "name": "Token-Permissions",
+        "documentation": {
+          "shortDescription": "Determines if the project's workflows follow the principle of least privilege.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#token-permissions"
+        },
+        "score": 10,
+        "reason": "GitHub workflow tokens follow principle of least privilege",
+        "details": [
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/pr-label-status.yml:11",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/rack_conform.yml:10",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/ragel.yml:17",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/release-checks.yml:11",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/skip_duplicate_workflow_runs.yml:17",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/tests.yml:21",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/turbo-rails.yml:24",
+          "Info: no jobLevel write permissions found"
+        ]
+      },
+      {
+        "name": "Fuzzing",
+        "documentation": {
+          "shortDescription": "Determines if the project uses fuzzing.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#fuzzing"
+        },
+        "score": 0,
+        "reason": "project is not fuzzed",
+        "details": [
+          "Warn: no fuzzer integrations found"
+        ]
+      },
+      {
+        "name": "Pinned-Dependencies",
+        "documentation": {
+          "shortDescription": "Determines if the project has declared and pinned the dependencies of its build process.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#pinned-dependencies"
+        },
+        "score": 0,
+        "reason": "dependency not pinned by hash detected -- score normalized to 0",
+        "details": [
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr-label-status.yml:19: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/pr-label-status.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr-label-status.yml:22: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/pr-label-status.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/rack_conform.yml:41: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/rack_conform.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/rack_conform.yml:53: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/rack_conform.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ragel.yml:59: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/ragel.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ragel.yml:63: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/ragel.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ragel.yml:93: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/ragel.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/release-checks.yml:20: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/release-checks.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/skip_duplicate_workflow_runs.yml:27: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/skip_duplicate_workflow_runs.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/tests.yml:28: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/tests.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/tests.yml:29: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/tests.yml:97: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/tests.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/tests.yml:109: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/tests.yml:176: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/tests.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/tests.yml:179: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/tests.yml/main?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/turbo-rails.yml:48: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/turbo-rails.yml/main?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/turbo-rails.yml:86: update your workflow using https://app.stepsecurity.io/secureworkflow/puma/puma/turbo-rails.yml/main?enable=pin",
+          "Warn: containerImage not pinned by hash: .devcontainer/Dockerfile:5",
+          "Warn: containerImage not pinned by hash: tools/Dockerfile:6: pin your Docker image by updating ruby:latest to ruby:latest@sha256:72e26fdc615b21e9fa0a811f3c7572103a5adafd8ad34735ac316789cd74267f",
+          "Info:   0 out of  10 GitHub-owned GitHubAction dependencies pinned",
+          "Info:   0 out of   7 third-party GitHubAction dependencies pinned",
+          "Info:   0 out of   2 containerImage dependencies pinned"
+        ]
+      },
+      {
+        "name": "License",
+        "documentation": {
+          "shortDescription": "Determines if the project has defined a license.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#license"
+        },
+        "score": 10,
+        "reason": "license file detected",
+        "details": [
+          "Info: project has a license file: LICENSE:0",
+          "Info: FSF or OSI recognized license: BSD 3-Clause \"New\" or \"Revised\" License: LICENSE:0"
+        ]
+      },
+      {
+        "name": "Signed-Releases",
+        "documentation": {
+          "shortDescription": "Determines if the project cryptographically signs release artifacts.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#signed-releases"
+        },
+        "score": 0,
+        "reason": "Project has not signed or included provenance with any releases.",
+        "details": [
+          "Warn: release artifact v7.2.1 not signed: https://api.github.com/repos/puma/puma/releases/329804772",
+          "Warn: release artifact v8.0.2 not signed: https://api.github.com/repos/puma/puma/releases/329804700",
+          "Warn: release artifact v8.0.1 not signed: https://api.github.com/repos/puma/puma/releases/313829714",
+          "Warn: release artifact v8.0.0 not signed: https://api.github.com/repos/puma/puma/releases/306846537",
+          "Warn: release artifact v7.2.0 not signed: https://api.github.com/repos/puma/puma/releases/278513624",
+          "Warn: release artifact v7.2.1 does not have provenance: https://api.github.com/repos/puma/puma/releases/329804772",
+          "Warn: release artifact v8.0.2 does not have provenance: https://api.github.com/repos/puma/puma/releases/329804700",
+          "Warn: release artifact v8.0.1 does not have provenance: https://api.github.com/repos/puma/puma/releases/313829714",
+          "Warn: release artifact v8.0.0 does not have provenance: https://api.github.com/repos/puma/puma/releases/306846537",
+          "Warn: release artifact v7.2.0 does not have provenance: https://api.github.com/repos/puma/puma/releases/278513624"
+        ]
+      },
+      {
+        "name": "Branch-Protection",
+        "documentation": {
+          "shortDescription": "Determines if the default and release branches are protected with GitHub's branch protection settings.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#branch-protection"
+        },
+        "score": -1,
+        "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+        "details": []
+      },
+      {
+        "name": "SAST",
+        "documentation": {
+          "shortDescription": "Determines if the project uses static code analysis.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#sast"
+        },
+        "score": 0,
+        "reason": "SAST tool is not run on all commits -- score normalized to 0",
+        "details": [
+          "Warn: 0 commits out of 28 are checked with a SAST tool"
+        ]
+      }
+    ],
+    "overallScore": 4.7,
+    "metadata": []
+  }
+}

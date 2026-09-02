@@ -1,0 +1,1383 @@
+{
+  "packageKey": {
+    "system": "CARGO",
+    "name": "reqwest"
+  },
+  "versions": [
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.0.0"
+      },
+      "publishedAt": "2016-10-16T17:29:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.1.0"
+      },
+      "publishedAt": "2016-11-10T01:23:56Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.10.0"
+      },
+      "publishedAt": "2019-12-30T18:30:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.10.0-alpha.1"
+      },
+      "publishedAt": "2019-10-08T21:04:03Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.10.0-alpha.2"
+      },
+      "publishedAt": "2019-11-12T18:18:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.10.1"
+      },
+      "publishedAt": "2020-01-09T21:53:52Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.10.10"
+      },
+      "publishedAt": "2020-12-14T22:41:05Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.10.2"
+      },
+      "publishedAt": "2020-02-21T20:45:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.10.3"
+      },
+      "publishedAt": "2020-02-27T00:51:32Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.10.4"
+      },
+      "publishedAt": "2020-03-04T01:15:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.10.5"
+      },
+      "publishedAt": "2020-05-28T21:33:19Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.10.6"
+      },
+      "publishedAt": "2020-05-29T17:52:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.10.7"
+      },
+      "publishedAt": "2020-07-24T14:16:15Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.10.8"
+      },
+      "publishedAt": "2020-08-25T16:33:01Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.10.9"
+      },
+      "publishedAt": "2020-11-20T00:07:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.0"
+      },
+      "publishedAt": "2021-01-05T18:22:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.1"
+      },
+      "publishedAt": "2021-02-18T18:46:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.10"
+      },
+      "publishedAt": "2022-03-14T18:41:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.11"
+      },
+      "publishedAt": "2022-06-13T20:54:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.12"
+      },
+      "publishedAt": "2022-09-20T18:16:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.13"
+      },
+      "publishedAt": "2022-11-16T15:47:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.14"
+      },
+      "publishedAt": "2023-01-19T19:38:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.15"
+      },
+      "publishedAt": "2023-03-20T16:05:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.16"
+      },
+      "publishedAt": "2023-03-27T15:36:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.17"
+      },
+      "publishedAt": "2023-04-28T16:12:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.18"
+      },
+      "publishedAt": "2023-05-16T21:05:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.19"
+      },
+      "publishedAt": "2023-08-21T19:06:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.2"
+      },
+      "publishedAt": "2021-03-09T19:08:59Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.20"
+      },
+      "publishedAt": "2023-08-23T20:41:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.21"
+      },
+      "publishedAt": "2023-10-02T18:23:56Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.22"
+      },
+      "publishedAt": "2023-10-03T12:36:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.23"
+      },
+      "publishedAt": "2023-12-18T20:41:19Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.24"
+      },
+      "publishedAt": "2024-01-31T16:47:29Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.25"
+      },
+      "publishedAt": "2024-03-08T21:09:07Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.26"
+      },
+      "publishedAt": "2024-03-12T15:27:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.27"
+      },
+      "publishedAt": "2024-03-19T18:27:01Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.3"
+      },
+      "publishedAt": "2021-04-12T22:51:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.4"
+      },
+      "publishedAt": "2021-06-21T22:02:56Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.5"
+      },
+      "publishedAt": "2021-10-07T19:17:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.6"
+      },
+      "publishedAt": "2021-10-18T22:58:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.7"
+      },
+      "publishedAt": "2021-11-30T18:10:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.8"
+      },
+      "publishedAt": "2021-12-20T20:46:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.11.9"
+      },
+      "publishedAt": "2022-01-10T23:09:51Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.0"
+      },
+      "publishedAt": "2024-03-20T15:52:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.1"
+      },
+      "publishedAt": "2024-03-22T13:58:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.10"
+      },
+      "publishedAt": "2024-12-26T17:56:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.11"
+      },
+      "publishedAt": "2024-12-27T15:44:14Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.12"
+      },
+      "publishedAt": "2024-12-31T15:34:48Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.13"
+      },
+      "publishedAt": "2025-03-11T20:12:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.14"
+      },
+      "publishedAt": "2025-03-12T13:05:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.15"
+      },
+      "publishedAt": "2025-03-18T16:48:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.16"
+      },
+      "publishedAt": "2025-05-27T19:41:16Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.17"
+      },
+      "publishedAt": "2025-05-28T12:55:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.18"
+      },
+      "publishedAt": "2025-05-28T16:14:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.19"
+      },
+      "publishedAt": "2025-06-02T12:08:20Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.2"
+      },
+      "publishedAt": "2024-03-25T14:18:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.20"
+      },
+      "publishedAt": "2025-06-10T18:47:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.21"
+      },
+      "publishedAt": "2025-06-30T19:22:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.22"
+      },
+      "publishedAt": "2025-07-01T16:43:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.23"
+      },
+      "publishedAt": "2025-08-12T13:42:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.24"
+      },
+      "publishedAt": "2025-10-13T14:46:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.25"
+      },
+      "publishedAt": "2025-12-08T19:53:40Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.26"
+      },
+      "publishedAt": "2025-12-15T16:08:46Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.27"
+      },
+      "publishedAt": "2025-12-22T15:31:52Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.28"
+      },
+      "publishedAt": "2025-12-22T19:52:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.3"
+      },
+      "publishedAt": "2024-04-05T14:29:27Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.4"
+      },
+      "publishedAt": "2024-04-19T17:35:09Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.5"
+      },
+      "publishedAt": "2024-06-17T15:15:36Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.6"
+      },
+      "publishedAt": "2024-08-19T15:43:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.7"
+      },
+      "publishedAt": "2024-08-19T21:04:03Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.8"
+      },
+      "publishedAt": "2024-09-30T18:12:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.12.9"
+      },
+      "publishedAt": "2024-10-28T17:12:42Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.13.0"
+      },
+      "publishedAt": "2025-12-30T15:44:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.13.0-rc.1"
+      },
+      "publishedAt": "2025-12-23T21:05:51Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.13.1"
+      },
+      "publishedAt": "2025-12-30T19:33:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.13.2"
+      },
+      "publishedAt": "2026-02-06T19:47:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.13.3"
+      },
+      "publishedAt": "2026-04-27T13:11:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.13.4"
+      },
+      "publishedAt": "2026-05-25T17:12:48Z",
+      "isDefault": true,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.2.0"
+      },
+      "publishedAt": "2016-12-14T18:11:00Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.3.0"
+      },
+      "publishedAt": "2017-01-11T20:23:13Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.4.0"
+      },
+      "publishedAt": "2017-01-31T22:52:05Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.5.0"
+      },
+      "publishedAt": "2017-03-24T23:43:24Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.5.1"
+      },
+      "publishedAt": "2017-04-05T18:47:54Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.5.2"
+      },
+      "publishedAt": "2017-05-05T21:28:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.6.0"
+      },
+      "publishedAt": "2017-05-09T22:34:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.6.1"
+      },
+      "publishedAt": "2017-05-13T05:10:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.6.2"
+      },
+      "publishedAt": "2017-05-18T21:38:17Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.7.0"
+      },
+      "publishedAt": "2017-07-11T20:31:10Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.7.1"
+      },
+      "publishedAt": "2017-07-13T19:35:09Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.7.2"
+      },
+      "publishedAt": "2017-07-25T19:53:25Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.7.3"
+      },
+      "publishedAt": "2017-08-19T23:12:27Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.8.0"
+      },
+      "publishedAt": "2017-10-02T19:30:45Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.8.1"
+      },
+      "publishedAt": "2017-11-07T05:54:11Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.8.2"
+      },
+      "publishedAt": "2017-12-19T21:33:06Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.8.3"
+      },
+      "publishedAt": "2018-01-20T01:52:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.8.4"
+      },
+      "publishedAt": "2018-01-22T17:42:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.8.5"
+      },
+      "publishedAt": "2018-02-15T20:23:43Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.8.6"
+      },
+      "publishedAt": "2018-05-31T19:11:47Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.8.7"
+      },
+      "publishedAt": "2018-07-31T20:45:33Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.8.8"
+      },
+      "publishedAt": "2018-08-17T17:58:15Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.0"
+      },
+      "publishedAt": "2018-09-18T21:39:49Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.1"
+      },
+      "publishedAt": "2018-09-20T21:19:05Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.10"
+      },
+      "publishedAt": "2019-02-18T19:57:31Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.11"
+      },
+      "publishedAt": "2019-03-04T19:45:08Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.12"
+      },
+      "publishedAt": "2019-03-20T21:22:30Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.13"
+      },
+      "publishedAt": "2019-04-02T01:48:38Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.14"
+      },
+      "publishedAt": "2019-04-09T20:18:37Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.15"
+      },
+      "publishedAt": "2019-04-15T19:41:39Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.16"
+      },
+      "publishedAt": "2019-04-30T22:32:12Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.17"
+      },
+      "publishedAt": "2019-05-15T20:27:53Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.18"
+      },
+      "publishedAt": "2019-06-06T18:37:41Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.19"
+      },
+      "publishedAt": "2019-07-19T19:27:17Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.2"
+      },
+      "publishedAt": "2018-09-25T18:57:40Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.20"
+      },
+      "publishedAt": "2019-08-20T21:22:50Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.21"
+      },
+      "publishedAt": "2019-10-02T23:42:03Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.22"
+      },
+      "publishedAt": "2019-10-09T21:23:26Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.23"
+      },
+      "publishedAt": "2019-12-11T19:53:56Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.24"
+      },
+      "publishedAt": "2019-12-11T20:02:57Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.3"
+      },
+      "publishedAt": "2018-10-17T21:28:55Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.4"
+      },
+      "publishedAt": "2018-10-26T21:11:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.5"
+      },
+      "publishedAt": "2018-11-13T20:41:25Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.6"
+      },
+      "publishedAt": "2019-01-07T23:57:22Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.7"
+      },
+      "publishedAt": "2019-01-10T22:03:44Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.8"
+      },
+      "publishedAt": "2019-01-12T01:37:23Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    },
+    {
+      "versionKey": {
+        "system": "CARGO",
+        "name": "reqwest",
+        "version": "0.9.9"
+      },
+      "publishedAt": "2019-01-23T20:24:02Z",
+      "isDefault": false,
+      "isDeprecated": false,
+      "deprecatedReason": ""
+    }
+  ]
+}

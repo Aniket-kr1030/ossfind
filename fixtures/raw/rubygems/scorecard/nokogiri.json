@@ -1,0 +1,259 @@
+{
+  "projectKey": {
+    "id": "github.com/sparklemotion/nokogiri"
+  },
+  "openIssuesCount": 124,
+  "starsCount": 6278,
+  "forksCount": 943,
+  "license": "MIT",
+  "description": "Nokogiri (鋸) makes it easy and painless to work with XML and HTML from Ruby.",
+  "homepage": "https://nokogiri.org/",
+  "scorecard": {
+    "date": "2026-08-17T00:00:00Z",
+    "repository": {
+      "name": "github.com/sparklemotion/nokogiri",
+      "commit": "9507094faa5448c1c45edd50ec29f40f14a2b0c5"
+    },
+    "scorecard": {
+      "version": "v5.5.1-0.20260815060127-d1fab88f5463",
+      "commit": "d1fab88f54636ff366076edfc5c239f97b3c8e66"
+    },
+    "checks": [
+      {
+        "name": "Code-Review",
+        "documentation": {
+          "shortDescription": "Determines if the project requires human code review before pull requests (aka merge requests) are merged.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#code-review"
+        },
+        "score": 1,
+        "reason": "Found 1/8 approved changesets -- score normalized to 1",
+        "details": []
+      },
+      {
+        "name": "Maintained",
+        "documentation": {
+          "shortDescription": "Determines if the project is \"actively maintained\".",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#maintained"
+        },
+        "score": 10,
+        "reason": "30 commit(s) and 5 issue activity found in the last 90 days -- score normalized to 10",
+        "details": []
+      },
+      {
+        "name": "Security-Policy",
+        "documentation": {
+          "shortDescription": "Determines if the project has published a security policy.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#security-policy"
+        },
+        "score": 10,
+        "reason": "security policy file detected",
+        "details": [
+          "Info: security policy file detected: SECURITY.md:1",
+          "Info: Found linked content: SECURITY.md:1",
+          "Info: Found disclosure, vulnerability, and/or timelines in security policy: SECURITY.md:1",
+          "Info: Found text in security policy: SECURITY.md:1"
+        ]
+      },
+      {
+        "name": "Dangerous-Workflow",
+        "documentation": {
+          "shortDescription": "Determines if the project's GitHub Action workflows avoid dangerous patterns.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#dangerous-workflow"
+        },
+        "score": 10,
+        "reason": "no dangerous workflow patterns detected",
+        "details": []
+      },
+      {
+        "name": "Binary-Artifacts",
+        "documentation": {
+          "shortDescription": "Determines if the project has generated executable (binary) artifacts in the source repository.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#binary-artifacts"
+        },
+        "score": 0,
+        "reason": "binaries present in source code",
+        "details": [
+          "Warn: binary detected: lib/nokogiri/jruby/isorelax/isorelax/20030108/isorelax-20030108.jar:1",
+          "Warn: binary detected: lib/nokogiri/jruby/net/sf/saxon/Saxon-HE/12.7/Saxon-HE-12.7.jar:1",
+          "Warn: binary detected: lib/nokogiri/jruby/net/sourceforge/htmlunit/neko-htmlunit/2.63.0/neko-htmlunit-2.63.0.jar:1",
+          "Warn: binary detected: lib/nokogiri/jruby/nu/validator/jing/20200702VNU/jing-20200702VNU.jar:1",
+          "Warn: binary detected: lib/nokogiri/jruby/org/nokogiri/nekodtd/0.1.11.noko2/nekodtd-0.1.11.noko2.jar:1",
+          "Warn: binary detected: lib/nokogiri/jruby/org/xmlresolver/xmlresolver/5.3.3/xmlresolver-5.3.3-data.jar:1",
+          "Warn: binary detected: lib/nokogiri/jruby/org/xmlresolver/xmlresolver/5.3.3/xmlresolver-5.3.3.jar:1",
+          "Warn: binary detected: lib/nokogiri/jruby/xalan/serializer/2.7.3/serializer-2.7.3.jar:1",
+          "Warn: binary detected: lib/nokogiri/jruby/xalan/xalan/2.7.3/xalan-2.7.3.jar:1",
+          "Warn: binary detected: lib/nokogiri/jruby/xerces/xercesImpl/2.12.2/xercesImpl-2.12.2.jar:1",
+          "Warn: binary detected: lib/nokogiri/jruby/xml-apis/xml-apis/1.4.01/xml-apis-1.4.01.jar:1"
+        ]
+      },
+      {
+        "name": "Token-Permissions",
+        "documentation": {
+          "shortDescription": "Determines if the project's workflows follow the principle of least privilege.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#token-permissions"
+        },
+        "score": 10,
+        "reason": "GitHub workflow tokens follow principle of least privilege",
+        "details": [
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:141",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:384",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:846",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:889",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:244",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:425",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:870",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:82",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:108",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:190",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:223",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:617",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:642",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:293",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:448",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:676",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:719",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:60",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:350",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:592",
+          "Info: found token with 'none' permissions: .github/workflows/ci.yml:1",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:163",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:265",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:321",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:536",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:44",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:742",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:792",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:822",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:30",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:481",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:509",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/ci.yml:565",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/downstream.yml:23",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/generate-ci-images.yml:18",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/upstream.yml:72",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/upstream.yml:106",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/upstream.yml:140",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/upstream.yml:168",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/upstream.yml:200",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/upstream.yml:221",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/upstream.yml:23",
+          "Info: found token with 'none' permissions: .github/workflows/ci.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/downstream.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/generate-ci-images.yml:1",
+          "Info: found token with 'none' permissions: .github/workflows/upstream.yml:1",
+          "Info: no jobLevel write permissions found"
+        ]
+      },
+      {
+        "name": "CII-Best-Practices",
+        "documentation": {
+          "shortDescription": "Determines if the project has an OpenSSF (formerly CII) Best Practices Badge.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#cii-best-practices"
+        },
+        "score": 5,
+        "reason": "badge detected: Passing",
+        "details": []
+      },
+      {
+        "name": "Fuzzing",
+        "documentation": {
+          "shortDescription": "Determines if the project uses fuzzing.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#fuzzing"
+        },
+        "score": 10,
+        "reason": "project is fuzzed",
+        "details": [
+          "Info: OSSFuzz integration found",
+          "Info: CppLibFuzzer integration found: gumbo-parser/fuzzer/parse_fuzzer.cc:39",
+          "Info: CppLibFuzzer integration found: gumbo-parser/fuzzer/parse_fuzzer.cc:39"
+        ]
+      },
+      {
+        "name": "License",
+        "documentation": {
+          "shortDescription": "Determines if the project has defined a license.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#license"
+        },
+        "score": 10,
+        "reason": "license file detected",
+        "details": [
+          "Info: project has a license file: LICENSE.md:0",
+          "Info: FSF or OSI recognized license: MIT License: LICENSE.md:0"
+        ]
+      },
+      {
+        "name": "Signed-Releases",
+        "documentation": {
+          "shortDescription": "Determines if the project cryptographically signs release artifacts.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#signed-releases"
+        },
+        "score": -1,
+        "reason": "no releases found",
+        "details": []
+      },
+      {
+        "name": "Branch-Protection",
+        "documentation": {
+          "shortDescription": "Determines if the default and release branches are protected with GitHub's branch protection settings.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#branch-protection"
+        },
+        "score": -1,
+        "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+        "details": []
+      },
+      {
+        "name": "SAST",
+        "documentation": {
+          "shortDescription": "Determines if the project uses static code analysis.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#sast"
+        },
+        "score": 8,
+        "reason": "SAST tool is not run on all commits -- score normalized to 8",
+        "details": [
+          "Warn: 24 commits out of 27 are checked with a SAST tool"
+        ]
+      },
+      {
+        "name": "Packaging",
+        "documentation": {
+          "shortDescription": "Determines if the project is published as a package that others can easily download, install, easily update, and uninstall.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#packaging"
+        },
+        "score": 10,
+        "reason": "packaging workflow detected",
+        "details": [
+          "Info: Project packages its releases by way of GitHub Actions.: .github/workflows/generate-ci-images.yml:11"
+        ]
+      },
+      {
+        "name": "Pinned-Dependencies",
+        "documentation": {
+          "shortDescription": "Determines if the project has declared and pinned the dependencies of its build process.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#pinned-dependencies"
+        },
+        "score": 8,
+        "reason": "dependency not pinned by hash detected -- score normalized to 8",
+        "details": [
+          "Warn: containerImage not pinned by hash: oci-images/nokogiri-test/alpine.dockerfile:1: pin your Docker image by updating ruby:alpine3.23 to ruby:alpine3.23@sha256:4d337707818921564ac698572b92b3ca178960bcd7f6c876e589d46afc057843",
+          "Warn: containerImage not pinned by hash: oci-images/nokogiri-test/mri-3.2.dockerfile:1: pin your Docker image by updating ruby:3.2 to ruby:3.2@sha256:d3bcbd845d26ae1efafcc987f641aa9ac796267b9b857e0f196a2b05070c8330",
+          "Warn: containerImage not pinned by hash: oci-images/nokogiri-test/mri-3.3.dockerfile:1: pin your Docker image by updating ruby:3.3 to ruby:3.3@sha256:ae91ea214c39098ad70b260fc84e30a74c442f7d779c3839f6801fe99ea3ff0a",
+          "Warn: containerImage not pinned by hash: oci-images/nokogiri-test/mri-3.4.dockerfile:1: pin your Docker image by updating ruby:3.4 to ruby:3.4@sha256:364bd08657bc1106373e8c2fc1b39b68f384f339decc5867374caf6e2e112927",
+          "Warn: containerImage not pinned by hash: oci-images/nokogiri-test/mri-4.0.dockerfile:1: pin your Docker image by updating ruby:4.0 to ruby:4.0@sha256:72e26fdc615b21e9fa0a811f3c7572103a5adafd8ad34735ac316789cd74267f",
+          "Warn: containerImage not pinned by hash: oci-images/nokogiri-test/ubuntu.dockerfile:1: pin your Docker image by updating ubuntu:noble to ubuntu:noble@sha256:33ceb71981b602c1a7443a53469e4dba065f7503eab3078a2d7a57a2ab987517",
+          "Warn: containerImage not pinned by hash: oci-images/nokogiri-test/upstream-libxml.dockerfile:4: pin your Docker image by updating ruby:3.3 to ruby:3.3@sha256:ae91ea214c39098ad70b260fc84e30a74c442f7d779c3839f6801fe99ea3ff0a",
+          "Info:  70 out of  70 GitHub-owned GitHubAction dependencies pinned",
+          "Info:  26 out of  26 third-party GitHubAction dependencies pinned",
+          "Info:   0 out of   7 containerImage dependencies pinned"
+        ]
+      }
+    ],
+    "overallScore": 7.5,
+    "metadata": []
+  },
+  "ossFuzz": {
+    "lineCount": 16889,
+    "lineCoverCount": 12341,
+    "date": "2024-04-25T00:00:00Z",
+    "configUrl": "https://github.com/google/oss-fuzz/tree/master/projects/nokogiri"
+  }
+}

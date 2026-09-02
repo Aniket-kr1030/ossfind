@@ -1,0 +1,378 @@
+{
+  "projectKey": {
+    "id": "github.com/tokio-rs/tokio"
+  },
+  "openIssuesCount": 449,
+  "starsCount": 33043,
+  "forksCount": 3223,
+  "license": "MIT",
+  "description": "A runtime for writing reliable asynchronous applications with Rust. Provides I/O, networking, scheduling, timers, ...",
+  "homepage": "https://tokio.rs",
+  "scorecard": {
+    "date": "2026-08-17T00:00:00Z",
+    "repository": {
+      "name": "github.com/tokio-rs/tokio",
+      "commit": "625954f365727668cb02d04172b34f1149637728"
+    },
+    "scorecard": {
+      "version": "v5.5.1-0.20260815060127-d1fab88f5463",
+      "commit": "d1fab88f54636ff366076edfc5c239f97b3c8e66"
+    },
+    "checks": [
+      {
+        "name": "Security-Policy",
+        "documentation": {
+          "shortDescription": "Determines if the project has published a security policy.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#security-policy"
+        },
+        "score": 10,
+        "reason": "security policy file detected",
+        "details": [
+          "Info: security policy file detected: SECURITY.md:1",
+          "Info: Found linked content: SECURITY.md:1",
+          "Info: Found disclosure, vulnerability, and/or timelines in security policy: SECURITY.md:1",
+          "Info: Found text in security policy: SECURITY.md:1"
+        ]
+      },
+      {
+        "name": "Code-Review",
+        "documentation": {
+          "shortDescription": "Determines if the project requires human code review before pull requests (aka merge requests) are merged.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#code-review"
+        },
+        "score": 10,
+        "reason": "all changesets reviewed",
+        "details": []
+      },
+      {
+        "name": "CII-Best-Practices",
+        "documentation": {
+          "shortDescription": "Determines if the project has an OpenSSF (formerly CII) Best Practices Badge.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#cii-best-practices"
+        },
+        "score": 0,
+        "reason": "no effort to earn an OpenSSF best practices badge detected",
+        "details": []
+      },
+      {
+        "name": "Maintained",
+        "documentation": {
+          "shortDescription": "Determines if the project is \"actively maintained\".",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#maintained"
+        },
+        "score": 10,
+        "reason": "30 commit(s) and 13 issue activity found in the last 90 days -- score normalized to 10",
+        "details": []
+      },
+      {
+        "name": "Dangerous-Workflow",
+        "documentation": {
+          "shortDescription": "Determines if the project's GitHub Action workflows avoid dangerous patterns.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#dangerous-workflow"
+        },
+        "score": 10,
+        "reason": "no dangerous workflow patterns detected",
+        "details": []
+      },
+      {
+        "name": "Packaging",
+        "documentation": {
+          "shortDescription": "Determines if the project is published as a package that others can easily download, install, easily update, and uninstall.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#packaging"
+        },
+        "score": -1,
+        "reason": "packaging workflow not detected",
+        "details": [
+          "Warn: no GitHub/GitLab publishing workflow detected."
+        ]
+      },
+      {
+        "name": "Token-Permissions",
+        "documentation": {
+          "shortDescription": "Determines if the project's workflows follow the principle of least privilege.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#token-permissions"
+        },
+        "score": 0,
+        "reason": "detected GitHub workflow tokens with excessive permissions",
+        "details": [
+          "Warn: jobLevel 'checks' permission set to 'write': .github/workflows/audit.yml:18",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/audit.yml:19",
+          "Info: jobLevel 'contents' permission set to 'read': .github/workflows/labeler.yml:17",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/audit.yml:13",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/ci.yml:41",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/labeler.yml:12",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/loom.yml:23",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/pr-audit.yml:16",
+          "Info: topLevel 'contents' permission set to 'read': .github/workflows/stress-test.yml:19",
+          "Warn: no topLevel permission defined: .github/workflows/uring-kernel-version-test.yml:1"
+        ]
+      },
+      {
+        "name": "Binary-Artifacts",
+        "documentation": {
+          "shortDescription": "Determines if the project has generated executable (binary) artifacts in the source repository.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#binary-artifacts"
+        },
+        "score": 10,
+        "reason": "no binaries found in the repo",
+        "details": []
+      },
+      {
+        "name": "Pinned-Dependencies",
+        "documentation": {
+          "shortDescription": "Determines if the project has declared and pinned the dependencies of its build process.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#pinned-dependencies"
+        },
+        "score": 0,
+        "reason": "dependency not pinned by hash detected -- score normalized to 0",
+        "details": [
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/audit.yml:23: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/audit.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/audit.yml:24: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/audit.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:680: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:682: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:688: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:692: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:697: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:799: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:801: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:805: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:807: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:1044: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1046: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1050: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:1350: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1352: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:1376: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1378: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:144: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:146: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:150: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:154: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:460: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:462: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:466: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:944: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:946: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:972: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:1108: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1110: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1117: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1124: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:1172: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1174: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1180: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1186: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:102: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:104: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:108: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:112: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:414: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:416: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:421: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:424: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:530: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:532: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:537: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:1209: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1211: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1216: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1218: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:290: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:292: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:297: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:301: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:351: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:353: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:358: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:362: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:998: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1000: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1022: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:249: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:251: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:256: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:258: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:324: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:326: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:331: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:335: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:479: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:484: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:488: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:832: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:834: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:838: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:892: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:894: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:897: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:909: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:911: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:914: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:1061: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1063: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:1233: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1235: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1238: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:712: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:714: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:719: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:723: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:770: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:772: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:776: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:779: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:852: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:854: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:858: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:1253: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1255: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1259: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:1262: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:1404: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1406: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:67: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:69: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:73: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:77: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:751: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:753: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:758: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:760: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:180: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:182: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:186: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:190: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:223: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:225: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:233: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:501: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:503: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:513: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:589: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:591: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:597: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:601: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:606: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:639: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:641: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:647: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:651: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:659: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:925: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:1085: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1087: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1091: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:1093: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:385: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:387: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:391: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:394: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:437: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:439: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:444: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:447: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/ci.yml:555: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:557: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:562: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/ci.yml:565: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/ci.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/labeler.yml:22: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/labeler.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/loom.yml:39: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/loom.yml:41: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/loom.yml:44: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/loom.yml:57: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/loom.yml:59: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/loom.yml:62: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/loom.yml:73: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/loom.yml:75: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/loom.yml:78: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/loom.yml:89: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/loom.yml:91: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/loom.yml:94: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/loom.yml:112: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/loom.yml:114: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/loom.yml:117: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/loom.yml:130: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/loom.yml:132: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/loom.yml:135: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/loom.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/pr-audit.yml:22: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/pr-audit.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/pr-audit.yml:23: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/pr-audit.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/stress-test.yml:30: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/stress-test.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/stress-test.yml:32: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/stress-test.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/stress-test.yml:36: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/stress-test.yml/master?enable=pin",
+          "Warn: third-party GitHubAction not pinned by hash: .github/workflows/stress-test.yml:38: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/stress-test.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/uring-kernel-version-test.yml:17: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/uring-kernel-version-test.yml/master?enable=pin",
+          "Warn: GitHub-owned GitHubAction not pinned by hash: .github/workflows/uring-kernel-version-test.yml:28: update your workflow using https://app.stepsecurity.io/secureworkflow/tokio-rs/tokio/uring-kernel-version-test.yml/master?enable=pin",
+          "Info:   0 out of  55 GitHub-owned GitHubAction dependencies pinned",
+          "Info:   0 out of 121 third-party GitHubAction dependencies pinned"
+        ]
+      },
+      {
+        "name": "License",
+        "documentation": {
+          "shortDescription": "Determines if the project has defined a license.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#license"
+        },
+        "score": 10,
+        "reason": "license file detected",
+        "details": [
+          "Info: project has a license file: LICENSE:0",
+          "Info: FSF or OSI recognized license: MIT License: LICENSE:0"
+        ]
+      },
+      {
+        "name": "Fuzzing",
+        "documentation": {
+          "shortDescription": "Determines if the project uses fuzzing.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#fuzzing"
+        },
+        "score": 10,
+        "reason": "project is fuzzed",
+        "details": [
+          "Info: OSSFuzz integration found",
+          "Info: RustCargoFuzzer integration found: tokio-stream/fuzz/fuzz_targets/fuzz_stream_map.rs:3",
+          "Info: RustCargoFuzzer integration found: tokio/fuzz/fuzz_targets/fuzz_linked_list.rs:3"
+        ]
+      },
+      {
+        "name": "Signed-Releases",
+        "documentation": {
+          "shortDescription": "Determines if the project cryptographically signs release artifacts.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#signed-releases"
+        },
+        "score": -1,
+        "reason": "no releases found",
+        "details": []
+      },
+      {
+        "name": "Branch-Protection",
+        "documentation": {
+          "shortDescription": "Determines if the default and release branches are protected with GitHub's branch protection settings.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#branch-protection"
+        },
+        "score": -1,
+        "reason": "internal error: error during branchesHandler.setup: internal error: some github tokens can't read classic branch protection rules: https://github.com/ossf/scorecard-action/blob/main/docs/authentication/fine-grained-auth-token.md",
+        "details": []
+      },
+      {
+        "name": "SAST",
+        "documentation": {
+          "shortDescription": "Determines if the project uses static code analysis.",
+          "url": "https://github.com/ossf/scorecard/blob/d1fab88f54636ff366076edfc5c239f97b3c8e66/docs/checks.md#sast"
+        },
+        "score": 0,
+        "reason": "SAST tool is not run on all commits -- score normalized to 0",
+        "details": [
+          "Warn: 0 commits out of 30 are checked with a SAST tool"
+        ]
+      }
+    ],
+    "overallScore": 6.9,
+    "metadata": []
+  },
+  "ossFuzz": {
+    "lineCount": 33004,
+    "lineCoverCount": 419,
+    "date": "2026-09-01T00:00:00Z",
+    "configUrl": "https://github.com/google/oss-fuzz/tree/master/projects/tokio"
+  }
+}
