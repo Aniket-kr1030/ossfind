@@ -29,6 +29,7 @@
     "prepare": "npm run build",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
+    "test:live": "tsx scripts/smoke-live.mjs",
     "gates": "tsx src/gates/run.ts",
     "mcp": "tsx src/mcp/server.ts",
     "web": "npm run build && node dist/web/server.js",

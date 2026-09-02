@@ -1,0 +1,43 @@
+name: Live smoke
+
+# The offline suite cannot catch integration bugs at the live seam — that is exactly how a
+# broken cache shipped in 0.1.2 with 422 tests, 14 gates and six audits all green (declaration
+# files are fetched as text, the cache only stored JSON, so the entire API-surface layer was
+# inert in live mode). This job exercises the real suppliers through the real cache.
+#
+# It runs on a schedule rather than per-push because it depends on third-party services:
+# a red build here can mean "a supplier is rate-limiting us", not "we broke something".
+# Read the per-check table in the output before assuming a regression.
+
+on:
+  schedule:
+    - cron: "17 6 * * *" # daily, 06:17 UTC
+  workflow_dispatch: {} # allow manual runs
+
+jobs:
+  smoke:
+    name: live suppliers + disk cache
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      # Sanity-check the offline suite first: if that is already red, a live failure
+      # tells us nothing new.
+      - run: npm test
+      - run: npm run gates
+
+      - name: Live smoke against real suppliers
+        env:
+          OSSFIND_LIVE: "1"
+          # Raises GitHub's unauthenticated 60 req/hr limit. Provided automatically;
+          # no secret needs configuring.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: npm run test:live

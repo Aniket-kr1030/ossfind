@@ -482,14 +482,17 @@ def normal() -> None: ...
     const startParens = performance.now();
     const resultParens = parsePyStub(nestedParens);
     const endParens = performance.now();
-    expect(endParens - startParens).toBeLessThan(100);
+    // Guards against catastrophic backtracking, which manifests as seconds-to-forever —
+    // not as tens of milliseconds. A tight wall-clock bound here is flaky under CI/parallel
+    // load (observed 114ms on a busy machine) while adding no detection power.
+    expect(endParens - startParens).toBeLessThan(2000);
     expect(resultParens.exports.length).toBe(1);
 
     const longLine = "x: Final[str] = " + '"' + "a".repeat(1_000_000) + '"';
     const startLine = performance.now();
     const resultLine = parsePyStub(longLine);
     const endLine = performance.now();
-    expect(endLine - startLine).toBeLessThan(200);
+    expect(endLine - startLine).toBeLessThan(2000);
     expect(resultLine.exports.length).toBe(1);
     expect(resultLine.exports[0]?.name).toBe("x");
   });
