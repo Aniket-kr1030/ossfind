@@ -256,6 +256,12 @@ export function createFixtureHttpClient(): HttpClient {
       if (url.hostname === "huggingface.co" && url.pathname === "/api/models") {
         return response(await loadHuggingFaceSearch(querySlug(url, "search")));
       }
+      if (url.hostname === "crates.io" && url.pathname === "/api/v1/crates") {
+        return response(await loadSearch(querySlug(url, "q"), "cargo"));
+      }
+      if (url.hostname === "rubygems.org" && url.pathname === "/api/v1/search.json") {
+        return response(await loadSearch(querySlug(url, "query"), "rubygems"));
+      }
       if (url.hostname === "packages.ecosyste.ms") {
         const pkg = packageFromPath(url, "/packages/");
         const ecosystem = ecosystemForRegistry(url);
