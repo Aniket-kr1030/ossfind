@@ -105,6 +105,8 @@ async function main() {
       { ecosystem: "npm", query: "http client" },
       { ecosystem: "github", query: "http client" },
       { ecosystem: "huggingface", query: "text classification" },
+      { ecosystem: "cargo", query: "http client" },
+      { ecosystem: "rubygems", query: "web framework" },
       { ecosystem: "pypi", query: "http client", configured: pypiState.configured, reason: pypiState.reason },
     ];
 
@@ -299,6 +301,12 @@ function probeUrl(ecosystem, query) {
   }
   if (ecosystem === "huggingface") {
     return `https://huggingface.co/api/models?search=${encodeURIComponent(query)}&limit=1`;
+  }
+  if (ecosystem === "cargo") {
+    return `https://crates.io/api/v1/crates?q=${encodeURIComponent(query)}&per_page=1`;
+  }
+  if (ecosystem === "rubygems") {
+    return `https://rubygems.org/api/v1/search.json?query=${encodeURIComponent(query)}`;
   }
   if (ecosystem === "pypi") {
     const key = process.env.LIBRARIES_IO_API_KEY || process.env.LIBRARY_IO_API_KEY;

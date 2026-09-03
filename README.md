@@ -41,8 +41,8 @@ Drop `OSSFIND_FIXTURES=1` to hit live suppliers (npm registry, ecosyste.ms, deps
 
 ## Ecosystems (npm + PyPI + GitHub + Hugging Face)
 
-ossfind searches **npm** (default), **PyPI**, **GitHub** repositories, **Hugging Face** models, or
-**all four at once** (`ecosystem: "all"`) — one query, results from every ecosystem merged and
+ossfind searches **npm** (default), **PyPI**, **crates.io** (Rust), **RubyGems**, **GitHub** repositories, **Hugging Face** models, or
+**all six at once** (`ecosystem: "all"`) — one query, results from every ecosystem merged and
 safety-ranked together, so you don't have to guess where the answer lives (e.g. "video generation" →
 PyPI's `decord`, a GitHub AI-model repo, and a Hugging Face model in the same result set). Pick the
 ecosystem with the web/MCP selector, the `ecosystem` MCP tool argument, or `&ecosystem=all` on
