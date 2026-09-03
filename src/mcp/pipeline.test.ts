@@ -2,6 +2,8 @@ import { describe, expect, it, vi } from "vitest";
 import { GitHubDiscoverer } from "../adapters/github-discovery.js";
 import { HuggingFaceDiscoverer } from "../adapters/huggingface-discovery.js";
 import { HttpDiscoverer } from "../adapters/discovery.js";
+import { CargoDiscoverer } from "../adapters/cargo-discovery.js";
+import { RubyGemsDiscoverer } from "../adapters/rubygems-discovery.js";
 import type { ComponentCandidate } from "../contracts/index.js";
 import { FederatedDiscoverer } from "../discovery/federated.js";
 import type { EmbeddingsProvider } from "../fit/embeddings.js";
@@ -157,6 +159,35 @@ describe("buildPipeline fit scorer selection", () => {
     ]));
   });
 
+  it.each([
+    ["cargo", CargoDiscoverer, "cargo:rabbitmq_http_client"],
+    ["rubygems", RubyGemsDiscoverer, "rubygems:ruby_http_client"],
+  ] as const)("selects %s discovery and ecosystem-aware enrichment in fixture mode", async (ecosystem, Discoverer, id) => {
+    const pipeline = buildPipeline({ fixtures: true, ecosystem });
+    const discovered = await pipeline.discoverer.discover("http client");
+    const candidate = discovered.find((entry) => entry.id === id);
+
+    expect(pipeline.discoverer).toBeInstanceOf(Discoverer);
+    expect(candidate).toBeDefined();
+    await expect(pipeline.enricher.enrich(candidate!)).resolves.toMatchObject({
+      id,
+      sources: expect.any(Object),
+    });
+
+    const results = await searchComponents("http client", pipeline);
+    expect(results.length).toBeGreaterThan(0);
+    for (const result of results) {
+      expect(ScoredComponentSchema.parse(result)).toEqual(result);
+    }
+  });
+
+  it.each([
+    ["cargo", CargoDiscoverer],
+    ["rubygems", RubyGemsDiscoverer],
+  ] as const)("selects %s discovery in live mode", (ecosystem, Discoverer) => {
+    expect(buildPipeline({ ecosystem }).discoverer).toBeInstanceOf(Discoverer);
+  });
+
   it("runs the full GitHub pipeline offline and keeps raw repositories out of ship verdicts", async () => {
     const pipeline = buildPipeline({ fixtures: true, ecosystem: "github", projectLicense: "MIT" });
     const discovered = await pipeline.discoverer.discover("video generation");
@@ -229,6 +260,19 @@ describe("buildPipeline fit scorer selection", () => {
       sources: { osv: "missing", scorecard: "missing" },
       scorecard: { overall: null, checks: [] },
     });
+  });
+
+  it("federates all six fixture ecosystems without increasing the total result cap", async () => {
+    const pipeline = buildPipeline({ fixtures: true, ecosystem: "all" });
+    const discovered = await pipeline.discoverer.discover("http client");
+    const prefixes = [...new Set(discovered.map((candidate) => candidate.id.split(":", 1)[0]))];
+
+    expect(pipeline.discoverer).toBeInstanceOf(FederatedDiscoverer);
+    expect((pipeline.discoverer as FederatedDiscoverer).availability().sources.map((source) => source.name)).toEqual([
+      "npm-registry", "pypi", "github", "huggingface", "cargo", "rubygems",
+    ]);
+    expect(discovered.length).toBeLessThanOrEqual(30);
+    expect(prefixes).toEqual(expect.arrayContaining(["npm", "pypi", "cargo", "rubygems"]));
   });
 
   it("isolates a failed all-ecosystem source while retaining the other fixture results", async () => {

@@ -200,13 +200,13 @@ describe("HttpEnricher", () => {
     expect(bundle.vulnerabilities).toEqual([]);
   });
 
-  it("enriches RubyGems rails with its scorecard and OSV evidence", async () => {
+  it("filters fixed RubyGems rails advisories while preserving its supplier evidence", async () => {
     const bundle = await new HttpEnricher(createFixtureHttpClient()).enrich(
       candidate("rails", "https://github.com/rails/rails", "rubygems"),
     );
 
     expect(bundle.scorecard.overall).toBe(6.8);
-    expect(bundle.vulnerabilities.length).toBeGreaterThan(0);
+    expect(bundle.vulnerabilities).toEqual([]);
     expect(bundle.sources).toEqual({ license: "ok", osv: "ok", scorecard: "ok" });
   });
 
@@ -324,6 +324,34 @@ describe("HttpEnricher", () => {
     const bundle = await new HttpEnricher(osvClient("2.5.0", [secondInterval, lastAffected, explicit, ambiguous])).enrich(candidate("test-package", "https://github.com/example/test-package"));
     expect(bundle.vulnerabilities.map((v) => v.id)).toEqual(expect.arrayContaining(["GHSA-multi", "GHSA-explicit", "GHSA-ambiguous"]));
     expect(bundle.vulnerabilities.map((v) => v.id)).not.toContain("GHSA-last");
+  });
+
+  it("compares dotted RubyGems releases without coercion and fails closed for Ruby suffixes", async () => {
+    const stale = advisory("GHSA-ruby-fixed", "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", {
+      ranges: [{ type: "ECOSYSTEM", events: [{ introduced: "3.0.0" }, { fixed: "3.0.11" }] }],
+    });
+    const current = advisory("GHSA-ruby-current", "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", {
+      ranges: [{ type: "ECOSYSTEM", events: [{ introduced: "8.1.3.0" }, { fixed: "8.1.3.2" }] }],
+    });
+    const fourthSegmentOnly = advisory("GHSA-ruby-coercion-trap", "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", {
+      versions: ["8.1.3.0"],
+    });
+    const bundle = await new HttpEnricher(osvClient("8.1.3.1", [stale, current, fourthSegmentOnly])).enrich(
+      candidate("test-package", "https://github.com/example/test-package", "rubygems"),
+    );
+    const ids = bundle.vulnerabilities.map((vulnerability) => vulnerability.id);
+
+    expect(ids).toContain("GHSA-ruby-current");
+    expect(ids).not.toContain("GHSA-ruby-fixed");
+    expect(ids).not.toContain("GHSA-ruby-coercion-trap");
+
+    const rubySuffix = advisory("GHSA-ruby-suffix", "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:C/C:H/I:H/A:H", {
+      ranges: [{ type: "ECOSYSTEM", events: [{ introduced: "1.0.0.beta1" }, { fixed: "1.0.0" }] }],
+    });
+    const suffixBundle = await new HttpEnricher(osvClient("1.0.0.rc1", [rubySuffix])).enrich(
+      candidate("test-package", "https://github.com/example/test-package", "rubygems"),
+    );
+    expect(suffixBundle.vulnerabilities.map((vulnerability) => vulnerability.id)).toContain("GHSA-ruby-suffix");
   });
 
   it("distinguishes failed OSV evidence from a successful empty response and missing license", async () => {

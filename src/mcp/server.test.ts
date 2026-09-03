@@ -181,6 +181,21 @@ describe("search_components MCP tool", () => {
       .some((id) => id.startsWith("huggingface:"))).toBe(true);
   });
 
+  it("accepts Cargo and RubyGems searches through the fixture pipeline", async () => {
+    const handler = createSearchComponentsHandler({ fixtures: true });
+    const [cargo, rubygems] = await Promise.all([
+      handler({ query: "http client", ecosystem: "cargo", detail: "full" }),
+      handler({ query: "http client", ecosystem: "rubygems", detail: "full" }),
+    ]);
+
+    expect(cargo.isError).not.toBe(true);
+    expect(rubygems.isError).not.toBe(true);
+    expect(structuredResults(cargo).map((result) => ScoredComponentSchema.parse(result).id)
+      .some((id) => id.startsWith("cargo:"))).toBe(true);
+    expect(structuredResults(rubygems).map((result) => ScoredComponentSchema.parse(result).id)
+      .some((id) => id.startsWith("rubygems:"))).toBe(true);
+  });
+
   it("routes all-ecosystem searches through the federated fixture pipeline in full detail", async () => {
     const handler = createSearchComponentsHandler({ fixtures: true });
     const result = await handler({ query: "video editing", ecosystem: "all", limit: 30, detail: "full" });
@@ -190,6 +205,16 @@ describe("search_components MCP tool", () => {
     expect(ids.some((id) => id.startsWith("pypi:"))).toBe(true);
     expect(ids.some((id) => id.startsWith("github:"))).toBe(true);
     expect(ids.some((id) => id.startsWith("huggingface:"))).toBe(true);
+  });
+
+  it("routes registry results from Cargo and RubyGems through all-ecosystem fixture search", async () => {
+    const handler = createSearchComponentsHandler({ fixtures: true });
+    const result = await handler({ query: "http client", ecosystem: "all", limit: 30, detail: "full" });
+    const prefixes = new Set(structuredResults(result)
+      .map((component) => ScoredComponentSchema.parse(component).id.split(":", 1)[0]));
+
+    expect(result.isError).not.toBe(true);
+    expect([...prefixes]).toEqual(expect.arrayContaining(["npm", "pypi", "cargo", "rubygems"]));
   });
 });
 
@@ -347,6 +372,8 @@ describe("agent-ergonomic MCP integration tools", () => {
       createInspectComponentHandler({ fixtures: true })({ component: "github:owner/repo", ecosystem: "github" }),
       createCheckCompatibilityHandler({ fixtures: true })({ component: "huggingface:owner/model", ecosystem: "huggingface", project: {} }),
       createPlanIntegrationHandler({ fixtures: true })({ component: "github:owner/repo", ecosystem: "github" }),
+      createInspectComponentHandler({ fixtures: true })({ component: "cargo:serde", ecosystem: "cargo" }),
+      createPlanIntegrationHandler({ fixtures: true })({ component: "rubygems:rails", ecosystem: "rubygems" }),
     ];
 
     for (const result of await Promise.all(cases)) {
@@ -383,6 +410,8 @@ describe("MCP stdio server", () => {
 
       const calls = [
         { name: "search_components", arguments: { query: "http client" } },
+        { name: "search_components", arguments: { query: "http client", ecosystem: "cargo", detail: "full" } },
+        { name: "search_components", arguments: { query: "http client", ecosystem: "rubygems", detail: "full" } },
         { name: "inspect_component", arguments: { component: "npm:axios", limit: 1 } },
         { name: "check_compatibility", arguments: { component: "npm:axios", project: { license: "MIT" } } },
         { name: "plan_integration", arguments: { component: "npm:axios", preferExport: "formToJSON" } },

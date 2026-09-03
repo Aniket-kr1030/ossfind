@@ -80,15 +80,32 @@ describe("Web Server", () => {
     expect(ids.some((id) => id.startsWith("huggingface:"))).toBe(true);
   });
 
+  it("should route ecosystem=cargo to the Cargo fixture pipeline", async () => {
+    const res = await fetch(`${baseUrl}/api/search?q=http client&ecosystem=cargo`);
+    expect(res.status).toBe(200);
+    const body = await res.json() as { results: unknown[] };
+    const ids = body.results.map((component) => ScoredComponentSchema.parse(component).id);
+    expect(ids.some((id) => id.startsWith("cargo:"))).toBe(true);
+  });
+
+  it("should route ecosystem=rubygems to the RubyGems fixture pipeline", async () => {
+    const res = await fetch(`${baseUrl}/api/search?q=http client&ecosystem=rubygems`);
+    expect(res.status).toBe(200);
+    const body = await res.json() as { results: unknown[] };
+    const ids = body.results.map((component) => ScoredComponentSchema.parse(component).id);
+    expect(ids.some((id) => id.startsWith("rubygems:"))).toBe(true);
+  });
+
   it("should route ecosystem=all to the federated fixture pipeline", async () => {
-    const res = await fetch(`${baseUrl}/api/search?q=video editing&ecosystem=all`);
+    const res = await fetch(`${baseUrl}/api/search?q=http client&ecosystem=all`);
     expect(res.status).toBe(200);
     const body = await res.json() as { results: unknown[] };
     const ids = body.results.map((component) => ScoredComponentSchema.parse(component).id);
 
     expect(ids.some((id) => id.startsWith("pypi:"))).toBe(true);
-    expect(ids.some((id) => id.startsWith("github:"))).toBe(true);
-    expect(ids.some((id) => id.startsWith("huggingface:"))).toBe(true);
+    expect(ids.some((id) => id.startsWith("npm:"))).toBe(true);
+    expect(ids.some((id) => id.startsWith("cargo:"))).toBe(true);
+    expect(ids.some((id) => id.startsWith("rubygems:"))).toBe(true);
   });
 
   it("should return a 400 error for an empty query parameter", async () => {
@@ -130,6 +147,8 @@ describe("Web Server", () => {
     expect(res.headers.get("content-type")).toContain("text/html");
     const text = await res.text();
     expect(text).toContain("ossfind");
+    expect(text).toContain('<option value="cargo">Rust (crates.io)</option>');
+    expect(text).toContain('<option value="rubygems">RubyGems</option>');
   });
 });
 
@@ -317,4 +336,3 @@ describe("Server Security & Host Configuration", () => {
     });
   });
 });
-

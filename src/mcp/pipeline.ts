@@ -2,10 +2,12 @@ import { mkdtempSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { HttpDiscoverer } from "../adapters/discovery.js";
+import { CargoDiscoverer } from "../adapters/cargo-discovery.js";
 import { GitHubDiscoverer } from "../adapters/github-discovery.js";
 import { HuggingFaceDiscoverer } from "../adapters/huggingface-discovery.js";
 import { LibrariesIoDiscoverer } from "../adapters/libraries-discovery.js";
 import { LocalIndexDiscoverer } from "../adapters/local-index-discovery.js";
+import { RubyGemsDiscoverer } from "../adapters/rubygems-discovery.js";
 import { FederatedDiscoverer, type FederatedSource } from "../discovery/federated.js";
 import { type EmbeddingsProvider, EmbeddingFitScorer } from "../fit/embeddings.js";
 import { HttpEnricher } from "../adapters/enrichment.js";
@@ -163,11 +165,17 @@ export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDepen
           ? new HuggingFaceDiscoverer(http)
         : ecosystem === "pypi"
           ? pypiDiscoverer(http, fixtures, options.pypiIndexPath)
+        : ecosystem === "cargo"
+          ? new CargoDiscoverer(http)
+        : ecosystem === "rubygems"
+          ? new RubyGemsDiscoverer(http)
           : new FederatedDiscoverer([
               { name: "npm-registry", discoverer: new HttpDiscoverer(http) },
               { name: "pypi", discoverer: pypiDiscoverer(http, fixtures, options.pypiIndexPath) },
               { name: "github", discoverer: new GitHubDiscoverer(http) },
               { name: "huggingface", discoverer: new HuggingFaceDiscoverer(http) },
+              { name: "cargo", discoverer: new CargoDiscoverer(http) },
+              { name: "rubygems", discoverer: new RubyGemsDiscoverer(http) },
             ]),
     enricher: new HttpEnricher(http),
     fitScorer,

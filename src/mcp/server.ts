@@ -54,7 +54,7 @@ export const SearchComponentsInputSchema = z.object({
   query: z.string().trim().min(1, "query must not be empty"),
   projectLicense: z.string().trim().min(1).optional(),
   limit: z.number().int().nonnegative().default(10),
-  ecosystem: z.enum(["npm", "pypi", "github", "huggingface", "all"]).default("npm"),
+  ecosystem: z.enum(["npm", "pypi", "github", "huggingface", "cargo", "rubygems", "all"]).default("npm"),
   detail: z.enum(["compact", "full"]).default("compact"),
 });
 
@@ -74,7 +74,7 @@ const ProjectContextInputSchema = z.object({
   license: z.string().trim().min(1).optional(),
 }).strict();
 
-const ApiComponentEcosystemSchema = z.enum(["npm", "pypi", "github", "huggingface"]);
+const ApiComponentEcosystemSchema = z.enum(["npm", "pypi", "github", "huggingface", "cargo", "rubygems"]);
 type ApiComponentEcosystem = z.infer<typeof ApiComponentEcosystemSchema>;
 type SupportedApiComponentEcosystem = Extract<ApiComponentEcosystem, "npm" | "pypi">;
 type ApiProjectContext = ProjectContext & PyProjectContext;
@@ -136,7 +136,7 @@ export const UsageSnapshotSchema = z.object({
   suppliers: z.record(z.string(), SupplierUsageSchema),
   operations: z.object({
     searchesServed: z.number().int().nonnegative(),
-    ecosystems: z.record(z.enum(["npm", "pypi", "github", "huggingface"]), z.number().int().nonnegative()),
+    ecosystems: z.record(z.enum(["npm", "pypi", "github", "huggingface", "cargo", "rubygems"]), z.number().int().nonnegative()),
     verdicts: z.record(z.enum(["ship", "caution", "avoid"]), z.number().int().nonnegative()),
     results: z.object({
       count: z.number().int().nonnegative(),
@@ -240,7 +240,8 @@ function apiComponent(component: string, ecosystem: ApiComponentEcosystem): {
   const idEcosystem = prefix?.[1]?.toLowerCase();
   const requestedEcosystem = idEcosystem ?? ecosystem;
 
-  if (requestedEcosystem === "github" || requestedEcosystem === "huggingface") {
+  if (requestedEcosystem === "github" || requestedEcosystem === "huggingface"
+    || requestedEcosystem === "cargo" || requestedEcosystem === "rubygems") {
     throw new Error(`${requestedEcosystem} components do not have a package API surface; only npm and pypi components are supported.`);
   }
 
@@ -492,7 +493,7 @@ export function createMcpServer(options: McpServerOptions = {}): McpServer {
     "inspect_component",
     {
       title: "Inspect a component API",
-      description: "Return a verified npm TypeScript or PyPI Python API surface and integration manifest. Accepts a package name or matching npm:<name>/pypi:<name> search ID; exported symbols are capped and disclosure is explicit.",
+      description: "Return a verified npm TypeScript or PyPI Python API surface and integration manifest. Cargo, RubyGems, GitHub, and Hugging Face components have no verified API surface and return a structured unsupported response. Accepts a package name or matching npm:<name>/pypi:<name> search ID; exported symbols are capped and disclosure is explicit.",
       inputSchema: InspectComponentInputSchema,
       outputSchema: InspectComponentOutputSchema,
     },
@@ -502,7 +503,7 @@ export function createMcpServer(options: McpServerOptions = {}): McpServer {
     "check_compatibility",
     {
       title: "Check component compatibility",
-      description: "Compare a verified npm package manifest with package.json facts or a PyPI manifest with Python project facts. Both use verified SPDX license data; unknown facts remain explicit in the A3 report.",
+      description: "Compare a verified npm package manifest with package.json facts or a PyPI manifest with Python project facts. Cargo, RubyGems, GitHub, and Hugging Face components have no verified package API surface and return a structured unsupported response. Both supported ecosystems use verified SPDX license data; unknown facts remain explicit in the A3 report.",
       inputSchema: CheckCompatibilityInputSchema,
       outputSchema: CompatibilityReportSchema,
     },
@@ -512,7 +513,7 @@ export function createMcpServer(options: McpServerOptions = {}): McpServer {
     "plan_integration",
     {
       title: "Plan a minimal integration",
-      description: "Return install commands, imports, and a signature-verified usage scaffold for an npm or PyPI component. Include matching project facts to attach an A3 compatibility report.",
+      description: "Return install commands, imports, and a signature-verified usage scaffold for an npm or PyPI component. Cargo, RubyGems, GitHub, and Hugging Face components have no verified API surface and return a structured unsupported response. Include matching project facts to attach an A3 compatibility report.",
       inputSchema: PlanIntegrationInputSchema,
       outputSchema: PlanIntegrationOutputSchema,
     },

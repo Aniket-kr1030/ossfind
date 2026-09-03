@@ -163,26 +163,74 @@ function defaultVersionFromDepsDev(depsDev: unknown): string | undefined {
   return undefined;
 }
 
-function parseVersion(version: string): string | undefined {
-  return semver.valid(version.trim()) ?? undefined;
+type VersionOrder = -1 | 0 | 1;
+
+type DottedVersion = { parts: bigint[]; hasSuffix: boolean };
+
+function dottedVersion(version: string): DottedVersion | undefined {
+  const match = /^(\d+(?:\.\d+)*)(?:[.-].+)?$/.exec(version);
+  if (!match?.[1]) return undefined;
+  return {
+    parts: match[1].split(".").map((part) => BigInt(part)),
+    hasSuffix: match[1].length !== version.length,
+  };
+}
+
+function compareVersions(left: string, right: string): VersionOrder | undefined {
+  const normalizedLeft = left.trim();
+  const normalizedRight = right.trim();
+  const semverLeft = semver.valid(normalizedLeft);
+  const semverRight = semver.valid(normalizedRight);
+
+  // Preserve SemVer's prerelease ordering whenever both versions are SemVer.
+  if (semverLeft && semverRight) {
+    return semver.compare(semverLeft, semverRight) as VersionOrder;
+  }
+
+  // RubyGems (and other registries) can use arbitrary-length numeric release
+  // segments. Compare them numerically, padding only two plain releases with
+  // zeros. A suffix such as `1.0.0.beta1` is only ordered when an earlier
+  // numeric segment already proves the result; otherwise it fails closed.
+  const dottedLeft = dottedVersion(normalizedLeft);
+  const dottedRight = dottedVersion(normalizedRight);
+  if (!dottedLeft || !dottedRight) {
+    return undefined;
+  }
+  const sharedLength = Math.min(dottedLeft.parts.length, dottedRight.parts.length);
+  for (let index = 0; index < sharedLength; index += 1) {
+    const leftPart = dottedLeft.parts[index]!;
+    const rightPart = dottedRight.parts[index]!;
+    if (leftPart < rightPart) return -1;
+    if (leftPart > rightPart) return 1;
+  }
+  if (dottedLeft.hasSuffix || dottedRight.hasSuffix) return undefined;
+
+  const length = Math.max(dottedLeft.parts.length, dottedRight.parts.length);
+  for (let index = 0; index < length; index += 1) {
+    const leftPart = dottedLeft.parts[index] ?? 0n;
+    const rightPart = dottedRight.parts[index] ?? 0n;
+    if (leftPart < rightPart) return -1;
+    if (leftPart > rightPart) return 1;
+  }
+  return 0;
 }
 
 /**
- * OSV version relevance must be conservative. `semver.valid` keeps prerelease
- * identifiers; `coerce` would incorrectly turn 1.0.0-beta.1 into 1.0.0.
+ * OSV version relevance must be conservative. SemVer versions retain their
+ * prerelease semantics; non-SemVer values are only ordered when both are
+ * plain dotted-numeric releases. `semver.coerce` is never used because it
+ * silently discards release segments and prerelease suffixes.
  */
 function isAffected(latestVersion: string, affected: JsonRecord): boolean {
-  const latest = parseVersion(latestVersion);
-  if (!latest) return true;
   let hasVersionSemantics = false;
 
   if (Array.isArray(affected.versions)) {
     hasVersionSemantics = true;
     for (const rawVersion of affected.versions) {
       if (typeof rawVersion !== "string") return true;
-      const listed = parseVersion(rawVersion);
-      if (!listed) return true;
-      if (semver.eq(latest, listed)) return true;
+      const comparison = compareVersions(latestVersion, rawVersion);
+      if (comparison === undefined) return true;
+      if (comparison === 0) return true;
     }
   }
 
@@ -203,18 +251,22 @@ function isAffected(latestVersion: string, affected: JsonRecord): boolean {
         if (!fixed && !lastAffected) continue;
         if (introduced === undefined || (fixed && lastAffected)) return true;
 
-        const lower = introduced === "0" ? undefined : parseVersion(introduced);
-        const upper = parseVersion(fixed ?? lastAffected!);
-        if ((introduced !== "0" && !lower) || !upper) return true;
-        const afterLower = !lower || semver.gte(latest, lower);
-        const beforeUpper = fixed ? semver.lt(latest, upper) : semver.lte(latest, upper);
+        const lowerComparison = introduced === "0"
+          ? undefined
+          : compareVersions(latestVersion, introduced);
+        const upperComparison = compareVersions(latestVersion, fixed ?? lastAffected!);
+        if ((introduced !== "0" && lowerComparison === undefined) || upperComparison === undefined) return true;
+        const afterLower = lowerComparison === undefined || lowerComparison >= 0;
+        const beforeUpper = fixed ? upperComparison < 0 : upperComparison <= 0;
         if (afterLower && beforeUpper) return true;
         introduced = undefined;
       }
       if (introduced !== undefined) {
-        const lower = introduced === "0" ? undefined : parseVersion(introduced);
-        if (introduced !== "0" && !lower) return true;
-        if (!lower || semver.gte(latest, lower)) return true;
+        const lowerComparison = introduced === "0"
+          ? undefined
+          : compareVersions(latestVersion, introduced);
+        if (introduced !== "0" && lowerComparison === undefined) return true;
+        if (lowerComparison === undefined || lowerComparison >= 0) return true;
       }
     }
   }
@@ -317,7 +369,7 @@ function vulnerabilitiesFrom(
                 // An active record can expose a future fix, but it must never
                 // imply that the selected version is already fixed. Invalid
                 // versions are excluded by the contract boundary.
-                if (fixVer && parseVersion(fixVer)) fixedIn = fixVer.trim();
+                if (fixVer && semver.valid(fixVer.trim())) fixedIn = fixVer.trim();
               }
             }
           }
