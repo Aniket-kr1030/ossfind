@@ -16,8 +16,8 @@ about five minutes.
 
 ```bash
 npm install
-npm run typecheck && npm test     # 418 tests, fully offline
-npm run gates                     # 13 safety gates, each proven able to fail
+npm run typecheck && npm test     # 451 tests, fully offline
+npm run gates                     # 14 safety gates, each proven able to fail
 ```
 
 Run the web app (offline demo mode, uses frozen fixtures):
@@ -39,7 +39,7 @@ OSSFIND_FIXTURES=1 npm run mcp    # stdio MCP server exposing `search_components
 
 Drop `OSSFIND_FIXTURES=1` to hit live suppliers (npm registry, ecosyste.ms, deps.dev, OSV).
 
-## Ecosystems (npm + PyPI + GitHub + Hugging Face)
+## Ecosystems (npm · PyPI · crates.io · RubyGems · GitHub · Hugging Face)
 
 ossfind searches **npm** (default), **PyPI**, **crates.io** (Rust), **RubyGems**, **GitHub** repositories, **Hugging Face** models, or
 **all six at once** (`ecosystem: "all"`) — one query, results from every ecosystem merged and
@@ -50,7 +50,7 @@ ecosystem with the web/MCP selector, the `ecosystem` MCP tool argument, or `&eco
 
 Discovery is **federated**: a `FederatedDiscoverer` composes multiple source adapters per query
 (parallel, per-source error isolation + timeouts, results merged and deduped by id). Enrichment routes
-each candidate by its own id prefix (`npm:`/`pypi:`/`github:`/`huggingface:`), so a mixed batch is
+each candidate by its own id prefix (`npm:`/`pypi:`/`cargo:`/`rubygems:`/`github:`/`huggingface:`), so a mixed batch is
 enriched correctly per-source. The safety-ranking layer is the same for every source — ossfind owns
 the ranking, not the corpus. GitHub and Hugging Face are what surface AI-model repos/models (diffusers,
 CogVideo, …) that aren't on any package registry.
@@ -59,6 +59,9 @@ CogVideo, …) that aren't on any package registry.
 - **GitHub** uses the repo search API. Set an optional `GITHUB_TOKEN` in `.env.local` for higher rate
   limits.
 - **Hugging Face** needs no key — discovery uses the public models search API.
+- **crates.io** (Rust) and **RubyGems** need no key — discovery uses their public search APIs,
+  with licence/vulnerability/health enrichment from ecosyste.ms, OSV and deps.dev like any package
+  ecosystem. Rust's common dual licence (`MIT OR Apache-2.0`) is handled as a choice, not a conjunction.
 - **GitHub and Hugging Face components fail-closed to at most "caution"** (never "ship") — a raw repo's
   or model's dependency CVEs can't be verified the way a published package's can; Hugging Face also has
   no OpenSSF-style health score, so it relies on the existing missing-scorecard cap. License (SPDX) is
