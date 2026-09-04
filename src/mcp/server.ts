@@ -11,6 +11,8 @@ import type { PyProjectContext } from "../api/py-project.js";
 import { PyApiSurfaceExtractor } from "../api/py-surface.js";
 import { ApiSurfaceExtractor } from "../api/surface.js";
 import { IntegrationManifestBuilder } from "../api/manifest.js";
+import { reconcileImportForm } from "../api/import-form.js";
+import type { ApiSurface } from "../contracts/api-surface.js";
 import { checkCompatibility, type ProjectContext } from "../api/compat.js";
 import { buildScaffold } from "../api/scaffold.js";
 import {
@@ -346,10 +348,14 @@ export function createInspectComponentHandler(
       const parsed = InspectComponentInputSchema.parse(input);
       const target = apiComponent(parsed.component, parsed.ecosystem);
       const { extractor, manifestBuilder } = tools[target.ecosystem];
-      const [surface, manifest] = await Promise.all([
+      const [surface, builtManifest] = await Promise.all([
         extractor.extract(target.packageName),
         manifestBuilder.build(target.packageName),
       ]);
+      // The manifest's import line is guessed from package.json; ground it in the declarations.
+      const manifest = target.ecosystem === "npm"
+        ? reconcileImportForm(target.packageName, builtManifest as IntegrationManifest, surface as ApiSurface)
+        : builtManifest;
       const totalExports = surface.exports.length;
       const exportsTruncated = totalExports > parsed.limit;
       const limitedSurface = { ...surface, exports: surface.exports.slice(0, parsed.limit) };
