@@ -36,7 +36,8 @@
     "web:dev": "tsx watch src/web/server.ts",
     "demo": "npm run build && node scripts/demo.mjs",
     "bench": "npm run build && node scripts/bench.mjs",
-    "index:build": "tsx scripts/build-index.mjs"
+    "index:build": "tsx scripts/build-index.mjs",
+    "eval": "npm run build && node --env-file-if-exists=.env.local scripts/eval.mjs"
   },
   "bin": {
     "ossfind-mcp": "bin/ossfind-mcp",

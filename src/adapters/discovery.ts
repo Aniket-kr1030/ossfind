@@ -82,6 +82,11 @@ function candidateFromResult(result: NpmSearchResult): ComponentCandidate | unde
   }
 }
 
+/** One probe's result: answered (possibly with nothing) versus never answered. */
+type ProbeOutcome =
+  | { ok: true; candidates: ComponentCandidate[] }
+  | { ok: false };
+
 function sleep(milliseconds: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
@@ -118,22 +123,36 @@ export class HttpDiscoverer implements Discoverer {
     const probes = queryProbes(query, { maxProbes: this.maxProbes });
     if (probes.length === 0) return [];
 
-    const settled = await Promise.all(probes.map(async (probe) => ({
-      tier: probe.tier,
-      candidates: await this.fetchCandidates(probe.text).catch(() => [] as ComponentCandidate[]),
-    })));
+    const settled = await Promise.all(probes.map(async (probe) => {
+      const outcome = await this.fetchCandidates(probe.text)
+        .catch(() => ({ ok: false as const }));
+      return { tier: probe.tier, outcome };
+    }));
+
+    // A registry that refuses every probe — rate limiting, most often — must not look
+    // like a query that legitimately matched nothing. Rejecting here lets the federated
+    // layer mark the source unavailable, which the search response reports; swallowing
+    // it would report "no results" for a search that was never actually answered.
+    if (settled.every(({ outcome }) => !outcome.ok)) {
+      throw new Error(`npm registry search failed for every probe of ${JSON.stringify(query)}`);
+    }
 
     // Earliest probe wins a duplicate: its wording was closer to what the user asked.
     const byId = new Map<string, ComponentCandidate>();
-    for (const { candidates } of settled.sort((left, right) => left.tier - right.tier)) {
-      for (const candidate of candidates) {
+    for (const { outcome } of settled.sort((left, right) => left.tier - right.tier)) {
+      if (!outcome.ok) continue;
+      for (const candidate of outcome.candidates) {
         if (!byId.has(candidate.id)) byId.set(candidate.id, candidate);
       }
     }
     return [...byId.values()];
   }
 
-  private async fetchCandidates(query: string): Promise<ComponentCandidate[]> {
+  /**
+   * `ok: false` means the registry never answered — every attempt failed. It is
+   * deliberately distinct from an empty `candidates` list, which is a real answer.
+   */
+  private async fetchCandidates(query: string): Promise<ProbeOutcome> {
     const url = new URL(NPM_SEARCH_URL);
     url.searchParams.set("text", query);
     url.searchParams.set("size", String(this.size));
@@ -147,17 +166,20 @@ export class HttpDiscoverer implements Discoverer {
         }
 
         const payload = await response.json() as NpmSearchResponse;
-        return Array.isArray(payload.objects)
-          ? payload.objects.flatMap((result) => {
-            const candidate = candidateFromResult(result);
-            return candidate ? [candidate] : [];
-          })
-          : [];
+        return {
+          ok: true,
+          candidates: Array.isArray(payload.objects)
+            ? payload.objects.flatMap((result) => {
+              const candidate = candidateFromResult(result);
+              return candidate ? [candidate] : [];
+            })
+            : [],
+        };
       } catch {
         if (attempt + 1 < this.attempts) await sleep(10 * (attempt + 1));
       }
     }
 
-    return [];
+    return { ok: false };
   }
 }

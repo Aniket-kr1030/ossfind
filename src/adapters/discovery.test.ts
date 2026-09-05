@@ -17,7 +17,11 @@ describe("HttpDiscoverer", () => {
     }
   });
 
-  it("returns a degraded result after repeated rate limits", async () => {
+  // Previously this resolved to []. The relevance eval exposed why that is wrong:
+  // a rate-limited run scored as "no relevant results" and was indistinguishable
+  // from a query that genuinely matched nothing. Rejecting lets the federated layer
+  // mark the source unavailable, which the search response reports to the caller.
+  it("rejects when the registry refuses every probe, rather than reporting no results", async () => {
     const alwaysRateLimited: HttpClient = async () => ({
       ok: false,
       status: 429,
@@ -25,6 +29,32 @@ describe("HttpDiscoverer", () => {
     });
 
     await expect(new HttpDiscoverer(alwaysRateLimited).discover("http client"))
-      .resolves.toEqual([]);
+      .rejects.toThrow(/failed for every probe/);
+  });
+
+  it("resolves empty when the registry answers with no matches", async () => {
+    const emptyAnswer: HttpClient = async () => ({
+      ok: true,
+      status: 200,
+      json: async () => ({ objects: [] }),
+    });
+
+    await expect(new HttpDiscoverer(emptyAnswer).discover("http client")).resolves.toEqual([]);
+  });
+
+  it("keeps the results of probes that did answer when others fail", async () => {
+    let call = 0;
+    const flaky: HttpClient = async () => {
+      call += 1;
+      if (call === 1) return { ok: false, status: 429, json: async () => ({}) };
+      return {
+        ok: true,
+        status: 200,
+        json: async () => ({ objects: [{ package: { name: "axios", description: "http client", version: "1.0.0" } }] }),
+      };
+    };
+
+    await expect(new HttpDiscoverer(flaky, 20, 1).discover("node http client library"))
+      .resolves.toEqual([expect.objectContaining({ id: "npm:axios" })]);
   });
 });
