@@ -85,6 +85,10 @@ CogVideo, …) that aren't on any package registry.
   INDEX_MAX=8000 INDEX_DB_PATH=.cache/index/npm.db npm run index:build npm
   ```
   When the index has not been built, npm search behaves exactly as before.
+  Measured on the labelled set, adding the index moved MRR 0.561 → 0.636, hit@3 60.5% → 67.4%
+  and noise@3 2.6% → 0.0%, with no per-query regressions — and made `marked` the top result for
+  *"markdown to html renderer"*, which no lexical probe can reach. Note that `npm run eval`
+  therefore depends on a locally built index; without one the numbers are the registry-only ones.
 - **GitHub** uses the repo search API. Set an optional `GITHUB_TOKEN` in `.env.local` for higher rate
   limits.
 - **Hugging Face** needs no key — discovery uses the public models search API.
