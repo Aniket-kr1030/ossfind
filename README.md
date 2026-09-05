@@ -37,8 +37,8 @@ stdout is not a terminal.
 
 ```bash
 npm install
-npm run typecheck && npm test     # 539 tests, fully offline
-npm run gates                     # 16 safety gates, each proven able to fail
+npm run typecheck && npm test     # 586 tests, fully offline
+npm run gates                     # 17 safety gates, each proven able to fail
 npm run eval                      # relevance against the labelled query set (live)
 ```
 
@@ -84,7 +84,17 @@ CogVideo, …) that aren't on any package registry.
   ```
   INDEX_MAX=8000 INDEX_DB_PATH=.cache/index/npm.db npm run index:build npm
   ```
-  When the index has not been built, npm search behaves exactly as before.
+  The same optional index federates crates.io, RubyGems and PyPI. When an index has not been
+  built, that ecosystem's search behaves exactly as before.
+
+  **It does not help everywhere, and the eval says where.** Measured on the labelled set:
+  npm and crates.io improve substantially (crates.io MRR 0.000 → 0.675, since crates.io's own
+  search ranks by name similarity and never returns `serde` for "serialization"). A RubyGems
+  index measured *worse* — MRR 0.500 → 0.250, losing `rails` for "web framework" entirely — so
+  do not build one. Rebuilding PyPI's index concentrated on the top 8,000 packages also measured
+  slightly worse (0.611 → 0.597) than the broader 25,000-package index, so the wider corpus stays.
+  Both were hypotheses that the harness rejected; the capability is generic, the recommendation
+  is per-ecosystem and evidence-led.
   Measured on the labelled set, adding the index moved MRR 0.561 → 0.636, hit@3 60.5% → 67.4%
   and noise@3 2.6% → 0.0%, with no per-query regressions — and made `marked` the top result for
   *"markdown to html renderer"*, which no lexical probe can reach. Note that `npm run eval`
@@ -94,7 +104,19 @@ CogVideo, …) that aren't on any package registry.
 - **Hugging Face** needs no key — discovery uses the public models search API.
 - **crates.io** (Rust) and **RubyGems** need no key — discovery uses their public search APIs,
   with licence/vulnerability/health enrichment from ecosyste.ms, OSV and deps.dev like any package
-  ecosystem. Rust's common dual licence (`MIT OR Apache-2.0`) is handled as a choice, not a conjunction.
+  ecosystem. crates.io ranks by name similarity, so "serialization" never returns `serde` from the
+  registry alone; federate a local index (`INDEX_MAX=6000 INDEX_DB_PATH=.cache/index/cargo.db npm
+  run index:build cargo`) to fix that.
+- **Licence expressions**: an SPDX expression whose operands are *all* permissive resolves to a
+  permissive licence — Rust's near-universal `MIT OR Apache-2.0` is a real choice, not an audit
+  item. Any copyleft operand keeps the conservative treatment `G4` requires: `GPL-3.0 OR MIT`
+  never ships into a permissive project, and a `WITH` exception or unrecognized operand is left
+  for manual audit.
+- **Health evidence is attributed only when the repository claim is corroborated.** A package's
+  repository URL is self-declared, and typosquats name the real project's repo to inherit its
+  OpenSSF score — five PyPI packages claiming `github.com/psf/requests` were reported SHIP 92/100
+  on the real project's 8.1. The claim is now checked against the package name and fails closed
+  (`G17`).
 - **GitHub and Hugging Face components fail-closed to at most "caution"** (never "ship") — a raw repo's
   or model's dependency CVEs can't be verified the way a published package's can; Hugging Face also has
   no OpenSSF-style health score, so it relies on the existing missing-scorecard cap. License (SPDX) is
@@ -246,7 +268,7 @@ each proven to **reject a known-bad input** (not just accept a good one):
 `G9` Python project-context honesty · `G10` scaffold snippet integrity · `G11` Python stub structural
 honesty · `G12` recipe resolution honesty · `G13` adoption cannot override safety · `G14` cache
 preserves response bodies · `G15` suggested ESM import matches declared exports · `G16` recall survives
-discovery.
+discovery · `G17` health evidence belongs to the package.
 
 Every gate after `G7` exists because a real bug got past a green test suite — found by an independent
 adversarial audit, by building a real project against the published package (`G14`, `G15`), or by the
