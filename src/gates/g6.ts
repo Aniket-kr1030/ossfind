@@ -86,6 +86,39 @@ export async function check(): Promise<Result> {
     if (degraded.sources.osv !== "failed") {
       return { status: "fail", message: "OSV 500 was not retained as failed evidence" };
     }
+    // A GIT range's events are commit hashes. Comparing one to a release number always
+    // fails, and failing closed on that kept every git-ranged advisory forever: `requests`
+    // 2.34.2 reported 3 open vulnerabilities that the same records fix in 2.6.0, 2.20.0
+    // and 2.31.0 via the ECOSYSTEM range beside the git one.
+    const gitAndEcosystem = advisory("PYSEC-git-pair", {
+      ranges: [
+        { type: "GIT", events: [{ introduced: "0" }, { fixed: "3bd8afbff29e50b38f889b2f688785a669b9aafc" }] },
+        { type: "ECOSYSTEM", events: [{ introduced: "2.1.0" }, { fixed: "2.6.0" }] },
+      ],
+    });
+    if ((await retainedIds("2.34.2", [gitAndEcosystem])).includes("PYSEC-git-pair")) {
+      return { status: "fail", message: "Advisory fixed by its ECOSYSTEM range was retained because of a GIT range" };
+    }
+    // ...but a record whose ONLY evidence is a git range proves nothing about releases.
+    const gitOnly = advisory("PYSEC-git-only", {
+      ranges: [{ type: "GIT", events: [{ introduced: "0" }, { fixed: "c45d7c49ea75133e52ab22a8e9e13173938e36ff" }] }],
+    });
+    if (!(await retainedIds("2.34.2", [gitOnly])).includes("PYSEC-git-only")) {
+      return { status: "fail", message: "Advisory with only a GIT range was dropped without version evidence" };
+    }
+    // `v2.0` and `2.0` are one release; treating the prefixed spelling as unparseable
+    // made the enclosing advisory fail closed for every later version.
+    const prefixedVersionList = advisory("PYSEC-v-prefix", {
+      versions: ["v2.0", "2.0", "2.1.0"],
+      ranges: [{ type: "ECOSYSTEM", events: [{ introduced: "2.1.0" }, { fixed: "2.6.0" }] }],
+    });
+    if ((await retainedIds("2.34.2", [prefixedVersionList])).includes("PYSEC-v-prefix")) {
+      return { status: "fail", message: "A v-prefixed version in the affected list forced a fixed advisory to be retained" };
+    }
+    if (!(await retainedIds("v2.0", [prefixedVersionList])).includes("PYSEC-v-prefix")) {
+      return { status: "fail", message: "A v-prefixed latest version stopped matching its own affected list" };
+    }
+
     return { status: "pass" };
   } catch (error: unknown) {
     return { status: "fail", message: error instanceof Error ? error.message : String(error) };

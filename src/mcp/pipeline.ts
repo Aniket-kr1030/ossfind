@@ -37,6 +37,10 @@ export interface BuildPipelineOptions {
   pypiIndexPath?: string;
   /** Override the npm local-index path, primarily for deterministic integration tests. */
   npmIndexPath?: string;
+  /** Override the crates.io local-index path. */
+  cargoIndexPath?: string;
+  /** Override the RubyGems local-index path. */
+  rubygemsIndexPath?: string;
 }
 
 function fixtureModeRequested(): boolean {
@@ -112,17 +116,38 @@ function fixtureIndexPath(): string {
  * It is optional — when the index has not been built, this is exactly the previous
  * registry-only behaviour.
  */
-function npmDiscoverer(http: HttpClient, fixtures: boolean, indexPath?: string) {
-  const sources: FederatedSource[] = [
-    { name: "npm-registry", discoverer: new HttpDiscoverer(http) },
-  ];
+function withLocalIndex(
+  ecosystem: string,
+  registrySource: FederatedSource,
+  fixtures: boolean,
+  indexPath?: string,
+) {
+  const sources: FederatedSource[] = [registrySource];
   if (!fixtures) {
-    const local = new LocalIndexDiscoverer("npm", indexPath);
+    const local = new LocalIndexDiscoverer(ecosystem, indexPath);
     // An index that was never built must not be advertised as a source at all,
-    // otherwise every npm search reports a permanently unavailable one.
+    // otherwise every search reports a permanently unavailable one.
     if (local.isAvailable()) sources.push({ name: "local-index", discoverer: local });
   }
   return new FederatedDiscoverer(sources);
+}
+
+function npmDiscoverer(http: HttpClient, fixtures: boolean, indexPath?: string) {
+  return withLocalIndex("npm", { name: "npm-registry", discoverer: new HttpDiscoverer(http) }, fixtures, indexPath);
+}
+
+/**
+ * crates.io ranks by name similarity, so "serialization" never reaches `serde` and
+ * "async runtime" never reaches `tokio` — no slice of the query helps, because the
+ * words simply are not in those crates' names. The index is the only thing that
+ * bridges it, and like npm's it is optional.
+ */
+function cargoDiscoverer(http: HttpClient, fixtures: boolean, indexPath?: string) {
+  return withLocalIndex("cargo", { name: "crates.io", discoverer: new CargoDiscoverer(http) }, fixtures, indexPath);
+}
+
+function rubygemsDiscoverer(http: HttpClient, fixtures: boolean, indexPath?: string) {
+  return withLocalIndex("rubygems", { name: "rubygems.org", discoverer: new RubyGemsDiscoverer(http) }, fixtures, indexPath);
 }
 
 function pypiDiscoverer(http: HttpClient, fixtures: boolean, indexPath?: string) {
@@ -191,16 +216,16 @@ export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDepen
         : ecosystem === "pypi"
           ? pypiDiscoverer(http, fixtures, options.pypiIndexPath)
         : ecosystem === "cargo"
-          ? new CargoDiscoverer(http)
+          ? cargoDiscoverer(http, fixtures, options.cargoIndexPath)
         : ecosystem === "rubygems"
-          ? new RubyGemsDiscoverer(http)
+          ? rubygemsDiscoverer(http, fixtures, options.rubygemsIndexPath)
           : new FederatedDiscoverer([
               { name: "npm-registry", discoverer: npmDiscoverer(http, fixtures, options.npmIndexPath) },
               { name: "pypi", discoverer: pypiDiscoverer(http, fixtures, options.pypiIndexPath) },
               { name: "github", discoverer: new GitHubDiscoverer(http) },
               { name: "huggingface", discoverer: new HuggingFaceDiscoverer(http) },
-              { name: "cargo", discoverer: new CargoDiscoverer(http) },
-              { name: "rubygems", discoverer: new RubyGemsDiscoverer(http) },
+              { name: "cargo", discoverer: cargoDiscoverer(http, fixtures, options.cargoIndexPath) },
+              { name: "rubygems", discoverer: rubygemsDiscoverer(http, fixtures, options.rubygemsIndexPath) },
             ]),
     enricher: new HttpEnricher(http),
     fitScorer,

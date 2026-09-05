@@ -159,15 +159,20 @@ describe("buildPipeline fit scorer selection", () => {
     ]));
   });
 
+  // cargo and rubygems federate their registry with an optional local index, the same
+  // shape as npm, so the pipeline hands back a FederatedDiscoverer rather than the
+  // concrete adapter. Fixture mode stays registry-only.
   it.each([
-    ["cargo", CargoDiscoverer, "cargo:rabbitmq_http_client"],
-    ["rubygems", RubyGemsDiscoverer, "rubygems:ruby_http_client"],
-  ] as const)("selects %s discovery and ecosystem-aware enrichment in fixture mode", async (ecosystem, Discoverer, id) => {
+    ["cargo", "crates.io", "cargo:rabbitmq_http_client"],
+    ["rubygems", "rubygems.org", "rubygems:ruby_http_client"],
+  ] as const)("selects %s discovery and ecosystem-aware enrichment in fixture mode", async (ecosystem, sourceName, id) => {
     const pipeline = buildPipeline({ fixtures: true, ecosystem });
     const discovered = await pipeline.discoverer.discover("http client");
     const candidate = discovered.find((entry) => entry.id === id);
 
-    expect(pipeline.discoverer).toBeInstanceOf(Discoverer);
+    expect(pipeline.discoverer).toBeInstanceOf(FederatedDiscoverer);
+    expect((pipeline.discoverer as FederatedDiscoverer).availability().sources.map((source) => source.name))
+      .toEqual([sourceName]);
     expect(candidate).toBeDefined();
     await expect(pipeline.enricher.enrich(candidate!)).resolves.toMatchObject({
       id,
@@ -182,10 +187,17 @@ describe("buildPipeline fit scorer selection", () => {
   });
 
   it.each([
-    ["cargo", CargoDiscoverer],
-    ["rubygems", RubyGemsDiscoverer],
-  ] as const)("selects %s discovery in live mode", (ecosystem, Discoverer) => {
-    expect(buildPipeline({ ecosystem }).discoverer).toBeInstanceOf(Discoverer);
+    ["cargo", "crates.io"],
+    ["rubygems", "rubygems.org"],
+  ] as const)("omits the %s local index when it has not been built", (ecosystem, sourceName) => {
+    const discoverer = buildPipeline({
+      ecosystem,
+      cargoIndexPath: "/tmp/ossfind-no-such-index/cargo.db",
+      rubygemsIndexPath: "/tmp/ossfind-no-such-index/rubygems.db",
+    }).discoverer as FederatedDiscoverer;
+
+    expect(discoverer).toBeInstanceOf(FederatedDiscoverer);
+    expect(discoverer.availability().sources.map((source) => source.name)).toEqual([sourceName]);
   });
 
   it("runs the full GitHub pipeline offline and keeps raw repositories out of ship verdicts", async () => {

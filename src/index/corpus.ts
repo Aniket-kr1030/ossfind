@@ -41,9 +41,12 @@ function defaultMax(): number {
   return Number.isSafeInteger(value) && value > 0 ? value : 50_000;
 }
 
+/** ecosyste.ms names registries by host, not by the ecosystem slug ossfind uses. */
 function registryFor(ecosystem: string): string {
   if (ecosystem === "pypi") return "pypi.org";
   if (ecosystem === "npm") return "npmjs.org";
+  if (ecosystem === "cargo") return "crates.io";
+  if (ecosystem === "rubygems") return "rubygems.org";
   return ecosystem;
 }
 

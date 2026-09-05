@@ -144,17 +144,26 @@ describe("HttpEnricher", () => {
     expect(EnrichmentBundleSchema.parse(bundle)).toEqual(bundle);
   });
 
-  it("keeps PyPI CVE evidence and degrades a missing scorecard without throwing", async () => {
+  // This asserted urllib3 reported vulnerabilities, which it only did because seven of
+  // its advisories carry a GIT range whose commit hash no version comparison can parse.
+  // Every one of urllib3's 38 advisories is fixed at or before the fixture's 2.7.0, so
+  // zero is the correct answer and the old expectation was encoding the defect.
+  it("reports PyPI advisories fixed before the latest version as resolved", async () => {
     const enricher = new HttpEnricher(createFixtureHttpClient(), undefined, "pypi");
-    const vulnerable = await enricher.enrich(
+    const bundle = await enricher.enrich(
       candidate("urllib3", "https://github.com/urllib3/urllib3", "pypi"),
     );
+
+    expect(bundle.sources.osv).toBe("ok");
+    expect(bundle.vulnerabilities).toEqual([]);
+  });
+
+  it("degrades a missing PyPI scorecard without throwing", async () => {
+    const enricher = new HttpEnricher(createFixtureHttpClient(), undefined, "pypi");
     const noScorecard = await enricher.enrich(
       candidate("moviepy", "https://github.com/example/no-scorecard", "pypi"),
     );
 
-    expect(vulnerable.vulnerabilities.length).toBeGreaterThan(0);
-    expect(vulnerable.sources.osv).toBe("ok");
     expect(noScorecard.scorecard.overall).toBeNull();
     expect(noScorecard.sources.scorecard).toBe("missing");
   });

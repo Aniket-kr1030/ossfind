@@ -5,6 +5,7 @@ import {
 } from "../contracts/index.js";
 import type { Enricher } from "../pipeline/interfaces.js";
 import { defaultHttpClient, type HttpClient } from "../http/client.js";
+import { repositoryClaimCorroborated } from "./repo-claim.js";
 import { createLimiter, type Limiter } from "../http/limit.js";
 import { getBaseScore } from "cvss";
 import * as semver from "semver";
@@ -176,9 +177,19 @@ function dottedVersion(version: string): DottedVersion | undefined {
   };
 }
 
+/**
+ * `v1.2.3` and `1.2.3` are the same release. OSV version lists mix both spellings —
+ * PYSEC-2015-17 lists `v2.0` alongside `2.0` — and treating `v2.0` as unparseable made
+ * the whole advisory fail closed, so `requests` reported an open vulnerability that the
+ * same record says was fixed in 2.6.0.
+ */
+function withoutVersionPrefix(value: string): string {
+  return /^v\d/.test(value) ? value.slice(1) : value;
+}
+
 function compareVersions(left: string, right: string): VersionOrder | undefined {
-  const normalizedLeft = left.trim();
-  const normalizedRight = right.trim();
+  const normalizedLeft = withoutVersionPrefix(left.trim());
+  const normalizedRight = withoutVersionPrefix(right.trim());
   const semverLeft = semver.valid(normalizedLeft);
   const semverRight = semver.valid(normalizedRight);
 
@@ -235,9 +246,17 @@ function isAffected(latestVersion: string, affected: JsonRecord): boolean {
   }
 
   if (Array.isArray(affected.ranges)) {
-    hasVersionSemantics = true;
     for (const range of affected.ranges) {
       if (!isRecord(range) || !Array.isArray(range.events)) return true;
+      // A GIT range's events are commit hashes, not versions. Comparing one against a
+      // release number always fails, and failing closed on that marked every advisory
+      // carrying a git range as permanently unfixed: `requests` 2.34.2 was reported
+      // with 3 open vulnerabilities that OSV records as fixed in 2.6.0, 2.20.0 and
+      // 2.31.0 by the ECOSYSTEM range sitting beside the git one. Skipping GIT ranges
+      // is not a relaxation — if an affected record carries no version-bearing
+      // evidence at all, hasVersionSemantics stays false and it still fails closed.
+      if (stringAt(range, "type") === "GIT") continue;
+      hasVersionSemantics = true;
       let introduced: string | undefined;
       for (const event of range.events) {
         if (!isRecord(event)) return true;
@@ -429,7 +448,11 @@ export class HttpEnricher implements Enricher {
     const ecosystems = ecosystemsResult.status === "ok" ? ecosystemsResult.data : undefined;
     const ecosystemRecord = isRecord(ecosystems) ? ecosystems : undefined;
     const repositoryUrl = candidate.repoUrl ?? stringAt(ecosystemRecord, "repository_url");
-    const scorecardUrl = githubProjectUrl(repositoryUrl);
+    // A package's repository URL is self-declared. Typosquats name the real project's
+    // repo to inherit its health score, so the claim must be corroborated by the names
+    // before its evidence is attributed here; see repo-claim.ts.
+    const repositoryClaimed = repositoryClaimCorroborated(pkg, repositoryUrl);
+    const scorecardUrl = repositoryClaimed ? githubProjectUrl(repositoryUrl) : undefined;
     const [depsDevResult, osvResult, scorecardResult] = await Promise.all([
       // The current bundle schema has no field for default version/deprecation,
       // but this request keeps the adapter ready for those contract additions.
