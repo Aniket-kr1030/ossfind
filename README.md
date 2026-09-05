@@ -12,12 +12,34 @@ ambiguous.** The engine fails *closed*.
 and connect it to an AI agent over MCP (Claude Code / Claude Desktop / Cursor config included), in
 about five minutes.
 
-## Quick start
+## Command line
+
+```bash
+npm install -g ossfind
+
+ossfind search "markdown parser"
+ossfind search "http client" -e cargo -n 5
+ossfind search "web framework" -e pypi --json     # machine-readable
+ossfind inspect marked                            # verified exports + import line
+```
+
+```
+ 1. marked  SHIP     92/100
+    MIT  ·  0 CVEs  ·  OpenSSF 7.4
+```
+
+`-e/--ecosystem` npm · pypi · github · huggingface · cargo · rubygems · all — `-l/--license`
+declares your project's license so incompatible results are ranked `AVOID` — `--json` for
+scripting — `--no-color` (also honours `NO_COLOR`). Colour is disabled automatically when
+stdout is not a terminal.
+
+## Quick start (from source)
 
 ```bash
 npm install
-npm run typecheck && npm test     # 451 tests, fully offline
-npm run gates                     # 14 safety gates, each proven able to fail
+npm run typecheck && npm test     # 524 tests, fully offline
+npm run gates                     # 16 safety gates, each proven able to fail
+npm run eval                      # relevance against the labelled query set (live)
 ```
 
 Run the web app (offline demo mode, uses frozen fixtures):

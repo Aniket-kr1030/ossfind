@@ -18,6 +18,8 @@
     "public",
     "fixtures",
     "scripts",
+    "eval",
+    "bin",
     "README.md",
     "LICENSE"
   ],
@@ -41,7 +43,8 @@
   },
   "bin": {
     "ossfind-mcp": "bin/ossfind-mcp",
-    "ossfind-web": "bin/ossfind-web"
+    "ossfind-web": "bin/ossfind-web",
+    "ossfind": "bin/ossfind"
   },
   "devDependencies": {
     "@types/cvss": "^1.0.3",

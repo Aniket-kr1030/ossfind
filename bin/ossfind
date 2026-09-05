@@ -1,0 +1,23 @@
+#!/usr/bin/env node
+// Wrapper around the CLI entry point.
+//
+// Why this exists: pointing `bin` directly at `dist/cli/run.js` breaks when the
+// package is installed as a dependency. npm links bins from `node_modules/.bin/`,
+// and executing the symlinked ESM file from a CommonJS consumer resolves the module
+// type against the CONSUMER's package.json ("type" absent => commonjs), so the entry
+// fails. Re-invoking through `process.execPath` with the real resolved path keeps ESM
+// resolution anchored to this package. This is the bug that shipped in 0.1.0.
+import { spawn } from "node:child_process";
+import { fileURLToPath } from "node:url";
+
+const entry = fileURLToPath(new URL("../dist/cli/run.js", import.meta.url));
+const child = spawn(process.execPath, [entry, ...process.argv.slice(2)], { env: process.env, stdio: "inherit" });
+
+child.on("exit", (code, signal) => {
+  if (signal) process.kill(process.pid, signal);
+  else process.exitCode = code ?? 1;
+});
+child.on("error", (error) => {
+  process.stderr.write(`ossfind: ${error.message}\n`);
+  process.exitCode = 1;
+});
