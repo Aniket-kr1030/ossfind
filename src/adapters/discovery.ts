@@ -3,7 +3,7 @@ import {
   type ComponentCandidate,
 } from "../contracts/index.js";
 import { defaultHttpClient, type HttpClient } from "../http/client.js";
-import { queryProbes } from "../discovery/query-probes.js";
+import { expandDiscovery, type ProbeOutcome } from "../discovery/expand.js";
 import type { Discoverer } from "../pipeline/interfaces.js";
 
 const NPM_SEARCH_URL = "https://registry.npmjs.org/-/v1/search";
@@ -82,11 +82,6 @@ function candidateFromResult(result: NpmSearchResult): ComponentCandidate | unde
   }
 }
 
-/** One probe's result: answered (possibly with nothing) versus never answered. */
-type ProbeOutcome =
-  | { ok: true; candidates: ComponentCandidate[] }
-  | { ok: false };
-
 function sleep(milliseconds: number): Promise<void> {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
@@ -112,40 +107,14 @@ export class HttpDiscoverer implements Discoverer {
   }
 
   /**
-   * Union the results of several progressively shorter probes. npm's conjunctive text
-   * match drops well-known packages from natural-language queries entirely, so the
-   * query alone under-recalls; see query-probes.ts for the measurements.
-   *
-   * A probe that fails contributes nothing and never fails the search — the same
-   * error isolation the federated discoverer applies across sources.
+   * Union the results of several progressively shorter probes; see expand.ts and
+   * query-probes.ts for why the query alone under-recalls.
    */
-  private async fetchExpanded(query: string): Promise<ComponentCandidate[]> {
-    const probes = queryProbes(query, { maxProbes: this.maxProbes });
-    if (probes.length === 0) return [];
-
-    const settled = await Promise.all(probes.map(async (probe) => {
-      const outcome = await this.fetchCandidates(probe.text)
-        .catch(() => ({ ok: false as const }));
-      return { tier: probe.tier, outcome };
-    }));
-
-    // A registry that refuses every probe — rate limiting, most often — must not look
-    // like a query that legitimately matched nothing. Rejecting here lets the federated
-    // layer mark the source unavailable, which the search response reports; swallowing
-    // it would report "no results" for a search that was never actually answered.
-    if (settled.every(({ outcome }) => !outcome.ok)) {
-      throw new Error(`npm registry search failed for every probe of ${JSON.stringify(query)}`);
-    }
-
-    // Earliest probe wins a duplicate: its wording was closer to what the user asked.
-    const byId = new Map<string, ComponentCandidate>();
-    for (const { outcome } of settled.sort((left, right) => left.tier - right.tier)) {
-      if (!outcome.ok) continue;
-      for (const candidate of outcome.candidates) {
-        if (!byId.has(candidate.id)) byId.set(candidate.id, candidate);
-      }
-    }
-    return [...byId.values()];
+  private fetchExpanded(query: string): Promise<ComponentCandidate[]> {
+    return expandDiscovery(query, (text) => this.fetchCandidates(text), {
+      sourceName: "npm registry",
+      maxProbes: this.maxProbes,
+    });
   }
 
   /**

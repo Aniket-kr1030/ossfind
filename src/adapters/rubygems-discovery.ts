@@ -3,12 +3,15 @@ import {
   type ComponentCandidate,
 } from "../contracts/index.js";
 import { defaultHttpClient, type HttpClient } from "../http/client.js";
+import { expandDiscovery, type ProbeOutcome } from "../discovery/expand.js";
 import type { Discoverer } from "../pipeline/interfaces.js";
 
 const RUBYGEMS_SEARCH_URL = "https://rubygems.org/api/v1/search.json";
 
 export interface RubyGemsDiscovererOptions {
   attempts?: number;
+  /** Registry probes issued per search; see discovery/query-probes.ts. */
+  maxProbes?: number;
 }
 
 interface RubyGemsSearchResult {
@@ -117,6 +120,7 @@ function sleep(milliseconds: number): Promise<void> {
 export class RubyGemsDiscoverer implements Discoverer {
   private readonly cache = new Map<string, Promise<ComponentCandidate[]>>();
   private readonly attempts: number;
+  private readonly maxProbes: number;
 
   constructor(
     private readonly http: HttpClient = defaultHttpClient,
@@ -124,8 +128,10 @@ export class RubyGemsDiscoverer implements Discoverer {
   ) {
     if (typeof optionsOrAttempts === "number") {
       this.attempts = optionsOrAttempts;
+      this.maxProbes = 6;
     } else {
       this.attempts = optionsOrAttempts.attempts ?? 3;
+      this.maxProbes = optionsOrAttempts.maxProbes ?? 6;
     }
   }
 
@@ -133,12 +139,19 @@ export class RubyGemsDiscoverer implements Discoverer {
     const cached = this.cache.get(query);
     if (cached) return cached;
 
-    const discovery = this.fetchCandidates(query);
+    const discovery = expandDiscovery(query, (text) => this.fetchCandidates(text), {
+      sourceName: "rubygems.org",
+      maxProbes: this.maxProbes,
+    });
     this.cache.set(query, discovery);
     return discovery;
   }
 
-  private async fetchCandidates(query: string): Promise<ComponentCandidate[]> {
+  /**
+   * `ok: false` means rubygems.org never answered, which must stay distinct from an
+   * empty result list; see expand.ts.
+   */
+  private async fetchCandidates(query: string): Promise<ProbeOutcome> {
     const url = new URL(RUBYGEMS_SEARCH_URL);
     url.searchParams.set("query", query);
 
@@ -151,19 +164,22 @@ export class RubyGemsDiscoverer implements Discoverer {
         }
 
         const payload = await response.json() as unknown;
-        return Array.isArray(payload)
-          ? payload.flatMap((gem) => {
-            const candidate = gem && typeof gem === "object"
-              ? candidateFromGem(gem as RubyGemsSearchResult)
-              : undefined;
-            return candidate ? [candidate] : [];
-          })
-          : [];
+        return {
+          ok: true,
+          candidates: Array.isArray(payload)
+            ? payload.flatMap((gem) => {
+              const candidate = gem && typeof gem === "object"
+                ? candidateFromGem(gem as RubyGemsSearchResult)
+                : undefined;
+              return candidate ? [candidate] : [];
+            })
+            : [],
+        };
       } catch {
         if (attempt + 1 < this.attempts) await sleep(10 * (attempt + 1));
       }
     }
 
-    return [];
+    return { ok: false };
   }
 }

@@ -3,6 +3,7 @@ import {
   type ComponentCandidate,
 } from "../contracts/index.js";
 import { defaultHttpClient, type HttpClient } from "../http/client.js";
+import { expandDiscovery, type ProbeOutcome } from "../discovery/expand.js";
 import type { Discoverer } from "../pipeline/interfaces.js";
 
 const CARGO_SEARCH_URL = "https://crates.io/api/v1/crates";
@@ -12,6 +13,8 @@ export interface CargoDiscovererOptions {
   size?: number;
   attempts?: number;
   userAgent?: string;
+  /** Registry probes issued per search; see discovery/query-probes.ts. */
+  maxProbes?: number;
 }
 
 interface CargoCrate {
@@ -102,6 +105,7 @@ export class CargoDiscoverer implements Discoverer {
   private readonly size: number;
   private readonly attempts: number;
   private readonly userAgent: string;
+  private readonly maxProbes: number;
 
   constructor(
     private readonly http: HttpClient = defaultHttpClient,
@@ -112,10 +116,12 @@ export class CargoDiscoverer implements Discoverer {
       this.size = optionsOrSize;
       this.attempts = attempts;
       this.userAgent = DEFAULT_USER_AGENT;
+      this.maxProbes = 6;
     } else {
       this.size = optionsOrSize.size ?? 20;
       this.attempts = optionsOrSize.attempts ?? attempts;
       this.userAgent = optionsOrSize.userAgent ?? DEFAULT_USER_AGENT;
+      this.maxProbes = optionsOrSize.maxProbes ?? 6;
     }
   }
 
@@ -123,12 +129,19 @@ export class CargoDiscoverer implements Discoverer {
     const cached = this.cache.get(query);
     if (cached) return cached;
 
-    const discovery = this.fetchCandidates(query);
+    const discovery = expandDiscovery(query, (text) => this.fetchCandidates(text), {
+      sourceName: "crates.io",
+      maxProbes: this.maxProbes,
+    });
     this.cache.set(query, discovery);
     return discovery;
   }
 
-  private async fetchCandidates(query: string): Promise<ComponentCandidate[]> {
+  /**
+   * `ok: false` means crates.io never answered, which must stay distinct from an
+   * empty result list; see expand.ts.
+   */
+  private async fetchCandidates(query: string): Promise<ProbeOutcome> {
     const url = new URL(CARGO_SEARCH_URL);
     url.searchParams.set("q", query);
     url.searchParams.set("per_page", String(this.size));
@@ -146,17 +159,20 @@ export class CargoDiscoverer implements Discoverer {
         }
 
         const payload = await response.json() as CargoSearchResponse;
-        return Array.isArray(payload.crates)
-          ? payload.crates.flatMap((crate) => {
-            const candidate = candidateFromCrate(crate);
-            return candidate ? [candidate] : [];
-          })
-          : [];
+        return {
+          ok: true,
+          candidates: Array.isArray(payload.crates)
+            ? payload.crates.flatMap((crate) => {
+              const candidate = candidateFromCrate(crate);
+              return candidate ? [candidate] : [];
+            })
+            : [],
+        };
       } catch {
         if (attempt + 1 < this.attempts) await sleep(10 * (attempt + 1));
       }
     }
 
-    return [];
+    return { ok: false };
   }
 }

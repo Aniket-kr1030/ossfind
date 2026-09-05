@@ -22,9 +22,36 @@ const STOPWORDS = new Set([
   "your", "yours", "yourself", "yourselves",
 ]);
 
-/** A lexical match can be exact or a word-boundary substring match. */
+/**
+ * Longest suffix difference still treated as the same word. Covers inflection
+ * ("parse"/"parser", "highlight"/"highlighting", "block"/"blocks") without letting
+ * a short word claim a much longer unrelated one.
+ */
+const MAX_INFLECTION_DIFFERENCE = 5;
+
+/**
+ * A lexical match is an exact word or a shared stem.
+ *
+ * This was previously an unanchored substring test in both directions, which paid
+ * full credit for coincidences: "code" matched "unicode" and "barcode", and "serial"
+ * matched "serialization". Requiring a common prefix of similar length drops those
+ * while keeping real inflections.
+ *
+ * Measured honestly: on the labelled eval set this is *neutral* — MRR 0.561 either
+ * way. A first attempt at 3 characters scored worse (0.509), because it broke
+ * "format"/"formatting". It is kept because the matches it removes are wrong by
+ * inspection, not because it improved the numbers. Tighten further only with
+ * evidence; the eval already refused one such change.
+ */
 function matches(queryWord: string, candidateWord: string): boolean {
-  return queryWord === candidateWord || queryWord.includes(candidateWord) || candidateWord.includes(queryWord);
+  if (queryWord === candidateWord) return true;
+
+  const [shorter, longer] = queryWord.length <= candidateWord.length
+    ? [queryWord, candidateWord]
+    : [candidateWord, queryWord];
+
+  if (longer.length - shorter.length > MAX_INFLECTION_DIFFERENCE) return false;
+  return longer.startsWith(shorter);
 }
 
 /** Normalized content words: lower-case, distinctness left to the caller. */

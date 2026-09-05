@@ -104,25 +104,29 @@ describe("CargoDiscoverer", () => {
     );
   });
 
-  it("gracefully degrades to [] on rate limits (429), server errors (500), or exceptions", async () => {
+  // Previously these resolved to []. The relevance eval showed why that is wrong: a
+  // refused search became indistinguishable from one that matched nothing, and
+  // scored as a relevance failure. Rejecting lets the federated layer report the
+  // source as unavailable instead.
+  it("rejects when every probe fails on 429, 500, or a thrown error", async () => {
     const rateLimited: HttpClient = async () => ({
       ok: false,
       status: 429,
       json: async () => ({ error: "rate limited" }),
     });
-    await expect(new CargoDiscoverer(rateLimited).discover("query-429")).resolves.toEqual([]);
+    await expect(new CargoDiscoverer(rateLimited).discover("query-429")).rejects.toThrow(/failed for every probe/);
 
     const serverError: HttpClient = async () => ({
       ok: false,
       status: 500,
       json: async () => ({ error: "internal error" }),
     });
-    await expect(new CargoDiscoverer(serverError).discover("query-500")).resolves.toEqual([]);
+    await expect(new CargoDiscoverer(serverError).discover("query-500")).rejects.toThrow(/failed for every probe/);
 
     const throwsError: HttpClient = async () => {
       throw new Error("Network failure");
     };
-    await expect(new CargoDiscoverer(throwsError).discover("query-throws")).resolves.toEqual([]);
+    await expect(new CargoDiscoverer(throwsError).discover("query-throws")).rejects.toThrow(/failed for every probe/);
   });
 
   it("preserves determinism and caches identical queries", async () => {
@@ -147,6 +151,10 @@ describe("CargoDiscoverer", () => {
     const result2 = await discoverer.discover("repeated-query");
 
     expect(result1).toEqual(result2);
-    expect(http).toHaveBeenCalledTimes(1);
+    // One request per expansion probe on the first call, and none on the second.
+    const firstCallCount = http.mock.calls.length;
+    expect(firstCallCount).toBeGreaterThan(0);
+    await discoverer.discover("repeated-query");
+    expect(http).toHaveBeenCalledTimes(firstCallCount);
   });
 });

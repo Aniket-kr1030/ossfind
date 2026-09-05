@@ -108,3 +108,30 @@ describe("embedding lexical signal integration", () => {
     expect(signals[0].rationale).toContain("lexical coverage 50%");
   });
 });
+
+describe("stem matching", () => {
+  const candidate = (description: string) =>
+    ({ id: "npm:x", name: "x", ecosystem: "npm", description } as ComponentCandidate);
+
+  it.each([
+    ["parse", "parser"],
+    ["highlight", "highlighting"],
+    ["block", "blocks"],
+    ["format", "formatting"],
+  ])("treats the inflection %s/%s as the same word", (queryWord, candidateWord) => {
+    expect(lexicalSignal(queryWord, candidate(candidateWord)).coverage).toBe(1);
+  });
+
+  it.each([
+    ["code", "unicode"],
+    ["code", "barcode"],
+    ["serial", "serialization"],
+    ["test", "latest"],
+  ])("does not match the false friend %s/%s", (queryWord, candidateWord) => {
+    expect(lexicalSignal(queryWord, candidate(candidateWord)).coverage).toBe(0);
+  });
+
+  it("still matches a word exactly regardless of length", () => {
+    expect(lexicalSignal("serialization", candidate("serialization library")).coverage).toBe(1);
+  });
+});
