@@ -135,7 +135,12 @@ async function runInspect(target: string, values: Record<string, unknown>): Prom
 
   const style = styles(colourWanted(values["no-color"] as boolean | undefined));
   const limit = Number(values.limit ?? 10);
-  const shown = surface.exports.slice(0, Number.isInteger(limit) && limit > 0 ? limit : 10);
+  // Things you can call come before things you can only annotate with: a reader
+  // asking "how do I use this" is served by the class before the type alias.
+  const callableFirst = new Set(["default", "class", "function", "const", "enum"]);
+  const ordered = [...surface.exports].sort((left, right) =>
+    Number(callableFirst.has(right.kind)) - Number(callableFirst.has(left.kind)));
+  const shown = ordered.slice(0, Number.isInteger(limit) && limit > 0 ? limit : 10);
 
   process.stdout.write(`\n${style.bold(surface.id)}  ${style.dim(`${surface.typesAvailable} declarations, ${surface.exports.length} exports`)}\n\n`);
   process.stdout.write(`  ${style.dim("install")}  ${manifest.install.command}\n`);
@@ -151,6 +156,15 @@ async function runInspect(target: string, values: Record<string, unknown>): Prom
   for (const entry of shown) {
     const signature = entry.signature ? `  ${style.dim(entry.signature.replace(/\s+/g, " "))}` : "";
     process.stdout.write(`  ${style.dim(`[${entry.kind}]`.padEnd(12))}${entry.name}${signature}\n`);
+
+    // A class's own signature is null, so its members are the only usable evidence.
+    for (const member of entry.members ?? []) {
+      const text = member.signature ?? member.name;
+      process.stdout.write(`      ${style.dim(`${member.static ? "static " : ""}${text.replace(/\s+/g, " ").slice(0, 140)}`)}\n`);
+    }
+    if (entry.membersTruncated) {
+      process.stdout.write(`      ${style.dim("… more members not listed")}\n`);
+    }
   }
   if (surface.exports.length > shown.length) {
     process.stdout.write(`\n  ${style.dim(`… ${surface.exports.length - shown.length} more; raise --limit to see them`)}\n`);

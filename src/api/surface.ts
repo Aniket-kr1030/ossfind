@@ -56,6 +56,112 @@ function functionSignature(node: ts.FunctionDeclaration, source: ts.SourceFile, 
   return `${name}${typeParameters ? `<${typeParameters}>` : ""}(${parameters}): ${typeText(node.type, source)}`;
 }
 
+/** Members beyond this are omitted rather than silently dropped; the flag says so. */
+const MAX_CLASS_MEMBERS = 80;
+
+type ClassMember = NonNullable<ApiSurface["exports"][number]["members"]>[number];
+
+/** `private`/`protected` members are implementation, and `#name` is not reachable at all. */
+function isPubliclyDeclared(member: ts.ClassElement): boolean {
+  if (member.name && ts.isPrivateIdentifier(member.name)) return false;
+  const modifiers = ts.canHaveModifiers(member) ? ts.getModifiers(member) : undefined;
+  return !modifiers?.some((modifier) =>
+    modifier.kind === ts.SyntaxKind.PrivateKeyword || modifier.kind === ts.SyntaxKind.ProtectedKeyword);
+}
+
+function isStatic(member: ts.ClassElement): boolean {
+  const modifiers = ts.canHaveModifiers(member) ? ts.getModifiers(member) : undefined;
+  return !!modifiers?.some((modifier) => modifier.kind === ts.SyntaxKind.StaticKeyword);
+}
+
+function memberName(member: ts.ClassElement, source: ts.SourceFile): string | undefined {
+  if (ts.isConstructorDeclaration(member)) return "constructor";
+  const name = member.name;
+  if (!name) return undefined;
+  if (ts.isIdentifier(name) || ts.isStringLiteral(name)) return name.text;
+  // Computed keys such as [Symbol.iterator] are reported verbatim, never invented.
+  return ts.isComputedPropertyName(name) ? compact(name.getText(source)) : undefined;
+}
+
+function signatureFor(
+  member: ts.ClassElement,
+  source: ts.SourceFile,
+  name: string,
+): { kind: ClassMember["kind"]; signature: string | null } | undefined {
+  const parameterList = (parameters: ts.NodeArray<ts.ParameterDeclaration>) =>
+    parameters.map((parameter) => compact(parameter.getText(source))).join(", ");
+
+  if (ts.isConstructorDeclaration(member)) {
+    return { kind: "constructor", signature: `constructor(${parameterList(member.parameters)})` };
+  }
+  if (ts.isMethodDeclaration(member) || ts.isMethodSignature(member)) {
+    const typeParameters = member.typeParameters?.map((p) => compact(p.getText(source))).join(",") ?? "";
+    return {
+      kind: "method",
+      signature: `${name}${typeParameters ? `<${typeParameters}>` : ""}(${parameterList(member.parameters)}): ${typeText(member.type, source)}`,
+    };
+  }
+  if (ts.isGetAccessorDeclaration(member)) {
+    return { kind: "accessor", signature: `${name}: ${typeText(member.type, source)}` };
+  }
+  if (ts.isSetAccessorDeclaration(member)) {
+    return { kind: "accessor", signature: `${name}(${parameterList(member.parameters)}): void` };
+  }
+  if (ts.isPropertyDeclaration(member) || ts.isPropertySignature(member)) {
+    // A property with no type annotation is reported with a null signature rather
+    // than an inferred one — the declaration is the only evidence available here.
+    return { kind: "property", signature: member.type ? `${name}: ${typeText(member.type, source)}` : null };
+  }
+  return undefined;
+}
+
+/**
+ * Public members declared on a class. Returns `undefined` for anything that is not a
+ * class declaration, which is how the caller distinguishes "not a class" and "class
+ * whose body could not be read" from "class that declares nothing public".
+ */
+function classMembers(
+  node: ts.Node,
+  source: ts.SourceFile,
+): { members: ClassMember[]; truncated: boolean } | undefined {
+  if (!ts.isClassDeclaration(node)) return undefined;
+
+  const members: ClassMember[] = [];
+  const seen = new Set<string>();
+  let truncated = false;
+
+  for (const member of node.members) {
+    if (!isPubliclyDeclared(member)) continue;
+    const name = memberName(member, source);
+    if (!name) continue;
+    const described = signatureFor(member, source, name);
+    if (!described) continue;
+
+    // Overloads and get/set pairs declare one member under several nodes.
+    const key = `${isStatic(member) ? "static " : ""}${name}`;
+    if (seen.has(key)) continue;
+
+    if (members.length >= MAX_CLASS_MEMBERS) { truncated = true; break; }
+    seen.add(key);
+    members.push({ name, kind: described.kind, signature: described.signature, static: isStatic(member) });
+  }
+
+  return { members, truncated };
+}
+
+/** Attach class members to an export entry, omitting the fields entirely when absent. */
+function withMembers(
+  entry: { name: string; kind: ApiSurface["exports"][number]["kind"]; signature: string | null },
+  node: ts.Node,
+  source: ts.SourceFile,
+): ApiSurface["exports"][number] {
+  const found = classMembers(node, source);
+  if (!found) return entry;
+  return found.truncated
+    ? { ...entry, members: found.members, membersTruncated: true }
+    : { ...entry, members: found.members };
+}
+
 function declarationName(node: ts.Declaration): string | undefined {
   const name = ts.getNameOfDeclaration(node);
   return name && ts.isIdentifier(name) ? name.text : undefined;
@@ -84,7 +190,7 @@ function extractNamespaceMembers(nsDecl: ts.ModuleDeclaration, source: ts.Source
       if (name) found.push({ name, kind: "function", signature: functionSignature(statement, source, name) });
     } else if (ts.isClassDeclaration(statement)) {
       const name = declarationName(statement);
-      if (name) found.push({ name, kind: "class", signature: null });
+      if (name) found.push(withMembers({ name, kind: "class", signature: null }, statement, source));
     } else if (ts.isInterfaceDeclaration(statement)) {
       found.push({ name: statement.name.text, kind: "interface", signature: null });
     } else if (ts.isTypeAliasDeclaration(statement)) {
@@ -141,7 +247,7 @@ function directExports(source: ts.SourceFile): ParsedDeclaration {
       const name = declarationName(statement);
       if (name) localClasses.set(name, statement);
       if (name && hasExportModifier(statement)) {
-        found.push({ name, kind: "class", signature: null });
+        found.push(withMembers({ name, kind: "class", signature: null }, statement, source));
       }
       continue;
     }
@@ -239,7 +345,7 @@ function directExports(source: ts.SourceFile): ParsedDeclaration {
             resolvedLocal = true;
           }
           if (localClasses.has(localName)) {
-            found.push({ name: asName, kind: "class", signature: null });
+            found.push(withMembers({ name: asName, kind: "class", signature: null }, localClasses.get(localName)!, source));
             resolvedLocal = true;
           }
           if (localInterfaces.has(localName)) {
