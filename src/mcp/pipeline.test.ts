@@ -343,3 +343,31 @@ describe("buildPipeline fit scorer selection", () => {
     }
   });
 });
+
+describe("npm discovery federation", () => {
+  it("federates npm through a FederatedDiscoverer so a local index can join it", () => {
+    const pipeline = buildPipeline({ fixtures: true, ecosystem: "npm" });
+    expect(pipeline.discoverer).toBeInstanceOf(FederatedDiscoverer);
+  });
+
+  // The index is an optional capability. Naming a path that does not exist must
+  // leave npm search exactly as it was, not add a permanently unavailable source.
+  it("omits the local index entirely when it has not been built", () => {
+    const discoverer = buildPipeline({
+      ecosystem: "npm",
+      npmIndexPath: "/tmp/ossfind-no-such-npm-index/npm.db",
+    }).discoverer as FederatedDiscoverer;
+
+    expect(discoverer.availability().sources.map((source) => source.name)).toEqual(["npm-registry"]);
+    expect(discoverer.availability().available).toBe(true);
+  });
+
+  it("keeps fixture-mode npm discovery registry-only and deterministic", async () => {
+    const pipeline = buildPipeline({ fixtures: true, ecosystem: "npm" });
+    const availability = (pipeline.discoverer as FederatedDiscoverer).availability();
+    expect(availability.sources.map((source) => source.name)).toEqual(["npm-registry"]);
+    await expect(pipeline.discoverer.discover("http client")).resolves.toEqual(expect.arrayContaining([
+      expect.objectContaining({ id: "npm:axios" }),
+    ]));
+  });
+});

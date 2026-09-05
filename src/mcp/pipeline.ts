@@ -35,6 +35,8 @@ export interface BuildPipelineOptions {
   ecosystem?: SearchEcosystem;
   /** Override the PyPI local-index path, primarily for deterministic integration tests. */
   pypiIndexPath?: string;
+  /** Override the npm local-index path, primarily for deterministic integration tests. */
+  npmIndexPath?: string;
 }
 
 function fixtureModeRequested(): boolean {
@@ -100,6 +102,29 @@ function fixtureIndexPath(): string {
   return fixturePypiIndexPath;
 }
 
+/**
+ * npm discovery federates the registry's own search with the local semantic index.
+ *
+ * The registry matches text conjunctively, which query expansion partly compensates
+ * for but cannot fix outright: `marked` describes itself as "A markdown parser built
+ * for speed", so no slice of "markdown to html renderer" reaches it. Bridging
+ * *renderer* to *parser* needs embeddings, which is what the local index provides.
+ * It is optional — when the index has not been built, this is exactly the previous
+ * registry-only behaviour.
+ */
+function npmDiscoverer(http: HttpClient, fixtures: boolean, indexPath?: string) {
+  const sources: FederatedSource[] = [
+    { name: "npm-registry", discoverer: new HttpDiscoverer(http) },
+  ];
+  if (!fixtures) {
+    const local = new LocalIndexDiscoverer("npm", indexPath);
+    // An index that was never built must not be advertised as a source at all,
+    // otherwise every npm search reports a permanently unavailable one.
+    if (local.isAvailable()) sources.push({ name: "local-index", discoverer: local });
+  }
+  return new FederatedDiscoverer(sources);
+}
+
 function pypiDiscoverer(http: HttpClient, fixtures: boolean, indexPath?: string) {
   const local = new LocalIndexDiscoverer("pypi", fixtures ? fixtureIndexPath() : indexPath);
   const mode = requestedPypiDiscoveryMode();
@@ -158,7 +183,7 @@ export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDepen
 
   return {
     discoverer: ecosystem === "npm"
-      ? new FederatedDiscoverer([{ name: "npm-registry", discoverer: new HttpDiscoverer(http) }])
+      ? npmDiscoverer(http, fixtures, options.npmIndexPath)
       : ecosystem === "github"
         ? new GitHubDiscoverer(http)
         : ecosystem === "huggingface"
@@ -170,7 +195,7 @@ export function buildPipeline(options: BuildPipelineOptions = {}): PipelineDepen
         : ecosystem === "rubygems"
           ? new RubyGemsDiscoverer(http)
           : new FederatedDiscoverer([
-              { name: "npm-registry", discoverer: new HttpDiscoverer(http) },
+              { name: "npm-registry", discoverer: npmDiscoverer(http, fixtures, options.npmIndexPath) },
               { name: "pypi", discoverer: pypiDiscoverer(http, fixtures, options.pypiIndexPath) },
               { name: "github", discoverer: new GitHubDiscoverer(http) },
               { name: "huggingface", discoverer: new HuggingFaceDiscoverer(http) },

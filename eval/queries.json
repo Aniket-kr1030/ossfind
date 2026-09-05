@@ -4,203 +4,486 @@
     "accept as a correct answer to the query; 'irrelevant' lists packages previously observed",
     "ranking highly while plainly not answering it. These are editorial judgement, not ground",
     "truth: use them to detect CHANGE between two runs of this set, not as an accuracy claim.",
-    "Registry data drifts, so compare runs close together in time."
+    "Registry data drifts, so compare runs close together in time.",
+    "The final group are vocabulary-gap queries: they deliberately avoid the words the target packages use about themselves, so conjunctive registry search cannot reach them. They measure semantic retrieval, and are expected to score poorly without it."
   ],
   "queries": [
     {
       "query": "markdown parser",
       "ecosystem": "npm",
-      "relevant": ["marked", "markdown-it", "micromark", "remark", "commonmark"]
+      "relevant": [
+        "marked",
+        "markdown-it",
+        "micromark",
+        "remark",
+        "commonmark"
+      ]
     },
     {
       "query": "markdown to html renderer",
       "ecosystem": "npm",
-      "relevant": ["marked", "markdown-it", "micromark", "remark-html", "showdown"],
-      "irrelevant": ["@contentful/rich-text-html-renderer", "@storybook/html", "@vue/server-renderer"]
+      "relevant": [
+        "marked",
+        "markdown-it",
+        "micromark",
+        "remark-html",
+        "showdown"
+      ],
+      "irrelevant": [
+        "@contentful/rich-text-html-renderer",
+        "@storybook/html",
+        "@vue/server-renderer"
+      ]
     },
     {
       "query": "command line argument parser",
       "ecosystem": "npm",
-      "relevant": ["commander", "yargs", "minimist", "arg", "command-line-args", "meow", "cac"],
-      "irrelevant": ["clap"]
+      "relevant": [
+        "commander",
+        "yargs",
+        "minimist",
+        "arg",
+        "command-line-args",
+        "meow",
+        "cac"
+      ],
+      "irrelevant": [
+        "clap"
+      ]
     },
     {
       "query": "syntax highlighting for code blocks",
       "ecosystem": "npm",
-      "relevant": ["highlight.js", "prismjs", "shiki", "refractor", "lowlight"],
-      "irrelevant": ["@babel/plugin-syntax-class-static-block"]
+      "relevant": [
+        "highlight.js",
+        "prismjs",
+        "shiki",
+        "refractor",
+        "lowlight"
+      ],
+      "irrelevant": [
+        "@babel/plugin-syntax-class-static-block"
+      ]
     },
     {
       "query": "html sanitizer xss",
       "ecosystem": "npm",
-      "relevant": ["sanitize-html", "dompurify", "isomorphic-dompurify", "xss"],
-      "irrelevant": ["is-unsafe", "@types/express-xss-sanitizer"]
+      "relevant": [
+        "sanitize-html",
+        "dompurify",
+        "isomorphic-dompurify",
+        "xss"
+      ],
+      "irrelevant": [
+        "is-unsafe",
+        "@types/express-xss-sanitizer"
+      ]
     },
     {
       "query": "yaml frontmatter parser",
       "ecosystem": "npm",
-      "relevant": ["yaml", "js-yaml", "gray-matter", "front-matter", "vfile-matter"]
+      "relevant": [
+        "yaml",
+        "js-yaml",
+        "gray-matter",
+        "front-matter",
+        "vfile-matter"
+      ]
     },
     {
       "query": "client side full text search index",
       "ecosystem": "npm",
-      "relevant": ["minisearch", "flexsearch", "lunr", "fuse.js", "@orama/orama"],
-      "irrelevant": ["@redis/search", "@azure/search-documents", "index-to-position"]
+      "relevant": [
+        "minisearch",
+        "flexsearch",
+        "lunr",
+        "fuse.js",
+        "@orama/orama"
+      ],
+      "irrelevant": [
+        "@redis/search",
+        "@azure/search-documents",
+        "index-to-position"
+      ]
     },
     {
       "query": "http client",
       "ecosystem": "npm",
-      "relevant": ["axios", "got", "node-fetch", "ky", "undici", "superagent"]
+      "relevant": [
+        "axios",
+        "got",
+        "node-fetch",
+        "ky",
+        "undici",
+        "superagent"
+      ]
     },
     {
       "query": "date formatting and parsing",
       "ecosystem": "npm",
-      "relevant": ["date-fns", "dayjs", "luxon", "moment"]
+      "relevant": [
+        "date-fns",
+        "dayjs",
+        "luxon",
+        "moment"
+      ]
     },
     {
       "query": "schema validation for typescript",
       "ecosystem": "npm",
-      "relevant": ["zod", "yup", "joi", "ajv", "valibot", "superstruct"]
+      "relevant": [
+        "zod",
+        "yup",
+        "joi",
+        "ajv",
+        "valibot",
+        "superstruct"
+      ]
     },
     {
       "query": "environment variable loader dotenv",
       "ecosystem": "npm",
-      "relevant": ["dotenv", "dotenv-expand", "dotenv-flow"]
+      "relevant": [
+        "dotenv",
+        "dotenv-expand",
+        "dotenv-flow"
+      ]
     },
     {
       "query": "websocket server",
       "ecosystem": "npm",
-      "relevant": ["ws", "socket.io", "uWebSockets.js", "sockjs"]
+      "relevant": [
+        "ws",
+        "socket.io",
+        "uWebSockets.js",
+        "sockjs"
+      ]
     },
     {
       "query": "image resizing and transformation",
       "ecosystem": "npm",
-      "relevant": ["sharp", "jimp", "gm", "image-size"]
+      "relevant": [
+        "sharp",
+        "jimp",
+        "gm",
+        "image-size"
+      ]
     },
     {
       "query": "csv parser streaming",
       "ecosystem": "npm",
-      "relevant": ["csv-parse", "papaparse", "fast-csv", "csv-parser", "neat-csv"]
+      "relevant": [
+        "csv-parse",
+        "papaparse",
+        "fast-csv",
+        "csv-parser",
+        "neat-csv"
+      ]
     },
     {
       "query": "job queue with redis",
       "ecosystem": "npm",
-      "relevant": ["bullmq", "bull", "bee-queue", "kue"]
+      "relevant": [
+        "bullmq",
+        "bull",
+        "bee-queue",
+        "kue"
+      ]
     },
     {
       "query": "unique id generator",
       "ecosystem": "npm",
-      "relevant": ["nanoid", "uuid", "cuid2", "ulid", "@paralleldrive/cuid2"]
+      "relevant": [
+        "nanoid",
+        "uuid",
+        "cuid2",
+        "ulid",
+        "@paralleldrive/cuid2"
+      ]
     },
     {
       "query": "password hashing",
       "ecosystem": "npm",
-      "relevant": ["bcrypt", "bcryptjs", "argon2", "@node-rs/argon2"]
+      "relevant": [
+        "bcrypt",
+        "bcryptjs",
+        "argon2",
+        "@node-rs/argon2"
+      ]
     },
     {
       "query": "terminal colors and styling",
       "ecosystem": "npm",
-      "relevant": ["chalk", "picocolors", "kleur", "colorette", "ansi-colors"]
+      "relevant": [
+        "chalk",
+        "picocolors",
+        "kleur",
+        "colorette",
+        "ansi-colors"
+      ]
     },
     {
       "query": "deep clone objects",
       "ecosystem": "npm",
-      "relevant": ["klona", "rfdc", "clone-deep", "lodash.clonedeep", "just-clone"]
+      "relevant": [
+        "klona",
+        "rfdc",
+        "clone-deep",
+        "lodash.clonedeep",
+        "just-clone"
+      ]
     },
     {
       "query": "retry failed async operations with backoff",
       "ecosystem": "npm",
-      "relevant": ["p-retry", "async-retry", "retry", "exponential-backoff", "cockatiel"]
+      "relevant": [
+        "p-retry",
+        "async-retry",
+        "retry",
+        "exponential-backoff",
+        "cockatiel"
+      ]
     },
     {
       "query": "rate limiting middleware",
       "ecosystem": "npm",
-      "relevant": ["express-rate-limit", "rate-limiter-flexible", "bottleneck", "limiter"]
+      "relevant": [
+        "express-rate-limit",
+        "rate-limiter-flexible",
+        "bottleneck",
+        "limiter"
+      ]
     },
     {
       "query": "file watcher",
       "ecosystem": "npm",
-      "relevant": ["chokidar", "watchpack", "node-watch", "sane"]
+      "relevant": [
+        "chokidar",
+        "watchpack",
+        "node-watch",
+        "sane"
+      ]
     },
     {
       "query": "logging library structured json",
       "ecosystem": "npm",
-      "relevant": ["pino", "winston", "bunyan", "roarr"]
+      "relevant": [
+        "pino",
+        "winston",
+        "bunyan",
+        "roarr"
+      ]
     },
     {
       "query": "jwt token signing and verification",
       "ecosystem": "npm",
-      "relevant": ["jsonwebtoken", "jose", "fast-jwt", "@tsndr/cloudflare-worker-jwt"]
+      "relevant": [
+        "jsonwebtoken",
+        "jose",
+        "fast-jwt",
+        "@tsndr/cloudflare-worker-jwt"
+      ]
     },
     {
       "query": "http requests",
       "ecosystem": "pypi",
-      "relevant": ["requests", "httpx", "urllib3", "aiohttp"]
+      "relevant": [
+        "requests",
+        "httpx",
+        "urllib3",
+        "aiohttp"
+      ]
     },
     {
       "query": "dataframe analysis",
       "ecosystem": "pypi",
-      "relevant": ["pandas", "polars", "dask", "modin"]
+      "relevant": [
+        "pandas",
+        "polars",
+        "dask",
+        "modin"
+      ]
     },
     {
       "query": "web framework",
       "ecosystem": "pypi",
-      "relevant": ["django", "flask", "fastapi", "starlette", "bottle", "pyramid"]
+      "relevant": [
+        "django",
+        "flask",
+        "fastapi",
+        "starlette",
+        "bottle",
+        "pyramid"
+      ]
     },
     {
       "query": "video editing",
       "ecosystem": "pypi",
-      "relevant": ["moviepy", "ffmpeg-python", "imageio", "scikit-video"]
+      "relevant": [
+        "moviepy",
+        "ffmpeg-python",
+        "imageio",
+        "scikit-video"
+      ]
     },
     {
       "query": "yaml parsing",
       "ecosystem": "pypi",
-      "relevant": ["pyyaml", "ruamel.yaml", "oyaml", "strictyaml"]
+      "relevant": [
+        "pyyaml",
+        "ruamel.yaml",
+        "oyaml",
+        "strictyaml"
+      ]
     },
     {
       "query": "testing framework",
       "ecosystem": "pypi",
-      "relevant": ["pytest", "nose2", "hypothesis", "tox"]
+      "relevant": [
+        "pytest",
+        "nose2",
+        "hypothesis",
+        "tox"
+      ]
     },
     {
       "query": "serialization",
       "ecosystem": "cargo",
-      "relevant": ["serde", "serde_json", "bincode", "rmp-serde", "postcard"]
+      "relevant": [
+        "serde",
+        "serde_json",
+        "bincode",
+        "rmp-serde",
+        "postcard"
+      ]
     },
     {
       "query": "async runtime",
       "ecosystem": "cargo",
-      "relevant": ["tokio", "async-std", "smol", "futures"]
+      "relevant": [
+        "tokio",
+        "async-std",
+        "smol",
+        "futures"
+      ]
     },
     {
       "query": "http client",
       "ecosystem": "cargo",
-      "relevant": ["reqwest", "hyper", "ureq", "surf", "isahc"]
+      "relevant": [
+        "reqwest",
+        "hyper",
+        "ureq",
+        "surf",
+        "isahc"
+      ]
     },
     {
       "query": "command line argument parsing",
       "ecosystem": "cargo",
-      "relevant": ["clap", "structopt", "argh", "pico-args", "gumdrop"]
+      "relevant": [
+        "clap",
+        "structopt",
+        "argh",
+        "pico-args",
+        "gumdrop"
+      ]
     },
     {
       "query": "web framework",
       "ecosystem": "rubygems",
-      "relevant": ["rails", "sinatra", "hanami", "roda", "rack"]
+      "relevant": [
+        "rails",
+        "sinatra",
+        "hanami",
+        "roda",
+        "rack"
+      ]
     },
     {
       "query": "html parsing",
       "ecosystem": "rubygems",
-      "relevant": ["nokogiri", "oga", "hpricot"]
+      "relevant": [
+        "nokogiri",
+        "oga",
+        "hpricot"
+      ]
     },
     {
       "query": "background job processing",
       "ecosystem": "rubygems",
-      "relevant": ["sidekiq", "resque", "delayed_job", "good_job"]
+      "relevant": [
+        "sidekiq",
+        "resque",
+        "delayed_job",
+        "good_job"
+      ]
     },
     {
       "query": "http server",
       "ecosystem": "rubygems",
-      "relevant": ["puma", "unicorn", "thin", "falcon", "webrick"]
+      "relevant": [
+        "puma",
+        "unicorn",
+        "thin",
+        "falcon",
+        "webrick"
+      ]
+    },
+    {
+      "query": "convert markdown into html",
+      "ecosystem": "npm",
+      "relevant": [
+        "marked",
+        "markdown-it",
+        "micromark",
+        "showdown",
+        "remark-html"
+      ]
+    },
+    {
+      "query": "turn a date into a human readable string",
+      "ecosystem": "npm",
+      "relevant": [
+        "date-fns",
+        "dayjs",
+        "luxon",
+        "moment",
+        "timeago.js"
+      ]
+    },
+    {
+      "query": "stop people submitting too many requests",
+      "ecosystem": "npm",
+      "relevant": [
+        "express-rate-limit",
+        "rate-limiter-flexible",
+        "bottleneck",
+        "limiter"
+      ]
+    },
+    {
+      "query": "make images smaller",
+      "ecosystem": "npm",
+      "relevant": [
+        "sharp",
+        "jimp",
+        "imagemin",
+        "image-size",
+        "squoosh"
+      ]
+    },
+    {
+      "query": "check that user input has the right shape",
+      "ecosystem": "npm",
+      "relevant": [
+        "zod",
+        "yup",
+        "joi",
+        "ajv",
+        "valibot",
+        "superstruct"
+      ]
     }
   ]
 }
