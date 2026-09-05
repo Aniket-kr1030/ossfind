@@ -116,6 +116,9 @@ function fixtureIndexPath(): string {
  * It is optional — when the index has not been built, this is exactly the previous
  * registry-only behaviour.
  */
+/** Kept in step with FederatedDiscoverer's default perSourceLimit. */
+const LOCAL_INDEX_LIMIT = 80;
+
 function withLocalIndex(
   ecosystem: string,
   registrySource: FederatedSource,
@@ -124,7 +127,9 @@ function withLocalIndex(
 ) {
   const sources: FederatedSource[] = [registrySource];
   if (!fixtures) {
-    const local = new LocalIndexDiscoverer(ecosystem, indexPath);
+    // Match the federation's per-source cap: retrieving fewer than it will accept
+    // throws away recall for nothing, and the shortlist downstream is what bounds cost.
+    const local = new LocalIndexDiscoverer(ecosystem, indexPath, LOCAL_INDEX_LIMIT);
     // An index that was never built must not be advertised as a source at all,
     // otherwise every search reports a permanently unavailable one.
     if (local.isAvailable()) sources.push({ name: "local-index", discoverer: local });

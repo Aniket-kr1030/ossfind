@@ -89,12 +89,15 @@ CogVideo, …) that aren't on any package registry.
 
   **It does not help everywhere, and the eval says where.** Measured on the labelled set:
   npm and crates.io improve substantially (crates.io MRR 0.000 → 0.675, since crates.io's own
-  search ranks by name similarity and never returns `serde` for "serialization"). A RubyGems
-  index measured *worse* — MRR 0.500 → 0.250, losing `rails` for "web framework" entirely — so
-  do not build one. Rebuilding PyPI's index concentrated on the top 8,000 packages also measured
-  slightly worse (0.611 → 0.597) than the broader 25,000-package index, so the wider corpus stays.
-  Both were hypotheses that the harness rejected; the capability is generic, the recommendation
-  is per-ecosystem and evidence-led.
+  search ranks by name similarity and never returns `serde` for "serialization"). RubyGems is
+  neutral on MRR and slightly positive on recall. Rebuilding PyPI's index concentrated on the
+  top 8,000 packages measured slightly *worse* (0.611 → 0.597) than the broader 25,000-package
+  index, so the wider corpus stays — a hypothesis the harness rejected.
+
+  A RubyGems index originally measured much worse (MRR 0.500 → 0.250) by pushing `rails` out of
+  the enrichment shortlist. That was a shortlisting defect, not an index one, and is fixed: a
+  complete lexical match now counts as relevance evidence, so an adopted package whose
+  description contains every query word earns a slot regardless of its embedding score.
   Measured on the labelled set, adding the index moved MRR 0.561 → 0.636, hit@3 60.5% → 67.4%
   and noise@3 2.6% → 0.0%, with no per-query regressions — and made `marked` the top result for
   *"markdown to html renderer"*, which no lexical probe can reach. Note that `npm run eval`
