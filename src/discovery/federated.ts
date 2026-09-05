@@ -1,8 +1,16 @@
 import type { ComponentCandidate } from "../contracts/index.js";
 import type { Discoverer } from "../pipeline/interfaces.js";
 
-const DEFAULT_PER_SOURCE_LIMIT = 15;
-const DEFAULT_TOTAL_LIMIT = 30;
+/**
+ * These caps once bounded the cost of a search, because every candidate they let
+ * through was enriched. The orchestrator now scores fit first and enriches only a
+ * budgeted shortlist, so the caps are free to pass a much wider pool — which is the
+ * point: truncating to 15 per source discarded the query-expansion recall before fit
+ * could ever rank it. They still bound memory and keep one source from crowding out
+ * the round-robin.
+ */
+const DEFAULT_PER_SOURCE_LIMIT = 80;
+const DEFAULT_TOTAL_LIMIT = 200;
 const DEFAULT_SOURCE_TIMEOUT_MS = 10_000;
 
 export interface FederatedSource {

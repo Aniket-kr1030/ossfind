@@ -3,6 +3,7 @@ import {
   type ComponentCandidate,
 } from "../contracts/index.js";
 import { defaultHttpClient, type HttpClient } from "../http/client.js";
+import { queryProbes } from "../discovery/query-probes.js";
 import type { Discoverer } from "../pipeline/interfaces.js";
 
 const NPM_SEARCH_URL = "https://registry.npmjs.org/-/v1/search";
@@ -93,15 +94,43 @@ export class HttpDiscoverer implements Discoverer {
     private readonly http: HttpClient = defaultHttpClient,
     private readonly size = 20,
     private readonly attempts = 3,
+    private readonly maxProbes = 6,
   ) {}
 
   discover(query: string): Promise<ComponentCandidate[]> {
     const cached = this.cache.get(query);
     if (cached) return cached;
 
-    const discovery = this.fetchCandidates(query);
+    const discovery = this.fetchExpanded(query);
     this.cache.set(query, discovery);
     return discovery;
+  }
+
+  /**
+   * Union the results of several progressively shorter probes. npm's conjunctive text
+   * match drops well-known packages from natural-language queries entirely, so the
+   * query alone under-recalls; see query-probes.ts for the measurements.
+   *
+   * A probe that fails contributes nothing and never fails the search — the same
+   * error isolation the federated discoverer applies across sources.
+   */
+  private async fetchExpanded(query: string): Promise<ComponentCandidate[]> {
+    const probes = queryProbes(query, { maxProbes: this.maxProbes });
+    if (probes.length === 0) return [];
+
+    const settled = await Promise.all(probes.map(async (probe) => ({
+      tier: probe.tier,
+      candidates: await this.fetchCandidates(probe.text).catch(() => [] as ComponentCandidate[]),
+    })));
+
+    // Earliest probe wins a duplicate: its wording was closer to what the user asked.
+    const byId = new Map<string, ComponentCandidate>();
+    for (const { candidates } of settled.sort((left, right) => left.tier - right.tier)) {
+      for (const candidate of candidates) {
+        if (!byId.has(candidate.id)) byId.set(candidate.id, candidate);
+      }
+    }
+    return [...byId.values()];
   }
 
   private async fetchCandidates(query: string): Promise<ComponentCandidate[]> {

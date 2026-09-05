@@ -13,9 +13,10 @@ import * as g12 from "./g12.js";
 import * as g13 from "./g13.js";
 import * as g14 from "./g14.js";
 import * as g15 from "./g15.js";
+import * as g16 from "./g16.js";
 
 async function main() {
-  const gates = [g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, g13, g14, g15];
+  const gates = [g1, g2, g3, g4, g5, g6, g7, g8, g9, g10, g11, g12, g13, g14, g15, g16];
   let anyFailed = false;
 
   console.log(`\n=== Running Quality-Gate Battery ===\n`);

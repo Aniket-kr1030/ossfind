@@ -262,7 +262,10 @@ describe("buildPipeline fit scorer selection", () => {
     });
   });
 
-  it("federates all six fixture ecosystems without increasing the total result cap", async () => {
+  // The cap moved from 30 to 200 when query expansion widened discovery: enrichment
+  // cost is now bounded by the orchestrator's budget instead, so truncating discovery
+  // only threw away recall. The bound still exists to keep the pool finite.
+  it("federates all six fixture ecosystems within the total result cap", async () => {
     const pipeline = buildPipeline({ fixtures: true, ecosystem: "all" });
     const discovered = await pipeline.discoverer.discover("http client");
     const prefixes = [...new Set(discovered.map((candidate) => candidate.id.split(":", 1)[0]))];
@@ -271,7 +274,7 @@ describe("buildPipeline fit scorer selection", () => {
     expect((pipeline.discoverer as FederatedDiscoverer).availability().sources.map((source) => source.name)).toEqual([
       "npm-registry", "pypi", "github", "huggingface", "cargo", "rubygems",
     ]);
-    expect(discovered.length).toBeLessThanOrEqual(30);
+    expect(discovered.length).toBeLessThanOrEqual(200);
     expect(prefixes).toEqual(expect.arrayContaining(["npm", "pypi", "cargo", "rubygems"]));
   });
 
