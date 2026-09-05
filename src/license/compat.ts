@@ -39,8 +39,51 @@ function normalizeLicense(license: string | null | undefined): string {
   if (/(^|[^a-z0-9-])gpl-\d+(?:\.\d+)?(?:-(?:only|or-later))?\+?(?=$|[^a-z0-9-])/i.test(trimmed)) {
     return "gpl-3.0";
   }
-  
+
+  /*
+   * An expression reaching here contains no copyleft operand, so the conservative
+   * rule above has nothing to protect against: every path through it is permissive
+   * and the licensee cannot end up on a copyleft one whichever they pick.
+   *
+   * This matters because Rust dual-licenses almost universally. `serde` — 1.35bn
+   * downloads, no advisories — was capped at caution purely because
+   * "MIT OR Apache-2.0" fell through to "unknown", which put essentially every major
+   * crate behind a manual-audit warning.
+   */
+  const allPermissive = permissiveOperands(trimmed);
+  if (allPermissive) return allPermissive;
+
   return "unknown";
+}
+
+/** Obligation weight, lightest first: what a licensee would choose under OR. */
+const PERMISSIVE_BY_OBLIGATION = ["mit", "isc", "bsd-2-clause", "bsd-3-clause", "apache-2.0"];
+
+/**
+ * Resolve an SPDX expression whose operands are ALL permissive to a single license.
+ * Returns undefined for anything else — a `WITH` exception, a nested/unbalanced
+ * expression, or an operand this module does not recognize — so unparseable input
+ * still falls through to "unknown" and is audited rather than assumed.
+ */
+function permissiveOperands(expression: string): string | undefined {
+  if (!/\b(or|and)\b/.test(expression)) return undefined;
+  if (/\bwith\b/.test(expression)) return undefined;
+
+  const stripped = expression.replace(/[()]/g, " ");
+  const operands = stripped.split(/\b(?:or|and)\b/).map((part) => part.trim()).filter(Boolean);
+  if (operands.length < 2) return undefined;
+  if (!operands.every((operand) => PERMISSIVE.has(operand))) return undefined;
+
+  const ranked = operands
+    .map((operand) => PERMISSIVE_BY_OBLIGATION.indexOf(operand))
+    .filter((index) => index >= 0);
+  if (ranked.length !== operands.length) return undefined;
+
+  // Under OR the licensee picks one, so the lightest obligation applies. Under AND
+  // every operand applies, so the heaviest does. Mixed expressions take the heaviest.
+  const useHeaviest = /\band\b/.test(expression);
+  const chosen = useHeaviest ? Math.max(...ranked) : Math.min(...ranked);
+  return PERMISSIVE_BY_OBLIGATION[chosen];
 }
 
 /**
