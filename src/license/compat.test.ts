@@ -58,3 +58,44 @@ describe("License Compatibility Matrix", () => {
     (comp) => expect(checkLicense("MIT", comp).compatible).toBe("conditional"),
   );
 });
+
+describe("all-permissive SPDX expressions", () => {
+  // serde, tokio, clap and nearly every major crate publish as "MIT OR Apache-2.0".
+  // This fell through to "unknown" and capped them all at caution.
+  it.each([
+    "MIT OR Apache-2.0",
+    "Apache-2.0 OR MIT",
+    "(MIT OR Apache-2.0)",
+    "mit or apache-2.0",
+    "MIT OR Apache-2.0 OR BSD-3-Clause",
+  ])("accepts %s into an MIT project", (expression) => {
+    expect(checkLicense("MIT", expression).compatible).toBe("yes");
+  });
+
+  it("treats AND as every obligation applying, not a choice", () => {
+    expect(checkLicense("MIT", "MIT AND Apache-2.0").compatible).toBe("yes");
+  });
+
+  // The conservative rule for copyleft operands is deliberate and gated by G4.
+  it.each([
+    "GPL-3.0 OR MIT",
+    "MIT OR GPL-3.0-or-later",
+    "MIT OR AGPL-3.0",
+    "MIT AND GPL-3.0",
+  ])("still refuses %s, which G4 requires never to ship", (expression) => {
+    expect(checkLicense("MIT", expression).compatible).not.toBe("yes");
+  });
+
+  it.each([
+    ["a WITH exception", "Apache-2.0 WITH LLVM-exception"],
+    ["an unrecognized operand", "MIT OR NOASSERTION"],
+    ["an unrecognized operand in an AND", "MIT AND SomethingCustom-1.0"],
+    ["a single license with no operator", "SomeUnknownLicense"],
+  ])("leaves %s for manual audit", (_label, expression) => {
+    expect(checkLicense("MIT", expression).compatible).not.toBe("yes");
+  });
+
+  it("keeps LGPL conditional rather than promoting it", () => {
+    expect(checkLicense("MIT", "MIT OR LGPL-3.0-or-later").compatible).toBe("conditional");
+  });
+});
