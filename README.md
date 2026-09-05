@@ -37,7 +37,7 @@ stdout is not a terminal.
 
 ```bash
 npm install
-npm run typecheck && npm test     # 524 tests, fully offline
+npm run typecheck && npm test     # 539 tests, fully offline
 npm run gates                     # 16 safety gates, each proven able to fail
 npm run eval                      # relevance against the labelled query set (live)
 ```
@@ -77,7 +77,14 @@ enriched correctly per-source. The safety-ranking layer is the same for every so
 the ranking, not the corpus. GitHub and Hugging Face are what surface AI-model repos/models (diffusers,
 CogVideo, …) that aren't on any package registry.
 
-- **npm** needs no key — discovery uses the npm registry search API.
+- **npm** needs no key — discovery uses the npm registry search API, with query expansion
+  (progressively shorter slices of the query, unioned) to recover the recall a conjunctive text
+  match loses. Optionally federate it with a local semantic index to bridge vocabulary the
+  registry cannot — `marked` says *parser* when you asked for a *renderer*:
+  ```
+  INDEX_MAX=8000 INDEX_DB_PATH=.cache/index/npm.db npm run index:build npm
+  ```
+  When the index has not been built, npm search behaves exactly as before.
 - **GitHub** uses the repo search API. Set an optional `GITHUB_TOKEN` in `.env.local` for higher rate
   limits.
 - **Hugging Face** needs no key — discovery uses the public models search API.
@@ -233,10 +240,13 @@ each proven to **reject a known-bad input** (not just accept a good one):
 `G1` contract · `G2` determinism · `G3` critical-CVSS fact (v3.0/v3.1/v4) · `G4` license SPDX fact ·
 `G5` offline · `G6` version-relevance fact · `G7` evidence completeness · `G8` federation provenance ·
 `G9` Python project-context honesty · `G10` scaffold snippet integrity · `G11` Python stub structural
-honesty · `G12` recipe resolution honesty · `G13` adoption cannot override safety.
+honesty · `G12` recipe resolution honesty · `G13` adoption cannot override safety · `G14` cache
+preserves response bodies · `G15` suggested ESM import matches declared exports · `G16` recall survives
+discovery.
 
-Every gate after `G7` exists because an independent adversarial audit found a real bug that the
-then-green test suite missed.
+Every gate after `G7` exists because a real bug got past a green test suite — found by an independent
+adversarial audit, by building a real project against the published package (`G14`, `G15`), or by the
+relevance eval (`G16`).
 
 ## Audit trail
 
@@ -261,9 +271,19 @@ and **every one found real bugs the green test suite had missed**. All are fixed
   `@huggingface/transformers`, mean-pooled, cached per package under `.cache/embeddings/`) ranks by
   meaning. Fixture/test mode uses deterministic TF-IDF so tests stay offline and exact. Force either
   with `OSSFIND_FIT=embeddings|tfidf`; live falls back to TF-IDF if the model can't load.
-- Ecosystems: **npm, PyPI, and GitHub**, via a federated discovery layer. Discovery composes existing
-  search sources (registry APIs, a self-hosted PyPI index, libraries.io, GitHub) — ossfind owns the
-  safety ranking, not the corpus. More sources (Hugging Face, Cargo/Go/Maven) are thin adapters away.
+- Ecosystems: **npm, PyPI, crates.io, RubyGems, GitHub and Hugging Face**, via a federated discovery
+  layer. Discovery composes existing search sources (registry APIs, self-hosted indexes, libraries.io,
+  GitHub) — ossfind owns the safety ranking, not the corpus. Go and Maven remain unbuilt: Go has no
+  free search API, and Maven's `groupId:artifactId` collides with the `ecosystem:name` id convention.
+- **Relevance is measured, not asserted.** `npm run eval` scores a labelled set of 43 queries
+  (MRR, hit@k, recall, noise@3) and diffs against a saved baseline. Registry search matches
+  conjunctively, so a natural-language query excludes terse-description packages — discovery probes
+  with progressively shorter slices of the query and unions the results, and fit is scored before the
+  budgeted enrichment step so a wide pool costs no more than a narrow one. The harness has already
+  rejected one plausible change that measured worse, and caught a defect where a rate-limited search
+  was reported as "no results".
+- **Verified signatures cover class members**, so a default-exported class reports its methods and
+  constructor rather than only its name.
 - GitHub repo components fail-closed to "caution" (dependency-CVE data isn't available for a raw repo).
 - The self-hosted PyPI index is optional (one source in the federation): FTS5/BM25 recall + semantic
   rerank, plus a stored-vector hybrid recall (`searchHybrid`). It does not scale to the full ~928k
