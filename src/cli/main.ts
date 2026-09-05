@@ -1,6 +1,7 @@
 import { parseArgs } from "node:util";
 import { PACKAGE_VERSION } from "../version.js";
 import { buildPipeline, type SearchEcosystem } from "../mcp/pipeline.js";
+import { FederatedDiscoverer } from "../discovery/federated.js";
 import { searchComponents } from "../pipeline/orchestrator.js";
 import { ApiSurfaceExtractor } from "../api/surface.js";
 import { PyApiSurfaceExtractor } from "../api/py-surface.js";
@@ -93,6 +94,22 @@ async function runSearch(query: string, values: Record<string, unknown>): Promis
 
   const projectLicense = (values.license as string | undefined) ?? "MIT";
   const pipeline = buildPipeline({ ecosystem, projectLicense });
+
+  // "No components matched" and "nothing was able to search" are different answers.
+  // A fresh install has no local index and no libraries.io key, so PyPI has no source
+  // at all — reporting that as an empty result set would claim a search happened.
+  const availability = pipeline.discoverer instanceof FederatedDiscoverer
+    ? pipeline.discoverer.availability()
+    : undefined;
+  if (availability && !availability.available) {
+    const names = availability.sources.map((source) => source.name).join(", ");
+    process.stderr.write(`${ecosystem} could not be searched: no discovery source is available (${names}).\n`);
+    if (ecosystem === "pypi") {
+      process.stderr.write("Build a local index with `npm run index:build pypi`, or set LIBRARY_IO_API_KEY in .env.local.\n");
+    }
+    return 2;
+  }
+
   const results = await searchComponents(query, pipeline, { limit });
 
   if (values.json) {

@@ -96,3 +96,32 @@ describe("ossfind CLI output", () => {
     expect(stdout()).not.toMatch(/\[/);
   });
 });
+
+describe("ossfind CLI unavailable sources", () => {
+  // Found verifying 0.1.8 from a clean install: with no local index and no
+  // libraries.io key, PyPI has no discovery source at all, and the CLI reported
+  // "No pypi components matched" — claiming a search happened that never did.
+  it("distinguishes an unsearchable ecosystem from an empty result set", async () => {
+    vi.unstubAllEnvs();
+    // libraries.io as the only source, with no key: unavailable wherever this runs,
+    // unlike the local index, whose path depends on the working directory.
+    vi.stubEnv("OSSFIND_PYPI_DISCOVERY", "libraries");
+    vi.stubEnv("LIBRARIES_IO_API_KEY", "");
+    vi.stubEnv("LIBRARY_IO_API_KEY", "");
+
+    const code = await main(["search", "http requests", "-e", "pypi", "--no-color"]);
+
+    expect(code).toBe(2);
+    expect(stderr()).toMatch(/could not be searched/);
+    expect(stderr()).toMatch(/libraries\.io/);
+    expect(stdout()).not.toMatch(/No pypi components matched/);
+  });
+
+  it("still reports a genuinely empty result set as no match", async () => {
+    vi.stubEnv("OSSFIND_FIXTURES", "1");
+    const code = await main(["search", "zzzz-nothing-matches-this-zzzz", "--no-color"]);
+
+    expect(code).toBe(0);
+    expect(stdout()).toMatch(/No npm components matched/);
+  });
+});
