@@ -158,6 +158,7 @@ export class TfidfFitScorer implements FitScorer {
         id: doc.candidate.id,
         fitScore,
         rationale,
+        lexicalCoverage: lexical.coverage,
       });
     });
   }

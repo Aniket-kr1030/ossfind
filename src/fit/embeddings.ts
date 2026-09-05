@@ -123,6 +123,7 @@ export class EmbeddingFitScorer implements FitScorer {
         id: candidate.id,
         fitScore,
         rationale,
+        lexicalCoverage: lexical.coverage,
       });
     });
   }

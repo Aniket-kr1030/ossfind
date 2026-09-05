@@ -1,4 +1,4 @@
-import type { ComponentCandidate, ScoredComponent } from "../contracts/index.js";
+import type { ComponentCandidate, FitSignal, ScoredComponent } from "../contracts/index.js";
 import type { PipelineDependencies } from "./interfaces.js";
 import type { UsageCollector } from "../telemetry/collector.js";
 
@@ -37,16 +37,35 @@ const DEFAULT_ENRICHMENT_BUDGET = 25;
 const ADOPTION_RESERVED_SLOTS = 5;
 const ADOPTION_RELEVANCE_FLOOR = 0.45;
 
+/**
+ * Adoption buys a look only for a candidate with relevance evidence. Two kinds count:
+ * a decent similarity score, or a description that literally contains every content
+ * word of the query.
+ *
+ * The second exists because mean-pooled embeddings penalise length. `rails` describes
+ * itself as "a full-stack web framework optimized for programmer happiness…" and
+ * scored 0.31 against "web framework", while one-line gems saying exactly that scored
+ * 0.62 — so Rails, with 784m downloads and a complete lexical match, could not earn a
+ * reserved slot and reached the shortlist only by luck of pool size.
+ *
+ * A popular but irrelevant package still cannot buy in: it satisfies neither test.
+ */
+function hasRelevanceEvidence(fit: FitSignal | undefined): boolean {
+  if (!fit) return false;
+  if (fit.fitScore >= ADOPTION_RELEVANCE_FLOOR) return true;
+  return fit.lexicalCoverage !== undefined && fit.lexicalCoverage >= 1;
+}
+
 function shortlistFor(
   candidates: ComponentCandidate[],
-  fitById: Map<string, number>,
+  fitById: Map<string, FitSignal>,
   budget: number,
 ): ComponentCandidate[] {
   if (candidates.length <= budget) return candidates;
 
   const ordered = candidates
     // Ties keep discovery order, which favours the probe closest to the user's words.
-    .map((candidate, index) => ({ candidate, index, score: fitById.get(candidate.id) ?? 0 }))
+    .map((candidate, index) => ({ candidate, index, score: fitById.get(candidate.id)?.fitScore ?? 0 }))
     .sort((left, right) => right.score - left.score || left.index - right.index);
 
   const reserved = Math.min(ADOPTION_RESERVED_SLOTS, Math.max(0, budget - 1));
@@ -55,7 +74,7 @@ function shortlistFor(
 
   const byAdoption = ordered
     .filter((entry) => !chosen.has(entry.candidate.id)
-      && entry.score >= ADOPTION_RELEVANCE_FLOOR
+      && hasRelevanceEvidence(fitById.get(entry.candidate.id))
       && (entry.candidate.downloads ?? 0) > 0)
     .sort((left, right) => (right.candidate.downloads ?? 0) - (left.candidate.downloads ?? 0))
     .slice(0, reserved);
@@ -77,7 +96,7 @@ async function runPipeline(
   const fit = await deps.fitScorer.fit(query, candidates);
 
   const budget = Math.max(1, opts.enrichmentBudget ?? DEFAULT_ENRICHMENT_BUDGET);
-  const fitById = new Map(fit.map((signal) => [signal.id, signal.fitScore]));
+  const fitById = new Map(fit.map((signal) => [signal.id, signal]));
   const shortlist = shortlistFor(candidates, fitById, budget);
 
   const enriched = await Promise.all(

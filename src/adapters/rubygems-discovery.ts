@@ -12,7 +12,16 @@ export interface RubyGemsDiscovererOptions {
   attempts?: number;
   /** Registry probes issued per search; see discovery/query-probes.ts. */
   maxProbes?: number;
+  /**
+   * Result pages fetched per probe. rubygems.org serves 30 per page and does paginate,
+   * but deeper pages return more of the same name-matched gems rather than the ones the
+   * query means: measured on the labelled set, 3 pages left MRR unchanged at 0.500 while
+   * tripling the requests, and pushed `sidekiq` out of the candidate cap. Default 1.
+   */
+  pages?: number;
 }
+
+const DEFAULT_PAGES = 1;
 
 interface RubyGemsSearchResult {
   name?: unknown;
@@ -121,6 +130,7 @@ export class RubyGemsDiscoverer implements Discoverer {
   private readonly cache = new Map<string, Promise<ComponentCandidate[]>>();
   private readonly attempts: number;
   private readonly maxProbes: number;
+  private readonly pages: number;
 
   constructor(
     private readonly http: HttpClient = defaultHttpClient,
@@ -129,9 +139,11 @@ export class RubyGemsDiscoverer implements Discoverer {
     if (typeof optionsOrAttempts === "number") {
       this.attempts = optionsOrAttempts;
       this.maxProbes = 6;
+      this.pages = DEFAULT_PAGES;
     } else {
       this.attempts = optionsOrAttempts.attempts ?? 3;
       this.maxProbes = optionsOrAttempts.maxProbes ?? 6;
+      this.pages = optionsOrAttempts.pages ?? DEFAULT_PAGES;
     }
   }
 
@@ -148,12 +160,26 @@ export class RubyGemsDiscoverer implements Discoverer {
   }
 
   /**
-   * `ok: false` means rubygems.org never answered, which must stay distinct from an
-   * empty result list; see expand.ts.
+   * Union the requested pages. `ok: false` means rubygems.org never answered at all,
+   * which must stay distinct from an empty result list (see expand.ts); a page that
+   * fails after the first still yields what the earlier pages returned.
    */
   private async fetchCandidates(query: string): Promise<ProbeOutcome> {
+    const collected: ComponentCandidate[] = [];
+    for (let page = 1; page <= this.pages; page += 1) {
+      const outcome = await this.fetchPage(query, page);
+      if (!outcome.ok) return collected.length > 0 ? { ok: true, candidates: collected } : { ok: false };
+      collected.push(...outcome.candidates);
+      // A short page is the last page; asking for more only burns rate limit.
+      if (outcome.candidates.length === 0) break;
+    }
+    return { ok: true, candidates: collected };
+  }
+
+  private async fetchPage(query: string, page: number): Promise<ProbeOutcome> {
     const url = new URL(RUBYGEMS_SEARCH_URL);
     url.searchParams.set("query", query);
+    if (page > 1) url.searchParams.set("page", String(page));
 
     for (let attempt = 0; attempt < this.attempts; attempt += 1) {
       try {

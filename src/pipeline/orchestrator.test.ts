@@ -16,6 +16,7 @@ function deps(
   candidates: ComponentCandidate[],
   fitFor: (candidate: ComponentCandidate) => number,
   enriched: string[],
+  coverageFor: (candidate: ComponentCandidate) => number | undefined = () => undefined,
 ): PipelineDependencies {
   return {
     discoverer: { async discover() { return candidates; } },
@@ -34,7 +35,15 @@ function deps(
     },
     fitScorer: {
       async fit(_query, items) {
-        return items.map((item) => ({ id: item.id, fitScore: fitFor(item), rationale: "test" }));
+        return items.map((item) => {
+          const lexicalCoverage = coverageFor(item);
+          return {
+            id: item.id,
+            fitScore: fitFor(item),
+            rationale: "test",
+            ...(lexicalCoverage === undefined ? {} : { lexicalCoverage }),
+          };
+        });
       },
     },
     ranker: {
@@ -112,5 +121,58 @@ describe("searchComponents shortlisting", () => {
     const results = await searchComponents("q", deps(pool, () => 0.5, enriched), { enrichmentBudget: 15, limit: 3 });
     expect(results).toHaveLength(3);
     expect(enriched).toHaveLength(15);
+  });
+});
+
+describe("relevance evidence for adoption slots", () => {
+  // `rails` describes itself as "a full-stack web framework optimized for programmer
+  // happiness…". Mean-pooled embeddings scored that 0.31 against "web framework" while
+  // one-line gems saying exactly the query scored 0.62, so Rails — 784m downloads,
+  // every query word present — could not earn a reserved slot.
+  it("admits an adopted candidate whose description contains every query word", async () => {
+    const enriched: string[] = [];
+    const pool = [
+      ...Array.from({ length: 40 }, (_u, i) => candidate(`tiny-gem-${i}`, 20)),
+      candidate("rails", 784_101_509),
+    ];
+    await searchComponents("web framework", deps(
+      pool,
+      (c) => (c.name === "rails" ? 0.31 : 0.62),
+      enriched,
+      (c) => (c.name === "rails" ? 1 : 0.5),
+    ), { enrichmentBudget: 25 });
+
+    expect(enriched).toContain("rails");
+  });
+
+  it("still refuses an adopted candidate with neither similarity nor full coverage", async () => {
+    const enriched: string[] = [];
+    const pool = [
+      ...Array.from({ length: 40 }, (_u, i) => candidate(`relevant-${i}`, 20)),
+      candidate("left-pad", 500_000_000),
+    ];
+    await searchComponents("web framework", deps(
+      pool,
+      (c) => (c.name === "left-pad" ? 0.1 : 0.7),
+      enriched,
+      (c) => (c.name === "left-pad" ? 0.25 : 0.9),
+    ), { enrichmentBudget: 25 });
+
+    expect(enriched).not.toContain("left-pad");
+  });
+
+  it("does not treat a missing coverage signal as evidence", async () => {
+    const enriched: string[] = [];
+    const pool = [
+      ...Array.from({ length: 40 }, (_u, i) => candidate(`relevant-${i}`, 20)),
+      candidate("unscored", 900_000_000),
+    ];
+    await searchComponents("web framework", deps(
+      pool,
+      (c) => (c.name === "unscored" ? 0.1 : 0.7),
+      enriched,
+    ), { enrichmentBudget: 25 });
+
+    expect(enriched).not.toContain("unscored");
   });
 });
